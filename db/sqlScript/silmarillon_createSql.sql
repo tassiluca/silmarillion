@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 11.0.1              
 -- * Generator date: Dec  4 2018              
--- * Generation date: Mon Dec 27 13:34:20 2021 
+-- * Generation date: Mon Dec 27 15:21:16 2021 
 -- * LUN file: Z:\Tecnologie Web\silmarillion\db\schemas\silmarillion.lun 
 -- * Schema: silmarillion-Logic/1 
 -- ********************************************* 
@@ -12,8 +12,8 @@
 -- Database Section
 -- ________________ 
 
-create database silmarillion;
-use silmarillion;
+create database silmarillion-Logic;
+use silmarillion-Logic;
 
 
 -- Tables Section
@@ -22,7 +22,7 @@ use silmarillion;
 create table Alerts (
      UserId int not null,
      ProductId int not null,
-     constraint IDAlert primary key (UserId));
+     constraint IDAlert primary key (ProductId, UserId));
 
 create table Carts (
      ProductId int not null,
@@ -100,6 +100,7 @@ create table Payments (
      PayId int not null auto_increment,
      OrderId int not null,
      Date date not null,
+     MethodId int,
      constraint IDPaymentMethod primary key (PayId),
      constraint FKPaid_ID unique (OrderId));
 
@@ -128,27 +129,21 @@ create table ProductCopies (
      ProductId int not null,
      constraint IDComicCopy primary key (CopyId));
 
-create table PaymentDetails (
-     PayId int not null,
-     UserId int not null,
-     PaymentId int not null,
-     constraint FKWit_Pay_1_ID primary key (PayId));
-
 create table MethodHolders (
      MethodId int not null,
      UserId int not null,
      constraint IDHold primary key (MethodId, UserId));
-
-create table OrderDetails (
-     CopyId int not null,
-     OrderId int not null,
-     constraint IDOrderDetails primary key (OrderId, CopyId));
 
 create table LogOrderStatus (
      Status varchar(50) not null,
      OrderId int not null,
      Date date not null,
      constraint IDRelated primary key (Status, OrderId));
+
+create table OrderDetails (
+     CopyId int not null,
+     OrderId int not null,
+     constraint FKOrd_Pro_ID primary key (CopyId));
 
 create table Reviews (
      ReviewId int not null auto_increment,
@@ -234,6 +229,10 @@ alter table Payments add constraint FKPaid_FK
      foreign key (OrderId)
      references Orders (OrderId);
 
+alter table Payments add constraint FKPaymentDetails
+     foreign key (MethodId)
+     references PaymentMethods (MethodId);
+
 alter table PaymentMethods add constraint GRPaymentMethod
      check((Owner is not null and Number is not null and CVV is not null and ExpiringDate is not null)
            or (Owner is null and Number is null and CVV is null and ExpiringDate is null)); 
@@ -250,14 +249,6 @@ alter table ProductCopies add constraint FKIsCopyOf
      foreign key (ProductId)
      references Products (ProductId);
 
-alter table PaymentDetails add constraint FKWit_Pay_1_FK
-     foreign key (PayId)
-     references Payments (PayId);
-
-alter table PaymentDetails add constraint FKWit_Pay
-     foreign key (UserId, PaymentId)
-     references PaymentMethods (MethodId);
-
 alter table MethodHolders add constraint FKHol_Cus
      foreign key (UserId)
      references Customers (UserId);
@@ -266,14 +257,6 @@ alter table MethodHolders add constraint FKHol_Pay
      foreign key (MethodId)
      references PaymentMethods (MethodId);
 
-alter table OrderDetails add constraint FKOrd_Ord
-     foreign key (OrderId)
-     references Orders (OrderId);
-
-alter table OrderDetails add constraint FKOrd_Pro
-     foreign key (CopyId)
-     references ProductCopies (CopyId);
-
 alter table LogOrderStatus add constraint FKRel_Ord
      foreign key (OrderId)
      references Orders (OrderId);
@@ -281,6 +264,14 @@ alter table LogOrderStatus add constraint FKRel_Ord
 alter table LogOrderStatus add constraint FKRel_Ord_1
      foreign key (Status)
      references OrderStatus (Name);
+
+alter table OrderDetails add constraint FKOrd_Pro_FK
+     foreign key (CopyId)
+     references ProductCopies (CopyId);
+
+alter table OrderDetails add constraint FKOrd_Ord
+     foreign key (OrderId)
+     references Orders (OrderId);
 
 alter table Reviews add constraint FKComplete
      foreign key (UserId)
