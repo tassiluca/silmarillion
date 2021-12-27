@@ -3,7 +3,7 @@
 -- *--------------------------------------------
 -- * DB-MAIN version: 11.0.1              
 -- * Generator date: Dec  4 2018              
--- * Generation date: Mon Dec 27 12:40:04 2021 
+-- * Generation date: Mon Dec 27 13:34:20 2021 
 -- * LUN file: Z:\Tecnologie Web\silmarillion\db\schemas\silmarillion.lun 
 -- * Schema: silmarillion-Logic/1 
 -- ********************************************* 
@@ -12,8 +12,8 @@
 -- Database Section
 -- ________________ 
 
-create database silmarillion-Logic;
-use silmarillion-Logic;
+create database silmarillion;
+use silmarillion;
 
 
 -- Tables Section
@@ -22,7 +22,7 @@ use silmarillion-Logic;
 create table Alerts (
      UserId int not null,
      ProductId int not null,
-     constraint IDAlert primary key (ProductId, UserId));
+     constraint IDAlert primary key (UserId));
 
 create table Carts (
      ProductId int not null,
@@ -124,9 +124,9 @@ create table Products (
 create table ProductCopies (
      CopyId int not null auto_increment,
      DiscountPercetage int,
-     Condition varchar(140),
+     ConditionGrade varchar(140),
      ProductId int not null,
-     constraint IDComicCopy primary key (ProductId, CopyId));
+     constraint IDComicCopy primary key (CopyId));
 
 create table PaymentDetails (
      PayId int not null,
@@ -140,10 +140,9 @@ create table MethodHolders (
      constraint IDHold primary key (MethodId, UserId));
 
 create table OrderDetails (
-     ProductId int not null,
      CopyId int not null,
      OrderId int not null,
-     constraint IDOrderDetails primary key (OrderId, ProductId, CopyId));
+     constraint IDOrderDetails primary key (OrderId, CopyId));
 
 create table LogOrderStatus (
      Status varchar(50) not null,
@@ -244,8 +243,8 @@ alter table Products add constraint FKHas
      references Categories (Name);
 
 alter table ProductCopies add constraint GRProductCopy
-     check((DiscountPercetage is not null and Condition is not null)
-           or (DiscountPercetage is null and Condition is null)); 
+     check((DiscountPercetage is not null and ConditionGrade is not null)
+           or (DiscountPercetage is null and ConditionGrade is null)); 
 
 alter table ProductCopies add constraint FKIsCopyOf
      foreign key (ProductId)
@@ -272,8 +271,8 @@ alter table OrderDetails add constraint FKOrd_Ord
      references Orders (OrderId);
 
 alter table OrderDetails add constraint FKOrd_Pro
-     foreign key (ProductId, CopyId)
-     references ProductCopies (ProductId, CopyId);
+     foreign key (CopyId)
+     references ProductCopies (CopyId);
 
 alter table LogOrderStatus add constraint FKRel_Ord
      foreign key (OrderId)
