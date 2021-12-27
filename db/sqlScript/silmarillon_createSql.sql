@@ -12,8 +12,8 @@
 -- Database Section
 -- ________________ 
 
-create database silmarillion-Logic;
-use silmarillion-Logic;
+create database silmarillion;
+use silmarillion;
 
 
 -- Tables Section
@@ -193,7 +193,7 @@ alter table Comics add constraint FKR_1_FK
      foreign key (ProductId)
      references Products (ProductId);
 
-alter table Customers add constraint FKR_1_FK
+alter table Customers add constraint FKR_1_FK_1
      foreign key (UserId)
      references Users (UserId);
 
@@ -277,7 +277,7 @@ alter table Reviews add constraint FKComplete
      foreign key (UserId)
      references Customers (UserId);
 
-alter table Sellers add constraint FKR_FK
+alter table Sellers add constraint FKR_FK_1
      foreign key (UserId)
      references Users (UserId);
 
