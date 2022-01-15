@@ -119,3 +119,48 @@ header > nav > div > ul > li {
 header > nav > div > ul > li#login {
     margin: 7px 0 7px 0;
 }
+
+footer > h4.hide {
+    background-image: url(../img/footer-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 15px;
+    margin: 0;
+}
+
+footer{
+    background: linear-gradient(to top, #00D5FF, #CAF6FF );
+    height: 160px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+footer > ul {
+    margin: 0 4% 0 4%;
+    text-align: center;
+    
+}
+
+footer > ul > li{
+    display: inline-block;
+    font-size: 11px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+footer h4 {
+    margin: 0 0 5px 0;
+}
+
+footer li {
+    list-style: none;
+}
+
+footer > ul >li:nth-child(2)>ul > li:last-child{
+    padding: 20px 0 0 0;
+}
+
+/*To unhide after finishing other things*/
+header > nav > div{
+    visibility: hidden;
+}
