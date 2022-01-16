@@ -1,0 +1,23 @@
+/* Breadcrumb */
+
+main > div > ul {
+    padding: 10px 4%;
+}
+
+main > div > ul li + li:before {
+    content: "\003E";
+    padding: 0 10px;
+    color: #0047A0;
+    font-weight: bold;
+}
+
+main > div > ul > li {
+    display: inline-block;
+    color:#0047A0;
+    vertical-align: middle;
+}
+
+main > div > ul > li > a:hover {
+    font-weight: 900;
+}
+
