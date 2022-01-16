@@ -167,6 +167,37 @@ footer > ul > li:nth-child(2){
     margin: 0 2% 0 4%; ;
 }
 
+main > div {
+    margin: 22px 0 22px 0;
+    width: 100%;
+}
+
+main > div > img {
+    width: 76%;
+    height: 145px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+main > div > button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-style: none;
+    height: 145px;
+    width: 12%;
+}
+
+main > div > button:first-of-type{
+    background-image: url(../img/Back.svg);
+    float: left;
+}
+
+main > div > button:last-of-type{
+    background-image: url(../img/Forward.svg);
+    float: right;
+}
+
 /*To unhide after finishing other things*/
 header > nav > div{
     visibility: hidden;
