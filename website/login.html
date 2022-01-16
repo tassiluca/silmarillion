@@ -27,17 +27,36 @@
             <!-- Breadcrumb pagination -->
             <div>
                 <ul>
-                    <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li>
-                    <li>Login</li>
+                    <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Login</li>
                 </ul>
             </div>
-
             <section>
-                <header>
+                <form>
+                    <header>
+                        <div>
+                            <img src="./img/login/user-men-icon.svg" alt="">
+                        </div>
+                        <ul>
+                            <li><a id=""><h2>Utente</h2></a></li><li><a id=""><h2>Venditore</h2></a></li>
+                        </ul>
+                    </header>
+                    <!-- User login form -->
                     <div>
-                        <img src="./img/login/user-men-icon.svg" alt="">
+                        <input type="text" placeholder="Username" name="usr" />
+                        <input type="password" placeholder="Password" name="pwd" />
+                        <a href="">Hai dimenticato la password?</a>
+                        <input type="submit" value="ACCEDI" />
+                        <input type="submit" value="REGISTRATI" />
                     </div>
-                </header>
+                    <!-- Seller login form -->
+                    <div>
+                        <input type="text" placeholder="Username" name="usr" />
+                        <input type="password" placeholder="Password" name="pwd" />
+                        <a href="">Hai dimenticato la password?</a>
+                        <input type="submit" value="ACCEDI" />
+                    </div>
+                </form>
+
 
             </section>
         </main>

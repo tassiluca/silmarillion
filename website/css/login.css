@@ -21,3 +21,31 @@ main > div > ul > li > a:hover {
     font-weight: 900;
 }
 
+/* Form */
+
+main > section > form > header > div {
+    text-align: center;
+}
+
+main > section > form > header > ul > li {
+    width: 50%;
+    padding: 10px 0;
+    text-align: center;
+    color: #0047A0;
+    background-color: #AAF1FF;
+    display: inline-block;
+    border-radius: 10px 10px 0 0;
+}
+
+main > section > form > div {
+    padding: 5% 10%;
+}
+
+main > section > form > div > input[type=text], 
+main > section > form > div > input[type=password] {
+    width: 100%;
+    margin: 5px 0;
+    height: 30px;
+    border-radius: 10px;
+    border-style: 2px solid;
+}
