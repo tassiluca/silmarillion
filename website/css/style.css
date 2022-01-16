@@ -160,12 +160,11 @@ footer > ul >li:nth-child(2)>ul > li:last-child{
 }
 
 footer > ul > li:first-child{
-    padding-right: 20px;
-    margin-right: 4%;
+    padding-right: 27px;
 }
 
-footer > ul > li:last-child {
-    margin-left: 2%;
+footer > ul > li:nth-child(2){
+    margin: 0 2% 0 4%; ;
 }
 
 /*To unhide after finishing other things*/
