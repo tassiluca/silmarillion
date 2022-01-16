@@ -130,15 +130,14 @@ footer > h4.hide {
 
 footer{
     background: linear-gradient(to top, #00D5FF, #CAF6FF );
-    height: 160px;
+    height: 165px;
     border-radius: 20px 20px 0 0;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
 footer > ul {
-    margin: 0 4% 0 4%;
+    margin: 15px 4% 0 4%;
     text-align: center;
-    
 }
 
 footer > ul > li{
@@ -158,6 +157,15 @@ footer li {
 
 footer > ul >li:nth-child(2)>ul > li:last-child{
     padding: 20px 0 0 0;
+}
+
+footer > ul > li:first-child{
+    padding-right: 20px;
+    margin-right: 4%;
+}
+
+footer > ul > li:last-child {
+    margin-left: 2%;
 }
 
 /*To unhide after finishing other things*/
