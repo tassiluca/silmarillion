@@ -1,5 +1,5 @@
 
-body, h1, ul{
+body, h1, h2, ul {
     margin: 0;
     padding: 0;
 }
@@ -76,7 +76,7 @@ body >header > nav > div > ul > li {
     background-color: #0047A0;
 }
 
-body > header > nav > div{
+body > header > nav > div {
     border-radius: 10px;
 }
 
