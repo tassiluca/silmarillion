@@ -203,6 +203,24 @@ main > div > button:last-of-type{
     float: right;
 }
 
+main > section > header > h2{
+    text-align: center;
+}
+
+
+main > section > article{
+    background-color: white;
+    width: 238px;
+}
+
+main > section > article > header{
+    height: 77px;
+}
+
+main > section > article > div:last-child {
+    background:  linear-gradient(180deg, #ADE8F4 0%, rgba(173, 232, 244, 0.5) 100%);
+}
+
 /*To unhide after finishing other things*/
 body > header > nav > div {
     visibility: hidden;
