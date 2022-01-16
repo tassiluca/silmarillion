@@ -4,22 +4,26 @@ body, h1, ul{
     padding: 0;
 }
 
+body {
+    background-color: rgba(202, 240, 248, 0.25);
+}
+
 html {
     font-family: "Futura-pt", Arial, Helvetica, sans-serif;
 }
 
-header {
+body > header {
     background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
     height: 168px;
     border-radius: 0 0 20px 20px;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-header > h1 {
+body > header > h1 {
     text-align: center;
 }
 
-header > h1.hide {
+body > header > h1.hide {
     background-image: url(../img/mini-logo.svg);
     height: 88px;
     background-position: center;
@@ -33,62 +37,63 @@ header > h1.hide {
     overflow: hidden;
 }
 
-header > nav > ul > li{
+body > header > nav > ul > li {
     list-style: none;
     display: inline-block;
 }
 
-header > nav > ul > li:first-child{
+body > header > nav > ul > li:first-child {
     margin: 0 8% 0 4%;
 }
 
-header > nav > ul > li:not(:first-child){
+body > header > nav > ul > li:not(:first-child) {
     margin: 0 8% 0 8%;
 }
 
-header > nav > ul > li:last-child{
+body > header > nav > ul > li:last-child {
     margin: 0 4% 0 8%;
 }
 
-header > nav > ul > li {
+body > header > nav > ul > li {
     width: 11%;
     text-align: center;
 }
 
-header > nav {
+body > header > nav {
     margin-top: 20px;
 }
 
-header > nav > div > ul {
+body > header > nav > div > ul {
     list-style: none;
     display: inline-block;
 }
 
-header > nav > div {
+body > header > nav > div {
     background-color: #CAF0F8;
 }
- header > nav > div > ul > li {
-     background-color: #0047A0;
- }
 
-header > nav > div{
+body >header > nav > div > ul > li {
+    background-color: #0047A0;
+}
+
+body > header > nav > div{
     border-radius: 10px;
 }
 
-header > nav > div > ul {
+body > header > nav > div > ul {
     width: 100%;
     border-radius: 10px;
 }
 
-header > nav > div > ul > li:last-child{
+body > header > nav > div > ul > li:last-child {
     border-radius: 0 0 10px 10px;
 }
 
-header > nav > div > ul > li:first-child {
+body > header > nav > div > ul > li:first-child {
     border-radius: 10px 10px 0 0;
 }
 
-header > nav > div > ul > li > a {
+body > header > nav > div > ul > li > a {
     color: #CAF0F8;
     text-decoration: none;
     text-align: center;
@@ -97,30 +102,30 @@ header > nav > div > ul > li > a {
     display: inline-block;
 }
 
-header > nav > div > ul > li > a:hover {
+body > header > nav > div > ul > li > a:hover {
     font-weight: 900;
     text-transform: uppercase;
 }
 
-header > nav > div > ul > li:first-child {
+body > header > nav > div > ul > li:first-child {
     margin: 0 0 2px 0;
 }
 
-header > nav > div > ul > li:last-child {
+body > header > nav > div > ul > li:last-child {
     margin: 2px 0 0 0;
 }
 
-header > nav > div > ul > li {
+body > header > nav > div > ul > li {
     margin: 2px 0 2px 0;
     text-align: center;
     font-size: 1.2em;
 }
 
-header > nav > div > ul > li#login {
+body > header > nav > div > ul > li#login {
     margin: 7px 0 7px 0;
 }
 
-footer > h4.hide {
+body > footer > h4.hide {
     background-image: url(../img/footer-logo.svg);
     background-position: center;
     background-repeat: no-repeat;
@@ -128,46 +133,46 @@ footer > h4.hide {
     margin: 0;
 }
 
-footer{
+body > footer {
     background: linear-gradient(to top, #00D5FF, #CAF6FF );
     height: 165px;
     border-radius: 20px 20px 0 0;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-footer > ul {
+body > footer > ul {
     margin: 15px 4% 0 4%;
     text-align: center;
 }
 
-footer > ul > li{
+body > footer > ul > li {
     display: inline-block;
     font-size: 11px;
     text-align: center;
     vertical-align: middle;
 }
 
-footer h4 {
+body > footer h4 {
     margin: 0 0 5px 0;
 }
 
-footer li {
+body > footer li {
     list-style: none;
 }
 
-footer > ul >li:nth-child(2)>ul > li:last-child{
+body > footer > ul >li:nth-child(2)>ul > li:last-child {
     padding: 20px 0 0 0;
 }
 
-footer > ul > li:first-child{
+body > footer > ul > li:first-child {
     padding-right: 27px;
 }
 
-footer > ul > li:nth-child(2){
+body > footer > ul > li:nth-child(2) {
     margin: 0 2% 0 4%; ;
 }
 
 /*To unhide after finishing other things*/
-header > nav > div{
+body > header > nav > div {
     visibility: hidden;
 }
