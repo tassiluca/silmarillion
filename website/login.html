@@ -37,27 +37,26 @@
                             <img src="./img/login/user-men-icon.svg" alt="">
                         </div>
                         <ul>
-                            <li><a id=""><h2>Utente</h2></a></li><li><a id=""><h2>Venditore</h2></a></li>
+                            <li><a id="userloginbtn"><h2>Utente</h2></a></li><li><a id="sellerloginbtn"><h2>Venditore</h2></a></li>
                         </ul>
                     </header>
                     <!-- User login form -->
-                    <div>
+                    <div id="userlogin">
                         <input type="text" placeholder="Username" name="usr" />
                         <input type="password" placeholder="Password" name="pwd" />
                         <a href="">Hai dimenticato la password?</a>
                         <input type="submit" value="ACCEDI" />
-                        <input type="submit" value="REGISTRATI" />
+                        <p>Non sei registrato?</p>
+                        <input type="submit" value="CREA IL TUO ACCOUNT" />
                     </div>
                     <!-- Seller login form -->
-                    <div>
+                    <div id="sellerlogin">
                         <input type="text" placeholder="Username" name="usr" />
                         <input type="password" placeholder="Password" name="pwd" />
                         <a href="">Hai dimenticato la password?</a>
                         <input type="submit" value="ACCEDI" />
                     </div>
                 </form>
-
-
             </section>
         </main>
         <!-- 
@@ -65,4 +64,6 @@
             Refers to index.html and style.css for them!
         -->
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/login.js" type="text/javascript"></script>
 </html>
