@@ -29,10 +29,10 @@ main > div > button:last-of-type{
     float: right;
 }
 
+/*comics new arrival*/
 main > section > header > h2{
     text-align: center;
 }
-
 
 main > section > div > article{
     background-color: white;
@@ -41,6 +41,7 @@ main > section > div > article{
     box-shadow: 1px 1px 5px 2px rgba(196, 196, 196, 0.5);
 }
 
+/*comic title-name*/
 main > section > div > article > header{
     height: 70px;
     text-align: center;
@@ -50,8 +51,7 @@ main > section > div > article > header{
 main > section > div > article > div:last-child {
     background:  linear-gradient(180deg, #ADE8F4 0%, rgba(173, 232, 244, 0.5) 100%);
     height: 65px;
-    display: inline-block;
-    text-align: center;
+  
     border-radius: 0 0 10px 10px;
     width: 100%;
 }
@@ -60,25 +60,41 @@ main > section > div > article > div > img {
     border-radius: 10px 10px 0 0;
 }
 
+/*price box*/
 main > section > div > article > div:last-child > div {
     border-radius: 10px;
     background-color: #f0f8ff;
     height: 39px;
+    width: 80px;
     box-shadow: inset 1.22223px 1.22223px 1.22223px rgba(196, 196, 196, 0.25);
     float: right;
-    margin: 10px 7px 0 4.77px;
+    margin: 13px 7px 0 0;
+    position: relative;
+
+}
+
+/*price text*/
+main > section > div > article > div:last-child > div > p {
+    font-weight: bold;
+    margin: 12px;
+    text-align: center;
+    font-size: large;
 }
 
 main > section > div > article > div:last-child > a:first-child {
     float: left;
-    margin: 6.5px 0 0 26.8px;
+    margin: 6.5px 0 0 26px;
 }
 
-main > section > div > article > div:last-child > div > p {
-    font-weight: bold;
-    margin: 12px;
+/* add to cart button*/
+main > section > div > article > div:last-child > a:nth-child(2){
+    float: left;
+    position: relative;
+    bottom: 25px;
+    margin: 0 0 0 19px;
 }
 
+/*back-forward button comics */
 main > section > div > button:first-child{
     float: left;
 }
