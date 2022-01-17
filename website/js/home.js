@@ -1,3 +1,4 @@
+/* jquery che nasconde tutti i banner  tranne il primo*/
 
 var slideIndex = 1;
 showDivs(slideIndex);

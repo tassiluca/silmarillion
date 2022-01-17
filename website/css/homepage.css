@@ -1,16 +1,16 @@
-main > div {
+main > section {
     margin: 22px 0 22px 0;
     width: 100%;
 }
 
-main > div > img {
+main > section > img {
     width: 76%;
     height: 145px;
     border-radius: 10px;
     margin: 0;
 }
 
-main > div > button {
+main > section > button {
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
@@ -19,12 +19,12 @@ main > div > button {
     width: 12%;
 }
 
-main > div > button:first-of-type{
+main > section > button:first-of-type{
     background-image: url(../img/Back.svg);
     float: left;
 }
 
-main > div > button:last-of-type{
+main > section > button:last-of-type{
     background-image: url(../img/Forward.svg);
     float: right;
 }
@@ -115,4 +115,39 @@ main > section > div > button:first-of-type{
 main > section > div > button:last-of-type{
     background-image: url(../img/sort-right.svg);
     float: right;
+}
+
+/*partners banner*/
+main > section.partner {
+    height: 96px;
+    margin: 0 0 40px 0;
+}
+
+main > section.partner > div{
+    height: 96px;
+    width: 76%;
+    background-color: rgba(152, 237, 255, 0.3);
+    box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
+    border-radius: 10px;
+    margin: 0;
+}
+
+main > section.partner > div {
+    display: inline-block;
+}
+
+main > section.partner > button{
+    height: 96px;
+}
+
+main > section.partner > div > img {
+    height: 50px;
+    margin: 23px 0 23px 0;
+}
+
+main > section.partner > div > img:first-child {
+    margin-right: 8%;
+}
+main > section.partner > div > img:last-child {
+    margin-left: 8%;
 }
