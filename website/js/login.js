@@ -15,13 +15,13 @@ $(document).ready(function(){
 
 
     $("#userloginbtn").click(function(){
-        showElement($("form > header > ul > li:first-child"));
+        showElement($(this));
         $("#sellerlogin").hide()
         $("#userlogin").show()
     });
 
     $("#sellerloginbtn").click(function(){
-        showElement($("form > header > ul > li:last-child"))
+        showElement($(this))
         $("#userlogin").hide()
         $("#sellerlogin").show()
     });
