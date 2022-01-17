@@ -4,7 +4,7 @@ main > div > ul {
     padding: 10px 4%;
 }
 
-main > div > ul li + li:before {
+main > div > ul li + li::before {
     content: "\003E";
     padding: 0 10px;
     color: #0047A0;
@@ -18,10 +18,10 @@ main > div > ul > li {
 }
 
 main > div > ul > li > a:hover {
-    font-weight: 900;
+    font-weight: bold;
 }
 
-/* Form */
+/* Common rules for both user and seller login form */
 
 main > section > form > header > div {
     text-align: center;
@@ -32,7 +32,6 @@ main > section > form > header > ul > li {
     padding: 10px 0;
     text-align: center;
     color: #0047A0;
-    background-color: #AAF1FF;
     display: inline-block;
     border-radius: 10px 10px 0 0;
 }
@@ -41,11 +40,92 @@ main > section > form > div {
     padding: 5% 10%;
 }
 
+main > section > form > div > input {
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+}
+
 main > section > form > div > input[type=text], 
 main > section > form > div > input[type=password] {
     width: 100%;
-    margin: 5px 0;
-    height: 30px;
-    border-radius: 10px;
-    border-style: 2px solid;
+    font-size: 15px;
+    padding: 10px 0 10px 15px;
+    margin-bottom: 15px;
+}
+
+main > section > form > div > input[type="submit"] {
+    font-weight: bold;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 12px;
+    color: #0047A0;
+    background-color: white;
+    border: 1px solid #0047A0;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > div > input[type="submit"]:hover {
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > div > a:hover {
+    font-weight: bold;
+}
+
+main > section > form > div > p {
+    color: #0047A0;
+    font-weight: bold;
+}
+
+
+main > section > form > header > ul > li {
+    background-color: #c4c4c450;
+}
+
+/* User login form */
+main > section > form > header > ul > li:first-child.active {
+    background-color: #AAF1FF;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > div#userlogin {
+    background-color: #AAF1FF;
+}
+
+main > section > form > div#userlogin > input:not([type="submit"]) {
+    background-color: #0047A0;
+}
+
+main > section > form > div#userlogin > input:not([type="submit"])::placeholder {
+    color: #AAF1FF;
+}
+
+main > section > form > div#sellerlogin > a {
+    color: #0047A0;
+}
+
+/* Seller login form */
+main > section > form > header > ul > li:last-child.active {
+    background-color: #0047A0;
+    color: #AAF1FF;
+    box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > div#sellerlogin {
+    background-color: #0047A0;
+}
+
+main > section > form > div#sellerlogin > input:not([type="submit"]) {
+    background-color: #AAF1FF;
+}
+
+main > section > form > div#sellerlogin > input:not([type="submit"])::placeholder {
+    color: #0047A0;
+}
+
+main > section > form > div#sellerlogin > a {
+    color: #AAF1FF;
 }
