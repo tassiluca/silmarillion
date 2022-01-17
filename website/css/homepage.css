@@ -125,6 +125,7 @@ main > section.partner {
 
 main > section.partner > div{
     height: 96px;
+    min-width: 270px;
     width: 76%;
     background-color: rgba(152, 237, 255, 0.3);
     box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
@@ -150,4 +151,56 @@ main > section.partner > div > img:first-child {
 }
 main > section.partner > div > img:last-child {
     margin-left: 8%;
+}
+
+main > aside {
+    height: 70px;
+    min-width: 260px;
+    margin: 0 15% 0 15%;
+    text-align: center;
+}
+main > aside > div:not(main>aside>div:last-child) {
+    background-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.5);
+    border-radius: 10px;
+    height: 70px;
+    width: 100%;
+}
+
+main > aside > div:not(main>aside>div:last-child) > div {
+    height: 51px;
+    width: 51px;
+    border-radius: 10px;
+    background: white;
+    border: 3px solid #FDFE02;
+    margin:6.5px 0 6.5px 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+main > aside > div > div > img {
+    margin-top: 5px;
+}
+/*banner text*/
+main > aside > div > p {
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 0 0 4%;
+    width: 175px;
+    position: relative;
+    top: 5px;
+}
+/*index indicator banner*/
+main > aside > div:last-child > div {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    background-color: #c4c4c4;
+    display: inline-block;
+    position: relative;
+    bottom: 20px;
+}
+
+.hidebanner {
+    visibility: hidden;
 }
