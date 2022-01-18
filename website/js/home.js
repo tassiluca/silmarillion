@@ -12,12 +12,6 @@ $(document).ready(function () {
 });
 
 var slideIndex = 1;
-var partnerIndex = 1;
-
-var newArrivalIdx=1;
-var mangaIdx =1;
-var heroIdx =1;
-var funkoIdx=1;
 
 function updateBanner(n) {
   showDivs(slideIndex += n,"main > section:first-child > img");

@@ -27,8 +27,9 @@
                 <img src="img/banner/marv.png" class="banner"  alt="banner1">
                 <img src="img/banner/marv1.png" class="banner"  alt="banner1">
                 <!--end of element of banner-->
-                <button onclick="updateBanner(-1)"></button>
-                <button onclick="updateBanner(1)"></button>
+                <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" alt="banner precedente" >
+                <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" alt="banner successivo" >
+
             </section>
             <aside>
                 <!--insert div to add banner-->
@@ -74,9 +75,9 @@
                 <!--
                     end group of article
                 -->
+                <input type="image" src="img/sort-left.svg" onclick="updateNewArrival(-1)" alt="fumetto precedente" >
+                <input type="image" src="img/sort-right.svg" onclick="updateNewArrival(1)" alt="fumetto successivo" >
 
-                <button onclick="updateNewArrival(-1)" alt="fumetto precedente"></button>
-                <button onclick="updateNewArrival(1)" alt="fumetto successivo"></button>
                 </div>
             </section>
             
@@ -110,9 +111,10 @@
                 <!--
                     end group of article
                 -->
+                <!--gli alt degli input vanno cambiati in base alla section in cui si trovano-->
+                <input type="image" src="img/sort-left.svg" onclick="updateManga(-1)" alt="manga precedente" >
+                <input type="image" src="img/sort-right.svg" onclick="updateManga(1)" alt="manga successivo" >
 
-                <button onclick="updateManga(-1)" alt="fumetto precedente"></button>
-                <button onclick="updateManga(1)" alt="fumetto successivo"></button>
                 </div>
             </section>
 
@@ -127,8 +129,9 @@
                     <img src="" alt="">
                 </div>
                 <!--end of element of banner-->
-                <button onclick="updatePartner(-1)"></button>
-                <button onclick="updatePartner(1)"></button>
+                <input type="image" src="img/Back.svg" onclick="updatePartner(-1)" alt="fumetto precedente" >
+                <input type="image" src="img/Forward.svg" onclick="updatePartner(1)" alt="fumetto successivo" >
+
             </section>
         </main>
         <footer>
