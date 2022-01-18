@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" type="text/css" href="./css/homepage.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/home.js"></script>
         <title>Silmarillion</title>
     </head>
@@ -24,9 +25,10 @@
             <section>
                 <!-- here put all images to be shown in banner-->
                 <img src="img/banner/marv.png" class="banner"  alt="banner1">
+                <img src="img/banner/marv1.png" class="banner"  alt="banner1">
                 <!--end of element of banner-->
-                <button onclick="plusDivs(-1)"></button>
-                <button onclick="plusDivs(1)"></button>
+                <button onclick="updateBanner(-1)"></button>
+                <button onclick="updateBanner(1)"></button>
             </section>
             <aside>
                 <!--insert div to add banner-->
@@ -43,7 +45,7 @@
                     <div></div>
                 </div>
             </aside>
-            <section>
+            <section class="comics newArrival">
                 <header>
                     <h2>Nuovi Arrivi</h2>
                 </header>
@@ -60,16 +62,25 @@
                         <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>4,90€</p></div>
                     </div>
                 </article>
+                <article>
+                    <div>
+                        <img src="img/fumetto.svg" alt="">
+                    </div>
+                    <header>Fumetto 2 - to be continued</header>
+                    <div>
+                        <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>10,90€</p></div>
+                    </div>
+                </article>
                 <!--
                     end group of article
                 -->
 
-                <button onclick="" alt="fumetto precedente"></button>
-                <button onclick="" alt="fumetto successivo"></button>
+                <button onclick="updateNewArrival(-1)" alt="fumetto precedente"></button>
+                <button onclick="updateNewArrival(1)" alt="fumetto successivo"></button>
                 </div>
             </section>
             
-            <section>
+            <section class="comics manga">
                 <header>
                     <h2>Manga</h2>
                 </header>
@@ -86,25 +97,38 @@
                         <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>4,90€</p></div>
                     </div>
                 </article>
+
+                <article>
+                    <div>
+                        <img src="img/banner/marv.png" alt="">
+                    </div>
+                    <header>The Seven deadly sins</header>
+                    <div>
+                        <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>4,90€</p></div>
+                    </div>
+                </article>
                 <!--
                     end group of article
                 -->
 
-                <button onclick="" alt="fumetto precedente"></button>
-                <button onclick="" alt="fumetto successivo"></button>
+                <button onclick="updateManga(-1)" alt="fumetto precedente"></button>
+                <button onclick="updateManga(1)" alt="fumetto successivo"></button>
                 </div>
             </section>
 
-
-            <section class="partner">
+            <section >
                 <!-- here put all divs with partners to be shown in banner-->
-                <div>
+                <div class="partner">
                     <img src="img/partners/Feltrinelli Comics.svg" alt="">
                     <img src="img/partners/Planet MAnga.svg" alt="">
                 </div>
+                <div class="partner">
+                    <img src="img/partners/Feltrinelli Comics.svg" alt="">
+                    <img src="" alt="">
+                </div>
                 <!--end of element of banner-->
-                <button onclick="plusDivs(-1)"></button>
-                <button onclick="plusDivs(1)"></button>
+                <button onclick="updatePartner(-1)"></button>
+                <button onclick="updatePartner(1)"></button>
             </section>
         </main>
         <footer>

@@ -62,6 +62,8 @@ main > section > div > article > div:last-child {
 
 main > section > div > article > div > img {
     border-radius: 10px 10px 0 0;
+    height: 279px;
+    width: 238px;
 }
 
 /*price box*/
@@ -118,12 +120,12 @@ main > section > div > button:last-of-type{
 }
 
 /*partners banner*/
-main > section.partner {
+main > section.parter {
     height: 96px;
     margin: 0 0 40px 0;
 }
 
-main > section.partner > div{
+main > section:last-child > div{
     height: 96px;
     min-width: 270px;
     width: 76%;
@@ -133,23 +135,23 @@ main > section.partner > div{
     margin: 0;
 }
 
-main > section.partner > div {
+main > section:last-child > div {
     display: inline-block;
 }
 
-main > section.partner > button{
+main > section:last-child > button{
     height: 96px;
 }
 
-main > section.partner > div > img {
+main > section:last-child > div > img {
     height: 50px;
     margin: 23px 0 23px 0;
 }
 
-main > section.partner > div > img:first-child {
+main > section:last-child > div > img:first-child {
     margin-right: 8%;
 }
-main > section.partner > div > img:last-child {
+main > section:last-child > div > img:last-child {
     margin-left: 8%;
 }
 
