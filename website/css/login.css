@@ -1,27 +1,8 @@
-/* Breadcrumb */
-
-main > div > ul {
-    padding: 10px 4%;
-}
-
-main > div > ul li + li::before {
-    content: "\003E";
-    padding: 0 10px;
-    color: #0047A0;
-    font-weight: bold;
-}
-
-main > div > ul > li {
-    display: inline-block;
-    color:#0047A0;
-    vertical-align: middle;
-}
-
-main > div > ul > li > a:hover {
-    font-weight: bold;
-}
-
 /* Common rules for both user and seller login form */
+
+main > section {
+    margin-bottom: 50px;
+}
 
 main > section > form > header > div {
     text-align: center;
@@ -38,6 +19,9 @@ main > section > form > header > ul > li {
 
 main > section > form > div {
     padding: 5% 10%;
+    box-shadow: 0 10px 5px rgba(196, 196, 196, 0.82);
+    border-radius: 0 0 10px 10px;
+    text-align: center;
 }
 
 main > section > form > div > input {
@@ -55,7 +39,8 @@ main > section > form > div > input[type=password] {
     margin-bottom: 15px;
 }
 
-main > section > form > div > input[type="submit"] {
+main > section > form > div > input[type="submit"],
+main > section > form > div > a:last-child {
     font-weight: bold;
     font-size: 17px;
     font-weight: bold;
@@ -67,7 +52,15 @@ main > section > form > div > input[type="submit"] {
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > form > div > input[type="submit"]:hover {
+main > section > form > div > a:last-child {
+    border-radius: 10px;
+    text-decoration: none;
+    margin: auto;
+    display: inline-block;
+}
+
+main > section > form > div > input[type="submit"]:hover, 
+main > section > form > div > a:last-child:hover {
     box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
 }
 
@@ -79,7 +72,6 @@ main > section > form > div > p {
     color: #0047A0;
     font-weight: bold;
 }
-
 
 main > section > form > header > ul > li {
     background-color: #c4c4c450;
@@ -128,4 +120,22 @@ main > section > form > div#sellerlogin > input:not([type="submit"])::placeholde
 
 main > section > form > div#sellerlogin > a {
     color: #AAF1FF;
+}
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 15%;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25%;
+    }
 }
