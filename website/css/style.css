@@ -141,35 +141,32 @@ body > footer {
 }
 
 body > footer > ul {
-    margin: 15px 4% 0 4%;
+    margin: 15px 0 0 0;
     text-align: center;
+    font-size: 11px;
+}
+body > footer li {
+    list-style: none;
 }
 
-body > footer > ul > li {
+body > footer > ul > li{
     display: inline-block;
-    font-size: 11px;
-    text-align: center;
-    vertical-align: middle;
+    position: relative;
+    bottom: 30px;
+}
+body > footer > ul > div{
+    display: inline-block;
+}
+body > footer > ul > div > li{
+    margin: 10px 0 0 0;
 }
 
 body > footer h4 {
     margin: 0 0 5px 0;
 }
 
-body > footer li {
-    list-style: none;
-}
-
-body > footer > ul >li:nth-child(2)>ul > li:last-child {
-    padding: 20px 0 0 0;
-}
-
-body > footer > ul > li:first-child {
-    padding-right: 27px;
-}
-
-body > footer > ul > li:nth-child(2) {
-    margin: 0 2% 0 4%; ;
+body > footer > ul >li:first-child {
+    padding: 0 27px 0 27px ;
 }
 
 /*To unhide after finishing other things*/
