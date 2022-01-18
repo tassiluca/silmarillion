@@ -195,7 +195,3 @@ main > aside > div:last-child > div {
     position: relative;
     bottom: 20px;
 }
-
-.hidebanner {
-    visibility: hidden;
-}
