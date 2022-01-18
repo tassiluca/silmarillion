@@ -1,19 +1,47 @@
 /* jquery che nasconde tutti i banner  tranne il primo*/
 
-var slideIndex = 1;
-showDivs(slideIndex);
+$(document).ready(function () {
+  $("main > section:first-child > img.banner").hide();
+  $("main > section:first-child > img.banner:first-child").show();
+  $("main > section:last-child > div.partner").hide();
+  $("main > section:last-child > div.partner:first-child").show();
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
+  $("main > section.comics > div > article").hide();
+  $("main > section.comics > div > article:first-child").show();
+  
+});
+
+var slideIndex = 1;
+var partnerIndex = 1;
+
+var newArrivalIdx=1;
+var mangaIdx =1;
+var heroIdx =1;
+var funkoIdx=1;
+
+function updateBanner(n) {
+  showDivs(slideIndex += n,"main > section:first-child > img");
 }
 
-function showDivs(n) {
+function updatePartner(n) {
+  showDivs(slideIndex += n,"main > section:last-child > div");
+}
+
+function updateNewArrival(n) {
+  showDivs(slideIndex += n,"main > section.newArrival > div > article");
+}
+
+function updateManga(n) {
+  showDivs(slideIndex += n,"main > section.manga > div > article");
+}
+
+function showDivs(n,slider) {
   var i;
-  var x = document.getElementsByClassName("banner");
+  var x = $(slider);
   if (n > x.length) {slideIndex = 1}
   if (n < 1) {slideIndex = x.length}
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";  
   }
-  x[slideIndex-1].style.display = "inline";  
+  x[slideIndex-1].style.display = "inline-block";  
 }
