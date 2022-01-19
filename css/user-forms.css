@@ -17,20 +17,25 @@ main > section > form > header > ul > li {
     border-radius: 10px 10px 0 0;
 }
 
-main > section > form > div {
+main > section > form > ul {
     padding: 5% 10%;
     box-shadow: 0 10px 5px rgba(196, 196, 196, 0.82);
     border-radius: 0 0 10px 10px;
     text-align: center;
 }
 
-main > section > form > div > input {
+main > section > form > ul > li {
+    display: inline-block;
+    width: 100%;
+}
+
+main > section > form > ul > li > input {
     border-radius: 10px;
     margin: auto;
     display: block;
 }
 
-main > section > form > div > input:not([type=submit]) {
+main > section > form > ul > li > input:not([type=submit]) {
     border: none;
     width: 100%;
     font-size: 15px;
@@ -38,12 +43,12 @@ main > section > form > div > input:not([type=submit]) {
     margin-bottom: 15px;
 }
 
-main > section > form > div > input::placeholder {
+main > section > form > ul > li > input::placeholder {
     padding-left: 15px;
 }
 
-main > section > form > div > input[type="submit"],
-main > section > form > div > a:last-child {
+main > section > form > ul > li > input[type="submit"],
+main > section > form > ul > li > a:last-child {
     font-weight: bold;
     font-size: 17px;
     font-weight: bold;
@@ -55,23 +60,23 @@ main > section > form > div > a:last-child {
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > form > div > a:last-child {
+main > section > form > ul > li > a:last-child {
     border-radius: 10px;
     text-decoration: none;
     margin: auto;
     display: inline-block;
 }
 
-main > section > form > div > input[type="submit"]:hover, 
-main > section > form > div > a:last-child:hover {
+main > section > form > ul > li > input[type="submit"]:hover, 
+main > section > form > ul > li > a:last-child:hover {
     box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > form > div > a:hover {
+main > section > form > ul > li > a:hover {
     font-weight: bold;
 }
 
-main > section > form > div > p {
+main > section > form > ul > li > p {
     color: #0047A0;
     font-weight: bold;
 }

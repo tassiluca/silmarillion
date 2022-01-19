@@ -34,7 +34,7 @@
                 </ul>
             </div>
             <section>
-                <form>
+                <form action="#" method="POST">
                     <header>
                         <div>
                             <img src="./img/login/user-men-icon.svg" alt="">
@@ -44,21 +44,39 @@
                         </ul>
                     </header>
                     <!-- User login form -->
-                    <div id="userlogin">
-                        <input type="text" placeholder="Username" name="usr" />
-                        <input type="password" placeholder="Password" name="pwd" />
-                        <a href="">Hai dimenticato la password?</a>
-                        <input type="submit" value="ACCEDI" />
-                        <p>Non sei registrato?</p>
-                        <a href="./register.html">CREA IL TUO ACCOUNT</a>
-                    </div>
+                    <ul id="userlogin">
+                        <li>
+                            <label for="username">Username</label>
+                            <input type="text" placeholder="Mario Rossi" id="username" name="usr" />
+                        </li>
+                        <li>
+                            <label for="userpassword">Password</label>
+                            <input type="password" placeholder="Password" id="userpassword" name="pwd" />
+                        </li>
+                        <li>
+                            <a href="">Hai dimenticato la password?</a>
+                            <input type="submit" name="submit" value="ACCEDI" />
+                        </li>
+                        <li>
+                            <p>Non sei registrato?</p>
+                            <a href="./register.html">CREA IL TUO ACCOUNT</a>
+                        </li>
+                    </ul>
                     <!-- Seller login form -->
-                    <div id="sellerlogin">
-                        <input type="text" placeholder="Username" name="usr" />
-                        <input type="password" placeholder="Password" name="pwd" />
-                        <a href="">Hai dimenticato la password?</a>
-                        <input type="submit" value="ACCEDI" />
-                    </div>
+                    <ul id="sellerlogin">
+                        <li>
+                            <label for="sellername">Username</label>
+                            <input type="text" placeholder="Mario Rossi" id="sellername" name="usr" />
+                        </li>
+                        <li>
+                            <label for="sellerpassword">Password</label>
+                            <input type="password" placeholder="Password" id="sellerpassword" name="pwd" />
+                        </li>
+                        <li>
+                            <a href="">Hai dimenticato la password?</a>
+                            <input type="submit" name="submit" value="ACCEDI" />
+                        </li>
+                    </ul>
                 </form>
             </section>
         </main>
