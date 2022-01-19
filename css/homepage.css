@@ -169,8 +169,10 @@ main > aside > div:first-child > div > div{
     vertical-align: middle;
 }
 
-main > aside > div > div > img {
+main > aside > div > div > div > img {
     margin-top: 5px;
+    height: 40px;
+    width: 40px;
 }
 /*banner text*/
 main > aside > div  > div > p {
@@ -194,4 +196,20 @@ main > aside > div:last-child > div {
 
 main > aside > div:last-child > div.current {
     background-color: #FDFE02;
+}
+
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main > aside {
+        display: inline-block;
+    }
+    main > section:first-child {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25%;
+    }
 }
