@@ -8,11 +8,12 @@ main > section > form > ul:first-of-type {
     background-color: #AAF1FF;
 }
 
-main > section > form > ul:first-of-type > input:not([type="submit"]) {
+main > section > form > ul:first-of-type > li > input:not([type="submit"]) {
     background-color: #0047A0;
+    color: #AAF1FF;
 }
 
-main > section > form > ul:first-of-type > input:not([type="submit"])::placeholder {
+main > section > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
 }
 
@@ -32,11 +33,12 @@ main > section > form > ul:last-of-type {
     background-color: #0047A0;
 }
 
-main > section > form > ul:last-of-type > input:not([type="submit"]) {
+main > section > form > ul:last-of-type > li > input:not([type="submit"]) {
     background-color: #AAF1FF;
+    color: #0047A0;
 }
 
-main > section > form > ul:last-of-type > input:not([type="submit"])::placeholder {
+main > section > form > ul:last-of-type > li > input:not([type="submit"])::placeholder {
     color: #0047A0;
 }
 

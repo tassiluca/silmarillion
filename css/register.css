@@ -1,27 +1,39 @@
 /* User login form */
-main > section > form > div {
+main > section > form > ul {
+    border-radius: 10px 10px 10px 10px;
     background-color: #AAF1FF;
     color: #0047A0;
 }
 
-main > section > form > div > input:first-of-type,
-main > section > form > div > input:nth-of-type(2) {
+h2 {
+    margin-bottom: 10px;
+}
+
+input#name {
+    margin-right: 1%;
+    display: inline-block;
     width: 49%;
-    display: inline;
 }
 
-main > section > form > div > div:nth-of-type(2) {
+input#surname {
+    margin-left: 1%;
     display: inline-block;
+    width: 49%;
 }
 
-main > section > form > div > input:nth-of-type(3) {
-    display: inline-block;
-}
-
-main > section > form > div > input:not([type="submit"]) {
+main > section > form > ul > li > input:not([type="submit"]) {
     background-color: #0047A0;
+    color: #AAF1FF;
 }
 
-main > section > form > div > input:not([type="submit"])::placeholder {
+main > section > form > ul > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
+}
+
+main > section > form > ul > li > input[type="date"] {
+    color: #AAF1FF;
+    height: 17px;
+    font-size: 15px;
+    font-family: "Futura-pt", Arial, Helvetica, sans-serif;
+    text-align: center;
 }

@@ -1,5 +1,19 @@
 /* Common rules for both user and seller login form */
 
+/* To hide the labels keeping them available to screen readers. 
+ * See [https://www.w3.org/WAI/tutorials/forms/labels/#hidden]
+ */
+main > section > form > ul > li > label {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
 main > section {
     margin-bottom: 50px;
 }
@@ -19,21 +33,19 @@ main > section > form > header > ul > li {
 
 main > section > form > ul {
     padding: 5% 10%;
-    box-shadow: 0 10px 5px rgba(196, 196, 196, 0.82);
+    box-shadow: 10px 10px 5px rgba(196, 196, 196, 0.82);
     border-radius: 0 0 10px 10px;
     text-align: center;
 }
 
 main > section > form > ul > li {
-    display: inline-block;
-    width: 100%;
+    display: block;
 }
 
 main > section > form > ul > li > input {
     border-radius: 10px;
     margin: auto;
     display: block;
-    text-indent: 15px;
 }
 
 main > section > form > ul > li > input:not([type=submit]) {
@@ -42,6 +54,7 @@ main > section > form > ul > li > input:not([type=submit]) {
     font-size: 15px;
     padding: 10px 0;
     margin: 10px 0 15px 0;
+    text-indent: 15px;
 }
 
 main > section > form > ul > li > input[type="submit"],
