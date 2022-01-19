@@ -40,7 +40,7 @@ main > section > form > ul > li > input:not([type=submit]) {
     width: 100%;
     font-size: 15px;
     padding: 10px 0;
-    margin-bottom: 15px;
+    margin: 10px 0 15px 0;
 }
 
 main > section > form > ul > li > input::placeholder {

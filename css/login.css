@@ -16,8 +16,9 @@ main > section > form > ul:first-of-type > input:not([type="submit"])::placehold
     color: #AAF1FF;
 }
 
-main > section > form > ul:last-of-type > a {
+main > section > form > ul:first-of-type > li > label {
     color: #0047A0;
+    font-weight: bold;
 }
 
 /* Seller login form */
@@ -41,4 +42,9 @@ main > section > form > ul:last-of-type > input:not([type="submit"])::placeholde
 
 main > section > form > ul:last-of-type > li > a {
     color: #AAF1FF;
+}
+
+main > section > form > ul:last-of-type > li > label {
+    color: #AAF1FF;
+    font-weight: bold;
 }
