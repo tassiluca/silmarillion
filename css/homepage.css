@@ -10,7 +10,7 @@ main > section > img {
     width: 76%;
     height: 145px;
     border-radius: 10px;
-   
+    
 }
 
 main > section > input {
@@ -113,11 +113,9 @@ main > section > div > input:last-of-type{
 }
 
 /*partners banner*/
-main > section.parter {
-    height: 96px;
-    margin: 0 0 40px 0;
+main > section:last-child {
+    text-align: center;
 }
-
 main > section:last-child > div{
     height: 96px;
     min-width: 270px;
@@ -126,9 +124,6 @@ main > section:last-child > div{
     box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
     border-radius: 10px;
     margin: 0;
-}
-
-main > section:last-child > div {
     display: inline-block;
 }
 
@@ -148,21 +143,22 @@ main > section:last-child > div > img:last-child {
     margin-left: 8%;
 }
 
+/*aside*/
 main > aside {
     height: 70px;
     min-width: 260px;
     margin: 0 15% 0 15%;
     text-align: center;
 }
-main > aside > div:not(main>aside>div:last-child) {
+main > aside > div:first-child > div {
     background-color: rgba(0, 212, 255, 0.4);
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.5);
     border-radius: 10px;
     height: 70px;
     width: 100%;
 }
-
-main > aside > div:not(main>aside>div:last-child) > div {
+/* */
+main > aside > div:first-child > div > div{
     height: 51px;
     width: 51px;
     border-radius: 10px;
@@ -173,11 +169,13 @@ main > aside > div:not(main>aside>div:last-child) > div {
     vertical-align: middle;
 }
 
-main > aside > div > div > img {
+main > aside > div > div > div > img {
     margin-top: 5px;
+    height: 40px;
+    width: 40px;
 }
 /*banner text*/
-main > aside > div > p {
+main > aside > div  > div > p {
     font-weight: bold;
     display: inline-block;
     margin: 0 0 0 4%;
@@ -194,4 +192,24 @@ main > aside > div:last-child > div {
     display: inline-block;
     position: relative;
     bottom: 20px;
+}
+
+main > aside > div:last-child > div.current {
+    background-color: #FDFE02;
+}
+
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main > aside {
+        display: inline-block;
+    }
+    main > section:first-child {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25%;
+    }
 }

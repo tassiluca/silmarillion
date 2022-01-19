@@ -27,23 +27,33 @@
                 <img src="img/banner/marv.png" class="banner"  alt="banner1">
                 <img src="img/banner/marv1.png" class="banner"  alt="banner1">
                 <!--end of element of banner-->
-                <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" alt="banner precedente" >
-                <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" alt="banner successivo" >
+                <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="banner precedente" >
+                <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="banner successivo" >
 
             </section>
-            <aside>
-                <!--insert div to add banner-->
-                <div class="">
-                    <div><img src="img/Gift.png" alt=""></div>
-                    <p>Spedizione gratuita sopra i 50 €</p>
+            <aside>   
+                <div>
+                    <!--insert div to add banner-->
+                    <div class="infoBanner">
+                        <div><img src="img/Gift.png" alt=""></div>
+                        <p>Spedizione gratuita sopra i 50 €</p>
+                    </div>
+                    <div class="infoBanner">
+                        <div><img src="img/bankCards.svg" alt=""></div>
+                        <p>Pagamenti online o in contanti</p>
+                    </div>
+                    <div class="infoBanner">
+                        <div><img src="img/onlineSupport.svg" alt=""></div>
+                        <p>Qualche dubbio ?<br>Scrivici!</p>
+                    </div>
+                    <!--end of aside banner-->
                 </div>
                 
-                <!--end of aside banner-->
                 <!--index aside-->
                 <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="current" onclick="showSlide(1)" onkeypress="showSlide(1)"></div>
+                    <div onclick="showSlide(2)" onkeypress="showSlide(2)"></div>
+                    <div onclick="showSlide(3)" onkeypress="showSlide(3)"></div>
                 </div>
             </aside>
             <section class="comics newArrival">
@@ -75,8 +85,8 @@
                 <!--
                     end group of article
                 -->
-                <input type="image" src="img/sort-left.svg" onclick="updateNewArrival(-1)" alt="fumetto precedente" >
-                <input type="image" src="img/sort-right.svg" onclick="updateNewArrival(1)" alt="fumetto successivo" >
+                <input type="image" src="img/sort-left.svg" onclick="updateNewArrival(-1)" onkeypress="updateNewArrival(-1)" alt="fumetto precedente" >
+                <input type="image" src="img/sort-right.svg" onclick="updateNewArrival(1)" onkeypress="updateNewArrival(1)" alt="fumetto successivo" >
 
                 </div>
             </section>
@@ -112,8 +122,8 @@
                     end group of article
                 -->
                 <!--gli alt degli input vanno cambiati in base alla section in cui si trovano-->
-                <input type="image" src="img/sort-left.svg" onclick="updateManga(-1)" alt="manga precedente" >
-                <input type="image" src="img/sort-right.svg" onclick="updateManga(1)" alt="manga successivo" >
+                <input type="image" src="img/sort-left.svg" onclick="updateManga(-1)" onkeypress="updateManga(-1)" alt="manga precedente" >
+                <input type="image" src="img/sort-right.svg" onclick="updateManga(1)" onkeypress="updateManga(1)" alt="manga successivo" >
 
                 </div>
             </section>
@@ -126,11 +136,10 @@
                 </div>
                 <div class="partner">
                     <img src="img/partners/Feltrinelli Comics.svg" alt="">
-                    <img src="" alt="">
                 </div>
                 <!--end of element of banner-->
-                <input type="image" src="img/Back.svg" onclick="updatePartner(-1)" alt="partner indietro" >
-                <input type="image" src="img/Forward.svg" onclick="updatePartner(1)" alt="partner avanti" >
+                <input type="image" src="img/Back.svg" onclick="updatePartner(-1)" onkeypress="updatePartner(-1)" alt="partner indietro" >
+                <input type="image" src="img/Forward.svg" onclick="updatePartner(1)" onkeypress="updatePartner(1)" alt="partner avanti" >
 
             </section>
         </main>
