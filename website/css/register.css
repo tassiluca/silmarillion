@@ -10,6 +10,13 @@ main > section > form > div > input:nth-of-type(2) {
     display: inline;
 }
 
+main > section > form > div > div:nth-of-type(2) {
+    display: inline-block;
+}
+
+main > section > form > div > input:nth-of-type(3) {
+    display: inline-block;
+}
 
 main > section > form > div > input:not([type="submit"]) {
     background-color: #0047A0;

@@ -25,14 +25,13 @@ main > section > form > div {
 }
 
 main > section > form > div > input {
-    border: none;
     border-radius: 10px;
     margin: auto;
     display: block;
 }
 
-main > section > form > div > input[type=text], 
-main > section > form > div > input[type=password] {
+main > section > form > div > input:not([type=submit]) {
+    border: none;
     width: 100%;
     font-size: 15px;
     padding: 10px 0;
@@ -80,6 +79,8 @@ main > section > form > div > p {
 main > section > form > header > ul > li {
     background-color: #c4c4c450;
 }
+
+/* Maybe this could be refactored in common style sheet */
 
 @media screen and (min-width: 768px) and (max-width:992px) {
     main {
