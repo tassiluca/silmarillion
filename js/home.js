@@ -10,6 +10,16 @@ $(document).ready(function () {
   $("main > aside > div:first-child > div.infoBanner").hide();
   $("main > aside > div:first-child > div.infoBanner:first-child()").show();
   
+  var sizeInfoBanner = $("main > aside > div:first-child > div.infoBanner").length;
+  autoSlide();
+  function autoSlide(){
+    infoidx++;
+    if(infoidx > sizeInfoBanner){
+      infoidx = 1;
+    }
+    showSlide(infoidx);
+    setTimeout(autoSlide, 5000);
+  }
 });
 
 var slideIndex = 1;
@@ -41,9 +51,13 @@ function showDivs(n,slider) {
   x[slideIndex-1].style.display = "inline-block";  
 }
 
+var infoidx = 1;
 function showSlide(n){
+  infoidx = n;
   $("main > aside > div:first-child > div.infoBanner").hide();
   $("main > aside > div:first-child > div.infoBanner:nth-child("+n+")").show();
+  
+  /*dot indicator */
   $("main > aside > div:last-child > div").removeClass("current");
   $("main > aside > div:last-child > div:nth-child("+n+")").addClass("current");
 }
