@@ -10,7 +10,7 @@ main > section > img {
     width: 76%;
     height: 145px;
     border-radius: 10px;
-   
+    
 }
 
 main > section > input {
@@ -154,15 +154,15 @@ main > aside {
     margin: 0 15% 0 15%;
     text-align: center;
 }
-main > aside > div:not(main>aside>div:last-child) {
+main > aside > div:first-child > div {
     background-color: rgba(0, 212, 255, 0.4);
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.5);
     border-radius: 10px;
     height: 70px;
     width: 100%;
 }
-
-main > aside > div:not(main>aside>div:last-child) > div {
+/* */
+main > aside > div:first-child > div > div{
     height: 51px;
     width: 51px;
     border-radius: 10px;
@@ -177,7 +177,7 @@ main > aside > div > div > img {
     margin-top: 5px;
 }
 /*banner text*/
-main > aside > div > p {
+main > aside > div  > div > p {
     font-weight: bold;
     display: inline-block;
     margin: 0 0 0 4%;
@@ -194,4 +194,8 @@ main > aside > div:last-child > div {
     display: inline-block;
     position: relative;
     bottom: 20px;
+}
+
+main > aside > div:last-child > div.current {
+    background-color: #FDFE02;
 }

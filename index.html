@@ -31,19 +31,29 @@
                 <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" alt="banner successivo" >
 
             </section>
-            <aside>
-                <!--insert div to add banner-->
-                <div class="">
-                    <div><img src="img/Gift.png" alt=""></div>
-                    <p>Spedizione gratuita sopra i 50 €</p>
+            <aside>   
+                <div>
+                    <!--insert div to add banner-->
+                    <div class="infoBanner">
+                        <div><img src="img/Gift.png" alt=""></div>
+                        <p>Spedizione gratuita sopra i 50 €</p>
+                    </div>
+                    <div class="infoBanner">
+                        <div><img src="" alt=""></div>
+                        <p>Pagamenti online o in contanti</p>
+                    </div>
+                    <div class="infoBanner">
+                        <div><img src="img/onlineSupport.svg" alt=""></div>
+                        <p>Qualche dubbio ?<br>Scrivici!</p>
+                    </div>
+                    <!--end of aside banner-->
                 </div>
                 
-                <!--end of aside banner-->
                 <!--index aside-->
                 <div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="current" onclick="showSlide(1)"></div>
+                    <div onclick="showSlide(2)"></div>
+                    <div onclick="showSlide(3)"></div>
                 </div>
             </aside>
             <section class="comics newArrival">
