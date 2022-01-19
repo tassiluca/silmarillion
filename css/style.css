@@ -174,23 +174,23 @@ body > footer > ul >li:first-child {
 
 /* --------------------------------------- */
 
-body > footer > section {
+body > footer > ul {
     font-size: 11px;
     display: inline-block;
     vertical-align: top;
     text-align: center;
 }
 
-body > footer > section:nth-of-type(2) {
+body > footer > ul:nth-of-type(2) {
     width: 30%;
 }
 
-body > footer > section:first-of-type,
-body > footer > section:last-of-type {
+body > footer > ul:first-of-type,
+body > footer > ul:last-of-type {
     width: 35%;
 }
 
-body > footer > section > ul > li {
+body > footer > ul > ul > li {
     display: block;
 }
 
