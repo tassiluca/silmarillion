@@ -21,6 +21,25 @@ input#surname {
     width: 49%;
 }
 
+div#birthdayimg {
+    margin-right: 1%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 15%;
+}
+
+div#birthdayimg > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+input#birthday {
+    margin-left: 1%;
+    display: inline-block;
+    vertical-align: middle;
+    width: 83%;
+}
+
 main > section > form > ul > li > input:not([type="submit"]) {
     background-color: #0047A0;
     color: #AAF1FF;
@@ -29,7 +48,6 @@ main > section > form > ul > li > input:not([type="submit"]) {
 
 main > section > form > ul > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
-    font-weight: normal;
 }
 
 main > section > form > ul > li > input[type="date"] {
