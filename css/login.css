@@ -15,8 +15,6 @@ main > section > form > ul:first-of-type > li > input:not([type="submit"]) {
 
 main > section > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
-    font-weight: normal;
-    font-style: italic;
 }
 
 /* Seller login form */
@@ -40,8 +38,6 @@ main > section > form > ul:last-of-type > li > input:not([type="submit"]) {
 
 main > section > form > ul:last-of-type > li > input:not([type="submit"])::placeholder {
     color: #0047A0;
-    font-weight: normal;
-    font-style: italic;
 }
 
 main > section > form > ul:last-of-type > li > a {

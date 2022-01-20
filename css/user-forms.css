@@ -65,6 +65,11 @@ main > section > form > ul > li > input:not([type=submit]) {
     font-weight: bold;
 }
 
+main > section > form > ul > li > input::placeholder {
+    font-weight: normal;
+    font-style: italic;
+}
+
 main > section > form > ul > li > input[type="submit"],
 main > section > form > ul > li > a:last-child {
     -webkit-appearance: none;   /* for Safari */
