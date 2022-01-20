@@ -31,6 +31,13 @@ main > section > form > header > ul > li {
     border-radius: 10px 10px 0 0;
 }
 
+main > section > form > header > ul > li > a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0047A0;
+    font-size: 22px;
+}
+
 main > section > form > ul {
     padding: 5% 10%;
     box-shadow: 10px 10px 5px rgba(196, 196, 196, 0.82);
@@ -55,6 +62,7 @@ main > section > form > ul > li > input:not([type=submit]) {
     padding: 10px 0;
     margin: 10px 0 15px 0;
     text-indent: 15px;
+    font-weight: bold;
 }
 
 main > section > form > ul > li > input[type="submit"],
