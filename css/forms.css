@@ -109,22 +109,27 @@ main > form > header > ul > li {
     background-color: #c4c4c450;
 }
 
+/* Invalid entry */
+
+input:invalid {
+}
+
 /* Maybe this could be refactored in common style sheet */
 
 @media screen and (min-width: 768px) and (max-width:992px) {
     main {
-        margin: 0 15%;
+        margin: 0 15% 50px;
     }
 }
 
 @media screen and (min-width: 992px) and (max-width:1200px) {
     main {
-        margin: 0 18%;
+        margin: 0 18% 50px;
     }
 }
 
 @media screen and (min-width: 1200px) {
     main {
-        margin: 0 25%;
+        margin: 0 25% 50px;
     }
 }
