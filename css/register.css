@@ -1,5 +1,5 @@
 /* User login form */
-main > section > form > ul {
+main > form > ul {
     border-radius: 10px 10px 10px 10px;
     background-color: #AAF1FF;
     color: #0047A0;
@@ -40,17 +40,17 @@ input#birthday {
     width: 83%;
 }
 
-main > section > form > ul > li > input:not([type="submit"]) {
+main > form > ul > li > input:not([type="submit"]) {
     background-color: #0047A0;
     color: #AAF1FF;
     font-weight: bold;
 }
 
-main > section > form > ul > li > input:not([type="submit"])::placeholder {
+main > form > ul > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
 }
 
-main > section > form > ul > li > input[type="date"] {
+main > form > ul > li > input[type="date"] {
     -webkit-appearance: none;   /* for Safari */
     background-color: #0047A0;
     color: #AAF1FF;

@@ -1,45 +1,45 @@
 /* User login form */
-main > section > form > header > ul > li:first-child.active {
+main > form > header > ul > li:first-child.active {
     background-color: #AAF1FF;
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > form > ul:first-of-type {
+main > form > ul:first-of-type {
     background-color: #AAF1FF;
 }
 
-main > section > form > ul:first-of-type > li > input:not([type="submit"]) {
+main > form > ul:first-of-type > li > input:not([type="submit"]) {
     background-color: #0047A0;
     color: #AAF1FF;
 }
 
-main > section > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
+main > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
 }
 
 /* Seller login form */
-main > section > form > header > ul > li:last-child.active {
+main > form > header > ul > li:last-child.active {
     background-color: #0047A0;
     box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > form > header > ul > li:last-child.active > a {
+main > form > header > ul > li:last-child.active > a {
     color: #AAF1FF;
 }
 
-main > section > form > ul:last-of-type {
+main > form > ul:last-of-type {
     background-color: #0047A0;
 }
 
-main > section > form > ul:last-of-type > li > input:not([type="submit"]) {
+main > form > ul:last-of-type > li > input:not([type="submit"]) {
     background-color: #AAF1FF;
     color: #0047A0;
 }
 
-main > section > form > ul:last-of-type > li > input:not([type="submit"])::placeholder {
+main > form > ul:last-of-type > li > input:not([type="submit"])::placeholder {
     color: #0047A0;
 }
 
-main > section > form > ul:last-of-type > li > a {
+main > form > ul:last-of-type > li > a {
     color: #AAF1FF;
 }
