@@ -11,10 +11,12 @@ main > section > form > ul:first-of-type {
 main > section > form > ul:first-of-type > li > input:not([type="submit"]) {
     background-color: #0047A0;
     color: #AAF1FF;
+    font-weight: bold;
 }
 
 main > section > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
+    font-weight: normal;
 }
 
 main > section > form > ul:first-of-type > li > label {

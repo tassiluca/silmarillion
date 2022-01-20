@@ -59,6 +59,7 @@ main > section > form > ul > li > input:not([type=submit]) {
 
 main > section > form > ul > li > input[type="submit"],
 main > section > form > ul > li > a:last-child {
+    -webkit-appearance: none;   /* for Safari */
     font-weight: bold;
     font-size: 17px;
     font-weight: bold;
