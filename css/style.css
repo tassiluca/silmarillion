@@ -135,62 +135,28 @@ body > footer > h4.hide {
 
 body > footer {
     background: linear-gradient(to top, #00D5FF, #CAF6FF );
-    height: 165px;
+   
     border-radius: 20px 20px 0 0;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-/*
-body > footer > ul {
-    margin: 15px 0 0 0;
-    text-align: center;
-    font-size: 11px;
-}
-body > footer li {
-    list-style: none;
-}
-
-body > footer > ul > li{
-    display: inline-block;
-    position: relative;
-    bottom: 30px;
-}
-body > footer > ul > div{
-    display: inline-block;
-}
-body > footer > ul > div > li{
-    margin: 10px 0 0 0;
-}
-
-body > footer h4 {
-    margin: 0 0 5px 0;
-}
-
-body > footer > ul >li:first-child {
-    padding: 0 27px 0 27px ;
-}
-
-*/
-
-/* --------------------------------------- */
-
-body > footer > ul {
+body > footer > div {
     font-size: 11px;
     display: inline-block;
     vertical-align: top;
     text-align: center;
 }
 
-body > footer > ul:nth-of-type(2) {
+body > footer > div:nth-of-type(2) {
     width: 30%;
 }
 
-body > footer > ul:first-of-type,
-body > footer > ul:last-of-type {
+body > footer > div:first-of-type,
+body > footer > div:last-of-type {
     width: 35%;
 }
 
-body > footer > ul > ul > li {
+body > footer > div > ul > li {
     display: block;
 }
 
