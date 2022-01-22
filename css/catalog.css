@@ -3,6 +3,8 @@ main > aside {
 }
 
 main > aside > button {
+    background-color: #AAF1FF;
+    font-size: 14px;
     cursor: pointer;
     width: 100%;
     border: none;
@@ -25,38 +27,52 @@ main > aside > button.selected::after {
     font-family: FontAwesome;
 }
 
-main > aside > button:hover {
-    background-color: #0047A0;
-}
-
 main > aside > ul {
     display: none;
 }
 
 main > aside > ul > li {
     opacity: 80%;
-    text-align: center;
     list-style: none;
 }
 
 main > aside > ul li > input {
+    /* not displayed */
     position: absolute;
     left: -9999px;
 }
 
 main > aside > ul > li > label {
+    font-family: "Futura-pt", Arial, Helvetica, sans-serif;
     padding: 5px 0;
-    display: inline-block;
     width: 100%;
+    display: inline-block;
     color: black;
+    border-radius: 10px 10px 10px 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* To include padding and border in the element's total width and height */
+    box-sizing: border-box;
 }
 
 main > aside > ul > li > input:checked + label {
-    background-color: #0047A0;
+    background: #0047A0;
+    animation: gradient 1s ease;
     color: white;
 }
 
 main > aside > ul > li > input:checked + label::after {
-    content: ' x ';
+    content: '\f00d';
+    font-family: FontAwesome;
+    float: right;
+}
+
+@keyframes gradient {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
 }
 
