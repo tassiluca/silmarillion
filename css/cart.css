@@ -97,42 +97,45 @@ main > section > div > article > div:last-child > div:last-child > a {
 }
 
 /*total price of things in cart container*/
-main > section > div:last-of-type {
+main > section > div:nth-of-type(2) {
     margin: 0 5% 0 5% ;
 }
 
 /*text totla price and price*/
-main > section > div:last-of-type > p {
+main > section > div:nth-of-type(2) > p {
     color: #0047A0;
     font-weight: bold;
     display: inline-block;
 }
 /*total price label*/
-main > section > div:last-of-type > p:first-child{
+main > section > div:nth-of-type(2) > p:first-child{
     width: 18.7%;
     margin: 0 16.3% 0 5% ;
 }
 /*total price text*/
-main > section > div:last-of-type > p:last-child {
+main > section > div:nth-of-type(2) > p:last-child {
     font-size: 20px;
     text-align: center;
     width: 20%;
     margin: 18px 40% 0 0;
 }
 
-/*button proceed to payment button*/
-main > section > input {
-    height: 50px;
+/*link to proceed to payment*/
+main > section > div:last-of-type{
+    display: inline-block;
     border-radius: 10px;
     border: 1px solid #0047A0;
     background-color: #FFFFFF;
     font-size: 15pt;
-    color:  #0047A0;
     font-weight: bold;
-    margin: 35px 0 35px 0;
+    padding: 12.5px 10px 13px 10px;
+    margin: 36px 0 40px 0;
 }
 
-/*to align input "procedi all'ordine"*/
-main > section {
+main > section > div:last-of-type > a{
+    color: #0047A0;
+}
+/*center al inlineblock*/
+main > section{
     text-align: center;
 }

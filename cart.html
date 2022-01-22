@@ -40,9 +40,9 @@
                         </div>
                         <div>
                             <div>
-                                <div><img src="img/cart/subtract.svg" alt="riduci quantità"></div>
+                                <div><input type="image" src="img/cart/subtract.svg" onclick="updateCount(-1)" onkeypress="updateCount(-1)" alt="riduci quantità"></div>
                                 <div><p>2</p></div>
-                                <div><img src="img/cart/plus_math.svg" alt="aumenta quantità"></div>
+                                <div><input type="image" src="img/cart/plus_math.svg" onclick="updateCount(1)" onkeypress="updateCount(1)" alt="aumenta quantità"></div>
                             </div>
                             <div><a href="">Rimuovi</a></div>
                         </div>
@@ -53,7 +53,7 @@
                 <div>
                     <p>Totale:</p><p>94,89 €</p>
                 </div>
-                <input type="submit" value="PROCEDI ALL'ORDINE">
+                <div><a href="payment.html">PROCEDI ALL'ORDINE</a></div>
             </section>
         </main>
         <footer>
