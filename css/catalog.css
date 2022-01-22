@@ -1,22 +1,62 @@
+main > aside {
+    margin: 0 10%;
+}
+
 main > aside > button {
-    background-color: #AAF1FF;
     cursor: pointer;
     width: 100%;
     border: none;
     padding: 8px 0;
+    text-align: left;
+    border-radius: 10px 10px 10px 10px;
+    margin: 2px 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+main > aside > button::after {
+    content: '\f067';
+    font-family: FontAwesome;
+    float: right;
+}
+
+main > aside > button.selected::after {
+    content: '\f068';
+    font-family: FontAwesome;
 }
 
 main > aside > button:hover {
     background-color: #0047A0;
 }
 
+main > aside > ul {
+    display: none;
+}
+
 main > aside > ul > li {
     opacity: 80%;
     text-align: center;
+    list-style: none;
 }
 
-main > aside > ul > li > a {
+main > aside > ul li > input {
+    position: absolute;
+    left: -9999px;
+}
+
+main > aside > ul > li > label {
     padding: 5px 0;
     display: inline-block;
+    width: 100%;
     color: black;
 }
+
+main > aside > ul > li > input:checked + label {
+    background-color: #0047A0;
+    color: white;
+}
+
+main > aside > ul > li > input:checked + label::after {
+    content: ' x ';
+}
+
