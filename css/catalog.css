@@ -1,10 +1,5 @@
-main > aside {
-    margin: 0 10%;
-}
-
-main > section {
-    margin: 30px 5% 50px;
-    text-align: center;
+main {
+    margin: 0 5%;
 }
 
 main > aside > button {
@@ -80,3 +75,33 @@ main > aside > ul > li > input:checked + label::after {
         opacity: 100%;
     }
 }
+
+@media screen and (min-width: 768px) {
+    main {
+        margin: 0 5%;
+    }
+
+    main > div > ul {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    main > aside, 
+    main > section {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    main > aside {
+        width: 25%;
+        margin: 0 1% 0 0;
+        box-sizing: border-box;
+    }
+
+    main > section {
+        width: 73%;
+        margin: 0 0 0 1%;     
+        box-sizing: border-box;
+    }
+}
+
