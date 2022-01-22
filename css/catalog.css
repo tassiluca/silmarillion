@@ -2,6 +2,11 @@ main > aside {
     margin: 0 10%;
 }
 
+main > section {
+    margin: 30px 5% 50px;
+    text-align: center;
+}
+
 main > aside > button {
     background-color: #AAF1FF;
     font-size: 14px;
@@ -75,4 +80,3 @@ main > aside > ul > li > input:checked + label::after {
         opacity: 100%;
     }
 }
-
