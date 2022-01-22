@@ -21,7 +21,7 @@ main > section > div > article {
     border-radius: 20px;
     margin: 8px 2% 8px 2%;
     height: 83px;
-    text-align: center;
+    padding: 15px 0 0 0;
 }
 /*div img, title and buttons*/
 main > section > div > article > div {
@@ -30,6 +30,7 @@ main > section > div > article > div {
     vertical-align: middle;
 }
 
+/*contaniner button quantity and rimuovi link */
 main > section > div > article > div:last-child {
     width: 20%;
     min-width: 123px;
@@ -44,6 +45,7 @@ main > section > div > article > div > div > div{
     display: inline-block;
 }
 
+/*button and quantity container not included "rimuovi" link*/
 main > section > div > article > div:last-child > div:first-child{
     background: #93ECFF;
     border: 1px solid #000000;
@@ -52,14 +54,17 @@ main > section > div > article > div:last-child > div:first-child{
     margin-bottom: 5px;
 }
 
+/*count quantity box*/
 main > section > div > article > div:last-child > div > div:nth-child(2){
     height: 36px;
     background: #0047A0;
     border: 1px solid #000000;
     border-radius: 10px;
     min-width: 50px;
+    width: 33%;
 }
 
+/*quantity counter*/
 main > section > div > article > div:last-child > div > div:nth-child(2) > p{
     color: #CBF6FF;
     font-weight: bold;
@@ -67,17 +72,25 @@ main > section > div > article > div:last-child > div > div:nth-child(2) > p{
     margin: 4px 0 0 0 ;
 }
 
-/*title and price of product*/
+/*title and price of product container*/
 main > section > div > article > div:nth-child(2) {
     color: #0047A0;
     font-weight: bold;
     width: 42%;
 }
-
-main > section > div > article > div:nth-child(2) > p:last-child {
+/*price text*/
+main > section > div > article > div:nth-child(2) > p{
     font-size: 18px;
+    margin: 0;
+}
+/*product title*/
+main > section > div > article > div:nth-child(2) > header > h3{
+    display: inline-block;
+    margin: 0 0 8px 0;
+    font-size: 12pt;
 }
 
+/*"rimuovi" link under qunatity buttons*/
 main > section > div > article > div:last-child > div:last-child > a {
     font-weight: bold;
     color: #0047A0;
@@ -88,6 +101,7 @@ main > section > div:last-of-type {
     margin: 0 5% 0 5% ;
 }
 
+/*text totla price and price*/
 main > section > div:last-of-type > p {
     color: #0047A0;
     font-weight: bold;
@@ -118,6 +132,7 @@ main > section > input {
     margin: 35px 0 35px 0;
 }
 
+/*to align input "procedi all'ordine"*/
 main > section {
     text-align: center;
 }
