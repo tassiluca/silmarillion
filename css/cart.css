@@ -20,7 +20,6 @@ main > section > div > article {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     margin: 8px 2% 8px 2%;
-    height: 83px;
     padding: 15px 0 0 0;
 }
 /*div img, title and buttons*/
