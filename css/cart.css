@@ -42,6 +42,7 @@ main > section > div > article > div > img {
 /*product button quantity*/
 main > section > div > article > div > div > div{
     display: inline-block;
+    vertical-align: middle;
 }
 
 /*button and quantity container not included "rimuovi" link*/
