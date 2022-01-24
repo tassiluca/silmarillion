@@ -1,5 +1,5 @@
 
-body, h1, h2, ul {
+body, h1, h2, ul, button {
     margin: 0;
     padding: 0;
 }
@@ -57,6 +57,11 @@ body > header > nav > ul > li:last-child {
 body > header > nav > ul > li {
     width: 11%;
     text-align: center;
+}
+
+body > header > nav > ul > li > button {
+    background-color: transparent;
+    border: none;
 }
 
 body > header > nav {

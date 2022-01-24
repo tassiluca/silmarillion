@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="./css/homepage.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/home.js"></script>
+        <script src="js/navbar.js"></script>
         <title>Silmarillion</title>
     </head>
     <body>
@@ -13,7 +14,9 @@
             <h1 class="hide">Silmarillion Comics</h1>
             <nav>
                 <ul>
-                    <li><a href="#" ><img src="./img/menu.svg" alt="Menu"/></a></li><li><a href="#" ><img src="./img/search.svg" alt="Cerca"/></a></li><li><a href="login.html" ><img src="./img/login.svg" alt="Login"/></a></li><li><a href="#" ><img src="./img/cart.svg" alt="Carrello"/></a></li>
+                    <li>
+                        
+                        <button type="button"><img src="./img/menu.svg" alt="Menu"/></button></li><li><button type="button"><img src="./img/search.svg" alt="Cerca"/></button></li><li><button type="button"><img src="./img/login.svg" alt="Login"/></button></li><li><button type="button" ><img src="./img/cart.svg" alt="Carrello"/></button></li>
                 </ul>
                 <div>
                     <ul><li><a href="#">Nuovi Arrivi</a></li><li><a href="#">Manga</a></li><li><a href="#">Supoereroi</a></li><li><a href="">Funko Pop</a></li><li><a href="#">Usato</a></li><li id="login"><a href="#">Login</a></li><li><a href="">Recensioni</a></li><li><a href="#">I Nostri Partner</a></li><li><a href="">Supporto</a></li>
@@ -24,11 +27,11 @@
         <main>
             <section>
                 <!-- here put all images to be shown in banner-->
-                <img src="img/banner/marv.png" class="banner"  alt="banner1">
-                <img src="img/banner/marv1.png" class="banner"  alt="banner1">
+                <img src="img/banner/marv.png" class="banner"  alt="banner1"/>
+                <img src="img/banner/marv1.png" class="banner"  alt="banner1"/>
                 <!--end of element of banner-->
-                <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="banner precedente" >
-                <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="banner successivo" >
+                <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="banner precedente" />
+                <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="banner successivo" />
 
             </section>
             <aside>   
