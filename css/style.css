@@ -77,24 +77,21 @@ body > header > nav > ul > li > button.navActive{
 body > header > nav > div > ul {
     list-style: none;
     display: inline-block;
+    width: 100%;
+    border-radius: 10px;
 }
 
 body > header > nav > div {
     background-color: #CAF0F8;
+    border-radius: 10px;
+    display: none;
 }
 
 body >header > nav > div > ul > li {
     background-color: #0047A0;
 }
 
-body > header > nav > div {
-    border-radius: 10px;
-}
 
-body > header > nav > div > ul {
-    width: 100%;
-    border-radius: 10px;
-}
 
 body > header > nav > div > ul > li:last-child {
     border-radius: 0 0 10px 10px;
@@ -221,6 +218,7 @@ main > div > ul > li > a:hover {
 }
 
 @media screen and (min-width: 1200px) {
+    /*non visualiziamo l'icona del menu*/
     body > header > nav > ul > li:first-child {
         display: none;
     }
@@ -228,10 +226,58 @@ main > div > ul > li > a:hover {
     body > header > nav > div > ul > li, 
     body > header > nav > div,
     body > header > nav > ul{
-        display: inline-block;
+        display: inline-block !important;
     }
 
-    
+    body > header > nav {
+        text-align: center;
+        background-color: #aaf1ff;
+        border-color: black;
+        border-radius: 20px;
+        margin-top: 15px;
+
+    }
+
+    body > header > nav > div {
+        float: left;
+      
+        text-align: center;
+        background: none;
+        width: 80%;
+    }
+
+    body > header > nav > div > ul > li:nth-child(6){
+        display: none !important;
+    }
+
+    body > header > nav > ul{
+        width: 20%;
+     }
+
+    body > header > nav > ul > li{
+        vertical-align: middle;
+    }
+
+    body > header > nav > div > ul{
+        padding-left: 4%;
+    }
+
+    body > header > nav > div > ul > li{
+        width: 12%;
+        background: none; 
+    }
+
+    body > header > nav > ul > li > button {
+        padding: 5px 2%;
+    }
+
+    body > header > nav > div > ul > li > a {
+        height: 53px;
+        vertical-align: middle;
+        color: #0047A0;
+        text-align: center;
+        padding: 0;
+    }
 
 
 }

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("body > header > nav > div").hide();
+    /*$("body > header > nav > div").hide();*/
 
     $("body > header > nav > ul > li:first-of-type > button").click(function(){
         if (!$(this).hasClass("navActive")){
