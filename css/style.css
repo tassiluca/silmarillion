@@ -14,7 +14,7 @@ html {
 
 body > header {
     background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
-    height: 168px;
+    height: 155px;
     border-radius: 0 0 20px 20px;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
@@ -30,17 +30,25 @@ body > header > h1.hide {
     background-repeat: no-repeat;
 }
 
-/*header > .hide */
+/*header > .hide  per gli screen reader*/
 .hide {
     text-indent: 100%;
     white-space: nowrap;
     overflow: hidden;
 }
 
+body > header > nav {
+    text-align: center;
+
+}
+
 body > header > nav > ul > li {
     list-style: none;
     display: inline-block;
+    width: 11%;
+    text-align: center;
 }
+
 
 body > header > nav > ul > li:first-child {
     margin: 0 8% 0 4%;
@@ -54,18 +62,16 @@ body > header > nav > ul > li:last-child {
     margin: 0 4% 0 8%;
 }
 
-body > header > nav > ul > li {
-    width: 11%;
-    text-align: center;
-}
-
 body > header > nav > ul > li > button {
     background-color: transparent;
     border: none;
+    padding: 10px 10px 0 10px;
+    box-sizing: border-box;
 }
 
-body > header > nav {
-    margin-top: 20px;
+body > header > nav > ul > li > button.navActive{
+    background-color: #0047A0;
+    border-radius: 10px 10px 0px 0;
 }
 
 body > header > nav > div > ul {
@@ -124,6 +130,7 @@ body > header > nav > div > ul > li {
     margin: 2px 0 2px 0;
     text-align: center;
     font-size: 1.2em;
+   
 }
 
 body > header > nav > div > ul > li#login {
@@ -176,7 +183,8 @@ body > footer > ul >li:first-child {
 
 /*To unhide after finishing other things*/
 body > header > nav > div {
-    visibility: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 /* Breadcrumb */
@@ -200,4 +208,30 @@ main > div > ul > li {
 
 main > div > ul > li > a:hover {
     font-weight: bold;
+}
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+    
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    body > header > nav > ul > li:first-child {
+        display: none;
+    }
+
+    body > header > nav > div > ul > li, 
+    body > header > nav > div,
+    body > header > nav > ul{
+        display: inline-block;
+    }
+
+    
+
+
 }
