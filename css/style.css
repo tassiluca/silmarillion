@@ -39,7 +39,11 @@ body > header > h1.hide {
 
 body > header > nav {
     text-align: center;
+    height: 56px;
+}
 
+body > header > nav > ul {
+    height: 56px;
 }
 
 body > header > nav > ul > li {
@@ -90,8 +94,6 @@ body > header > nav > div {
 body >header > nav > div > ul > li {
     background-color: #0047A0;
 }
-
-
 
 body > header > nav > div > ul > li:last-child {
     border-radius: 0 0 10px 10px;
@@ -225,59 +227,58 @@ main > div > ul > li > a:hover {
 
     body > header > nav > div > ul > li, 
     body > header > nav > div,
-    body > header > nav > ul{
+    body > header > nav > ul {
         display: inline-block !important;
     }
 
+    /* navbar */
     body > header > nav {
-        text-align: center;
         background-color: #aaf1ff;
         border-color: black;
         border-radius: 20px;
         margin-top: 15px;
-
     }
 
+    /* text links */
     body > header > nav > div {
         float: left;
-      
-        text-align: center;
         background: none;
-        width: 80%;
+        width: 75%;
+        margin-left: 5%;
     }
 
-    body > header > nav > div > ul > li:nth-child(6){
-        display: none !important;
+    body > header > nav > div > ul {
+        display: flex;
+        justify-content: space-between;
     }
 
-    body > header > nav > ul{
-        width: 20%;
-     }
-
-    body > header > nav > ul > li{
-        vertical-align: middle;
-    }
-
-    body > header > nav > div > ul{
-        padding-left: 4%;
-    }
-
-    body > header > nav > div > ul > li{
-        width: 12%;
+    body > header > nav > div > ul > li {
         background: none; 
     }
 
-    body > header > nav > ul > li > button {
-        padding: 5px 2%;
-    }
-
     body > header > nav > div > ul > li > a {
-        height: 53px;
-        vertical-align: middle;
         color: #0047A0;
-        text-align: center;
-        padding: 0;
     }
 
+    /* buttons links */
+    body > header > nav > ul {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        width: 15%;
+        margin-right: 5%;
+        vertical-align: middle;
+    }
+
+    body > header > nav > ul > li > button {
+        padding-top: 5px;
+    }
+
+
+
+    /* no display login link */
+    body > header > nav > div > ul > li:nth-child(6){
+        display: none !important;
+    }
 
 }
