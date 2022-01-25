@@ -1,0 +1,79 @@
+main {
+    margin: 0 5% 50px 5%;
+}
+
+li {
+    list-style: none;
+}
+
+main > h2 {
+    text-align: center;
+}
+
+/* Aside section */
+
+main > aside {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main > aside > div {
+    margin: 15px 0;
+}
+
+main > aside > div > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+main > aside > ul {
+    display: block;
+}
+
+main > aside > ul > li {
+    display: inline-block;
+    vertical-align: middle;
+    height: 48px;
+}
+
+main > aside > ul > li:first-child {
+    width: 50%;
+    font-weight: bold;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+main > aside > ul > li:nth-child(2) {
+    width: 50%;
+}
+
+main > aside > ul > li:nth-child(3) {
+    width: 100%;
+    border-radius: 10px;
+    background-color: #AAF1FF;
+    margin-top: 10px;
+}
+
+main > aside > ul > li:nth-child(3) > a {
+    display: inline;
+}
+
+/* if the article is available hide link for notification */
+main > aside > ul > li:first-child.available {
+    background-color: #B9FBC0;
+}
+
+main > aside > ul > li:first-child.available + li + li {
+    display: none;
+}
+
+/* if the article is sold-out display link for notification */
+main > aside > ul > li:first-child.soldout {
+    background-color: #FF0000;
+    color: white;
+}
+
+main > aside > ul > li:first-child.soldout + li + li {
+    display: inline-block;
+}
