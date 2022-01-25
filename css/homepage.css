@@ -9,7 +9,7 @@ main > section:first-child {
 main > section > img {
     width: 76%;
     height: 145px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 main > section > input {

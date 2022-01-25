@@ -1,0 +1,154 @@
+
+main > section > header{
+    text-align: center;
+}
+
+main > section > header > h2 {
+    background-image: url(../img/cart/shopping_cart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 0 33px 0;
+}
+
+main > section > div > div > article {
+    background: #CBF6FF;
+    border: 1px solid #0047A0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin: 8px 2% 8px 2%;
+    padding: 15px 0 0 0;
+}
+/*div img, title and buttons*/
+main > section > div > div > article > div {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*contaniner button quantity and rimuovi link */
+main > section > div > div  > article > div:last-child {
+    width: 20%;
+    min-width: 123px;
+}
+
+main > section > div > div > article > div > img {
+    height: 65px;
+}
+
+/*product button quantity*/
+main > section > div > div > article > div > div > div{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*button and quantity container not included "rimuovi" link*/
+main > section > div > div > article > div:last-child > div:first-child{
+    background: #93ECFF;
+    border: 1px solid #000000;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+/*count quantity box*/
+main > section > div > div > article > div:last-child > div > div:nth-child(2){
+    height: 36px;
+    background: #0047A0;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    min-width: 50px;
+    width: 33%;
+}
+
+/*quantity counter*/
+main > section > div > div > article > div:last-child > div > div:nth-child(2) > p{
+    color: #CBF6FF;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 4px 0 0 0 ;
+}
+
+/*title and price of product container*/
+main > section > div > div > article > div:nth-child(2) {
+    color: #0047A0;
+    font-weight: bold;
+    width: 42%;
+}
+/*price text*/
+main > section > div >  div > article > div:nth-child(2) > p{
+    font-size: 18px;
+    margin: 0;
+}
+/*product title*/
+main > section > div > div > article > div:nth-child(2) > header > h3{
+    display: inline-block;
+    margin: 0 0 8px 0;
+    font-size: 12pt;
+}
+
+/*"rimuovi" link under qunatity buttons*/
+main > section > div > div > article > div:last-child > div:last-child > a {
+    font-weight: bold;
+    color: #0047A0;
+}
+
+/*total price of things in cart container*/
+main > section > div > div:nth-of-type(2) {
+    margin: 0 5% 0 5% ;
+}
+
+/*text totla price and price*/
+main > section > div > div:nth-of-type(2) > p {
+    color: #0047A0;
+    font-weight: bold;
+    display: inline-block;
+}
+/*total price label*/
+main > section > div > div:nth-of-type(2) > p:first-child{
+    width: 18.7%;
+    margin: 0 16.3% 0 5% ;
+}
+/*total price text*/
+main > section > div > div:nth-of-type(2) > p:last-child {
+    font-size: 20px;
+    text-align: center;
+    width: 20%;
+    margin: 18px 40% 0 0;
+}
+
+/*link to proceed to payment*/
+main > section > div > div:last-of-type{
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid #0047A0;
+    background-color: #FFFFFF;
+    font-size: 15pt;
+    font-weight: bold;
+    padding: 12.5px 10px 13px 10px;
+    margin: 36px 0 40px 0;
+}
+
+main > section > div:last-of-type > a{
+    color: #0047A0;
+}
+/*center al inlineblock*/
+main > section{
+    text-align: center;
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25%;
+    }
+    main > section > div {
+        background: #AAF1FF;
+        box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
+        border-radius: 20px;
+        padding: 40px 10% 40px 10%;
+        margin: 0 0 100px 0;
+    }
+}
