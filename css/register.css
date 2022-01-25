@@ -21,7 +21,7 @@ input#surname {
     width: 49%;
 }
 
-#birthdayLabel {
+label#birthdayLabel {
     position: static;
 }
 
