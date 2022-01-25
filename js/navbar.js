@@ -4,7 +4,7 @@ $(document).ready(function(){
     $("body > header > nav > ul > li:first-of-type > button").click(function(){
         if (!$(this).hasClass("navActive")){
             $(this).addClass("navActive");
-            $("body > header > nav > div").show();
+            $("body > header > nav > div:first-of-type").show();
             $("main").css("opacity", "0.2");
             
         } 
@@ -14,6 +14,5 @@ $(document).ready(function(){
             $("main").css("opacity", "1.0");
         }
     });
-
 });
 
