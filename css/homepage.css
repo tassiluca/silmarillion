@@ -1,6 +1,7 @@
 main > section {
     margin: 22px 0 22px 0;
     width: 100%;
+    display: inline-block;
 }
 
 main > section:first-child {
@@ -8,6 +9,7 @@ main > section:first-child {
 }
 main > section > img {
     width: 76%;
+    object-fit: cover;
     height: 145px;
     border-radius: 10px;
 }
@@ -124,18 +126,55 @@ main > aside > div:last-child > div.current {
     background-color: #FDFE02;
 }
 
-
-@media screen and (min-width: 992px) and (max-width:1200px) {
-    main > aside {
-        display: inline-block;
+@media screen and (min-width: 820px) and (max-width: 1200px){
+    main {
+        margin: 0 3%;
     }
-    main > section:first-child {
-        width: 50%;
+
+    main > section > div > article {
+        margin: 0 3.5%;
     }
 }
 
-@media screen and (min-width: 1200px) {
+
+@media screen and (min-width: 1200px){
     main {
-        margin: 0 25%;
+        margin: 0 5%;
     }
+    /*banner promo*/
+    main > section:first-child{
+        float: left;
+        width: 60%;
+        margin: 22px 5% 22px 5%;
+    }
+
+    main > section:first-child, 
+    main > section > img, main > section > input{
+        height: 276px;
+    }
+
+    main > aside {
+        float: right;
+        margin: 22px 5% 22px 0;
+        width: 25%;
+    }
+    /*show all info banner , override style of js running*/
+    main > aside > div:first-child > div {
+        display: inline-block !important;
+        margin: 11px 0px 11px 0;
+        text-align: left;
+    }
+    main > aside > div:first-child > div > div {
+        margin: 6.5px 5%;
+        text-align: center;
+    }
+    /*index dot banner indicator*/
+    main > aside > div:last-child {
+        display: none;
+    }
+
+    main > section > div > article {
+        margin: 0 3.5%;
+    }
+    
 }
