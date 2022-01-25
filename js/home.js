@@ -5,10 +5,9 @@ $(document).ready(function () {
   $("main > section:first-child > img.banner:first-child").show();
   $("main > section:last-child > div.partner").hide();
   $("main > section:last-child > div.partner:first-child").show();
-  $("main > section.comics > div > article").hide();
-  $("main > section.comics > div > article:first-child").show();
-  $("main > aside > div:first-child > div.infoBanner").hide();
-  $("main > aside > div:first-child > div.infoBanner:first-child()").show();
+
+  updateNewArrival(0);
+  showSlide(infoidx);
   
   var sizeInfoBanner = $("main > aside > div:first-child > div.infoBanner").length;
   autoSlide();
@@ -25,33 +24,36 @@ $(document).ready(function () {
 var slideIndex = 1;
 
 function updateBanner(n) {
-  showDivs(slideIndex += n,"main > section:first-child > img");
+  showDivs(slideIndex += n,"main > section:first-child > img",1);
 }
 
 function updatePartner(n) {
-  showDivs(slideIndex += n,"main > section:last-child > div");
+  showDivs(slideIndex += n,"main > section:last-child > div",1);
 }
 
 function updateNewArrival(n) {
-  showDivs(slideIndex += n,"main > section.newArrival > div > article");
+  showDivs(slideIndex += n,"main > section.newArrival > div > article",3);
 }
 
 function updateManga(n) {
-  showDivs(slideIndex += n,"main > section.manga > div > article");
+  showDivs(slideIndex += n,"main > section.manga > div > article",3);
 }
 
-function showDivs(n,slider) {
-  var i;
+function showDivs(n,slider,quantity) {
   var x = $(slider);
   if (n > x.length) {slideIndex = 1}
   if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+  x.hide();
+
+  for(var k=0; k<quantity && slideIndex-1+k < x.length;k++){
+    elem = slideIndex-1+k;
+    x[elem].style.display = "inline-block";
   }
-  x[slideIndex-1].style.display = "inline-block";  
+
 }
 
 var infoidx = 1;
+/* Aside banner */
 function showSlide(n){
   infoidx = n;
   $("main > aside > div:first-child > div.infoBanner").hide();

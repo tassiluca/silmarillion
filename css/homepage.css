@@ -153,16 +153,17 @@ main > aside > div:last-child > div.current {
         margin: 11px 0px 11px 0;
         text-align: left;
     }
-
     main > aside > div:first-child > div > div {
         margin: 6.5px 5%;
         text-align: center;
     }
-
     /*index dot banner indicator*/
     main > aside > div:last-child {
         display: none;
     }
 
+    main > section > div > article {
+        margin: 0 5%;
+    }
     
 }
