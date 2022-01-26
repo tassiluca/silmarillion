@@ -14,18 +14,14 @@ html {
 
 body > header {
     background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
-    height: 155px;
     border-radius: 0 0 20px 20px;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-body > header > h1 {
-    text-align: center;
-}
-
 body > header > h1.hide {
-    background-image: url(../img/mini-logo.svg);
+    text-align: center;
     height: 88px;
+    background-image: url(../img/mini-logo.svg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -37,45 +33,34 @@ body > header > h1.hide {
     overflow: hidden;
 }
 
-body > header > nav {
-    text-align: center;
-    height: 56px;
-}
-
-body > header > nav > ul {
-    height: 56px;
-}
-
+/*********************** Navbar buttons ***********************/
 body > header > nav > ul > li {
     list-style: none;
     display: inline-block;
-    width: 11%;
+    width: 17%;
     text-align: center;
-}
-
-
-body > header > nav > ul > li:first-child {
-    margin: 0 8% 0 4%;
-}
-
-body > header > nav > ul > li:not(:first-child) {
-    margin: 0 8% 0 8%;
-}
-
-body > header > nav > ul > li:last-child {
-    margin: 0 4% 0 8%;
+    margin: 0 4% 0 4%;
 }
 
 body > header > nav > ul > li > button {
     background-color: transparent;
     border: none;
-    padding: 10px 10px 0 10px;
-    box-sizing: border-box;
+    padding: 10px 10% 0 10%;
 }
 
-body > header > nav > ul > li > button.navActive{
+body > header > nav > ul > li > button.navActive {
     background-color: #0047A0;
     border-radius: 10px 10px 0px 0;
+}
+
+/*********************** Dropdown links ***********************/
+body > header > nav > div {
+    background-color: #CAF0F8;
+    border-radius: 10px;
+    display: none;
+    position: relative;
+    /* Remove space between menu button and pop-up menu */
+    bottom: 4px;
 }
 
 body > header > nav > div > ul {
@@ -85,22 +70,22 @@ body > header > nav > div > ul {
     border-radius: 10px;
 }
 
-body > header > nav > div {
-    background-color: #CAF0F8;
-    border-radius: 10px;
-    display: none;
-}
-
-body >header > nav > div > ul > li {
+body > header > nav > div > ul > li {
     background-color: #0047A0;
+    margin: 2px 0 2px 0;
+    text-align: center;
+    font-size: 1.2em;
 }
 
 body > header > nav > div > ul > li:last-child {
     border-radius: 0 0 10px 10px;
+    /* see bottom of body > header > nav > div rule */
+    margin-bottom: -4px;
 }
 
 body > header > nav > div > ul > li:first-child {
     border-radius: 10px 10px 0 0;
+    margin-top: 0;
 }
 
 body > header > nav > div > ul > li > a {
@@ -117,25 +102,11 @@ body > header > nav > div > ul > li > a:hover {
     text-transform: uppercase;
 }
 
-body > header > nav > div > ul > li:first-child {
-    margin: 0 0 2px 0;
-}
-
-body > header > nav > div > ul > li:last-child {
-    margin: 2px 0 0 0;
-}
-
-body > header > nav > div > ul > li {
-    margin: 2px 0 2px 0;
-    text-align: center;
-    font-size: 1.2em;
-   
-}
-
 body > header > nav > div > ul > li#login {
     margin: 7px 0 7px 0;
 }
 
+/************************** Footer **************************/
 body > footer > h4.hide {
     background-image: url(../img/footer-logo.svg);
     background-position: center;
@@ -160,15 +131,15 @@ body > footer li {
     list-style: none;
 }
 
-body > footer > ul > li{
+body > footer > ul > li {
     display: inline-block;
     position: relative;
     bottom: 30px;
 }
-body > footer > ul > div{
+body > footer > ul > div {
     display: inline-block;
 }
-body > footer > ul > div > li{
+body > footer > ul > div > li {
     margin: 10px 0 0 0;
 }
 
@@ -180,14 +151,7 @@ body > footer > ul >li:first-child {
     padding: 0 27px 0 27px ;
 }
 
-/*To unhide after finishing other things*/
-body > header > nav > div {
-    position: relative;
-    bottom: 4px; /*that remove space between mnu button and pop-up menu*/
-    z-index: 1;
-}
-
-/* Breadcrumb */
+/********************** Breadcrumb ***********************/
 
 main > div > ul {
     padding: 10px 4%;
@@ -210,6 +174,8 @@ main > div > ul > li > a:hover {
     font-weight: bold;
 }
 
+/******************** Desktop devices *********************/
+
 @media screen and (min-width: 768px) and (max-width:992px) {
     
 }
@@ -221,7 +187,7 @@ main > div > ul > li > a:hover {
 }
 
 @media screen and (min-width: 1200px) {
-    /*non visualiziamo l'icona del menu*/
+    /* menu icon */
     body > header > nav > ul > li:first-child {
         display: none;
     }
@@ -235,12 +201,10 @@ main > div > ul > li > a:hover {
     /* navbar */
     body > header > nav {
         background-color: #aaf1ff;
-        border-color: black;
         border-radius: 20px;
         margin-top: 15px;
     }
 
-    /* text links */
     body > header > nav > div {
         float: left;
         background: none;
@@ -255,6 +219,7 @@ main > div > ul > li > a:hover {
 
     body > header > nav > div > ul > li {
         background: none; 
+        margin: 2px 0 !important;
     }
 
     body > header > nav > div > ul > li > a {
@@ -265,7 +230,7 @@ main > div > ul > li > a:hover {
     body > header > nav > ul {
         display: flex;
         justify-content: space-between;
-        text-align: left;
+        text-align: center;
         width: 15%;
         margin-right: 5%;
         vertical-align: middle;
@@ -275,10 +240,8 @@ main > div > ul > li > a:hover {
         padding-top: 5px;
     }
 
-
-
-    /* no display login link */
-    body > header > nav > div > ul > li:nth-child(6){
+    /* login link */
+    body > header > nav > div > ul > li#login {
         display: none !important;
     }
 
