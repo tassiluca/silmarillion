@@ -95,7 +95,7 @@ main > aside > ul > li:first-child.soldout + li + li {
 main > section > footer > ul > li {
     display: inline-block;
     width: 48%;
-    height: 73px;
+    height: 93px;
     vertical-align: top;
     text-align: center;
 }
@@ -104,7 +104,7 @@ main > section > footer > ul > li:first-child {
     margin-right: 1%;
     font-size: 1.3em;
     font-weight: bold;
-    line-height: 73px;
+    line-height: 93px;
     background-color: #F0F8FF;
     border-radius: 10px;
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
@@ -123,7 +123,16 @@ main > section > footer > ul > li:last-child {
 }
 
 main > section > footer > ul > li:last-child > a {
-    display: inline-block;
+    padding: 10px 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+main > section > footer > ul > li:last-child > a > span {
+    display: block;
+    font-weight: bold;
+    color: #0047A0;
 }
 
 main > section > footer > ul > li > a {
