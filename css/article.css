@@ -24,6 +24,8 @@ main > aside > div {
 main > aside > div > img {
     max-width: 100%;
     max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
 main > aside > ul {
@@ -38,8 +40,8 @@ main > aside > ul > li {
 
 main > aside > ul > li:first-child {
     width: 50%;
+    line-height: 48px;
     font-weight: bold;
-    box-sizing: border-box;
     border-radius: 10px;
     font-size: 1.1em;
 }
@@ -55,8 +57,19 @@ main > aside > ul > li:nth-child(3) {
     margin-top: 10px;
 }
 
-main > aside > ul > li:nth-child(3) > a {
-    display: inline;
+main > aside > ul > li:nth-child(3) > button {
+    height: 100%;
+    width: 100%;
+    background-color: #AAF1FF;
+    border: none;
+    font-size: 1.1em;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+    border-radius: 10px;
+}
+
+main > aside > ul > li:nth-child(3) > button:hover {
+    background-color: #0047A0;
+    color: white;
 }
 
 /* if the article is available hide link for notification */
@@ -75,5 +88,44 @@ main > aside > ul > li:first-child.soldout {
 }
 
 main > aside > ul > li:first-child.soldout + li + li {
+    display: inline-block;
+}
+
+/* section page */
+main > section > footer > ul > li {
+    display: inline-block;
+    width: 48%;
+    height: 73px;
+    vertical-align: top;
+    text-align: center;
+}
+
+main > section > footer > ul > li:first-child {
+    margin-right: 1%;
+    font-size: 1.3em;
+    font-weight: bold;
+    line-height: 73px;
+    background-color: #F0F8FF;
+    border-radius: 10px;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > footer > ul > li:first-child > span {
+    color: #FF0000;
+    text-decoration-line: line-through;
+}
+
+main > section > footer > ul > li:last-child {
+    margin-left: 1%;
+    background: linear-gradient(to bottom, #ADE8F4, #CAF6FF );
+    border-radius: 10px;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > footer > ul > li:last-child > a {
+    display: inline-block;
+}
+
+main > section > footer > ul > li > a {
     display: inline-block;
 }
