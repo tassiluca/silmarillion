@@ -277,8 +277,8 @@ body > header > nav > div.navCart > ul > li > div > div > p{
         display: none;
     }
 
-    body > header > nav > div > ul > li, 
-    body > header > nav > div,
+    body > header > nav > div.navMenu  > ul > li, 
+    body > header > nav > div.navMenu ,
     body > header > nav > ul {
         display: inline-block !important;
     }
@@ -292,23 +292,23 @@ body > header > nav > div.navCart > ul > li > div > div > p{
     }
 
     /* text links */
-    body > header > nav > div {
+    body > header > nav > div.navMenu  {
         float: left;
         background: none;
         width: 75%;
         margin-left: 5%;
     }
 
-    body > header > nav > div > ul {
+    body > header > nav > div.navMenu  > ul {
         display: flex;
         justify-content: space-between;
     }
 
-    body > header > nav > div > ul > li {
+    body > header > nav > div.navMenu  > ul > li {
         background: none; 
     }
 
-    body > header > nav > div > ul > li > a {
+    body > header > nav > div.navMenu  > ul > li > a {
         color: #0047A0;
     }
 
@@ -326,11 +326,16 @@ body > header > nav > div.navCart > ul > li > div > div > p{
         padding-top: 5px;
     }
 
-
-
     /* no display login link */
-    body > header > nav > div > ul > li:nth-child(6){
+    body > header > nav > div.navMenu > ul > li:nth-child(6){
         display: none !important;
+    }
+
+    /*cart popup*/
+    body > header > nav > div.navCart{
+       width: 30%;
+       margin: 0 0 0 65%;
+       padding: 25px;
     }
 
 }
