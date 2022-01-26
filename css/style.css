@@ -176,6 +176,56 @@ main > div > ul > li > a:hover {
 
 /******************** Desktop devices *********************/
 
+/*Navigation bar cart*/
+body > header > nav > div.navCart{
+    background-color: #0047A0;
+    text-align: center;
+    padding: 5px 5%;
+}
+body > header > nav > div.navCart > a {
+    color: #CBF6FF;
+    font-weight: bold;
+}
+body > header > nav > div.navCart > ul{
+    padding: 10px 0 5px 0;
+}
+body > header > nav > div.navCart > ul > li {
+    background-color: #CBF6FF;
+    height: 80px;
+    border-radius: 20px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body > header > nav > div.navCart > ul > li > img {
+    display: inline-block;
+    height: 60px;
+}
+
+body > header > nav > div.navCart > ul > li > div {
+    display: inline-block;
+    margin: 0 0 0 5%;
+}
+
+body > header > nav > div.navCart > ul > li > div > div {
+    padding: 10px 0 0 0;
+}
+
+body > header > nav > div.navCart > ul > li > div > p,
+body > header > nav > div.navCart > ul > li > div > div > p:last-of-type{
+    margin: 0;
+    font-size: 12pt;
+    color: #0047A0;
+}
+body > header > nav > div.navCart > ul > li > div > div > p{
+    margin: 0;
+    display: inline-block;
+    color: #0047A0;
+    font-weight: bold;
+    margin: 0 10px 0;
+}
+
 @media screen and (min-width: 768px) and (max-width:992px) {
     
 }
@@ -192,8 +242,8 @@ main > div > ul > li > a:hover {
         display: none;
     }
 
-    body > header > nav > div > ul > li, 
-    body > header > nav > div,
+    body > header > nav > div.navMenu  > ul > li, 
+    body > header > nav > div.navMenu ,
     body > header > nav > ul {
         display: inline-block !important;
     }
@@ -205,24 +255,25 @@ main > div > ul > li > a:hover {
         margin-top: 15px;
     }
 
-    body > header > nav > div {
+    /* text links */
+    body > header > nav > div.navMenu  {
         float: left;
         background: none;
         width: 75%;
         margin-left: 5%;
     }
 
-    body > header > nav > div > ul {
+    body > header > nav > div.navMenu  > ul {
         display: flex;
         justify-content: space-between;
     }
 
-    body > header > nav > div > ul > li {
+    body > header > nav > div.navMenu  > ul > li {
         background: none; 
         margin: 2px 0 !important;
     }
 
-    body > header > nav > div > ul > li > a {
+    body > header > nav > div.navMenu  > ul > li > a {
         color: #0047A0;
     }
 
@@ -243,6 +294,13 @@ main > div > ul > li > a:hover {
     /* login link */
     body > header > nav > div > ul > li#login {
         display: none !important;
+    }
+
+    /*cart popup*/
+    body > header > nav > div.navCart{
+       width: 30%;
+       margin: 0 0 0 65%;
+       padding: 25px;
     }
 
 }
