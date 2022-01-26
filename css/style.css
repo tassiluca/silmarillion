@@ -213,7 +213,6 @@ main > div > ul > li > a:hover {
 /*Navigation bar cart*/
 body > header > nav > div.navCart{
     background-color: #0047A0;
-    display: block;
     text-align: center;
     padding: 5px 5%;
 }
