@@ -210,6 +210,57 @@ main > div > ul > li > a:hover {
     font-weight: bold;
 }
 
+/*Navigation bar cart*/
+body > header > nav > div.navCart{
+    background-color: #0047A0;
+    display: block;
+    text-align: center;
+    padding: 5px 5%;
+}
+body > header > nav > div.navCart > a {
+    color: #CBF6FF;
+    font-weight: bold;
+}
+body > header > nav > div.navCart > ul{
+    padding: 10px 0 5px 0;
+}
+body > header > nav > div.navCart > ul > li {
+    background-color: #CBF6FF;
+    height: 80px;
+    border-radius: 20px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body > header > nav > div.navCart > ul > li > img {
+    display: inline-block;
+    height: 60px;
+}
+
+body > header > nav > div.navCart > ul > li > div {
+    display: inline-block;
+    margin: 0 0 0 5%;
+}
+
+body > header > nav > div.navCart > ul > li > div > div {
+    padding: 10px 0 0 0;
+}
+
+body > header > nav > div.navCart > ul > li > div > p,
+body > header > nav > div.navCart > ul > li > div > div > p:last-of-type{
+    margin: 0;
+    font-size: 12pt;
+    color: #0047A0;
+}
+body > header > nav > div.navCart > ul > li > div > div > p{
+    margin: 0;
+    display: inline-block;
+    color: #0047A0;
+    font-weight: bold;
+    margin: 0 10px 0;
+}
+
 @media screen and (min-width: 768px) and (max-width:992px) {
     
 }
