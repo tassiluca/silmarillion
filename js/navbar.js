@@ -5,13 +5,13 @@ var pressedBtn = false;
     $("body > header > nav > ul > li:first-of-type > button").click(function(){
         if (!$(this).hasClass("navActive")){
             $(this).addClass("navActive");
-            $("body > header > nav > div.navMenu").show();
+            $("body > header > nav > div.navMenu").slideDown();
             $("main").css("opacity", "0.2");
             
         } 
         else{
             $(this).removeClass("navActive");
-            $("body > header > nav > div.navMenu").hide();
+            $("body > header > nav > div.navMenu").slideUp();
             $("main").css("opacity", "1.0");
         }
     });
