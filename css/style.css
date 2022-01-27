@@ -229,6 +229,46 @@ body > header > nav > div.navCart > ul > li > div > div > p{
 
 /********************** Navigation bar login ***********************/
 
+body > header > nav > div#navLogin {
+    background-color: #0047A0;
+}
+
+body > header > nav > div#navLogin > form > header > h2 {
+    color: white;
+    text-align: center;
+    padding-top: 14px; 
+}
+
+body > header > nav > div#navLogin > form > ul {
+    box-shadow: none;
+    padding-top: 0;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) {
+    display: flex;
+    justify-content: center;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-right: 3%;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div > a {
+    color: white;
+    padding-bottom: 5px;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > input {
+    margin: 0;
+}
+
+body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
+    color: white;
+}
+
 /************************ Desktop devices **************************/
 
 @media screen and (min-width: 768px) and (max-width:992px) {
