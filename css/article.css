@@ -8,6 +8,7 @@ li {
 
 main > h2 {
     text-align: center;
+    padding: 10px 0;
 }
 
 /* Aside section */
@@ -137,4 +138,33 @@ main > section > footer > ul > li:last-child > a > span {
 
 main > section > footer > ul > li > a {
     display: inline-block;
+}
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+
+}
+
+@media screen and (min-width: 1200px) {
+    main > h2 {
+        padding-bottom: 35px;
+    }
+
+    main > aside {
+        display: inline-block;
+        width: 35%;
+        vertical-align: top;
+    }
+
+    main > aside > div {
+        margin: 0;
+    }
+
+    main > section {
+        display: inline-block;
+        width: 65%;
+    }
 }
