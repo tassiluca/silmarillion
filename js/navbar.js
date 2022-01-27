@@ -12,6 +12,11 @@ $(document).ready(function(){
         toggleNavbar($(this), $("body > header > nav > div.navCart"));
     });
 
+    /* Login button clicked */
+    $("body > header > nav > ul > li:nth-last-of-type(2) > button").click(function(){
+        toggleNavbar($(this), $("body > header > nav > div#navLogin"));
+    });
+
 });
 
 /**
@@ -20,14 +25,19 @@ $(document).ready(function(){
  * @param {*} elementToSlide the section of page to show
  */
 function toggleNavbar(btnPressed, elementToSlide){
-    if (!btnPressed.hasClass("navActive")){
+    if (!btnPressed.hasClass("navActive")) {
+        /* if a popup was already opened, close it */
+        $("body > header > nav > ul > li > button.navActive").removeClass("navActive");
+        $("body > header > nav > div.active").slideUp();
         /* add the class navActive in order to color the button pressed */
         btnPressed.addClass("navActive");
+        elementToSlide.addClass("active");
         elementToSlide.slideDown();
         /* add opacity to the main page */
         $("main").css("opacity", "0.2");
     } else {
         btnPressed.removeClass("navActive");
+        elementToSlide.removeClass("active");
         elementToSlide.slideUp();
         /* restore the opacity of the main page */
         $("main").css("opacity", "1.0");
