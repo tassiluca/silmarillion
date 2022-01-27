@@ -13,19 +13,6 @@ main > section > header > h2 {
     margin: 0 0 33px 0;
 }
 
-/*link to proceed to payment*/
-main > section > div > div:last-of-type{
-    display: inline-block;
-    border-radius: 10px;
-    border: 1px solid #0047A0;
-    background-color: #FFFFFF;
-    font-size: 15pt;
-    font-weight: bold;
-    padding: 12.5px 10px 13px 10px;
-    margin: 36px 0 40px 0;
-    box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
-}
-
 /*center al inlineblock*/
 main > section{
     text-align: center;
