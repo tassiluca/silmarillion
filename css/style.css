@@ -172,21 +172,22 @@ main > div > ul > li > a:hover {
     font-weight: bold;
 }
 
-/******************** Desktop devices *********************/
-
-/*Navigation bar cart*/
-body > header > nav > div.navCart{
+/********************** Navigation bar cart ***********************/
+body > header > nav > div.navCart {
     background-color: #0047A0;
     text-align: center;
     padding: 5px 5%;
 }
+
 body > header > nav > div.navCart > a {
     color: #CBF6FF;
     font-weight: bold;
 }
-body > header > nav > div.navCart > ul{
+
+body > header > nav > div.navCart > ul {
     padding: 10px 0 5px 0;
 }
+
 body > header > nav > div.navCart > ul > li {
     background-color: #CBF6FF;
     height: 80px;
@@ -196,6 +197,7 @@ body > header > nav > div.navCart > ul > li {
     align-items: center;
     justify-content: center;
 }
+
 body > header > nav > div.navCart > ul > li > img {
     display: inline-block;
     height: 60px;
@@ -211,11 +213,12 @@ body > header > nav > div.navCart > ul > li > div > div {
 }
 
 body > header > nav > div.navCart > ul > li > div > p,
-body > header > nav > div.navCart > ul > li > div > div > p:last-of-type{
+body > header > nav > div.navCart > ul > li > div > div > p:last-of-type {
     margin: 0;
     font-size: 12pt;
     color: #0047A0;
 }
+
 body > header > nav > div.navCart > ul > li > div > div > p{
     margin: 0;
     display: inline-block;
@@ -223,6 +226,8 @@ body > header > nav > div.navCart > ul > li > div > div > p{
     font-weight: bold;
     margin: 0 10px 0;
 }
+
+/******************** Desktop devices *********************/
 
 @media screen and (min-width: 768px) and (max-width:992px) {
     
