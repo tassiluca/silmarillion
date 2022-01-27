@@ -173,22 +173,22 @@ main > div > ul > li > a:hover {
 }
 
 /********************** Navigation bar cart ***********************/
-body > header > nav > div.navCart {
+body > header > nav > div#navCart {
     background-color: #0047A0;
     text-align: center;
     padding: 5px 5%;
 }
 
-body > header > nav > div.navCart > a {
+body > header > nav > div#navCart > a {
     color: #CBF6FF;
     font-weight: bold;
 }
 
-body > header > nav > div.navCart > ul {
+body > header > nav > div#navCart > ul {
     padding: 10px 0 5px 0;
 }
 
-body > header > nav > div.navCart > ul > li {
+body > header > nav > div#navCart > ul > li {
     background-color: #CBF6FF;
     height: 80px;
     border-radius: 20px;
@@ -198,28 +198,28 @@ body > header > nav > div.navCart > ul > li {
     justify-content: center;
 }
 
-body > header > nav > div.navCart > ul > li > img {
+body > header > nav > div#navCart > ul > li > img {
     display: inline-block;
     height: 60px;
 }
 
-body > header > nav > div.navCart > ul > li > div {
+body > header > nav > div#navCart > ul > li > div {
     display: inline-block;
     margin: 0 0 0 5%;
 }
 
-body > header > nav > div.navCart > ul > li > div > div {
+body > header > nav > div#navCart > ul > li > div > div {
     padding: 10px 0 0 0;
 }
 
-body > header > nav > div.navCart > ul > li > div > p,
-body > header > nav > div.navCart > ul > li > div > div > p:last-of-type {
+body > header > nav > div#navCart > ul > li > div > p,
+body > header > nav > div#navCart > ul > li > div > div > p:last-of-type {
     margin: 0;
     font-size: 12pt;
     color: #0047A0;
 }
 
-body > header > nav > div.navCart > ul > li > div > div > p{
+body > header > nav > div#navCart > ul > li > div > div > p{
     margin: 0;
     display: inline-block;
     color: #0047A0;
@@ -287,8 +287,8 @@ body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
         display: none;
     }
 
-    body > header > nav > div.navMenu  > ul > li, 
-    body > header > nav > div.navMenu ,
+    body > header > nav > div#navMenu  > ul > li, 
+    body > header > nav > div#navMenu ,
     body > header > nav > ul {
         display: inline-block !important;
     }
@@ -300,24 +300,24 @@ body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
     }
 
     /* text links */
-    body > header > nav > div.navMenu  {
+    body > header > nav > div#navMenu  {
         float: left;
         background: none;
         width: 75%;
         margin-left: 5%;
     }
 
-    body > header > nav > div.navMenu  > ul {
+    body > header > nav > div#navMenu  > ul {
         display: flex;
         justify-content: space-between;
     }
 
-    body > header > nav > div.navMenu  > ul > li {
+    body > header > nav > div#navMenu  > ul > li {
         background: none; 
         margin: 2px 0 !important;
     }
 
-    body > header > nav > div.navMenu  > ul > li > a {
+    body > header > nav > div#navMenu  > ul > li > a {
         color: #0047A0;
     }
 
@@ -341,7 +341,7 @@ body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
     }
 
     /* cart and login popup*/
-    body > header > nav > div.navCart,
+    body > header > nav > div#navCart,
     body > header > nav > div#navLogin {
        width: 30%;
        margin: 0 0 0 65%;

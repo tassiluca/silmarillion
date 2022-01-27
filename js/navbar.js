@@ -4,12 +4,12 @@ $(document).ready(function(){
 
     /* Menu button clicked */
     $("body > header > nav > ul > li:first-of-type > button").click(function(){
-        toggleNavbar($(this), $("body > header > nav > div.navMenu"));
+        toggleNavbar($(this), $("body > header > nav > div#navMenu"));
     });
 
     /* Cart button clicked */
     $("body > header > nav > ul > li:last-of-type > button").click(function(){
-        toggleNavbar($(this), $("body > header > nav > div.navCart"));
+        toggleNavbar($(this), $("body > header > nav > div#navCart"));
     });
 
     /* Login button clicked */
