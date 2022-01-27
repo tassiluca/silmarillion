@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
-        <link rel="stylesheet" type="text/css" href="./css/paymentForm.css" />
+        <link rel="stylesheet" type="text/css" href="./css/payment.css" />
         <link rel="stylesheet" type="text/css" href="./css/forms.css" />
         <link rel="stylesheet" type="text/css" href="./css/cart-payment.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -72,7 +72,6 @@
                 <header><h2>Carrello</h2></header>
                 <div>
                     <div>
-                        <!-- insert foreach product in cart an article-->
                         <article>
                             <header><h3>Indirizzo di spedizione</h3></header>
                             <form action="POST">
@@ -88,7 +87,15 @@
                                 <input type="text" name="prov" id="prov" alt="Provincia">
                             </form>
                         </article>
-                        <!-- end of article list-->
+                        <article>
+                            <header><h3>Sommario</h3></header>
+                            <label for="totPrice">Articoli</label>
+                            <input type="text" name="totPrice" id="totPrice">
+                            <label for="shipCost">Spedizione</label>
+                            <input type="text" name="shipCost" id="shipCost">
+                            <label for="coupon">Hai un codice sconto?</label>
+                            <input type="text" name="coupon" id="coupon" value="inserisci codice">
+                        </article>
                     </div>
                     <div>
                         <p>Totale:</p><p>94,89€</p>
