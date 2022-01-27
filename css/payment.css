@@ -45,3 +45,8 @@ main > section > div > div > article > div > ul > li > input{
 main > section > div > div:nth-of-type(2) > p {
     font-size: 20pt;
 }
+
+main > section > div > div:nth-of-type(2) > p:first-of-type{
+    font-weight: normal;
+    margin-right: 2%;
+}
