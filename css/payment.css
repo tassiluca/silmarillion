@@ -15,13 +15,15 @@ main > section > div > div > article > div {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     text-align: center;
+    padding: 2% 0;
 }
 main > section > div > div > article > div > ul > li{
     margin: 6px 0;
     list-style: none;
     display: flex;
     justify-content: space-evenly;
-
+    display: flex;
+    align-items: center;
 }
 main > section > div > div > article > div > ul > li > label {
     width: 20%;
@@ -38,5 +40,5 @@ main > section > div > div > article > div > ul > li > input{
 
 /*text totla price and price*/
 main > section > div > div:nth-of-type(2) > p {
-    font-size: 30pt;
+    font-size: 20pt;
 }
