@@ -227,7 +227,9 @@ body > header > nav > div.navCart > ul > li > div > div > p{
     margin: 0 10px 0;
 }
 
-/******************** Desktop devices *********************/
+/********************** Navigation bar login ***********************/
+
+/************************ Desktop devices **************************/
 
 @media screen and (min-width: 768px) and (max-width:992px) {
     
@@ -298,8 +300,9 @@ body > header > nav > div.navCart > ul > li > div > div > p{
         display: none !important;
     }
 
-    /*cart popup*/
-    body > header > nav > div.navCart{
+    /* cart and login popup*/
+    body > header > nav > div.navCart,
+    body > header > nav > div#navLogin {
        width: 30%;
        margin: 0 0 0 65%;
        padding: 25px;

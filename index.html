@@ -5,6 +5,8 @@
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" type="text/css" href="./css/homepage.css" />
         <link rel="stylesheet" type="text/css" href="./css/product.css" />
+        <link rel="stylesheet" type="text/css" href="./css/forms.css" />
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/home.js"></script>
         <script src="js/navbar.js"></script>
@@ -29,6 +31,33 @@
                             <div><p>Deadpool_Cake_POP_GLAM</p><div><p>15,99€</p><p>x2</p></div></div></li>
                     </ul>
                     <a href="cart.html">Visualizza carrello</a>
+                </div>
+                <!-- login dropdown menu -->
+                <div id="navLogin">
+                    <form action="#" method="POST">
+                        <header>
+                            <h2>Login</h2>
+                        </header>
+                        <ul id="userlogin">
+                            <li>
+                                <label for="username">Username</label>
+                                <input type="text" placeholder="es. giovanni.delnevo@gmail.com" id="username" name="usr" required />
+                            </li>
+                            <li>
+                                <label for="userpassword">Password</label>
+                                <input type="password" placeholder="Password" id="userpassword" name="pwd" required />
+                            </li>
+                            <li>
+                                <a href="">Hai dimenticato la password?</a>
+                                <a href="login.html">Accedi come venditore</a>
+                                <input type="submit" name="submit" value="ACCEDI" />
+                            </li>
+                            <li>
+                                <p>Non sei registrato?</p>
+                                <a href="./register.html">CREA IL TUO ACCOUNT</a>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
             </nav>
         </header>
