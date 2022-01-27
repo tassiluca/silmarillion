@@ -20,6 +20,10 @@ main > section > div > div > article > div {
 }
 main > section > div > div > article > form > a {
     font-weight: bold;
+    color: #0047A0;
+}
+main > section > div > div > article > form > a:last-child {
+    display: none;
 }
 main > section > div > div > article > form > ul > li,
 main > section > div > div > article > div > ul > li{
