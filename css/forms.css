@@ -3,7 +3,7 @@
 /* To hide the labels keeping them available to screen readers. 
  * See [https://www.w3.org/WAI/tutorials/forms/labels/#hidden]
  */
-main > form > ul > li > label {
+form > ul > li > label {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -14,15 +14,11 @@ main > form > ul > li > label {
     width: 1px;
 }
 
-main {
-    margin-bottom: 50px;
-}
-
-main > form > header > div {
+form > header > div {
     text-align: center;
 }
 
-main > form > header > ul > li {
+form > header > ul > li {
     width: 50%;
     padding: 10px 0;
     text-align: center;
@@ -31,31 +27,31 @@ main > form > header > ul > li {
     border-radius: 10px 10px 0 0;
 }
 
-main > form > header > ul > li > a {
+form > header > ul > li > a {
     text-decoration: none;
     font-weight: bold;
     color: #0047A0;
     font-size: 22px;
 }
 
-main > form > ul {
+form > ul {
     padding: 5% 10%;
     box-shadow: 10px 10px 5px rgba(196, 196, 196, 0.82);
     border-radius: 0 0 10px 10px;
     text-align: center;
 }
 
-main > form > ul > li {
+form > ul > li {
     display: block;
 }
 
-main > form > ul > li > input {
+form > ul > li > input {
     border-radius: 10px;
     margin: auto;
     display: block;
 }
 
-main > form > ul > li > input:not([type=submit]) {
+form > ul > li > input:not([type=submit]) {
     border: none;
     width: 100%;
     font-size: 15px;
@@ -65,13 +61,13 @@ main > form > ul > li > input:not([type=submit]) {
     font-weight: bold;
 }
 
-main > form > ul > li > input::placeholder {
+form > ul > li > input::placeholder {
     font-weight: normal;
     font-style: italic;
 }
 
-main > form > ul > li > input[type="submit"],
-main > form > ul > li > a:last-child {
+form > ul > li > input[type="submit"],
+form > ul > li > a:last-child {
     -webkit-appearance: none;   /* for Safari */
     font-weight: bold;
     font-size: 17px;
@@ -84,52 +80,27 @@ main > form > ul > li > a:last-child {
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > form > ul > li > a:last-child {
+form > ul > li > a:last-child {
     border-radius: 10px;
     text-decoration: none;
     margin: auto;
     display: inline-block;
 }
 
-main > form > ul > li > input[type="submit"]:hover, 
-main > form > ul > li > a:last-child:hover {
+form > ul > li > input[type="submit"]:hover, 
+form > ul > li > a:last-child:hover {
     box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > form > ul > li > a:hover {
+form > ul > li > a:hover {
     font-weight: bold;
 }
 
-main > form > ul > li > p {
+form > ul > li > p {
     color: #0047A0;
     font-weight: bold;
 }
 
-main > form > header > ul > li {
+form > header > ul > li {
     background-color: #c4c4c450;
-}
-
-/* Invalid entry */
-
-input:invalid {
-}
-
-/* Maybe this could be refactored in common style sheet */
-
-@media screen and (min-width: 768px) and (max-width:992px) {
-    main {
-        margin: 0 15% 50px;
-    }
-}
-
-@media screen and (min-width: 992px) and (max-width:1200px) {
-    main {
-        margin: 0 18% 50px;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    main {
-        margin: 0 25% 50px;
-    }
 }

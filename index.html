@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" type="text/css" href="./css/homepage.css" />
         <link rel="stylesheet" type="text/css" href="./css/product.css" />
+        <link rel="stylesheet" type="text/css" href="./css/forms.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/home.js"></script>
         <script src="js/navbar.js"></script>
@@ -17,11 +18,11 @@
                 <ul>
                     <li><button type="button"><img src="./img/menu.svg" alt="Menu"/></button></li><li><button type="button"><img src="./img/search.svg" alt="Cerca"/></button></li><li><button type="button"><img src="./img/login.svg" alt="Login"/></button></li><li><button type="button" ><img src="./img/cart.svg" alt="Carrello"/></button></li>
                 </ul>
-                <div class="navMenu">
+                <div id="navMenu">
                     <ul><li><a href="#">Nuovi Arrivi</a></li><li><a href="#">Manga</a></li><li><a href="#">Supoereroi</a></li><li><a href="">Funko Pop</a></li><li><a href="#">Usato</a></li><li id="login"><a href="#">Login</a></li><li><a href="">Recensioni</a></li><li><a href="#">Partner</a></li><li><a href="">Supporto</a></li>
                     </ul> 
                 </div>
-                <div class="navCart">
+                <div id="navCart">
                     <ul>
                         <li><img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
                         <div><p>Deadpool_Cake_POP_GLAM</p><div><p>15,99€</p><p>x2</p></div></div></li>
@@ -29,6 +30,35 @@
                             <div><p>Deadpool_Cake_POP_GLAM</p><div><p>15,99€</p><p>x2</p></div></div></li>
                     </ul>
                     <a href="cart.html">Visualizza carrello</a>
+                </div>
+                <!-- login dropdown menu -->
+                <div id="navLogin">
+                    <form action="#" method="POST">
+                        <header>
+                            <h2>Login</h2>
+                        </header>
+                        <ul>
+                            <li>
+                                <label for="username">Username</label>
+                                <input type="text" placeholder="es. giovanni.delnevo@gmail.com" id="username" name="usr" required />
+                            </li>
+                            <li>
+                                <label for="userpassword">Password</label>
+                                <input type="password" placeholder="Password" id="userpassword" name="pwd" required />
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="">Dimenticato la password?</a>
+                                    <a href="login.html">Accedi come venditore</a>
+                                </div>
+                                <input type="submit" name="submit" value="ACCEDI" />
+                            </li>
+                            <li>
+                                <p>Non sei registrato?</p>
+                                <a href="./register.html">CREA IL TUO ACCOUNT</a>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
             </nav>
         </header>
