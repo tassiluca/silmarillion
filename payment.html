@@ -68,30 +68,30 @@
                 </ul>
             </div>
             <section>
-                <header><h2>Carrello</h2></header>
+                <header><h2>Pagamento Ordine</h2></header>
                 <div>
                     <div>
                         <article>
                             <header><h3>Indirizzo di spedizione</h3></header>
-                            <div>
+                            <form id="addressForm" method="post" action="#">
                                 <ul>
-                                    <li><label for="addressee">Spedisci a</label><input type="text" name="addressee" id="addressee" alt="Nome e Cognome destinatario"></li>
+                                    <li><label for="addressee">Spedisci a</label><input type="text" name="addressee" id="addressee" placeholder="Nome e Cognome" alt="Nome e Cognome destinatario" required></li>
                                     <li><label for="destAddress">Indirizzo</label>
-                                    <input type="text" name="destAddress" id="destAddress" alt="Indirizzo"></li>
-                                    <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP"></li>
-                                    <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città"></li>
-                                    <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia"></li>
+                                    <input type="text" name="destAddress" id="destAddress" alt="Indirizzo" required></li>
+                                    <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP" required></li>
+                                    <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città" required></li>
+                                    <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia" required></li>
                                     <li></li>
                                 </ul>
                                 <a href="#">Modifica indirizzo</a>
-                            </div>
+                            </form>
                         </article>
                         <article>
                             <header><h3>Sommario</h3></header>
                             <div>
                                 <ul>
-                                <li><label for="totPrice">Articoli</label><input type="text" name="totPrice" id="totPrice"></li>
-                                <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost"></li>
+                                <li><label for="totPrice">Articoli</label><input type="text" name="totPrice" id="totPrice" value="94€" disabled></li>
+                                <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost" value="4,55€"disabled></li>
                                 <li> <label for="coupon">Hai un codice sconto?</label><input type="text" name="coupon" id="coupon" placeholder="Inserisci codice sconto"></li>
                             </ul>
                             </div> 
@@ -100,7 +100,7 @@
                     <div>
                         <p>Totale:</p><p>94,89€</p>
                     </div>
-                    <div><a href="payment.html">ACQUISTA ORA</a></div>
+                    <div><input type="submit" form="addressForm" value="ACQUISTA ORA"></input></div>
                 </div>
             </section>
         </main>
