@@ -16,7 +16,12 @@ main > section > div > div > article > div {
 }
 main > section > div > div > article > div > ul > li{
     margin: 6px 0;
-    
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+main > section > div > div > article > div > ul > li > label {
+    width: 20%;
 }
 main > section > div > div > article > div > ul > li > input{
     width: 60%;
