@@ -1,0 +1,29 @@
+main > section {
+    color: #0047A0;
+}
+
+main > section > div > div > article > header{
+    text-align: left;
+}
+
+main > section > div > div > article > div {
+    background: #CBF6FF;
+    border: 1px solid #0047A0;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    text-align: center;
+}
+main > section > div > div > article > div > ul > li{
+    margin: 6px 0;
+    
+}
+main > section > div > div > article > div > ul > li > input{
+    width: 60%;
+    border-radius: 10px;
+    height: 37px;
+    background: #E7FBFF;
+    border-style: none;
+    color: #0047A0;
+    font-weight: bold;
+}

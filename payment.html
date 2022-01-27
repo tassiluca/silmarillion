@@ -4,7 +4,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" type="text/css" href="./css/payment.css" />
-        <link rel="stylesheet" type="text/css" href="./css/forms.css" />
         <link rel="stylesheet" type="text/css" href="./css/cart-payment.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/navbar.js"></script>
@@ -74,27 +73,28 @@
                     <div>
                         <article>
                             <header><h3>Indirizzo di spedizione</h3></header>
-                            <form action="POST">
-                                <label for="addressee">Spedisci a</label>
-                                <input type="text" name="addressee" id="addressee" alt="Nome e Cognome destinatario">
-                                <label for="destAddress">Indirizzo</label>
-                                <input type="text" name="destAddress" id="destAddress" alt="Indirizzo">
-                                <label for="cap">CAP</label>
-                                <input type="text" name="cap" id="cap" alt="CAP">
-                                <label for="city">Città</label>
-                                <input type="text" name="city" id="city" alt="Città">
-                                <label for="prov">Provincia</label>
-                                <input type="text" name="prov" id="prov" alt="Provincia">
-                            </form>
+                            <div>
+                                <ul>
+                                    <li><label for="addressee">Spedisci a</label><input type="text" name="addressee" id="addressee" alt="Nome e Cognome destinatario"></li>
+                                    <li><label for="destAddress">Indirizzo</label>
+                                    <input type="text" name="destAddress" id="destAddress" alt="Indirizzo"></li>
+                                    <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP"></li>
+                                    <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città"></li>
+                                    <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia"></li>
+                                    <li></li>
+                                </ul>
+                                <a href="#">Modifica indirizzo</a>
+                            </div>
                         </article>
                         <article>
                             <header><h3>Sommario</h3></header>
-                            <label for="totPrice">Articoli</label>
-                            <input type="text" name="totPrice" id="totPrice">
-                            <label for="shipCost">Spedizione</label>
-                            <input type="text" name="shipCost" id="shipCost">
-                            <label for="coupon">Hai un codice sconto?</label>
-                            <input type="text" name="coupon" id="coupon" placeholder="Inserisci codice sconto">
+                            <div>
+                                <ul>
+                                <li><label for="totPrice">Articoli</label><input type="text" name="totPrice" id="totPrice"></li>
+                                <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost"></li>
+                                <li> <label for="coupon">Hai un codice sconto?</label><input type="text" name="coupon" id="coupon" placeholder="Inserisci codice sconto"></li>
+                            </ul>
+                            </div> 
                         </article>
                     </div>
                     <div>
