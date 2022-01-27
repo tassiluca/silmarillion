@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" type="text/css" href="./css/paymentForm.css" />
         <link rel="stylesheet" type="text/css" href="./css/forms.css" />
-        <link rel="stylesheet" type="text/css" href="./css/cart.css" />
+        <link rel="stylesheet" type="text/css" href="./css/cart-payment.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/navbar.js"></script>
         <title>Silmarillion</title>
@@ -74,20 +74,19 @@
                     <div>
                         <!-- insert foreach product in cart an article-->
                         <article>
-                            <div><img src="img/fumetto.svg" alt="copertina fumetto"></div>
-                            <div>
-                                <header><h3>Titolo Fumetto</h3></header>
-                                <p>30,00 €</p>
-                            </div>
-                            <div>
-                                <div>
-                                    <!--here we call php page to add or edit quantity of an article sending a query to specify which product and the action to do-->
-                                    <div><a href="#"><img src="img/cart/subtract.svg" alt="riduci quantità"></a></div>
-                                    <div><p>2</p></div>
-                                    <div><a href="#"><img src="img/cart/plus_math.svg" alt="aumenta quantità"></a></div>
-                                </div>
-                                <div><a href="">Rimuovi</a></div>
-                            </div>
+                            <header><h3>Indirizzo di spedizione</h3></header>
+                            <form action="POST">
+                                <label for="addressee">Spedisci a</label>
+                                <input type="text" name="addressee" id="addressee" alt="Nome e Cognome destinatario">
+                                <label for="destAddress">Indirizzo</label>
+                                <input type="text" name="destAddress" id="destAddress" alt="Indirizzo">
+                                <label for="cap">CAP</label>
+                                <input type="text" name="cap" id="cap" alt="CAP">
+                                <label for="city">Città</label>
+                                <input type="text" name="city" id="city" alt="Città">
+                                <label for="prov">Provincia</label>
+                                <input type="text" name="prov" id="prov" alt="Provincia">
+                            </form>
                         </article>
                         <!-- end of article list-->
                     </div>
