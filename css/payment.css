@@ -17,6 +17,9 @@ main > section > div > div > article > div {
     text-align: center;
     padding: 2% 0;
 }
+main > section > div > div > article > div > a {
+    font-weight: bold;
+}
 main > section > div > div > article > div > ul > li{
     margin: 6px 0;
     list-style: none;
