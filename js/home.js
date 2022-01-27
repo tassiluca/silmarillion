@@ -58,15 +58,23 @@ function checkScreenSize(){
   }
 }
 
-function showDivs(n,slider,quantity) {
+function showDivs(n,slider,slideToShow) {
   var x = $(slider);
-  if (n > x.length) {slideIndex = x.length}
-  if (n < 1) {slideIndex = 1}
+  var maxIdxBlock = x.length/slideToShow; //massimo indice di gruppo di slide
+  
+  if(n > maxIdxBlock){
+    n=maxIdxBlock;
+    slideIndex=maxIdxBlock;
+  }
+  if(n < 1){
+    n=1;
+    slideIndex=1;
+  }
   x.hide();
-
-  for(var k=0; k<quantity && slideIndex-1+k < x.length;k++){
-    elem = slideIndex-1+k;
-    x[elem].style.display = "inline-block";
+  var start=(n*slideToShow)-slideToShow;
+  for(k=start;k<x.length && k < n*slideToShow ; k++){
+    console.log("slide num: "+ k);
+    x[k].style.display = "inline-block";
   }
 
 }
