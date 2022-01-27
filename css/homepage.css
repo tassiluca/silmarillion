@@ -126,6 +126,24 @@ main > aside > div:last-child > div.current {
     background-color: #FDFE02;
 }
 
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+
 @media screen and (min-width: 820px) and (max-width: 1200px){
     main {
         margin: 0 3%;

@@ -70,13 +70,13 @@ function showDivs(n,slider,slideToShow) {
     n=1;
     slideIndex=1;
   }
+  
   x.hide();
   var start=(n*slideToShow)-slideToShow;
   for(k=start;k<x.length && k < n*slideToShow ; k++){
     console.log("slide num: "+ k);
     x[k].style.display = "inline-block";
   }
-
 }
 
 var infoidx = 1;
