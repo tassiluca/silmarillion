@@ -8,6 +8,7 @@ main > section > div > div > article > header{
     text-indent: 15px
 }
 
+main > section > div > div > article > form,
 main > section > div > div > article > div {
     background: #CBF6FF;
     border: 1px solid #0047A0;
@@ -17,9 +18,10 @@ main > section > div > div > article > div {
     text-align: center;
     padding: 2% 0;
 }
-main > section > div > div > article > div > a {
+main > section > div > div > article > form > a {
     font-weight: bold;
 }
+main > section > div > div > article > form > ul > li,
 main > section > div > div > article > div > ul > li{
     margin: 6px 0;
     list-style: none;
@@ -28,9 +30,11 @@ main > section > div > div > article > div > ul > li{
     display: flex;
     align-items: center;
 }
+main > section > div > div > article > form > ul > li > label,
 main > section > div > div > article > div > ul > li > label {
     width: 20%;
 }
+main > section > div > div > article > form > ul > li > input,
 main > section > div > div > article > div > ul > li > input{
     width: 60%;
     border-radius: 10px;
@@ -39,6 +43,8 @@ main > section > div > div > article > div > ul > li > input{
     border-style: none;
     color: #0047A0;
     font-weight: bold;
+    padding: 0 2%;
+    font-size: 15px;
 }
 
 /*text totla price and price*/
@@ -50,3 +56,22 @@ main > section > div > div:nth-of-type(2) > p:first-of-type{
     font-weight: normal;
     margin-right: 2%;
 }
+
+main > section > div > div:last-of-type {
+    padding:0 !important;
+}
+
+main > section > div > div:last-of-type > input[type="submit"] {
+    font-size: 15pt;
+    font-weight: bold;
+    background-color: white;
+    color: #0047A0;
+    border-radius: 10px;
+    border: 1px solid #0047A0;
+    padding: 12.5px 10px 13px 10px;
+    margin: 36px 0 40px 0;
+    box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
+}
+    
+    
+    
