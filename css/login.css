@@ -1,4 +1,8 @@
-/* User login form */
+main {
+    margin-bottom: 50px;
+}
+
+/***************************** User login form *****************************/
 main > form > header > ul > li:first-child.active {
     background-color: #AAF1FF;
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
@@ -17,7 +21,7 @@ main > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
     color: #AAF1FF;
 }
 
-/* Seller login form */
+/***************************** Seller login form *****************************/
 main > form > header > ul > li:last-child.active {
     background-color: #0047A0;
     box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
@@ -42,4 +46,23 @@ main > form > ul:last-of-type > li > input:not([type="submit"])::placeholder {
 
 main > form > ul:last-of-type > li > a {
     color: #AAF1FF;
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 15% 50px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18% 50px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25% 50px;
+    }
 }
