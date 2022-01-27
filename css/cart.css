@@ -1,19 +1,3 @@
-
-main > section > header{
-    text-align: center;
-}
-
-main > section > header > h2 {
-    background-image: url(../img/cart/shopping_cart.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100px;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    margin: 0 0 33px 0;
-}
-
 main > section > div > div > article {
     background: #CBF6FF;
     border: 1px solid #0047A0;
@@ -118,37 +102,4 @@ main > section > div > div:nth-of-type(2) > p:last-child {
     text-align: center;
     width: 20%;
     margin: 18px 40% 0 0;
-}
-
-/*link to proceed to payment*/
-main > section > div > div:last-of-type{
-    display: inline-block;
-    border-radius: 10px;
-    border: 1px solid #0047A0;
-    background-color: #FFFFFF;
-    font-size: 15pt;
-    font-weight: bold;
-    padding: 12.5px 10px 13px 10px;
-    margin: 36px 0 40px 0;
-}
-
-main > section > div:last-of-type > a{
-    color: #0047A0;
-}
-/*center al inlineblock*/
-main > section{
-    text-align: center;
-}
-
-@media screen and (min-width: 1200px) {
-    main {
-        margin: 0 25%;
-    }
-    main > section > div {
-        background: #AAF1FF;
-        box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
-        border-radius: 20px;
-        padding: 40px 10% 40px 10%;
-        margin: 0 0 100px 0;
-    }
 }
