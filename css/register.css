@@ -1,3 +1,7 @@
+main {
+    margin-bottom: 50px;
+}
+
 /* User login form */
 main > form > ul {
     border-radius: 10px 10px 10px 10px;
@@ -50,4 +54,54 @@ main > form > ul > li > input[type="date"] {
 main > form > ul > li > input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     padding-right: 10px;
+}
+
+/************************** Message for password requirements **************************/
+input[type="password"] + section {
+    display: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="password"] + section > p {
+    margin: 4px;
+}
+
+input[type="password"] + section > p.valid {
+    color: green;
+}
+
+input[type="password"] + section > p.invalid {
+    color: red;
+}
+
+input[type="password"] + section > p.valid::before {
+    position: relative;
+    left: -10px;
+    content: "✔";
+}
+
+input[type="password"] + section > p.invalid::before {
+    position: relative;
+    left: -10px;
+    content: "✖";
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 15% 50px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18% 50px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25% 50px;
+    }
 }
