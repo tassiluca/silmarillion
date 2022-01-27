@@ -119,39 +119,34 @@ body > footer > h4.hide {
 }
 
 body > footer {
-    background: linear-gradient(to top, #00D5FF, #CAF6FF );
-    height: 165px;
+    background: linear-gradient(to top, #00D5FF, #CAF6FF);
     border-radius: 20px 20px 0 0;
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-body > footer > ul {
-    margin: 15px 0 0 0;
-    text-align: center;
+body > footer > div > h4 {
+    margin-bottom: 5px;
+}
+
+body > footer > div {
     font-size: 11px;
-}
-body > footer li {
-    list-style: none;
-}
-
-body > footer > ul > li {
     display: inline-block;
-    position: relative;
-    bottom: 30px;
-}
-body > footer > ul > div {
-    display: inline-block;
-}
-body > footer > ul > div > li {
-    margin: 10px 0 0 0;
+    vertical-align: top;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-body > footer h4 {
-    margin: 0 0 5px 0;
+body > footer > div:nth-of-type(2) {
+    width: 30%;
 }
 
-body > footer > ul >li:first-child {
-    padding: 0 27px 0 27px ;
+body > footer > div:first-of-type,
+body > footer > div:last-of-type {
+    width: 35%;
+}
+
+body > footer > div > ul > li {
+    display: block;
 }
 
 /********************** Breadcrumb ***********************/
