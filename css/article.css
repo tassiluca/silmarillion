@@ -29,17 +29,19 @@ main > aside > div > img {
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > aside > ul {
+ul#productInfo {
     display: block;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-main > aside > ul > li {
+ul#productInfo > li {
     display: inline-block;
     vertical-align: middle;
     height: 48px;
 }
 
-main > aside > ul > li:first-child {
+ul#productInfo > li:first-child {
     width: 50%;
     line-height: 48px;
     font-weight: bold;
@@ -47,18 +49,18 @@ main > aside > ul > li:first-child {
     font-size: 1.1em;
 }
 
-main > aside > ul > li:nth-child(2) {
+ul#productInfo > li:nth-child(2) {
     width: 50%;
 }
 
-main > aside > ul > li:nth-child(3) {
+ul#productInfo > li:nth-child(3) {
     width: 100%;
     border-radius: 10px;
     background-color: #AAF1FF;
     margin-top: 10px;
 }
 
-main > aside > ul > li:nth-child(3) > button {
+ul#productInfo > li:nth-child(3) > button {
     height: 100%;
     width: 100%;
     background-color: #AAF1FF;
@@ -68,27 +70,27 @@ main > aside > ul > li:nth-child(3) > button {
     border-radius: 10px;
 }
 
-main > aside > ul > li:nth-child(3) > button:hover {
+ul#productInfo > li:nth-child(3) > button:hover {
     background-color: #0047A0;
     color: white;
 }
 
 /* if the article is available hide link for notification */
-main > aside > ul > li:first-child.available {
+ul#productInfo > li:first-child.available {
     background-color: #B9FBC0;
 }
 
-main > aside > ul > li:first-child.available + li + li {
+ul#productInfo > li:first-child.available + li + li {
     display: none;
 }
 
 /* if the article is sold-out display link for notification */
-main > aside > ul > li:first-child.soldout {
+ul#productInfo > li:first-child.soldout {
     background-color: #FF0000;
     color: white;
 }
 
-main > aside > ul > li:first-child.soldout + li + li {
+ul#productInfo > li:first-child.soldout + li + li {
     display: inline-block;
 }
 
