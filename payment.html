@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="./css/cart-payment.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/navbar.js"></script>
+        <script src="js/payment.js"></script>
         <title>Silmarillion</title>
     </head>
     <body>
@@ -77,10 +78,10 @@
                                 <ul>
                                     <li><label for="addressee">Spedisci a</label><input type="text" name="addressee" id="addressee" placeholder="Nome e Cognome" alt="Nome e Cognome destinatario" required></li>
                                     <li><label for="destAddress">Indirizzo</label>
-                                    <input type="text" name="destAddress" id="destAddress" alt="Indirizzo" required></li>
-                                    <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP" required></li>
-                                    <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città" required></li>
-                                    <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia" required></li>
+                                    <input type="text" name="destAddress" id="destAddress" alt="Indirizzo" value="Via Cesare Pavese, 50"required disabled></li>
+                                    <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP" value="47522" required disabled></li>
+                                    <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città"  value="Cesena" required disabled></li>
+                                    <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia" value="FC" required disabled></li>
                                     <li></li>
                                 </ul>
                                 <a href="#">Modifica indirizzo</a>
@@ -91,7 +92,7 @@
                             <div>
                                 <ul>
                                 <li><label for="totPrice">Articoli</label><input type="text" name="totPrice" id="totPrice" value="94€" disabled></li>
-                                <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost" value="4,55€"disabled></li>
+                                <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost" value="4,55€" disabled></li>
                                 <li> <label for="coupon">Hai un codice sconto?</label><input type="text" name="coupon" id="coupon" placeholder="Inserisci codice sconto"></li>
                             </ul>
                             </div> 
