@@ -17,6 +17,11 @@ $(document).ready(function(){
         toggleNavbar($(this), $("body > header > nav > div#navLogin"));
     });
 
+    /* Search button clicked */
+    $("body > header > nav > ul > li:nth-last-of-type(3) > button").click(function(){
+        toggleNavbar($(this), $("body > header > nav > div#navSearch"));
+    });
+
 });
 
 /**
