@@ -7,6 +7,7 @@ $(document).ready(function () {
   $("main > section:last-child > div.partner:first-child").show();
 
   updateNewArrival(0);
+  updateManga(0);
   showSlide(infoidx);
   
   $(window).resize(function () { 
@@ -63,17 +64,15 @@ function showDivs(n,slider,slideToShow) {
   var maxIdxBlock = x.length/slideToShow; //massimo indice di gruppo di slide
   
   if(n > maxIdxBlock){
-    n=maxIdxBlock;
     slideIndex=maxIdxBlock;
   }
   if(n < 1){
-    n=1;
     slideIndex=1;
   }
   
   x.hide();
-  var start=(n*slideToShow)-slideToShow;
-  for(k=start;k<x.length && k < n*slideToShow ; k++){
+  var start=(slideIndex*slideToShow)-slideToShow;
+  for(k=start;k<x.length && k < slideIndex*slideToShow ; k++){
     console.log("slide num: "+ k);
     x[k].style.display = "inline-block";
   }
