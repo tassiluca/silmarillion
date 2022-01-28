@@ -60,17 +60,14 @@ ul#productInfo > li:nth-child(2) > a:hover > img {
 ul#productInfo > li:nth-child(3) {
     width: 100%;
     margin-top: 10px;
+    padding: 12px 0;
+    background-color: #AAF1FF;
+    border-radius: 10px;
 }
 
 ul#productInfo > li:nth-child(3) > a {
-    width: 100%;
     color: #0047A0;
-    display: inline-block;
-    padding: 12px 0;
-    background-color: #AAF1FF;
-    border: none;
     font-size: 1.1em;
-    border-radius: 10px;
 }
 
 ul#productInfo > li:nth-child(3) > a:hover {
@@ -100,7 +97,7 @@ ul#productInfo > li:first-child.soldout + li + li {
 /* Notification area */
 
 div#notificationArea {
-    margin-bottom: 15px;
+    margin: 15px 0;
     padding: 15px 10px;
     height: fit-content;
     text-align: center;
