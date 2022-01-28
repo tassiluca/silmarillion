@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
+        <link rel="stylesheet" type="text/css" href="./css/article.css" />
+        <title>Silmarillion</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <!-- 
+            Please note that header and footer are not constantly updated!.
+            Refers to index.html and style.css for them!
+        -->
+        <header>
+            <h1 class="hide">Silmarillion Comics</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" ><img src="./img/menu.svg" alt="Menu"/></a></li><li><a href="#" ><img src="./img/search.svg" alt="Cerca"/></a></li><li><a href="#" ><img src="./img/login.svg" alt="Login"/></a></li><li><a href="#" ><img src="./img/cart.svg" alt="Carrello"/></a></li>
+                </ul>
+                <div>
+                    <ul><li><a href="#">Nuovi Arrivi</a></li><li><a href="#">Manga</a></li><li><a href="#">Supoereroi</a></li><li><a href="">Funko Pop</a></li><li><a href="#">Usato</a></li><li id="login"><a href="#">Login</a></li><li><a href="">Recensioni</a></li><li><a href="#">I Nostri Partner</a></li><li><a href="">Supporto</a></li>
+                    </ul> 
+                </div>
+            </nav>
+        </header>
+        <main>
+            <!-- Breadcrumb pagination -->
+            <div>
+                <ul>
+                    <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="catalog.html">Catalogo</a></li><li>The seven deathly sins 1</li>
+                </ul>
+            </div>
+            <h2>The seven deathly sins 1</h2>
+            <aside>
+                <div>
+                    <img src="./img/fumetto2.jpg" alt="">
+                </div>
+            </aside><section>
+                <header>
+                    <ul id="productInfo">
+                        <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
+                        <!-- TODO: implement link with php -->
+                        <li class="soldout">Non disponibile</li><li><a href="#notificationArea"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
+                        <li><a href="#notificationArea">Avvisami quando questo prodotto sarà disponibile</a></li>
+                    </ul>
+                    <div id="notificationArea" class="warning">
+                        <!-- NOTE: if an error message must be displayed add a class error, otherwise message -->
+                        <span></span>
+                        <strong>Per svolgere questa azione devi essere loggato!</strong>
+                    </div>
+                    <ul>
+                        <li><strong>Autore:</strong> Nakaba Suzuki</li>
+                        <li><strong>Editore:</strong> Star Comics</li>
+                        <li><strong>Anno:</strong> 2014</li>
+                        <li><strong>Lingua:</strong> Italiano</li>
+                        <li><strong>ISBN:</strong> 817525766-0</li>
+                    </ul>
+                </header>
+                <p><strong>Descrizione:</strong> Si narra che sette temibili guerrieri, conosciuti come i Seven Deadly Sins, tramarono per rovesciare un pacifico regno nelle terre di Britannia.
+                Da allora nessuno li ha più visti. Dieci anni dopo, convinta della loro innocenza e sicura che siano sopravvissuti, una giovane fanciulla si mette sulle loro tracce: nuovi temibili nemici minacciano il regno e i sette "peccatori" sono la sua unica speranza! Inizia così una nuova imperdibile avventura fantasy coinvolgente e ricca di azione, magia e colpi di scena!</p>
+                <footer>
+                    <ul>
+                        <li><span>16,00 €</span> 4,30 €</li><li><a href="#notificationArea"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                    </ul>
+                </footer>
+            </section>
+        </main>
+        <!-- 
+            Please note that header and footer are not constantly updated!.
+            Refers to index.html and style.css for them!
+        -->
+        <footer>
+            <h4 class="hide">Silmarillion Comics</h4>
+            <ul>
+                <li> <h4>INFO</h4> 
+                    <ul>
+                        <li>Chi Siamo</li>
+                        <li>Contattaci</li>
+                        <li>FAQs</li>
+                    </ul>
+                </li>
+                <div>
+                    <li> <h4>ACCOUNT</h4>
+                    <ul>
+                        <li>Account utente</li>
+                        <li>Account venditore</li>
+                        </ul>
+                    </li>
+                    <li> <h4>CONDIZIONI</h4>
+                        <ul>
+                        <li>Termini e condizioni di utilizzo</li>
+                        <li>Reso di un ordine</li>
+                        </ul>
+                    </li>
+                </div>
+                
+                <li><h4>CONTATTI</h4><ul>
+                        <li>Via del Campus 5814</li>
+                        <li><a href="mailto:info@silmarillion.it">info@silmarillion.it</a></li>
+                        <li> <a href="tel:+39 05 879 32 451"> 05 879 32 451</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

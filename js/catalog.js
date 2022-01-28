@@ -11,7 +11,6 @@ $(document).ready(function(){
         if ($(this).hasClass("selected")) {
             hideElement($(this));
         } else {
-            hideElement($("main > aside > button.selected"));
             $(this)
                 .addClass("selected")
                 .next().slideDown();

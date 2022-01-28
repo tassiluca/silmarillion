@@ -1,0 +1,248 @@
+main {
+    margin: 0 5% 50px 5%;
+}
+
+li {
+    list-style: none;
+}
+
+main > h2 {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/************************ Aside section ************************/
+main > aside {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main > aside > div {
+    margin: 15px 0;
+}
+
+main > aside > div > img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+/*********************** Notification area ***********************/
+div#notificationArea {
+    margin: 15px 0;
+    padding: 15px 10px;
+    height: fit-content;
+    text-align: center;
+    display: none;
+}
+
+div#notificationArea.message {
+    display: block;
+    background-color: #7cfc91;
+}
+
+div#notificationArea.message::before {
+    font-family: FontAwesome;
+    content: '\f058';
+}
+
+div#notificationArea.warning {
+    display: block;
+    background-color: #ff9800;
+    color: white;
+}
+
+div#notificationArea.warning::before{
+    content: "\f071";
+    font-family: FontAwesome;
+}
+
+div#notificationArea.error {
+    display: block;
+    background-color: red;
+    color: white;
+}
+
+div#notificationArea.error::before{
+    content: "\f00d";
+    font-family: FontAwesome;
+}
+
+/************************ Section page ************************/
+ul#productInfo {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul#productInfo > li {
+    display: inline-block;
+    vertical-align: middle;
+    height: 48px;
+}
+
+ul#productInfo > li:first-child {
+    width: 70%;
+    line-height: 48px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+ul#productInfo > li:nth-child(2) {
+    width: 30%;
+}
+
+ul#productInfo > li:nth-child(2) > a:hover > img {
+    transform: rotateZ(10deg);
+}
+
+ul#productInfo > li:nth-child(3) {
+    width: 100%;
+    margin-top: 15px;
+    height: fit-content;
+}
+
+ul#productInfo > li:nth-child(3) > a {
+    width: 100%;
+    color: #0047A0;
+    padding: 13px 0;
+    display: inline-block;
+    background-color: #AAF1FF;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+ul#productInfo > li:nth-child(3) > a:hover {
+    background-color: #0047A0;
+    color: white;
+}
+
+/* if the article is available hide link for notification */
+ul#productInfo > li:first-child.available {
+    background-color: #B9FBC0;
+}
+
+ul#productInfo > li:first-child.available + li + li {
+    display: none;
+}
+
+/* if the article is sold-out display link for notification */
+ul#productInfo > li:first-child.soldout {
+    background-color: #FF0000;
+    color: white;
+}
+
+ul#productInfo > li:first-child.soldout + li + li {
+    display: inline-block;
+}
+
+main > section > footer > ul {
+    display: flex;
+}
+
+main > section > footer > ul > li {
+    flex-direction: row;
+    width: 48%;
+    vertical-align: top;
+    text-align: center;
+}
+
+main > section > footer > ul > li:first-child {
+    margin-right: 1%;
+    font-size: 1.4em;
+    font-weight: bold;
+    background-color: #F0F8FF;
+    border-radius: 10px;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main > section > footer > ul > li:first-child > span {
+    color: #FF0000;
+    text-decoration-line: line-through;
+    line-height: 1;
+}
+
+main > section > footer > ul > li:last-child {
+    margin-left: 1%;
+    background: linear-gradient(to bottom, #ADE8F4, #CAF6FF );
+    border-radius: 10px;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > footer > ul > li:last-child > a {
+    padding: 10px 0;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+main > section > footer > ul > li:last-child > a > span {
+    display: block;
+    font-weight: bold;
+    color: #0047A0;
+}
+
+main > section > footer > ul > li > a {
+    display: inline-block;
+}
+
+main > section > footer > ul > li > a:hover {
+    background-color: #0047A0;
+    border-radius: 10px;
+}
+
+main > section > footer > ul > li > a:hover > span {
+    color: white;
+}
+
+/*********************** Desktop viewport ***********************/
+@media screen and (min-width: 768px) and (max-width:1200px) {
+    main > h2 {
+        padding-bottom: 35px;
+    }
+
+    main > aside {
+        display: inline-block;
+        width: 40%;
+        vertical-align: top;
+        margin-right: 2%;
+    }
+
+    main > aside > div {
+        margin: 0;
+    }
+
+    main > section {
+        display: inline-block;
+        width: 56%;
+        margin-left: 2%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main > h2 {
+        padding-bottom: 35px;
+    }
+
+    main > aside {
+        display: inline-block;
+        width: 33%;
+        vertical-align: top;
+        margin-right: 2%;
+    }
+
+    main > aside > div {
+        margin: 0;
+    }
+
+    main > section {
+        display: inline-block;
+        width: 63%;
+        margin-left: 2%;
+    }
+}

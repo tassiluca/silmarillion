@@ -1,17 +1,18 @@
-main > aside {
-    margin: 0 10%;
+main {
+    margin: 0 5% 50px 5%;
 }
 
+/************************* Aside *************************/
 main > aside > button {
     background-color: #AAF1FF;
     font-size: 14px;
     cursor: pointer;
     width: 100%;
     border: none;
-    padding: 8px 0;
+    padding: 10px 0;
     text-align: left;
     border-radius: 10px 10px 10px 10px;
-    margin: 2px 0;
+    margin: 5px 0;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -73,6 +74,55 @@ main > aside > ul > li > input:checked + label::after {
     }
     100% {
         opacity: 100%;
+    }
+}
+
+/************************* Section *************************/
+main > section {
+    text-align: center;
+} 
+
+main > section > footer > ul {
+    display: inline-block;
+}
+
+main > section > footer > ul > li {
+    display: inline-block;
+    background-color: #AAF1FF;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+    border-radius: 10px;
+}
+
+main > section > footer > ul > li > a {
+    padding: 10px;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+}
+
+main > section > footer > ul > li > a:hover {
+    background-color: #0047A0;
+    border-radius: 10px;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    main > aside, 
+    main > section {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    main > aside {
+        width: 25%;
+        margin: 0 1% 0 0;
+        box-sizing: border-box;
+    }
+
+    main > section {
+        width: 73%;
+        margin: 0 0 0 1%;     
+        box-sizing: border-box;
     }
 }
 
