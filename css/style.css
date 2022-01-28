@@ -16,7 +16,6 @@ body > header {
     background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
     border-radius: 0 0 20px 20px;
     height: 150px;
-
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
@@ -149,8 +148,7 @@ body > footer > div > ul > li {
     display: block;
 }
 
-/********************** Breadcrumb ***********************/
-
+/************************* Breadcrumb **************************/
 main > div > ul {
     padding: 10px 4%;
 }
@@ -228,7 +226,6 @@ body > header > nav > div#navCart > ul > li > div > div > p{
 }
 
 /********************** Navigation bar login ***********************/
-
 body > header > nav > div#navLogin {
     background-color: #0047A0;
 }
@@ -236,7 +233,7 @@ body > header > nav > div#navLogin {
 body > header > nav > div#navLogin > form > header > h2 {
     color: white;
     text-align: center;
-    padding-top: 14px; 
+    padding-top: 5%; 
 }
 
 body > header > nav > div#navLogin > form > ul {
@@ -269,8 +266,37 @@ body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
     color: white;
 }
 
-/************************ Desktop devices **************************/
+/********************** Navigation bar search **********************/
+body > header > nav > div#navSearch {
+    background-color: #0047A0;
+}
 
+body > header > nav > div#navSearch > form > header > h2 {
+    color: white;
+    text-align: center;
+    padding-top: 5%; 
+}
+
+body > header > nav > div#navSearch > form > ul > li > input#search {
+    display: inline-block;
+    width: 95%;
+    vertical-align: top;
+}
+
+body > header > nav > div#navSearch > form > ul > li > input#search + button {
+    display: inline-block;
+    width: 5%;
+    margin: 10px 0 15px 0;
+    background: none;
+    border: none;
+}
+
+body > header > nav > div#navSearch > form > ul {
+    box-shadow: none;
+    padding-top: 0;
+}
+
+/************************ Desktop devices **************************/
 @media screen and (min-width: 768px) and (max-width:992px) {
     
 }
@@ -342,7 +368,8 @@ body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
 
     /* cart and login popup*/
     body > header > nav > div#navCart,
-    body > header > nav > div#navLogin {
+    body > header > nav > div#navLogin,
+    body > header > nav > div#navSearch {
        width: 30%;
        margin: 0 0 0 65%;
        padding: 25px;
