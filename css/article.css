@@ -59,15 +59,18 @@ ul#productInfo > li:nth-child(2) > a:hover > img {
 
 ul#productInfo > li:nth-child(3) {
     width: 100%;
-    margin-top: 10px;
-    padding: 12px 0;
-    background-color: #AAF1FF;
-    border-radius: 10px;
+    margin-top: 15px;
+    height: fit-content;
 }
 
 ul#productInfo > li:nth-child(3) > a {
+    width: 100%;
     color: #0047A0;
+    padding: 13px 0;
+    display: inline-block;
+    background-color: #AAF1FF;
     font-size: 1.1em;
+    border-radius: 10px;
 }
 
 ul#productInfo > li:nth-child(3) > a:hover {
@@ -201,12 +204,27 @@ main > section > footer > ul > li > a:hover > span {
 }
 
 
-@media screen and (min-width: 768px) and (max-width:992px) {
+@media screen and (min-width: 768px) and (max-width:1200px) {
+    main > h2 {
+        padding-bottom: 35px;
+    }
 
-}
+    main > aside {
+        display: inline-block;
+        width: 40%;
+        vertical-align: top;
+        margin-right: 2%;
+    }
 
-@media screen and (min-width: 992px) and (max-width:1200px) {
+    main > aside > div {
+        margin: 0;
+    }
 
+    main > section {
+        display: inline-block;
+        width: 56%;
+        margin-left: 2%;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -216,8 +234,9 @@ main > section > footer > ul > li > a:hover > span {
 
     main > aside {
         display: inline-block;
-        width: 35%;
+        width: 33%;
         vertical-align: top;
+        margin-right: 2%;
     }
 
     main > aside > div {
@@ -226,6 +245,7 @@ main > section > footer > ul > li > a:hover > span {
 
     main > section {
         display: inline-block;
-        width: 65%;
+        width: 63%;
+        margin-left: 2%;
     }
 }
