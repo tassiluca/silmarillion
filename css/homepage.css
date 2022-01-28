@@ -50,29 +50,26 @@ main > section:last-child {
     text-align: center;
 }
 main > section:last-child > div{
-    height: 96px;
-    width: 76%;
+    width: 70%;
     background-color: rgba(152, 237, 255, 0.3);
     box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
     border-radius: 10px;
     margin: 0;
     display: inline-block;
+    padding: 15px 2%;
 }
 
 main > section:last-child > input{
     height: 96px;
 }
-
-main > section:last-child > div > img {
+main > section:last-child > div > div {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+main > section:last-child > div > div > img {
     height: 50px;
-    margin: 23px 0 23px 0;
-}
-
-main > section:last-child > div > img:first-child {
-    margin-right: 8%;
-}
-main > section:last-child > div > img:last-child {
-    margin-left: 8%;
+    margin: 5px;
 }
 
 /*aside*/

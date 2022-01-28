@@ -6,12 +6,11 @@ $(document).ready(function () {
   $("main > section:last-child > div.partner").hide();
   $("main > section:last-child > div.partner:first-child").show();
 
-  updateNewArrival(0);
+  updateAll(0);
   showSlide(infoidx);
   
   $(window).resize(function () { 
-    updateNewArrival(0);
-    updateManga(0);
+    updateAll(0);
   });
 
   var sizeInfoBanner = $("main > aside > div:first-child > div.infoBanner").length;
@@ -26,6 +25,12 @@ $(document).ready(function () {
   }
 });
 
+function updateAll(n){
+  updateNewArrival(n);
+  updateManga(n);
+  updatePartner(n);
+}
+
 var slideIndex = 1;
 
 function updateBanner(n) {
@@ -33,7 +38,7 @@ function updateBanner(n) {
 }
 
 function updatePartner(n) {
-  showDivs(slideIndex += n,"main > section:last-child > div",1);
+  showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize()+1);
 }
 
 function updateNewArrival(n) {
@@ -63,17 +68,15 @@ function showDivs(n,slider,slideToShow) {
   var maxIdxBlock = x.length/slideToShow; //massimo indice di gruppo di slide
   
   if(n > maxIdxBlock){
-    n=maxIdxBlock;
     slideIndex=maxIdxBlock;
   }
   if(n < 1){
-    n=1;
     slideIndex=1;
   }
   
   x.hide();
-  var start=(n*slideToShow)-slideToShow;
-  for(k=start;k<x.length && k < n*slideToShow ; k++){
+  var start=(slideIndex*slideToShow)-slideToShow;
+  for(k=start;k<x.length && k < slideIndex*slideToShow ; k++){
     console.log("slide num: "+ k);
     x[k].style.display = "inline-block";
   }
