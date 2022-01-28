@@ -6,13 +6,11 @@ $(document).ready(function () {
   $("main > section:last-child > div.partner").hide();
   $("main > section:last-child > div.partner:first-child").show();
 
-  updateNewArrival(0);
-  updateManga(0);
+  updateAll(0);
   showSlide(infoidx);
   
   $(window).resize(function () { 
-    updateNewArrival(0);
-    updateManga(0);
+    updateAll(0);
   });
 
   var sizeInfoBanner = $("main > aside > div:first-child > div.infoBanner").length;
@@ -27,6 +25,12 @@ $(document).ready(function () {
   }
 });
 
+function updateAll(n){
+  updateNewArrival(n);
+  updateManga(n);
+  updatePartner(n);
+}
+
 var slideIndex = 1;
 
 function updateBanner(n) {
@@ -34,7 +38,7 @@ function updateBanner(n) {
 }
 
 function updatePartner(n) {
-  showDivs(slideIndex += n,"main > section:last-child > div",1);
+  showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize()+1);
 }
 
 function updateNewArrival(n) {
