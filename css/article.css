@@ -11,8 +11,7 @@ main > h2 {
     padding: 10px 0;
 }
 
-/* Aside section */
-
+/*********************** Aside section ***********************/
 main > aside {
     text-align: center;
     margin-bottom: 20px;
@@ -29,6 +28,48 @@ main > aside > div > img {
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
+/*********************** Notification area ***********************/
+div#notificationArea {
+    margin: 15px 0;
+    padding: 15px 10px;
+    height: fit-content;
+    text-align: center;
+    display: none;
+}
+
+div#notificationArea.message {
+    display: block;
+    background-color: #7cfc91;
+}
+
+div#notificationArea.message::before {
+    font-family: FontAwesome;
+    content: '\f058';
+}
+
+div#notificationArea.warning {
+    display: block;
+    background-color: #ff9800;
+    color: white;
+}
+
+div#notificationArea.warning::before{
+    content: "\f071";
+    font-family: FontAwesome;
+}
+
+div#notificationArea.error {
+    display: block;
+    background-color: red;
+    color: white;
+}
+
+div#notificationArea.error::before{
+    content: "\f00d";
+    font-family: FontAwesome;
+}
+
+/*********************** Section page ***********************/
 ul#productInfo {
     display: block;
     text-align: center;
@@ -97,50 +138,6 @@ ul#productInfo > li:first-child.soldout + li + li {
     display: inline-block;
 }
 
-/* Notification area */
-
-div#notificationArea {
-    margin: 15px 0;
-    padding: 15px 10px;
-    height: fit-content;
-    text-align: center;
-    display: none;
-}
-
-div#notificationArea.message {
-    display: block;
-    background-color: #7cfc91;
-}
-
-div#notificationArea.message::before {
-    font-family: FontAwesome;
-    content: '\f058';
-}
-
-div#notificationArea.warning {
-    display: block;
-    background-color: #ff9800;
-    color: white;
-}
-
-div#notificationArea.warning::before{
-    content: "\f071";
-    font-family: FontAwesome;
-}
-
-div#notificationArea.error {
-    display: block;
-    background-color: red;
-    color: white;
-}
-
-div#notificationArea.error::before{
-    content: "\f00d";
-    font-family: FontAwesome;
-}
-
-/* section page */
-
 main > section > footer > ul {
     display: flex;
 }
@@ -203,7 +200,7 @@ main > section > footer > ul > li > a:hover > span {
     color: white;
 }
 
-
+/*********************** Desktop viewport ***********************/
 @media screen and (min-width: 768px) and (max-width:1200px) {
     main > h2 {
         padding-bottom: 35px;
