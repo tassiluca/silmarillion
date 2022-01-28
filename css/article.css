@@ -42,7 +42,7 @@ ul#productInfo > li {
 }
 
 ul#productInfo > li:first-child {
-    width: 50%;
+    width: 70%;
     line-height: 48px;
     font-weight: bold;
     border-radius: 10px;
@@ -50,32 +50,30 @@ ul#productInfo > li:first-child {
 }
 
 ul#productInfo > li:nth-child(2) {
-    width: 50%;
+    width: 30%;
 }
 
-ul#productInfo > li:nth-child(2) > button {
-    border: none;
-    background: none;
+ul#productInfo > li:nth-child(2) > a:hover > img {
+    transform: rotateZ(10deg);
 }
 
 ul#productInfo > li:nth-child(3) {
     width: 100%;
-    border-radius: 10px;
-    background-color: #AAF1FF;
     margin-top: 10px;
 }
 
-ul#productInfo > li:nth-child(3) > button {
-    height: 100%;
+ul#productInfo > li:nth-child(3) > a {
     width: 100%;
+    color: #0047A0;
+    display: inline-block;
+    padding: 12px 0;
     background-color: #AAF1FF;
     border: none;
     font-size: 1.1em;
-    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
     border-radius: 10px;
 }
 
-ul#productInfo > li:nth-child(3) > button:hover {
+ul#productInfo > li:nth-child(3) > a:hover {
     background-color: #0047A0;
     color: white;
 }
@@ -99,22 +97,46 @@ ul#productInfo > li:first-child.soldout + li + li {
     display: inline-block;
 }
 
-ul#productInfo > li:last-child {
-    margin-top: 15px;
-    padding: 5px 10px;
+/* Notification area */
+
+div#notificationArea {
+    margin-bottom: 15px;
+    padding: 15px 10px;
     height: fit-content;
+    text-align: center;
     display: none;
 }
 
-ul#productInfo > li:last-child.message {
+div#notificationArea.message {
     display: block;
     background-color: #7cfc91;
 }
 
-ul#productInfo > li:last-child.warning {
+div#notificationArea.message::before {
+    font-family: FontAwesome;
+    content: '\f058';
+}
+
+div#notificationArea.warning {
     display: block;
     background-color: #ff9800;
     color: white;
+}
+
+div#notificationArea.warning::before{
+    content: "\f071";
+    font-family: FontAwesome;
+}
+
+div#notificationArea.error {
+    display: block;
+    background-color: red;
+    color: white;
+}
+
+div#notificationArea.error::before{
+    content: "\f00d";
+    font-family: FontAwesome;
 }
 
 /* section page */
@@ -167,16 +189,20 @@ main > section > footer > ul > li:last-child > a > span {
     font-weight: bold;
     color: #0047A0;
 }
-/*
-main > section > footer > ul > li:last-child > a > img {
-    max-height: 100%;
-    max-width: 100%;
-}
-*/
 
 main > section > footer > ul > li > a {
     display: inline-block;
 }
+
+main > section > footer > ul > li > a:hover {
+    background-color: #0047A0;
+    border-radius: 10px;
+}
+
+main > section > footer > ul > li > a:hover > span {
+    color: white;
+}
+
 
 @media screen and (min-width: 768px) and (max-width:992px) {
 
