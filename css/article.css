@@ -53,6 +53,11 @@ ul#productInfo > li:nth-child(2) {
     width: 50%;
 }
 
+ul#productInfo > li:nth-child(2) > button {
+    border: none;
+    background: none;
+}
+
 ul#productInfo > li:nth-child(3) {
     width: 100%;
     border-radius: 10px;
@@ -94,28 +99,53 @@ ul#productInfo > li:first-child.soldout + li + li {
     display: inline-block;
 }
 
+ul#productInfo > li:last-child {
+    margin-top: 15px;
+    padding: 5px 10px;
+    height: fit-content;
+    display: none;
+}
+
+ul#productInfo > li:last-child.message {
+    display: block;
+    background-color: #7cfc91;
+}
+
+ul#productInfo > li:last-child.warning {
+    display: block;
+    background-color: #ff9800;
+    color: white;
+}
+
 /* section page */
+
+main > section > footer > ul {
+    display: flex;
+}
+
 main > section > footer > ul > li {
-    display: inline-block;
+    flex-direction: row;
     width: 48%;
-    height: 93px;
     vertical-align: top;
     text-align: center;
 }
 
 main > section > footer > ul > li:first-child {
     margin-right: 1%;
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-weight: bold;
-    line-height: 93px;
     background-color: #F0F8FF;
     border-radius: 10px;
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 main > section > footer > ul > li:first-child > span {
     color: #FF0000;
     text-decoration-line: line-through;
+    line-height: 1;
 }
 
 main > section > footer > ul > li:last-child {
@@ -137,6 +167,12 @@ main > section > footer > ul > li:last-child > a > span {
     font-weight: bold;
     color: #0047A0;
 }
+/*
+main > section > footer > ul > li:last-child > a > img {
+    max-height: 100%;
+    max-width: 100%;
+}
+*/
 
 main > section > footer > ul > li > a {
     display: inline-block;
