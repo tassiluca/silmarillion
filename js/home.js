@@ -51,16 +51,7 @@ function updateManga(n) {
 
 function checkScreenSize(){
   var w = window.innerWidth;
-  var numElem=1;
-  if(w >=1200){
-    return 3;
-  }
-  else if(w >= 820 && w < 1200){
-    return 2;
-  }
-  else{
-    return 1;
-  }
+  return Math.floor((w-80)/400);
 }
 
 function showDivs(n,slider,slideToShow) {
@@ -76,6 +67,9 @@ function showDivs(n,slider,slideToShow) {
   
   x.hide();
   var start=(slideIndex*slideToShow)-slideToShow;
+  if(start < 0){
+    start=0;
+  }
   for(k=start;k<x.length && k < slideIndex*slideToShow ; k++){
     console.log("slide num: "+ k);
     x[k].style.display = "inline-block";
