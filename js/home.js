@@ -26,9 +26,11 @@ $(document).ready(function () {
 });
 
 function updateAll(n){
-  updateNewArrival(n);
-  updateManga(n);
-  updatePartner(n);
+  var sections = ['newArrival','manga','hero','funko'];
+  sections.forEach(element => {
+    updateComic(element,0);
+  });
+  updatePartner(0);
 }
 
 var slideIndex = 1;
@@ -40,13 +42,8 @@ function updateBanner(n) {
 function updatePartner(n) {
   showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize()+1);
 }
-
-function updateNewArrival(n) {
-  showDivs(slideIndex += n,"main > section.newArrival > div > article",checkScreenSize());
-}
-
-function updateManga(n) {
-  showDivs(slideIndex += n,"main > section.manga > div > article",checkScreenSize());
+function updateComic(category,n){
+  showDivs(slideIndex += n,"main > section."+category+" > div > article",checkScreenSize());
 }
 
 function checkScreenSize(){
