@@ -22,7 +22,7 @@ body > header {
 body > header > h1.hide {
     text-align: center;
     height: 88px;
-    background-image: url(../img/mini-logo.svg);
+    background-image: url(../img/commons/mini-logo.svg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -110,7 +110,7 @@ body > header > nav > div > ul > li#login {
 
 /************************** Footer **************************/
 body > footer > h4.hide {
-    background-image: url(../img/footer-logo.svg);
+    background-image: url(../img/commons/footer-logo.svg);
     background-position: center;
     background-repeat: no-repeat;
     padding-top: 15px;
@@ -279,16 +279,21 @@ body > header > nav > div#navSearch > form > header > h2 {
 
 body > header > nav > div#navSearch > form > ul > li > input#search {
     display: inline-block;
-    width: 95%;
+    width: 80%;
     vertical-align: top;
 }
 
 body > header > nav > div#navSearch > form > ul > li > input#search + button {
     display: inline-block;
-    width: 5%;
+    width: 15%;
     margin: 10px 0 15px 0;
     background: none;
     border: none;
+}
+
+body > header > nav > div#navSearch > form > ul > li > input#search + button > img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 body > header > nav > div#navSearch > form > ul {
@@ -297,17 +302,106 @@ body > header > nav > div#navSearch > form > ul {
 }
 
 /************************ Desktop devices **************************/
-@media screen and (min-width: 768px) and (max-width:992px) {
-    
-}
-
 @media screen and (min-width: 992px) and (max-width:1200px) {
-    main {
-        margin: 0 18%;
+    body > header {
+        background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
+        border-radius: 0 0 20px 20px;
+        height: 250px;
+        box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+    }
+
+    body > header > h1.hide {
+        text-align: center;
+        height: 180px;
+        background-image: url(../img/commons/big-log.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    /* menu icon */
+    body > header > nav > ul > li:first-child {
+        display: none;
+    }
+
+    body > header > nav > div#navMenu  > ul > li, 
+    body > header > nav > div#navMenu ,
+    body > header > nav > ul {
+        display: inline-block !important;
+    }
+
+    /* navbar */
+    body > header > nav {
+        border-radius: 20px;
+        margin-top: 15px;
+    }
+
+    /* text links */
+    body > header > nav > div#navMenu  {
+        float: left;
+        background: none;
+        width: 76%;
+        margin-left: 4%;
+    }
+
+    body > header > nav > div#navMenu  > ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    body > header > nav > div#navMenu  > ul > li {
+        background: none; 
+        margin: 2px 0 !important;
+    }
+
+    body > header > nav > div#navMenu  > ul > li > a {
+        color: #0047A0;
+    }
+
+    /* buttons links */
+    body > header > nav > ul {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        width: 18%;
+        margin-right: 2%;
+        vertical-align: middle;
+    }
+
+    body > header > nav > ul > li > button {
+        padding-top: 5px;
+    }
+
+    /* login link */
+    body > header > nav > div > ul > li#login {
+        display: none !important;
+    }
+
+    /* cart and login popup*/
+    body > header > nav > div#navCart,
+    body > header > nav > div#navLogin,
+    body > header > nav > div#navSearch {
+       width: 30%;
+       margin: 0 0 0 65%;
+       padding: 25px;
     }
 }
 
 @media screen and (min-width: 1200px) {
+    body > header {
+        background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
+        border-radius: 0 0 20px 20px;
+        height: 250px;
+        box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+    }
+
+    body > header > h1.hide {
+        text-align: center;
+        height: 180px;
+        background-image: url(../img/commons/big-log.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
     /* menu icon */
     body > header > nav > ul > li:first-child {
         display: none;
