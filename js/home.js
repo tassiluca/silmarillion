@@ -71,7 +71,7 @@ function showDivs(n,slider,slideToShow) {
     start=0;
   }
   for(k=start;k<x.length && k < slideIndex*slideToShow ; k++){
-    console.log("slide num: "+ k);
+    //console.log("slide num: "+ k);
     x[k].style.display = "inline-block";
   }
 }
