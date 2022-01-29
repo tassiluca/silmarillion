@@ -22,7 +22,18 @@ $(document).ready(function(){
         toggleNavbar($(this), $("body > header > nav > div#navSearch"));
     });
 
+    $("html > body > main").click(function(){
+        closePopupOpen();
+        $("main").css("opacity", "1.0");
+    });
+
 });
+
+function closePopupOpen(){
+    /* if a popup was already opened, close it */
+    $("body > header > nav > ul > li > button.navActive").removeClass("navActive");
+    $("body > header > nav > div.active").slideUp();
+}
 
 /**
  * Toggle one element of navbar
@@ -31,9 +42,7 @@ $(document).ready(function(){
  */
 function toggleNavbar(btnPressed, elementToSlide){
     if (!btnPressed.hasClass("navActive")) {
-        /* if a popup was already opened, close it */
-        $("body > header > nav > ul > li > button.navActive").removeClass("navActive");
-        $("body > header > nav > div.active").slideUp();
+        closePopupOpen();
         /* add the class navActive in order to color the button pressed */
         btnPressed.addClass("navActive");
         elementToSlide.addClass("active");
