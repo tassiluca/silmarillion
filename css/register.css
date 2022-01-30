@@ -78,13 +78,15 @@ input[type="password"] + section > p.invalid {
 input[type="password"] + section > p.valid::before {
     position: relative;
     left: -10px;
-    content: "✔";
+    content: "\f00c";
+    font-family: FontAwesome;
 }
 
 input[type="password"] + section > p.invalid::before {
     position: relative;
     left: -10px;
-    content: "✖";
+    content: "\f00d";
+    font-family: FontAwesome;
 }
 
 /***************************** Desktop viewport ******************************/
