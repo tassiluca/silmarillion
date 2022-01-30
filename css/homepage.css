@@ -45,6 +45,10 @@ main > section > div > input:last-of-type{
     float: right;
 }
 
+/*reviews banner*/
+main > section.review > div > input {
+    height: 290px;
+}
 /*partners banner*/
 main > section:last-child {
     text-align: center;
