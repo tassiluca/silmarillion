@@ -24,7 +24,7 @@ $(document).ready(function () {
 });
 
 function updateAll(n){
-  var sections = ['newArrival','manga','hero','funko'];
+  var sections = ['newArrival','manga','hero','funko','review'];
   sections.forEach(element => {
     updateComic(element,0);
   });
