@@ -48,6 +48,7 @@ main > section > div > input:last-of-type{
 /*partners banner*/
 main > section:last-child {
     text-align: center;
+    min-height: 140px;
 }
 main > section:last-child > div{
     width: 70%;
@@ -154,7 +155,7 @@ main > aside > div:last-child > div.current {
 
 @media screen and (min-width: 1200px){
     main {
-        margin: 0 5%;
+        margin: 0 10%;
     }
     /*banner promo*/
     main > section:first-child{
@@ -189,7 +190,7 @@ main > aside > div:last-child > div.current {
     }
 
     main > section > div > article {
-        margin: 0 3.5%;
+        margin: 0 3%;
     }
     
 }

@@ -3,8 +3,6 @@
 $(document).ready(function () {
   $("main > section:first-child > img.banner").hide();
   $("main > section:first-child > img.banner:first-child").show();
-  $("main > section:last-child > div.partner").hide();
-  $("main > section:last-child > div.partner:first-child").show();
 
   updateAll(0);
   showSlide(infoidx);
@@ -48,7 +46,7 @@ function updateComic(category,n){
 
 function checkScreenSize(){
   var w = window.innerWidth;
-  var quantity = Math.floor((w-80)/400);
+  var quantity = Math.floor((w-(0.20*w))/400);
   return quantity <= 0 ? 1 : quantity;
 }
 
