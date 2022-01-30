@@ -24,6 +24,11 @@ article > header > a:hover {
     font-weight: bold;
 }
 
+article > header > a > h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
 /*comic image*/
 article > div > img {
     border-radius: 10px 10px 0 0;

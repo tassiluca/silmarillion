@@ -313,7 +313,7 @@ body > header > nav > div#navLogin {
     background-color: #0047A0;
 }
 
-body > header > nav > div#navLogin > form > header > h2 {
+body > header > nav > div#navLogin > form > h2 {
     color: white;
     text-align: center;
     padding-top: 5%; 
@@ -354,7 +354,7 @@ body > header > nav > div#navSearch {
     background-color: #0047A0;
 }
 
-body > header > nav > div#navSearch > form > header > h2 {
+body > header > nav > div#navSearch > form > h2 {
     color: white;
     text-align: center;
     padding-top: 5%; 
