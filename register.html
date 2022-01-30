@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
         <link rel="stylesheet" type="text/css" href="./css/forms.css" />
         <link rel="stylesheet" type="text/css" href="./css/register.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Silmarillion</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="./js/registration.js" type="text/javascript"></script>
@@ -68,11 +69,11 @@
                     <li>
                         <label for="password">Password</label><input type="password" placeholder="Password" id="password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve contenere almeno un numero, una minuscolo e una maiuscola, nonché almeno 8 caratteri" required />
                         <section>
-                            <p>Password must contain the following:</p>
-                            <p id="letter" class="invalid">A <strong>lowercase</strong> letter</p>
-                            <p id="capital" class="invalid">A <strong>capital (uppercase)</strong> letter</p>
-                            <p id="number" class="invalid">A <strong>number</strong></p>
-                            <p id="length" class="invalid">Minimum <strong>8 characters</strong></p>
+                            <p>Ai fini di sicurezza, la password deve contenere almeno:</p>
+                            <p id="letter" class="invalid">Una lettera <strong>minuscola</strong></p>
+                            <p id="capital" class="invalid">Una lettera <strong>maiuscola</strong></p>
+                            <p id="number" class="invalid">Un <strong>numero</strong></p>
+                            <p id="length" class="invalid"><strong>8 caratteri</strong></p>
                         </section>                        
                     </li>
                     <li>
