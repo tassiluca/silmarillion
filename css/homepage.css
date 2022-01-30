@@ -49,20 +49,44 @@ main > section > div > input:last-of-type{
 main > section.review > div > input {
     height: 290px;
 }
+main > section.review > div > article{
+    height: 290px;
+    width: 50%;
+    max-width: 450px;
+}
+main > section.review > div > article > header{
+    height: 100px;
+    text-align: left;
+}
+main > section.review > div > article > header > h3,
+main > section.review > div > article > header > img{
+    margin: 0 5%;
+    display: inline-block;
+    vertical-align: middle;
+    color: #0047A0;
+}
+
+main > section.review > div > article > header > h3 {
+    font-size: 18pt;
+}
+
 /*partners banner*/
 main > section:last-child {
     text-align: center;
     min-height: 140px;
 }
+
+main > section:last-child > header {
+    margin: 0 0 30px 0;
+}
 main > section:last-child > div{
-    width: 70%;
+    width: 80%;
     background-color: rgba(152, 237, 255, 0.3);
     box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
     border-radius: 10px;
     margin: 0;
     display: inline-block;
     padding: 15px 2%;
-    margin: 30px 0 0;
 }
 
 main > section:last-child > input{
