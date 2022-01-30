@@ -48,7 +48,8 @@ function updateComic(category,n){
 
 function checkScreenSize(){
   var w = window.innerWidth;
-  return Math.floor((w-80)/400);
+  var quantity = Math.floor((w-80)/400);
+  return quantity <= 0 ? 1 : quantity;
 }
 
 function showDivs(n,slider,slideToShow) {
