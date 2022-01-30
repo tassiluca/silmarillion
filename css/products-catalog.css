@@ -16,6 +16,14 @@ article > header {
     padding: 10px 2px 5px 2px;
 }
 
+article > header > a {
+    color: #0047A0;
+}
+
+article > header > a:hover {
+    font-weight: bold;
+}
+
 /*comic image*/
 article > div > img {
     border-radius: 10px 10px 0 0;
