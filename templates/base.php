@@ -3,10 +3,34 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
-        <!-- insert here all the style sheets needed by page -->
+        <?php 
+            /**
+             * Insert here all the style sheets needed by the single page.
+             * To do so declare a $templateParams["css"] with an array of style sheet files name to import.
+             */
+            if (isset($templateParams["css"])):
+                foreach($templateParams["css"] as $styleSheet): 
+        ?>
+                    <link rel="stylesheet" type="text/css" href=<?php echo "./css/" . $styleSheet ?> />
+        <?php
+                endforeach;
+            endif;
+        ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/navbar.js"></script>
-        <!-- insert here all the scripts needed by page -->
+        <?php
+            /**
+             * Insert here all the javascript files needed by the single page.
+             * To do so declare a $templateParams["js"] with an array of js script files name to import.
+             */
+            if (isset($templateParams["js"])):
+                foreach($templateParams["js"] as $jsScript):
+        ?>
+                    <script src=<?php echo "js/" . $jsScript ?>></script>
+        <?php
+                endforeach;
+            endif;
+        ?>
         <title>Silmarillion</title>
     </head>
     <body>
@@ -70,8 +94,16 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <!-- insert here main -->
+        <main>          
+            <?php
+                /**
+                 * Insert here main section. 
+                 * To do so declare a $templateParams["main"] with the template file name.
+                 */
+                if (isset($templateParams["main"])) {
+                    require $templateParams["main"];
+                }
+            ?>
         </main>
         <footer>
             <h4 class="hide">Silmarillion Comics</h4>
