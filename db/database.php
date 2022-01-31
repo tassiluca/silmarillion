@@ -13,7 +13,8 @@
         public function getUserData($username) {
             $query = "SELECT UserId, Password, Salt, IsActive
                       FROM Users 
-                      WHERE Username = ?";
+                      WHERE Username = ?
+                      AND IsActive = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $username);
             $stmt->execute();
