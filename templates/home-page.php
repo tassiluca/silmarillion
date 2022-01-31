@@ -62,7 +62,7 @@
     <?php endforeach?>
 <?php endif ?>
 
- <section class="review">
+ <section class="review" id="reviews">
     <header>
         <h2>Cosa dicono di noi</h2>
     </header>
@@ -89,7 +89,7 @@
     <input type="image" src="img/Forward.svg" onclick="updateComic('review',1)" onkeypress="updateComic('review',1)" alt="recensione precedente" >
      </div>
 </section>
-<section>
+<section id="partners">
     <header><h2>I Nostri partner</h2></header>
     <!-- here put all divs with partners to be shown in banner-->
     <div class="partner">
