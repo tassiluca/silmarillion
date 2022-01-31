@@ -76,6 +76,7 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+        
         public function getPartners(){
             $query = "SELECT `PublisherId`, `Name`, `ImgLogo`
                     FROM Publisher";
