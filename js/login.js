@@ -17,11 +17,9 @@ function formhash(form, password) {
 }
 
 $(document).ready(function(){
-
     /* By default user login form is active and seller one is hidden */
-    $("form > header > ul > li:first-child").addClass("active");
+    $("main > section > header > ul > li:first-child").addClass("active");
     $("#sellerlogin").hide()
-
 
     $("#userloginbtn").click(function(){
         showElement($(this));
@@ -34,5 +32,4 @@ $(document).ready(function(){
         $("#userlogin").hide()
         $("#sellerlogin").show()
     });
-
 })
