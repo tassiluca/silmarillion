@@ -1,8 +1,12 @@
 
             <section>
                 <!-- here put all images to be shown in banner-->
-                <img src="img/banner/marv.png" class="banner fade"  alt="banner1"/>
-                <img src="img/banner/marv1.png" class="banner fade"  alt="banner1"/>
+                <?php if(isset($templateParams["homeBanner"])):
+                        foreach($templateParams["homeBanner"] as $banner):
+                    ?>
+                    <img src="img/banner/<?php echo $banner ?>" class="banner fade"  alt="banner-<?php echo $banner?>"/>
+                <?php endforeach;
+                    endif;?>
                 <!--end of element of banner-->
                 <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="banner precedente" />
                 <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="banner successivo" />
@@ -25,7 +29,6 @@
                     </div>
                     <!--end of aside banner-->
                 </div>
-                
                 <!--index aside-->
                 <div>
                     <div class="current" onclick="showSlide(1)" onkeypress="showSlide(1)"></div>
@@ -33,6 +36,7 @@
                     <div onclick="showSlide(3)" onkeypress="showSlide(3)"></div>
                 </div>
             </aside>
+            <?php if(isset($templateParams["newArrival"] )):?>
             <section class="comics newArrival">
                 <header>
                     <h2>Nuovi Arrivi</h2>
@@ -41,38 +45,17 @@
                 <!--
                     here insert other article to be scrolled
                 -->
+                <?php foreach($templateParams["newArrival"] as $product):?>
                 <article class="fade">
                     <div>
-                        <img src="develop/0.png" alt="">
+                        <img src="comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>">
                     </div>
-                    <header>The Seven deadly sins</header>
-                    <div><a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>4,90€</p></div>
-                    </div>
-                </article>
-                <article class="fade">
-                    <div>
-                        <img src="develop/1.png" alt="">
-                    </div>
-                    <header>Fumetto 2 - to be continued</header>
-                    <div><a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>10,90€</p></div>
+                    <header><?php echo $product["Title"]?></header>
+                    <div><a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}
+                                            else{ echo $product["Price"];}?>€</p></div>
                     </div>
                 </article>
-                <article class="fade">
-                    <div>
-                        <img src="develop/2.png" alt="">
-                    </div>
-                    <header>Fumetto 2 - to be continued</header>
-                    <div><a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>10,90€</p></div>
-                    </div>
-                </article>
-                <article class="fade">
-                    <div>
-                        <img src="develop/3.png" alt="">
-                    </div>
-                    <header>HHHH</header>
-                    <div><a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a><div><p>10,90€</p></div>
-                    </div>
-                </article>
+                <?php endforeach;?>
                 <!--
                     end group of article
                 -->
@@ -81,6 +64,7 @@
 
                 </div>
             </section>
+            <?php endif ?>
             
             <section class="comics manga">
                 <header>
