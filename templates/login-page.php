@@ -26,7 +26,7 @@
                     </li>
                     <li>
                         <a href="">Hai dimenticato la password?</a>
-                        <input type="submit" name="submit" value="ACCEDI" />
+                        <input type="button" onclick="formhash(this.form, this.form.userpassword);" value="ACCEDI" />
                     </li>
                     <li>
                         <p>Non sei registrato?</p>
@@ -45,7 +45,7 @@
                     </li>
                     <li>
                         <a href="">Hai dimenticato la password?</a>
-                        <input type="submit" name="submit" value="ACCEDI" />
+                        <input type="button" value="ACCEDI" />
                     </li>
                 </ul>
             </form>
