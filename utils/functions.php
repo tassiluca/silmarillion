@@ -24,6 +24,11 @@
         return $dbh->getLoginAttempts($userId, $validAttempts) > MAX_LOGIN_ATTEMPTS;
     }
 
+    function registerLoggedUser($userData) {
+        $_SESSION['userId'] = $userData['UserId'];
+        $_SESSION['username'] = $userData['UserId'];
+    }
+
     function login($userData, $password) {
         if (count($userData)) { // user exists
             $userData = $userData[0];
@@ -32,7 +37,7 @@
             } else {
                 $password = hash('sha512', $password . $userData['Salt']);
                 if ($userData['Password'] == $password) {
-                    $_SESSION['userId'] = $userData['UserId'];
+                    registerLoggedUser($userData);
                     return true;
                 } else {
                     /* TODO: register new failed attempt */
