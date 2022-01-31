@@ -21,7 +21,7 @@
         global $dbh;
         $now = time();
         $validAttempts = $now - (5 * 60);   /* 5 mins */
-        return $dbh->getLoginAttempts($userId, $validAttempts) > MAX_LOGIN_ATTEMPTS;
+        return $dbh->getLoginAttempts($userId, $validAttempts) >= MAX_LOGIN_ATTEMPTS;
     }
 
     function registerLoggedUser($userData) {
