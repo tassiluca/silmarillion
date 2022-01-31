@@ -54,8 +54,8 @@
                         </article>
         <?php endforeach;?>
                 <!--end group of article-->
-                    <input type="image" src="img/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" at="fumetto precedente" >
-                    <input type="image" src="img/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" at="fumetto successivo" >
+                    <input type="image" src="img/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" at="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
+                    <input type="image" src="img/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" at="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
                 </div>
             </section>
         <?php endif ?>
@@ -84,11 +84,7 @@
                 <p><?php echo $review['Description']?></p>
         </article>
     <?php endforeach; endif;?>
-
-    <!--
-        end group of article
-    -->
-    <!--gli alt degli input vanno cambiati in base alla section in cui si trovano-->
+    <!--end group of article-->
     <input type="image" src="img/Back.svg" onclick="updateComic('review',-1)" onkeypress="updateComic('review',-1)" alt="recensione precedente" >
     <input type="image" src="img/Forward.svg" onclick="updateComic('review',1)" onkeypress="updateComic('review',1)" alt="recensione precedente" >
      </div>
@@ -98,9 +94,10 @@
     <!-- here put all divs with partners to be shown in banner-->
     <div class="partner">
         <div>
-            <img src="img/partners/Feltrinelli Comics.svg" alt="" class="fade">
-            <img src="img/partners/Planet MAnga.svg" alt="" class="fade">
-            <img src="img/partners/Feltrinelli Comics.svg" alt="" class="fade">
+            <?php if(isset($templateParams["partners"])):?>
+                <?php foreach($templateParams["partners"] as $partner):?>
+                <img src="img/partners/<?php echo $partner['ImgLogo']?>" alt="<?php echo $partner['Name']?>" class="fade">
+            <?php endforeach;endif?>
         </div> 
     </div>
     <!--end of element of banner-->
