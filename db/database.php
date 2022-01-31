@@ -55,6 +55,18 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getComicsOfCategory($category){
+            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
+                    FROM Comics as C, Products as P
+                    WHERE C.ProductId = P.ProductId
+                    AND P.CategoryName = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $category);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
 
 ?>
