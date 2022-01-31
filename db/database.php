@@ -33,6 +33,15 @@
             return $stmt->get_result()->num_rows;
         }
 
+        public function getHomeBanner(){
+            $query = "SELECT NewsId, Title, Description, Img, UserId
+                    FROM News";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
 
 ?>

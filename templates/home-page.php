@@ -1,15 +1,15 @@
 
  <section>
     <!-- here put all images to be shown in banner-->
-    <?php if(isset($templateParams["homeBanner"])):
-            foreach($templateParams["homeBanner"] as $banner):
+    <?php if(isset($templateParams["newsBanner"])):
+            foreach($templateParams["newsBanner"] as $banner):
         ?>
-        <img src="img/banner/<?php echo $banner ?>" class="banner fade"  alt="banner-<?php echo $banner?>"/>
+        <img src="img/banner/<?php echo $banner["Img"] ?>" class="banner fade"  alt="<?php echo $banner["Description"]?>"/>
     <?php endforeach;
         endif;?>
     <!--end of element of banner-->
-    <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="banner precedente" />
-    <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="banner successivo" />
+    <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="notizia precedente" />
+    <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="notizia successivo" />
 
    </section>
 <aside>   
