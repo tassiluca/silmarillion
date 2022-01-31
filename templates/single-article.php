@@ -13,7 +13,6 @@
                 <header>
                     <ul id="productInfo">
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
-                        <!-- TODO: implement link with php -->
                         <?php $numCopies = count($templateParams["copies"]);?>
                         <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="article.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
                         <li><a href="article.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
@@ -34,7 +33,15 @@
                 <p><strong>Descrizione:</strong><?php echo $templateParams["product"]["Description"]?></p>
                 <footer>
                     <ul>
-                        <li><span><?php echo $templateParams["product"]["Price"]?>€</span><?php echo $templateParams["product"]["DiscountedPrice"]?>€</li><li><a href="article.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li>
+                            <?php if(isset($templateParams["product"]["DiscountedPrice"])):?>
+                                <span><?php echo $templateParams["product"]["Price"]?>€</span>
+                                <?php echo $templateParams["product"]["DiscountedPrice"]?>€
+                                <?php else:?>
+                                    <?php echo $templateParams["product"]["Price"]?>€
+                                <?php endif?>
+                            </li>
+                        <li><a href="article.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>
