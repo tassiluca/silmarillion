@@ -15,15 +15,15 @@
         </ul>
     </header>
     <!-- User login form -->
-    <form action="#" method="POST" onsubmit="formhash(this, this.userpassword);">
+    <form action="#" method="POST" onsubmit="formHash(this, this.customerPwd, 'customerPwd');">
         <ul id="userlogin">
             <li>
                 <label for="username">Username</label>
-                <input type="text" placeholder="es. giovanni.delnevo@gmail.com" id="username" name="usr" required />
+                <input type="text" placeholder="es. giovadelnevo" id="username" name="customerUsr" required />
             </li>
             <li>
                 <label for="userpassword">Password</label>
-                <input type="password" placeholder="Password" id="userpassword" name="userPwd" required />
+                <input type="password" placeholder="Password" id="userpassword" name="customerPwd" required />
             </li>
             <li>
                 <a href="">Hai dimenticato la password?</a>
@@ -36,11 +36,11 @@
         </ul>
     </form>
     <!-- Seller login form -->
-    <form action="#" method="POST" onsubmit="formhash(this, this.userpassword);">
+    <form action="#" method="POST" onsubmit="formHash(this, this.sellerPwd, 'sellerPwd');">
         <ul id="sellerlogin">
             <li>
                 <label for="sellername">Username</label>
-                <input type="text" placeholder="es. silvia.mirri@silmarillion.com" id="sellername" name="sellerUsr" />
+                <input type="text" placeholder="es. silvymirry" id="sellername" name="sellerUsr" />
             </li>
             <li>
                 <label for="sellerpassword">Password</label>

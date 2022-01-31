@@ -24,10 +24,7 @@
         return $dbh->getLoginAttempts($userId, $validAttempts) > MAX_LOGIN_ATTEMPTS;
     }
 
-    function login($username, $password) {
-        global $dbh;
-        $userData = $dbh->getUserData($username);
-
+    function login($userData, $password) {
         if (count($userData)) { // user exists
             $userData = $userData[0];
             if ( checkbrute($userData['id']) ) {
@@ -35,16 +32,26 @@
             } else {
                 $password = hash('sha512', $password . $userData['Salt']);
                 if ($userData['Password'] == $password) {
-                    // $_SESSION['userId'] = $userData['id'];
+                    $_SESSION['userId'] = $userData['UserId'];
                     return true;
                 } else {
                     /* TODO: register new failed attempt */
                 }
             }
-        } else {
-            echo "User not found";
         }
         return false;
+    }
+
+    function customerLogin($username, $password) {
+        global $dbh;
+        $userData = $dbh->getCustomerData($username);
+        return login($userData, $password);
+    }
+
+    function sellerLogin($username, $password) {
+        global $dbh;
+        $userData = $dbh->getSellerData($username);
+        return login($userData, $password);
     }
 
     function isUserLoggedIn(){

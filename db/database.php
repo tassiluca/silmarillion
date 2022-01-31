@@ -10,11 +10,35 @@
             }
         }
 
-        public function getUserData($username) {
-            $query = "SELECT UserId, Password, Salt, IsActive
-                      FROM Users 
-                      WHERE Username = ?
-                      AND IsActive = 1";
+        /**
+         * Get customer infos.
+         * @param string $username the username string
+         * @return void an associative array with all data
+         */
+        public function getCustomerData($username) {
+            $query = "SELECT U.*
+                      FROM Users AS U, Customers AS C
+                      WHERE C.UserId = U.UserId
+                      AND U.Username = ?
+                      AND U.IsActive = 1";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get seller infos.
+         * @param string $username the username string
+         * @return void an associative array with all data
+         */
+        public function getSellerData($username) {
+            $query = "SELECT U.*
+                      FROM Users AS U, Sellers AS S
+                      WHERE S.UserId = U.UserId
+                      AND U.Username = ?
+                      AND U.IsActive = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $username);
             $stmt->execute();

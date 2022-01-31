@@ -5,8 +5,18 @@
     $templateParams["js"] = array("login.js", "sha512.js");
     $templateParams["main"] = "./templates/login-page.php";
 
-    if (isset($_POST['usr']) && isset($_POST['userPwd'])) {
-        if (!login($_POST['usr'], $_POST['userPwd'])) {
+    /* customer login */
+    if (isset($_POST['customerUsr']) && isset($_POST['customerPwd'])) {
+        if (!customerLogin($_POST['customerUsr'], $_POST['customerPwd'])) {
+            echo "Login failed";
+        } else {
+            echo "Login success";
+        }
+    }
+
+    /* seller login */
+    if (isset($_POST['sellerUsr']) && isset($_POST['sellerPwd'])) {
+        if (!sellerLogin($_POST['sellerUsr'], $_POST['sellerPwd'])) {
             echo "Login failed";
         } else {
             echo "Login success";
