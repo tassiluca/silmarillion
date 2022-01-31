@@ -42,7 +42,7 @@
             </li>
             <li>
                 <p>Non sei registrato?</p>
-                <a href="./register.html">CREA IL TUO ACCOUNT</a>
+                <a href="./registration.php">CREA IL TUO ACCOUNT</a>
             </li>
         </ul>
     </form>
