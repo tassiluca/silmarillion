@@ -14,8 +14,10 @@ INSERT INTO `News`( `Title`, `Description`, `Img`, `UserId`) VALUES ('Marvel_Wal
 INSERT INTO `Publisher`( `Name`, `ImgLogo`) VALUES ('FeltrinelliComics','FeltrinelliComics.svg')
 INSERT INTO `Publisher`( `Name`, `ImgLogo`) VALUES ('MarvelComics','MarvelComics.png')
 
+/*category name DEVE essere in minuscolo, se si vuole mostrare in home una categoria occore specificarlo in index.php*/
 INSERT INTO `Categories`(`Name`, `Description`) VALUES ('hero','Superhero that make world better and save people')
 
+/*quando si inserisce un prodotto occorre inserire prima Products poi Comics indicando il codice prodotto*/
 INSERT INTO `Products`(`Price`, `Description`, `CoverImg`, `CategoryName`) 
 VALUES ('15','The Amazing Spider-Man è una serie a fumetti edita negli Stati uniti dalla Marvel ','spiderman001.jpeg','hero')
 
