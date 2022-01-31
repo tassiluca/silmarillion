@@ -40,7 +40,7 @@
 <?php if(isset($templateParams["sections"]) && isset($templateParams["sectionTitle"])):
     foreach($templateParams["sections"] as $section):?>
 
-        <?php if(isset($templateParams[$section] )):?>
+        <?php if(isset($templateParams[$section]) && count($templateParams[$section]) > 0):?>
             <section class="comics <?php echo $section?>">
                 <header><h2><?php echo $templateParams["sectionTitle"][$section]?></h2></header>
                 <div>
