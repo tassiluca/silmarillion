@@ -1,0 +1,1 @@
+INSERT INTO `News`( `Title`, `Description`, `Img`, `UserId`) VALUES ('Marvel','Sconto sui fumetti della Marvel','marvel-text.jpeg','1')
