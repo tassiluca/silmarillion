@@ -67,6 +67,15 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getReviews(){
+            $query = "SELECT ReviewId,Vote,Description, R.UserId,U.Username
+                    FROM Reviews as R, Users as U
+                    WHERE R.UserId = U.UserId";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
     }
 
 ?>
