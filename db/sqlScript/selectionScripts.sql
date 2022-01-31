@@ -23,3 +23,29 @@ VALUES ('15','The Amazing Spider-Man è una serie a fumetti edita negli Stati un
 
 INSERT INTO `Comics`(`Title`, `Author`, `Lang`, `PublishDate`, `ISBN`, `ProductId`, `PublisherId`)
  VALUES ('Amazing-Spiderman','StanLee','Italiano','2020-01-31','9781302922887','2','2')
+
+
+
+-- QUERY USATE PER TESTARE LE REVIEWS, IN SEQUENZA: Users -> Customers -> Reviews
+-- Dump dei dati per la tabella `Users`
+--
+INSERT INTO `Users` (`UserId`, `Username`, `Password`, `Salt`, `Name`, `Surname`, `DateBirth`, `Mail`, `IsActive`) VALUES
+(1, 'paolo90', 'pippo', '23r234fr8f348gu3hrg3', 'Teo]', 'viola', '2008-07-04', 'teoviola@gmail.com', 1),
+(2, 'GuidoLaVespa00', 'passsFranco', 'fwegfwrg877wg', 'Franco', 'Rossi', '1998-07-20', 'franco@gmail.com', 1),
+(3, 'GirolaMO89', 'pascc99?', 'nini8hr8fwef8', 'Giacomo', 'Girolami', '1956-04-12', 'girolamano@gmail.com', 1);
+
+--
+-- Dump dei dati per la tabella `Customers`
+--
+INSERT INTO `Customers` (`UserId`) VALUES
+(2),
+(3);
+
+/*REVIEWS */
+INSERT INTO `Reviews`( `Vote`, `Description`, `UserId`) VALUES 
+('4','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
+('3','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
+('2','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
+('1','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
+('0','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
+('5','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','3');
