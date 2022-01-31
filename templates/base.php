@@ -79,6 +79,17 @@
                                 <label for="userpasswordNav">Password</label>
                                 <input type="password" placeholder="Password" id="userpasswordNav" name="pwd" required />
                             </li>
+                            <li 
+                                <?php 
+                                    if (isset($templateParams["loginError"])) :
+                                        echo 'class=active'; 
+                                ?>
+                            >
+                                        <strong><?php echo $templateParams["loginError"] ?></strong>
+                                <?php 
+                                    endif;
+                                ?>
+                            </li>
                             <li>
                                 <div>
                                     <a href="">Dimenticato la password?</a>
