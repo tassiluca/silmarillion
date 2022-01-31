@@ -52,7 +52,7 @@ main > section.review > div > input {
 main > section.review > div > article{
     height: 290px;
     width: 50%;
-    max-width: 450px;
+    max-width: 420px;
 }
 main > section.review > div > article > header{
     height: 100px;
@@ -65,10 +65,17 @@ main > section.review > div > article > header > img{
     vertical-align: middle;
     color: #0047A0;
 }
-
+main > section.review > div > article > p {
+    padding: 0 3%;
+    font-size: 15pt;
+}
 main > section.review > div > article > header > h3 {
     font-size: 18pt;
 }
+
+.checked {
+    color: orange;
+  }
 
 /*partners banner*/
 main > section:last-child {
