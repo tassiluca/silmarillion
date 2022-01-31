@@ -25,7 +25,7 @@ INSERT INTO `Comics`(`Title`, `Author`, `Lang`, `PublishDate`, `ISBN`, `ProductI
  VALUES ('Amazing-Spiderman','StanLee','Italiano','2020-01-31','9781302922887','2','2')
 
 
-
+----------------------------------------------------------------------------------------
 -- QUERY USATE PER TESTARE LE REVIEWS, IN SEQUENZA: Users -> Customers -> Reviews
 -- Dump dei dati per la tabella `Users`
 --
@@ -49,3 +49,4 @@ INSERT INTO `Reviews`( `Vote`, `Description`, `UserId`) VALUES
 ('1','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
 ('0','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','2'),
 ('5','Ottimo sito per affidabilità e cordialità della assistenza, consiglio davvero ','3');
+----------------------------------------------------------------------------------------
