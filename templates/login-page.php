@@ -1,7 +1,7 @@
 <!-- Breadcrumb pagination -->
-<!-- TODO: link -->
 <div>
     <ul>
+        <!-- TODO: link -->
         <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Login</li>
     </ul>
 </div>
@@ -25,6 +25,17 @@
                 <label for="userpassword">Password</label>
                 <input type="password" placeholder="Password" id="userpassword" name="customerPwd" required />
             </li>
+            <li 
+                <?php 
+                    if (isset($templateParams["loginError"])) :
+                        echo 'class=active'; 
+                ?> 
+            >
+                        <strong><?php echo $templateParams["loginError"] ?></strong>
+                <?php 
+                    endif;
+                ?>
+            </li>
             <li>
                 <a href="">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
@@ -45,6 +56,17 @@
             <li>
                 <label for="sellerpassword">Password</label>
                 <input type="password" placeholder="Password" id="sellerpassword" name="sellerPwd" />
+            </li>
+            <li 
+                <?php 
+                    if (isset($templateParams["loginError"])) :
+                        echo 'class=active'; 
+                ?>
+            >
+                        <strong><?php echo $templateParams["loginError"] ?></strong>
+                <?php 
+                    endif;
+                ?>
             </li>
             <li>
                 <a href="">Hai dimenticato la password?</a>
