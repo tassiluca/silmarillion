@@ -42,7 +42,7 @@
                     <li><button type="button"><img src="./img/commons/menu.svg" alt="Menu"/></button></li><li><button type="button"><img src="./img/commons/menu-search.svg" alt="Cerca"/></button></li><li><button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button></li><li><button type="button" ><img src="./img/commons/menu-cart.svg" alt="Carrello"/></button></li>
                 </ul>
                 <div id="navMenu">
-                    <ul><li><a href="catalog.html">Nuovi Arrivi</a></li><li><a href="catalog.html">Manga</a></li><li><a href="catalog.html">Supoereroi</a></li><li><a href="catalog.html">Funko Pop</a></li><li id="login"><a href="login.html">Login</a></li><li><a href="index.php#reviews">Recensioni</a></li><li><a href="index.php#partners">Partner</a></li><li><a href="">Supporto</a></li>
+                    <ul><li><a href="catalog.php">Nuovi Arrivi</a></li><li><a href="catalog.html">Manga</a></li><li><a href="catalog.html">Supoereroi</a></li><li><a href="catalog.html">Funko Pop</a></li><li id="login"><a href="login.html">Login</a></li><li><a href="index.php#reviews">Recensioni</a></li><li><a href="index.php#partners">Partner</a></li><li><a href="">Supporto</a></li>
                     </ul> 
                 </div>
                 <div id="navCart">
