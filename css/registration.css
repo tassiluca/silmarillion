@@ -88,6 +88,24 @@ main > section > form > ul > li > input[type="password"] + section > p.invalid::
     font-family: FontAwesome;
 }
 
+/************************** Notification area **************************/
+main > section > form > ul > li:nth-last-of-type(2) {
+    display: none;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background-color: red;
+    color: white;
+}
+
+main > section > form > ul > li:nth-last-of-type(2).active::before {
+    content: "\f00d";
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li:nth-last-of-type(2).active {
+    display: block;
+}
+
 /***************************** Desktop viewport ******************************/
 @media screen and (min-width: 768px) and (max-width:992px) {
     main {

@@ -88,21 +88,3 @@ main > section > form > ul > li > p {
 main > section > form > header > ul > li {
     background-color: #c4c4c450;
 }
-
-/************************** Notification area **************************/
-main > section > form > ul > li:nth-of-type(3) {
-    display: none;
-    padding: 10px 0;
-    margin-bottom: 10px;
-    background-color: red;
-    color: white;
-}
-
-main > section > form > ul > li:nth-of-type(3).active::before {
-    content: "\f00d";
-    font-family: FontAwesome;
-}
-
-main > section > form > ul > li:nth-of-type(3).active {
-    display: block;
-}
