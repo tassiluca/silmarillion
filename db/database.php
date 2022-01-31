@@ -49,13 +49,21 @@
         public function getLoginAttempts($userId, $validAttempts) {
             /* Please note validAttempts is generated from the system. */
             $query = "SELECT TimeLog
-                      FROM LoginAttemps 
+                      FROM LoginAttempts 
                       WHERE UserId = ?
                       AND TimeLog > '$validAttempts'";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userId);
             $stmt->execute();
             return $stmt->get_result()->num_rows;
+        }
+
+        public function registerNewLoginAttempt($userId, $time) {
+            $query = "INSERT INTO LoginAttempts(UserId, TimeLog)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $userId, $time);
+            return $stmt->execute();
         }
 
         public function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {

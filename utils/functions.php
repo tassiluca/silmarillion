@@ -20,7 +20,7 @@
     function checkbrute($userId) {
         global $dbh;
         $now = time();
-        $validAttempts = $now - (2 * 60 * 60);
+        $validAttempts = $now - (5 * 60);   /* 5 mins */
         return $dbh->getLoginAttempts($userId, $validAttempts) > MAX_LOGIN_ATTEMPTS;
     }
 
@@ -29,34 +29,10 @@
         $_SESSION['username'] = $userData['UserId'];
     }
 
-    function login($userData, $password) {
-        if (count($userData)) { // user exists
-            $userData = $userData[0];
-            if ( checkbrute($userData['id']) ) {
-                return false;
-            } else {
-                $password = hash('sha512', $password . $userData['Salt']);
-                if ($userData['Password'] == $password) {
-                    registerLoggedUser($userData);
-                    return true;
-                } else {
-                    /* TODO: register new failed attempt */
-                }
-            }
-        }
-        return false;
-    }
-
-    function customerLogin($username, $password) {
-        global $dbh;
-        $userData = $dbh->getCustomerData($username);
-        return login($userData, $password);
-    }
-
-    function sellerLogin($username, $password) {
-        global $dbh;
-        $userData = $dbh->getSellerData($username);
-        return login($userData, $password);
+    function logout() {
+        /* TODO: to test it */
+        $_SESSION = array();
+        session_destroy();
     }
 
     function isUserLoggedIn(){

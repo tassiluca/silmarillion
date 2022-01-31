@@ -10,6 +10,5 @@ function formHash(form, password, nameAttr) {
     p.name = nameAttr;
     p.type = "hidden";
     p.value = hex_sha512(password.value);
-    alert(p.value);
     password.value = "";
 }
