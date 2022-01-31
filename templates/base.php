@@ -68,16 +68,16 @@
                 </div>
                 <!-- login dropdown menu -->
                 <div id="navLogin">
-                    <form action="#" method="POST">
+                    <form action="login.php" method="POST">
                         <h2>Login</h2>
                         <ul>
                             <li>
                                 <label for="usernameNav">Username</label>
-                                <input type="text" placeholder="es. giovanni.delnevo@gmail.com" id="usernameNav" name="usr" required />
+                                <input type="text" placeholder="es. giovadelnevo" id="usernameNav" name="customerUsr" required />
                             </li>
                             <li>
                                 <label for="userpasswordNav">Password</label>
-                                <input type="password" placeholder="Password" id="userpasswordNav" name="pwd" required />
+                                <input type="password" placeholder="Password" id="userpasswordNav" name="customerPwd" required />
                             </li>
                             <li 
                                 <?php 
