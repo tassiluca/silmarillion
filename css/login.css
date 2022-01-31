@@ -2,49 +2,67 @@ main {
     margin-bottom: 50px;
 }
 
-/***************************** User login form *****************************/
-main > form > header > ul > li:first-child.active {
+/***************************** Section header *****************************/
+
+main > section > header > ul > li {
+    width: 50%;
+    padding: 10px 0;
+    text-align: center;
+    color: #0047A0;
+    display: inline-block;
+    border-radius: 10px 10px 0 0;
+}
+
+main > section > header > ul > li > a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0047A0;
+    font-size: 22px;
+}
+
+main > section > header > ul > li:first-child.active {
     background-color: #AAF1FF;
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > form > ul:first-of-type {
-    background-color: #AAF1FF;
-}
-
-main > form > ul:first-of-type > li > input:not([type="submit"]) {
-    background-color: #0047A0;
-    color: #AAF1FF;
-}
-
-main > form > ul:first-of-type > li > input:not([type="submit"])::placeholder {
-    color: #AAF1FF;
-}
-
-/***************************** Seller login form *****************************/
-main > form > header > ul > li:last-child.active {
+main > section > header > ul > li:last-child.active {
     background-color: #0047A0;
     box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > form > header > ul > li:last-child.active > a {
+main > section > header > ul > li:last-child.active > a {
     color: #AAF1FF;
 }
 
-main > form > ul:last-of-type {
+/***************************** User login form *****************************/
+main > section > form:first-of-type > ul {
+    background-color: #AAF1FF;
+}
+
+main > section > form:first-of-type > ul > li > input:not([type="submit"]) {
+    background-color: #0047A0;
+    color: #AAF1FF;
+}
+
+main > section > form:first-of-type > ul > li > input:not([type="submit"])::placeholder {
+    color: #AAF1FF;
+}
+
+/***************************** Seller login form *****************************/
+main > section > form:last-of-type > ul {
     background-color: #0047A0;
 }
 
-main > form > ul:last-of-type > li > input:not([type="submit"]) {
+main > section > form:last-of-type > ul > li > input:not([type="submit"]) {
     background-color: #AAF1FF;
     color: #0047A0;
 }
 
-main > form > ul:last-of-type > li > input:not([type="submit"])::placeholder {
+main > section > form:last-of-type > ul > li > input:not([type="submit"])::placeholder {
     color: #0047A0;
 }
 
-main > form > ul:last-of-type > li > a {
+main > section > form:last-of-type > ul > li > a {
     color: #AAF1FF;
 }
 
