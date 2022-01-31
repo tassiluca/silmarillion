@@ -14,7 +14,8 @@
                     <ul id="productInfo">
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <!-- TODO: implement link with php -->
-                        <li class="soldout">Non disponibile</li><li><a href="#notificationArea"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
+                        <?php $numCopies = count($templateParams["copies"]);?>
+                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="#notificationArea"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
                         <li><a href="#notificationArea">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
                     <div id="notificationArea" class="warning">
@@ -24,7 +25,7 @@
                     </div>
                     <ul>
                         <li><strong>Autore:</strong><?php echo $templateParams["product"]["Author"]?></li>
-                        <li><strong>Editore:</strong><?php echo $templateParams["product"]["Author"]?></li>
+                        <li><strong>Editore:</strong><?php echo $templateParams["product"]["PublisherName"]?></li>
                         <li><strong>Anno:</strong><?php echo $templateParams["product"]["PublishDate"]?></li>
                         <li><strong>Lingua:</strong><?php echo $templateParams["product"]["Lang"]?></li>
                         <li><strong>ISBN:</strong><?php echo $templateParams["product"]["ISBN"]?></li>
