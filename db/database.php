@@ -42,6 +42,19 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getNewArrival($n=10){
+            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
+                    FROM Comics as C, Products as P
+                    WHERE C.ProductId = P.ProductId
+                    AND DATEDIFF(CURRENT_DATE(),C.PublishDate) <= 30
+                    LIMIT ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $n);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
 
 ?>
