@@ -171,7 +171,7 @@ create table Users (
      Surname varchar(150) not null,
      DateBirth date not null,
      Mail varchar(100) not null,
-     IsActive char not null,
+     IsActive boolean not null,
      constraint IDSeller primary key (UserId),
      constraint IDSeller_1 unique (Username));
 
