@@ -2,7 +2,7 @@
     require_once 'bootstrap.php';
 
     $templateParams["css"] = array("login.css", "login-forms.css");
-    $templateParams["js"] = array("login.js", "sha512.js");
+    $templateParams["js"] = array("login.js");
     $templateParams["main"] = "./templates/login-page.php";
 
     /* customer login */

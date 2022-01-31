@@ -11,7 +11,7 @@
             <img src="./img/login/user-men-icon.svg" alt="">
         </div>
     </header>
-    <form action="" method="POST">
+    <form action="#" method="POST" onsubmit="formHash(this, this.pwd, 'pwd');">
         <ul>
             <li>
                 <h2>Ciao, <br/>conosciamoci meglio</h2>
@@ -35,7 +35,7 @@
                 <label for="username">Username</label><input type="text" placeholder="Username" id="username" name="usr" required />
             </li>
             <li>
-                <label for="email">Email</label><input type="text" id="email" placeholder="Email" name="name" required />
+                <label for="email">Email</label><input type="text" id="email" placeholder="Email" name="email" required />
             </li>
                 <li>
                 <label for="password">Password</label><input type="password" placeholder="Password" id="password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve contenere almeno un numero, una minuscolo e una maiuscola, nonché almeno 8 caratteri" required />

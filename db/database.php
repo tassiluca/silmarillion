@@ -58,6 +58,23 @@
             return $stmt->get_result()->num_rows;
         }
 
+        public function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
+            $query = "INSERT INTO Users(Username, Password, Salt, Name, Surname, DateBirth, Mail, IsActive)
+                      VALUES(?, ?, ?, ?, ?, ?, ?, 1)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssssss', $username, $password, $salt, $name, $surname, $birthday, $mail);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+
+        public function addCustomer($userId) {
+            $query = "INSERT INTO Customers(UserId)
+                      VALUES(?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $userId);
+            return $stmt->execute();
+        }
+
     }
 
 ?>
