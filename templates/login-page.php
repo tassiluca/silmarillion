@@ -5,7 +5,7 @@
                     <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Login</li>
                 </ul>
             </div>
-            <form action="#" method="POST">
+            <form action="#" method="POST" onsubmit="formhash(this, this.userpassword);">
                 <header>
                     <div>
                         <img src="./img/login/user-men-icon.svg" alt="">
@@ -22,11 +22,11 @@
                     </li>
                     <li>
                         <label for="userpassword">Password</label>
-                        <input type="password" placeholder="Password" id="userpassword" name="pwd" required />
+                        <input type="password" placeholder="Password" id="userpassword" name="userPwd" required />
                     </li>
                     <li>
                         <a href="">Hai dimenticato la password?</a>
-                        <input type="button" onclick="formhash(this.form, this.form.userpassword);" value="ACCEDI" />
+                        <input type="submit" name="submit" value="ACCEDI" />
                     </li>
                     <li>
                         <p>Non sei registrato?</p>
@@ -37,15 +37,15 @@
                 <ul id="sellerlogin">
                     <li>
                         <label for="sellername">Username</label>
-                        <input type="text" placeholder="es. silvia.mirri@silmarillion.com" id="sellername" name="usr" />
+                        <input type="text" placeholder="es. silvia.mirri@silmarillion.com" id="sellername" name="sellerUsr" />
                     </li>
                     <li>
                         <label for="sellerpassword">Password</label>
-                        <input type="password" placeholder="Password" id="sellerpassword" name="pwd" />
+                        <input type="password" placeholder="Password" id="sellerpassword" name="sellerPwd" />
                     </li>
                     <li>
                         <a href="">Hai dimenticato la password?</a>
-                        <input type="button" value="ACCEDI" />
+                        <input type="submit" name="submit" value="ACCEDI" />
                     </li>
                 </ul>
             </form>
