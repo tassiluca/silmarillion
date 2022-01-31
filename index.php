@@ -16,7 +16,7 @@
     $templateParams["hero"] = $dbh -> getComicsOfCategory('hero');
     $templateParams["funko"] = $dbh -> getComicsOfCategory('funko');
 
-    //$templateParams["reviews"] = $dbh-> getReviews();
-    //$templateParams["partners"] = $dbh-> getPartners();
+    $templateParams["reviews"] = $dbh-> getReviews();
+    $templateParams["partners"] = $dbh-> getPartners();
     require 'templates/base.php';
 ?>
