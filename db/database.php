@@ -46,7 +46,7 @@
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
                     FROM Comics as C, Products as P
                     WHERE C.ProductId = P.ProductId
-                    AND DATEDIFF(CURRENT_DATE(),C.PublishDate) <= 30
+                    ORDER BY C.PublishDate ASC
                     LIMIT ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $n);

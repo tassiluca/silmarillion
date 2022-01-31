@@ -47,7 +47,7 @@
                 <!--here insert other article to be scrolled-->
                     <?php foreach($templateParams[$section] as $product):?>
                         <article class="fade">
-                            <div><img src="comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></div>
+                            <div><img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></div>
                             <header><?php echo $product["Title"]?></header>
                             <div><a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a href="#" ><img src="./img/add.svg" alt="aggiungi al carrello"/></a><div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DscountPrice"];}else{ echo $product["Price"];}?>€</p></div>
                             </div>
