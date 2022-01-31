@@ -1,6 +1,10 @@
 # Silmarillion
 Web-project
 
-## TODO
-1. script sql creazione tabelle attributi date 
-2. script sql creazione tabelle attributi keywords!
+## N.B. Per abilitare output errori
+In Linux:
+```
+cd /opt/lampp/etc/
+nano php.ini
+```
+porre ad `On` il parametro `display_errors`.
