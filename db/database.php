@@ -87,8 +87,21 @@
         }
 
         public function getProductById($id){
-            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
-                    FROM Comics as C, Products as P
+            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,PB.Name as PublisherName
+                    FROM Comics as C, Products as P, Publisher as PB
+                    WHERE C.ProductId = P.ProductId
+                    AND PB.PublisherId = C.PublisherId
+                    AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getCopiesOfProduct($id){
+            $query = "SELECT P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,C.CopyId
+                    FROM Products as P, ProductCopies as C
                     WHERE C.ProductId = P.ProductId
                     AND P.ProductId = ?";
             $stmt = $this->db->prepare($query);
