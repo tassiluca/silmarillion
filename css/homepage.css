@@ -65,12 +65,15 @@ main > section.review > div > article > header > img{
     vertical-align: middle;
     color: #0047A0;
 }
+main > section.review > div > article > header > img{
+    width: 20%;
+}
 main > section.review > div > article > p {
     padding: 0 3%;
-    font-size: 15pt;
+    font-size: 13pt;
 }
 main > section.review > div > article > header > h3 {
-    font-size: 18pt;
+    font-size: 15pt;
 }
 
 .checked {
