@@ -70,19 +70,21 @@
     <!--
         here insert other article to be scrolled
     -->
-        <article class="fade">
-            <header><img src="img/commons/circleUser.svg" alt=""><h3>Username 1</h3></header>
-            <div>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-            </div>
-            <p>
-                Sito davvero affidabilissimo, consegna veloce e la pizza buonissima!!
-            </p>
+    <?php if(isset($templateParams['reviews'])):
+        foreach($templateParams['reviews'] as $review):?>
+            <article class="fade">
+                <header><img src="img/commons/circleUser.svg" alt=""><h3><?php echo $review['Username']?></h3></header>
+                <div>
+                    <?php for($i=0;$i<$review['Vote'];$i++){ ?>
+                    <span class="fa fa-star checked"></span>
+                    <?php } for($i=0;$i<5-$review['Vote'];$i++){ ?>
+                        <span class="fa fa-star"></span>
+                    <?php }?>
+                </div>
+                <p><?php echo $review['Description']?></p>
         </article>
+    <?php endforeach; endif;?>
+
     <!--
         end group of article
     -->
