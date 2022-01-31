@@ -38,8 +38,9 @@ function updateBanner(n) {
 }
 
 function updatePartner(n) {
-  showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize()+1);
+  showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize()+3);
 }
+
 function updateComic(category,n){
   showDivs(slideIndex += n,"main > section."+category+" > div > article",checkScreenSize());
 }
