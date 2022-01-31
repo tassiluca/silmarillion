@@ -76,7 +76,7 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-        
+
         public function getPartners(){
             $query = "SELECT `PublisherId`, `Name`, `ImgLogo`
                     FROM Publisher";
@@ -85,6 +85,19 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+
+        public function getProductById($id){
+            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
+                    FROM Comics as C, Products as P
+                    WHERE C.ProductId = P.ProductId
+                    AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
 
 ?>
