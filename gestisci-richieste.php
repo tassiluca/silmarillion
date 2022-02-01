@@ -20,8 +20,16 @@
             $dbh -> addProductToWish(2,$idprod); //user and prodid
         }
         else if(!strcmp($action,'addToCart')){
-            //echo 'add to cart id'. $idprod;
+            //add article or increment quantity if avaiable
             $dbh -> addProductToCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+        }
+        else if(!strcmp($action,'decToCart')){
+            //decrement quantity of product in cart
+            $dbh -> decrementProductToCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+        }
+        else if(!strcmp($action,'delFromCart')){
+            //completely remove product from cart
+            $dbh -> deleteProductFromCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
         }
         else if(!strcmp($action,'notify')){
             //echo 'notify me id'. $idprod;
