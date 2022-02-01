@@ -14,7 +14,7 @@
                     <ul id="productInfo">
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <?php $numCopies = count($templateParams["copies"]);?>
-                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a <?php if(isset($templateParams["linkDisabled"])&& !$templateParams["linkDisabled"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li>
+                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li>
                         <li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
                     <ul>
@@ -36,7 +36,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a <?php if(isset($templateParams["linkDisabled"])&& !$templateParams["linkDisabled"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addToCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>
