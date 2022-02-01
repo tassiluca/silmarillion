@@ -191,9 +191,8 @@
         }
 
         private function getListOfFromComics($attribute){ //NOTE: be sure the param is an attributo of Comics
-            $query = "SELECT ? FROM Comics Group by ?";
+            $query = "SELECT ".$attribute." FROM Comics Group by ". $attribute;
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ss', $attribute, $attribute);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
