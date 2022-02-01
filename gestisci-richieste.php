@@ -21,7 +21,8 @@
         }
         else if(!strcmp($action,'addToCart')){
             //add article or increment quantity if avaiable
-            $dbh -> addProductToCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+            echo 'add to cart id'. $idprod;
+            $dbh -> addProductToCart(4,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
         }
         else if(!strcmp($action,'decToCart')){
             //decrement quantity of product in cart

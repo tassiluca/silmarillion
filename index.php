@@ -21,6 +21,6 @@
     $templateParams["reviews"] = $dbh-> getReviews();
     $templateParams["partners"] = $dbh-> getPartners();
 
-    $templateParams["logged"] = false;
+    $templateParams["logged"] = true;
     require 'templates/base.php';
 ?>
