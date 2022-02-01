@@ -70,7 +70,7 @@
                 </div>
                 <!-- login dropdown menu -->
                 <div id="navLogin">
-                    <form action="login.php" method="POST">
+                    <form action="login.php" method="POST" onsubmit="formHash(this, this.customerPwd, 'customerPwd');">
                         <h2>Login</h2>
                         <ul>
                             <li>
