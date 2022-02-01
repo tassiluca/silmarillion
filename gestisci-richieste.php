@@ -19,15 +19,9 @@
             //echo 'add to wishlist id'. $idprod;
             $dbh -> addProductToWish(2,$idprod); //user and prodid
         }
-        else if(!strcmp($action,'toCart')){
+        else if(!strcmp($action,'addToCart')){
             //echo 'add to cart id'. $idprod;
-            if(isset($_GET["amount"])){
-                $amount = $_GET["amount"];
-            }
-            else{
-                $amount = 1;
-            }
-            $dbh -> addProductToCart(2,$idprod,$amount); //iduser,id product, quantity
+            $dbh -> addProductToCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
         }
         else if(!strcmp($action,'notify')){
             //echo 'notify me id'. $idprod;
