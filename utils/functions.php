@@ -23,8 +23,18 @@
         header('Location: ./');
     }
 
-    function isUserLoggedIn(){
+    function isUserLoggedIn() {
         return !empty($_SESSION['userId']);
+    }
+
+    function isCustomerLoggedIn() {
+        global $dbh;
+        return isUserLoggedIn() && $dbh->isCustomer($_SESSION['userId']);
+    }
+
+    function isSellerLoggedIn() {
+        global $dbh;
+        return isUserLoggedIn() && !$dbh->isCustomer($_SESSION['userId']);
     }
 
 ?>

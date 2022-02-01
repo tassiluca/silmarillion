@@ -83,6 +83,16 @@
             return $stmt->execute();
         }
 
+        public function isCustomer($userId) {
+            $query = "SELECT Customers.UserId
+                      FROM Customers
+                      WHERE UserId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $userId);
+            $stmt->execute();
+            return $stmt->get_result()->num_rows > 0;
+        }
+
     }
 
 ?>
