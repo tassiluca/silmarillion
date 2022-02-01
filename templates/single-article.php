@@ -15,7 +15,7 @@
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <?php $numCopies = count($templateParams["copies"]);?>
                         <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li>
-                        <li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
+                        <li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
                     <ul>
                         <li><strong>Autore:</strong><?php echo $templateParams["product"]["Author"]?></li>
