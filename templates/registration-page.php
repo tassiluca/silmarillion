@@ -47,17 +47,6 @@
                     <p id="length" class="invalid"><strong>8 caratteri</strong></p>
                 </section>                        
             </li>
-            <li 
-                <?php 
-                    if (isset($templateParams["registrationError"])) :
-                        echo 'class=active'; 
-                ?>
-            >
-                        <strong><?php echo $templateParams["registrationError"] ?></strong>
-                <?php 
-                    endif;
-                ?>
-            </li>
             <li>
                 <input type="submit" value="CREA ACCOUNT" />
             </li>

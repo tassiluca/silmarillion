@@ -85,6 +85,21 @@ main > section > form > ul > li > p {
     font-weight: bold;
 }
 
-main > section > form > header > ul > li {
-    background-color: #c4c4c450;
+/************************* Errors **************************/
+main > section > form > ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.error {
+    padding: 5px 15px;
+    background-color: #F8D7DA;
+    color: #721C24;
+    text-align: left;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+main > section > form > ul > li > div.error::before {
+    content: "\f00d";
+    font-family: FontAwesome;
 }
