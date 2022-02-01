@@ -38,5 +38,5 @@
         }
     }
     
-   //  header("Location: $lastPage"); //redirect to lastpage where action was sent
+   header("Location: $lastPage"); //redirect to lastpage where action was sent
 ?>
