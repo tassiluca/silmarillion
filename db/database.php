@@ -121,22 +121,24 @@
         public function addProductToCart($usrId,$idprod,$quantity){
             $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
             $avaiableCopies = $this -> getAvaiableCopiesOfProd($idprod); //to check if article can be added to cart
-            
+
             if($avaiableCopies > 0){
                 if(count($matchInCart) <= 0){ //if first time to be added in cart
                     $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
                         VALUES (?,?,?)";
                     $stmt = $this->db->prepare($query);
                     $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+                    $stmt->execute();
+                    return $stmt->insert_id;
                 }
-                else{ //in case of update quantity prod in cart
+                else{ //in case of update quantity prod in cart 
                     $quantity += $matchInCart[0]['Quantity'];
-                    $query = "UPDATE `Carts` SET `ProductId`=?,`UserId`=?,`Quantity`=?";
+                    $query = "UPDATE Carts SET ProductId=?,UserId=?,Quantity=?";
                     $stmt = $this->db->prepare($query);
                     $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+                    $stmt->execute();
+                    return $stmt->insert_id;
                 }
-                $stmt->execute();
-                return $stmt->insert_id;
             }
         }
 
