@@ -11,22 +11,30 @@
 
     function login($userData, $password) {
         global $dbh;
-        global $templateParams;
+        $errors = [];
+        $data = [];
         if (count($userData)) { // user exists
             $userData = $userData[0];
             if (checkbrute($userData['UserId'])) {
-                $templateParams["loginError"] = "Negli ultimi 5 minuti hai effettuato 5 tentativi a vuoto. Aspetta!";
+                $errors["brute-force"] = "Negli ultimi 5 minuti hai effettuato 5 tentativi a vuoto. Aspetta!";
             } else {
                 $password = hash('sha512', $password . $userData['Salt']);
                 if ($userData['Password'] == $password) {
                     registerLoggedUser($userData);
                 } else {
                     $dbh->registerNewLoginAttempt($userData['UserId'], time());
-                    $templateParams["loginError"] = "Login fallito: ricontrolla i campi!";
+                    $erros["wrong"] = "Login fallito: ricontrolla i campi!";
                 }
             }
         } else {
-            $templateParams["loginError"] = "Login fallito: ricontrolla i campi!";
+            $templateParams["wrong"] = "Login fallito: ricontrolla i campi!";
+        }
+        if (!empty($errors)) {
+            $data["success"] = false;
+            $data["errors"] = $errors;
+        } else {
+            $data["success"] = true;
+            $data["message"] = "Login effettuato con successo!";
         }
     }
 
