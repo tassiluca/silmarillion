@@ -26,7 +26,7 @@
                 <img src="./img/login/birthday-icon.svg" alt="" />
             </li>
             <li>
-                <label id="birthdayLabel" for="birthday">Data di nascita</label><input type="date" id="birthday" value="2000-01-01" name="birthday" required />
+                <label id="birthdayLabel" for="birthday">Data di nascita</label><input type="date" id="birthday" name="birthday" required />
             </li>
             <li>
                 <img src="./img/login/anonymous-icon.svg" alt="" />
