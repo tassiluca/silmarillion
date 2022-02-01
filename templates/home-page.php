@@ -49,7 +49,7 @@
                         <article class="fade">
                             <div> <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
                             <header><?php echo $product["Title"]?></header>
-                            <div><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=wish&id=<?php echo $product['ProductId']?>"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=toCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="aggiungi al carrello"/></a><div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
+                            <div><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=wish&id=<?php echo $product['ProductId']?>"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=addToCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="aggiungi al carrello"/></a><div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
                             </div>
                         </article>
         <?php endforeach;?>
