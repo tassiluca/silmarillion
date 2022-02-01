@@ -1,6 +1,9 @@
 <?php
     require_once '../bootstrap.php';
 
+    define("FORCING_MSG", "Negli ultimi 5 minuti hai effettuato 5 tentativi a vuoto. Aspetta!");
+    define("ERROR_MSG", "Login fallito: ricontrolla i campi!");
+
     /** 
      * Prevents brute force attacks.
      */
@@ -16,12 +19,6 @@
         $_SESSION['username'] = $userData['UserId'];
     }
 
-    function logout() {
-        /* TODO: to test it */
-        $_SESSION = array();
-        session_destroy();
-    }
-
     function login($userData, $password) {
         global $dbh;
         $errors = [];
@@ -29,18 +26,18 @@
         if (count($userData)) { // user exists
             $userData = $userData[0];
             if (checkbrute($userData['UserId'])) {
-                $errors["forcing"] = "Negli ultimi 5 minuti hai effettuato 5 tentativi a vuoto. Aspetta!";
+                $errors["forcing"] = FORCING_MSG;
             } else {
                 $password = hash('sha512', $password . $userData['Salt']);
                 if ($userData['Password'] == $password) {
                     registerLoggedUser($userData);
                 } else {
                     $dbh->registerNewLoginAttempt($userData['UserId'], time());
-                    $errors["wrong"] = "Login fallito: ricontrolla i campi!";
+                    $errors["wrong"] = ERROR_MSG;
                 }
             }
         } else {
-            $errors["wrong"] = "Login fallito: ricontrolla i campi!";
+            $errors["wrong"] = ERROR_MSG;
         }
         if (!empty($errors)) {
             $data["success"] = false;

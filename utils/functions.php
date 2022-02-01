@@ -14,6 +14,15 @@
         session_regenerate_id();
     }
 
+    function logout() {
+        $_SESSION = array();    // delete all session values
+        session_destroy();      // destroy the session
+        // delete actual cookies
+        // $params = session_get_cookie_params();
+        // setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+        header('Location: ./');
+    }
+
     function isUserLoggedIn(){
         return !empty($_SESSION['userId']);
     }
