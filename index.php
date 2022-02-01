@@ -1,5 +1,7 @@
 <?php
     require_once 'bootstrap.php';
+    session_start(); 
+    $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 
     $templateParams["css"] = array("homepage.css","product.css");
     $templateParams["js"] = array("home.js");
