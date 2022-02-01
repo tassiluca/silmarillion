@@ -25,6 +25,9 @@ $(document).ready(function(){
     });
 
     $("main > section > form:first-of-type").submit(function(event) {
+        $(".hasError").removeClass("hasError");
+        $(".error").remove();
+
         var formData = {
             customerUsr: $("#customerUsr").val(),
             customerPwd: hex_sha512($("#customerPwd").val())
@@ -41,14 +44,16 @@ $(document).ready(function(){
                 $("ul#userlogin > li:first-of-type").addClass("hasError");
                 $("ul#userlogin > li:nth-of-type(2)").addClass("hasError");
                 if (data.errors.forcing) {
-                    $(this + "> li:nth-of-type(2)").append(
+                    $("ul#userlogin > li:nth-of-type(2)").append (
                         '<div class="error">' + data.errors.forcing + '</div>'
                     );
                 } else {
-                    $("ul#userlogin > li:nth-of-type(2)").append(
+                    $("ul#userlogin > li:nth-of-type(2)").append (
                         '<div class="error">' + data.errors.wrong + '</div>'
                     );
                 }
+            } else {
+                window.location.href = 'registration.php';
             }
         });
 
