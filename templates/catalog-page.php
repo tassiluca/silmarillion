@@ -45,9 +45,37 @@
                     </li>   
                 </ul>
                 <button>Editore</button>
+                <ul>
+                    <?php if(isset($templateParams["publisher"])):
+                    foreach($templateParams["publisher"] as $publisher):
+                        $idname= getIdFromName($publisher["Name"]);?>
+                        <li><input type="checkbox" id="<?php echo $idname?>" name="<?php echo $publisher["Name"]?>" />
+                        <label for="<?php echo $idname?>"><?php echo $publisher["Name"]?></label></li><?php endforeach;endif;?>
+                </ul>
                 <button>Lingua</button>
+                <ul>
+                    <?php if(isset($templateParams["languages"])):
+                    foreach($templateParams["languages"] as $lang): 
+                        $idlang= getIdFromName($lang['Lang']); ?>
+                        <li>
+                        <input type="checkbox" id="<?php echo $idlang?>" name="<?php echo $lang['Lang']?>" />
+                        <label for="<?php echo $idlang?>"><?php echo $lang['Lang']?></label>
+                    </li> 
+                    <?php endforeach;endif;?>
+                </ul>
                 <button>Autore</button>
+                <ul>
+                    <?php if(isset($templateParams["authors"])):
+                    foreach($templateParams["authors"] as $lang): 
+                        $idlang= getIdFromName($lang['Author']); ?>
+                        <li>
+                        <input type="checkbox" id="<?php echo $idlang?>" name="<?php echo $lang['Author']?>" />
+                        <label for="<?php echo $idlang?>"><?php echo $lang['Author']?></label>
+                    </li> 
+                    <?php endforeach;endif;?>
+                </ul>
             </aside><section>
+                
                 <article>
                     <div>
                         <img src="img/fumetto.svg" alt="The Seven deadly sins">
@@ -64,71 +92,8 @@
                             <p>4,90€</p>
                         </div>
                     </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto2.jpg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>4,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>14,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>11,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>4,90€</p>
-                        </div>
-                    </footer>
                 </article>
+
                 <footer>
                     <!-- Pagination -->
                     <ul>
