@@ -19,6 +19,7 @@
         ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/navbar.js"></script>
+        <script src="js/login-form.js"></script>
         <script src="js/sha512.js"></script>
         <?php
             /**
@@ -69,7 +70,7 @@
                 </div>
                 <!-- login dropdown menu -->
                 <div id="navLogin">
-                    <form action="login.php" method="POST" onsubmit="formHash(this, this.customerPwd, 'customerPwd');">
+                    <form action="#" method="POST">
                         <h2>Login</h2>
                         <ul>
                             <li>
