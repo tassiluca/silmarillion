@@ -11,7 +11,7 @@
             <img src="./img/login/user-men-icon.svg" alt="">
         </div>
     </header>
-    <form action="#" method="POST" onsubmit="formHash(this, this.pwd, 'pwd');">
+    <form action="#" method="POST">
         <ul>
             <li>
                 <h2>Ciao, <br/>conosciamoci meglio</h2>

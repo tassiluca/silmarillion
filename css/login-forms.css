@@ -111,8 +111,8 @@ main > section > form > ul > li > div.message.error::before {
 }
 
 main > section > form > ul > li > div.message.success {
-    background-color: #F8D7DA;
-    color: #D4EDD5;
+    background-color: #D4EDD5;
+    color: #155724;
     border-color: green;
 }
 
