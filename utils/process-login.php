@@ -1,6 +1,27 @@
 <?php
     require_once '../bootstrap.php';
 
+    /** 
+     * Prevents brute force attacks.
+     */
+    function checkbrute($userId) {
+        global $dbh;
+        $now = time();
+        $validAttempts = $now - (5 * 60);   /* 5 mins */
+        return $dbh->getLoginAttempts($userId, $validAttempts) >= MAX_LOGIN_ATTEMPTS;
+    }
+
+    function registerLoggedUser($userData) {
+        $_SESSION['userId'] = $userData['UserId'];
+        $_SESSION['username'] = $userData['UserId'];
+    }
+
+    function logout() {
+        /* TODO: to test it */
+        $_SESSION = array();
+        session_destroy();
+    }
+
     function login($userData, $password) {
         global $dbh;
         $errors = [];
