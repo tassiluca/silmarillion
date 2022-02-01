@@ -35,7 +35,7 @@
                 <label for="username">Username</label><input type="text" placeholder="Username" id="username" name="usr" required />
             </li>
             <li>
-                <label for="email">Email</label><input type="text" id="email" placeholder="Email" name="email" required />
+                <label for="email">Email</label><input type="text" id="email" placeholder="Email" name="email" pattern="^\S+@\S+$" title="Deve contenere un indirizzo mail valido" required />
             </li>
                 <li>
                 <label for="password">Password</label><input type="password" placeholder="Password" id="password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve contenere almeno un numero, una minuscolo e una maiuscola, nonché almeno 8 caratteri" required />
