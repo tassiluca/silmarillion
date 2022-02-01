@@ -99,17 +99,6 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function getCopiesOfProduct($id){
-            $query = "SELECT P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,C.CopyId
-                    FROM Products as P, ProductCopies as C
-                    WHERE C.ProductId = P.ProductId
-                    AND P.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
-        }
 
         public function addProductToWish($usrId,$idprod){
             $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
@@ -128,27 +117,31 @@
             return $stmt->insert_id;
         }
 
+//-----------------------------ADD----TO---CART------------------------------//
         public function addProductToCart($usrId,$idprod,$quantity){
-            $matchInCart = $this->alreadyInCart($idprod,$usrId);
+            $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
+            $avaiableCopies = $this -> getAvaiableCopiesOfProd($id); //to check if article can be added to cart
             
-            if(count($matchInCart) <= 0){ //if first time to be added in cart
-                $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
-                    VALUES (?,?,?)";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('iii',$idprod,$usrId,$quantity);
-            }
-            else{ //in case of update quantity prod in cart
-                $quantity += $matchInCart[0]['Quantity'];
-                $query = "UPDATE `Carts` SET `ProductId`=?,`UserId`=?,`Quantity`=?";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+            if($avaiableCopies > 0){
+                if(count($matchInCart) <= 0){ //if first time to be added in cart
+                    $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
+                        VALUES (?,?,?)";
+                    $stmt = $this->db->prepare($query);
+                    $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+                }
+                else{ //in case of update quantity prod in cart
+                    $quantity += $matchInCart[0]['Quantity'];
+                    $query = "UPDATE `Carts` SET `ProductId`=?,`UserId`=?,`Quantity`=?";
+                    $stmt = $this->db->prepare($query);
+                    $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+                }
+                $stmt->execute();
+                return $stmt->insert_id;
             }
             
-            $stmt->execute();
-            return $stmt->insert_id;
         }
 
-        private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present
+        private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present in user cart
             $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` 
                         WHERE ProductId = ? AND UserId = ?";
             $stmt = $this->db->prepare($query);
@@ -156,6 +149,35 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getAvaiableCopiesOfProd($id){
+            //article copies in users cart - not avaiable for others users
+            $inCarts = $this -> getCopiesNotAvaiable($id);
+            $inCarts = count($inCarts)>0? intval($inCarts[0]['total']):0;
+
+            $copiesInStock = count($this -> getCopiesInStock($id));
+            return $copiesInStock - $inCarts;
+        }
+
+        private function getCopiesInStock($id){
+            $query = "SELECT `CopyId`, `ProductId` FROM `ProductCopies` WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        private function getCopiesNotAvaiable($id){
+            $query = "SELECT ProductId,sum(Quantity) as total
+                        FROM Carts
+                        where ProductId = ?
+                        group by `ProductId`";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
     }
 
