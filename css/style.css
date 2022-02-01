@@ -469,12 +469,16 @@ body > header > nav > div#navSearch > form > ul {
 
     /* buttons links */
     body > header > nav > ul {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        width: 18%;
         margin-right: 2%;
+        width: 17%;
+        padding-left: 1%;
         vertical-align: middle;
+    }
+
+    body > header > nav > ul > li {
+        list-style: none;
+        display: inline-block;
+        width: 25%;
     }
 
     body > header > nav > ul > li > button,
@@ -554,12 +558,16 @@ body > header > nav > div#navSearch > form > ul {
 
     /* buttons links */
     body > header > nav > ul {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        width: 15%;
-        margin-right: 5%;
+        margin-right: 2%;
+        width: 17%;
+        padding-left: 1%;
         vertical-align: middle;
+    }
+
+    body > header > nav > ul > li {
+        list-style: none;
+        display: inline-block;
+        width: 25%;
     }
 
     body > header > nav > ul > li > button,
