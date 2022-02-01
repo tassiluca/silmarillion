@@ -12,8 +12,8 @@
         $idprodotto = $_GET["id"];
     }   
     $templateParams["product"] = $dbh -> getProductById($idprodotto)[0];
-    $templateParams["copies"] = $dbh -> getCopiesOfProduct($idprodotto);
-    $templateParams["linkDisabled"] = true; // ci va la funzione che verifica se sei loggato
+    $templateParams["copies"] = $dbh -> getAvaiableCopiesOfProd($idprodotto);
+    $templateParams["logged"] = true; // ci va la funzione che verifica se sei loggato
 
     require 'templates/base.php';
 ?>
