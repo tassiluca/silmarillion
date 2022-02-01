@@ -553,3 +553,9 @@ body > header > nav > div#navSearch > form > ul {
     }
 
 }
+
+/*disabled Link button*/
+.disabled {
+    pointer-events: none;
+    filter: grayscale(1);
+}

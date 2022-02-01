@@ -14,14 +14,9 @@
                     <ul id="productInfo">
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <?php $numCopies = count($templateParams["copies"]);?>
-                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
+                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li>
                         <li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
-                    <div id="notificationArea" class="warning">
-                        <!-- NOTE: if an error message must be displayed add a class error, otherwise message -->
-                        <span></span>
-                        <strong>Per svolgere questa azione devi essere loggato!</strong>
-                    </div>
                     <ul>
                         <li><strong>Autore:</strong><?php echo $templateParams["product"]["Author"]?></li>
                         <li><strong>Editore:</strong><?php echo $templateParams["product"]["PublisherName"]?></li>
@@ -41,7 +36,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a href="gestisci-richieste.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>
