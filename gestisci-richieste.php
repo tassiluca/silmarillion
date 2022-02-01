@@ -21,11 +21,17 @@
         }
         else if(!strcmp($action,'toCart')){
             //echo 'add to cart id'. $idprod;
-            $dbh -> addProductToCart(2,$idprod,5); //iduser,id product, quantity
+            if(isset($_GET["amount"])){
+                $amount = $_GET["amount"];
+            }
+            else{
+                $amount = 1;
+            }
+            $dbh -> addProductToCart(2,$idprod,$amount); //iduser,id product, quantity
         }
         else if(!strcmp($action,'notify')){
             //echo 'notify me id'. $idprod;
-            $dbh -> addAlert(2,$idprod);
+            $dbh -> addProductAlert(2,$idprod);
         }
     }
     
