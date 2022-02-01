@@ -2,6 +2,7 @@
 
     class DatabaseHelper {
         private $db;
+        private $MYSQLI_CODE_DUPLICATE_KEY = 1062;
 
         public function __construct($servername, $username, $password, $dbname, $port) {
             $this->db = new mysqli($servername, $username, $password, $dbname, $port);
@@ -95,7 +96,14 @@
                       VALUES(?, ?, ?, ?, ?, ?, ?, 1)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sssssss', $username, $password, $salt, $name, $surname, $birthday, $mail);
-            $stmt->execute();
+            try {
+                $res = $stmt->execute();
+            } catch(Exception $e) {
+                // if a user with given username already exists in db
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return -1;
+                }
+            }
             return $stmt->insert_id;
         }
 
