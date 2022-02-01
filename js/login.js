@@ -23,4 +23,35 @@ $(document).ready(function(){
         $("#userlogin").hide()
         $("#sellerlogin").show()
     });
+
+    $("main > section > form:first-of-type").submit(function(event) {
+        var formData = {
+            customerUsr: $("#customerUsr").val(),
+            customerPwd: hex_sha512($("#customerPwd").val())
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "utils/process-login.php",
+            data: formData,
+            dataType: "json",
+            encode: true
+        }).done(function (data) {
+            if (!data.success) { // there was an error
+                $("ul#userlogin > li:first-of-type").addClass("hasError");
+                $("ul#userlogin > li:nth-of-type(2)").addClass("hasError");
+                if (data.errors.forcing) {
+                    $(this + "> li:nth-of-type(2)").append(
+                        '<div class="error">' + data.errors.forcing + '</div>'
+                    );
+                } else {
+                    $("ul#userlogin > li:nth-of-type(2)").append(
+                        '<div class="error">' + data.errors.wrong + '</div>'
+                    );
+                }
+            }
+        });
+
+        event.preventDefault();
+    });
 })

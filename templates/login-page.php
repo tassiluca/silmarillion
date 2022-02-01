@@ -15,18 +15,15 @@
         </ul>
     </header>
     <!-- User login form -->
-    <form action="#" method="POST" onsubmit="formHash(this, this.customerPwd, 'customerPwd');">
+    <form action="#" method="POST">
         <ul id="userlogin">
-            <li class="hasError">
-                <label for="username">Username</label>
-                <input type="text" placeholder="es. giovadelnevo" id="username" name="customerUsr" required />
-                <div class="error">
-                    Errore
-                </div>
+            <li>
+                <label for="customerUsr">Username</label>
+                <input type="text" placeholder="es. giovadelnevo" id="customerUsr" name="customerUsr" required />
             </li>
             <li>
-                <label for="userpassword">Password</label>
-                <input type="password" placeholder="Password" id="userpassword" name="customerPwd" required />
+                <label for="customerPwd">Password</label>
+                <input type="password" placeholder="Password" id="customerPwd" name="customerPwd" required />
             </li>
             <li>
                 <a href="">Hai dimenticato la password?</a>
@@ -42,12 +39,12 @@
     <form action="#" method="POST" onsubmit="formHash(this, this.sellerPwd, 'sellerPwd');">
         <ul id="sellerlogin">
             <li>
-                <label for="sellername">Username</label>
-                <input type="text" placeholder="es. silvymirry" id="sellername" name="sellerUsr" />
+                <label for="sellerUsr">Username</label>
+                <input type="text" placeholder="es. silvymirry" id="sellerUsr" name="sellerUsr" />
             </li>
             <li>
-                <label for="sellerpassword">Password</label>
-                <input type="password" placeholder="Password" id="sellerpassword" name="sellerPwd" />
+                <label for="sellerPwd">Password</label>
+                <input type="password" placeholder="Password" id="sellerPwd" name="sellerPwd" />
             </li>
             <li 
                 <?php 

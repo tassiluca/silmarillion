@@ -20,7 +20,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/navbar.js"></script>
         <script src="js/sha512.js"></script>
-        <script src="js/secure-form.js"></script>
         <?php
             /**
              * Insert here all the javascript files needed by the single page.
