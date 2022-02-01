@@ -1,7 +1,7 @@
             
             <?php if(isset($templateParams["product"])):?>
                 <div><ul>
-                    <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="catalog.html">Catalogo</a></li><li><?php echo $templateParams["product"]["Title"]?></li>
+                    <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="catalog.php">Catalogo</a></li><li><?php echo $templateParams["product"]["Title"]?></li>
                 </ul>
             </div>
             <h2><?php echo $templateParams["product"]["Title"]?></h2>
@@ -14,8 +14,8 @@
                     <ul id="productInfo">
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <?php $numCopies = count($templateParams["copies"]);?>
-                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="article.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
-                        <li><a href="article.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
+                        <li class="<?php if($numCopies > 0){echo "available";}else{echo "soldout";}?>"><?php if($numCopies > 0){echo $numCopies ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>"><img src="./img/favourite.svg" alt="Preferito" /></a></li>
+                        <li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
                     <div id="notificationArea" class="warning">
                         <!-- NOTE: if an error message must be displayed add a class error, otherwise message -->
@@ -41,7 +41,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a href="article.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a href="gestisci-richieste.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>
