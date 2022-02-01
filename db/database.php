@@ -111,6 +111,14 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function addProductToWish($usrId,$idprod){
+            $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
+                        VALUES (?,?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $usrId,$idprod);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
     }
 
 ?>
