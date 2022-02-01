@@ -41,18 +41,79 @@
             <h1 class="hide">Silmarillion Comics</h1>
             <nav>
                 <ul>
-                    <li><button type="button"><img src="./img/commons/menu.svg" alt="Menu"/></button></li><li><button type="button"><img src="./img/commons/menu-search.svg" alt="Cerca"/></button></li><li><?php if (!isUserLoggedIn()): ?><button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button><?php else: ?><a href="#"><img src="./img/commons/menu-login-checked.svg" alt="Login"/></a><?php endif; ?></li><li><button type="button" ><img src="./img/commons/menu-cart.svg" alt="Carrello"/></button></li>
+                    <li>
+                        <button type="button">
+                            <img src="./img/commons/menu.svg" alt="Menu"/>
+                        </button>
+                    </li><li>
+                        <button type="button">
+                            <img src="./img/commons/menu-search.svg" alt="Cerca"/>
+                        </button>
+                    </li><li>
+                        <!-- TODO: modify pages name -->
+                        <?php if (isUserLoggedIn()): ?>
+                            <a href="<?php echo (isCustomerLoggedIn() ? 'userArea.php' : 'sellerArea.php'); ?>">
+                                <img src="./img/commons/menu-login-checked.svg" alt="Login"/>
+                            </a>
+                        <?php else: ?>
+                            <button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button>
+                        <?php endif; ?>
+                    </li><li>
+                        <button type="button" >
+                            <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
+                        </button>
+                    </li>
                 </ul>
                 <div id="navMenu">
-                    <ul><li><a href="catalog.html">Nuovi Arrivi</a></li><li><a href="catalog.html">Manga</a></li><li><a href="catalog.html">Supoereroi</a></li><li><a href="catalog.html">Funko Pop</a></li><li id="login"><a href="login.html">Login</a></li><li><a href="">Recensioni</a></li><li><a href="">Partner</a></li><li><a href="">Supporto</a></li>
+                    <ul>
+                        <li>
+                            <a href="catalog.html">Nuovi Arrivi</a>
+                        </li>
+                        <li>
+                            <a href="catalog.html">Manga</a>
+                        </li>
+                        <li>
+                            <a href="catalog.html">Supoereroi</a>
+                        </li>
+                        <li>
+                            <a href="catalog.html">Funko Pop</a>
+                        </li>
+                        <li id="login">
+                            <a href="login.html">Login</a>
+                        </li>
+                        <li>
+                            <a href="">Recensioni</a>
+                        </li>
+                        <li>
+                            <a href="">Partner</a>
+                        </li>
+                        <li>
+                            <a href="">Supporto</a>
+                        </li>
                     </ul> 
                 </div>
                 <div id="navCart">
                     <ul>
-                        <li><img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
-                        <div><p>Deadpool_Cake_POP_GLAM</p><div><p>15,99€</p><p>x2</p></div></div></li>
-                        <li><img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
-                            <div><p>Deadpool_Cake_POP_GLAM</p><div><p>15,99€</p><p>x2</p></div></div></li>
+                        <li>
+                            <img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
+                            <div>
+                                <p>Deadpool_Cake_POP_GLAM</p>
+                                <div>
+                                    <p>15,99€</p>
+                                    <p>x2</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
+                            <div>
+                                <p>Deadpool_Cake_POP_GLAM</p>
+                                <div>
+                                    <p>15,99€</p>
+                                    <p>x2</p>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                     <a href="cart.html">Visualizza carrello</a>
                 </div>
