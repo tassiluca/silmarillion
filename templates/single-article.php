@@ -34,7 +34,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a <?php if((isset($templateParams["logged"])&& !$templateParams["logged"]) || $templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=toCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if((isset($templateParams["logged"])&& !$templateParams["logged"]) || $templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>

@@ -19,10 +19,10 @@
             //echo 'add to wishlist id'. $idprod;
             $dbh -> addProductToWish(2,$idprod); //user and prodid
         }
-        else if(!strcmp($action,'addToCart')){
+        else if(!strcmp($action,'addtoCart')){
             //add article or increment quantity if avaiable
             echo 'add to cart id'. $idprod;
-            $dbh -> addProductToCart(4,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+            $dbh -> addProductToCart(3,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
         }
         else if(!strcmp($action,'decToCart')){
             //decrement quantity of product in cart
@@ -38,5 +38,5 @@
         }
     }
     
-    header("Location: $lastPage"); //redirect to lastpage where action was sent
+   //  header("Location: $lastPage"); //redirect to lastpage where action was sent
 ?>

@@ -120,7 +120,7 @@
 //-----------------------------ADD----TO---CART------------------------------//
         public function addProductToCart($usrId,$idprod,$quantity){
             $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
-            $avaiableCopies = $this -> getAvaiableCopiesOfProd($id); //to check if article can be added to cart
+            $avaiableCopies = $this -> getAvaiableCopiesOfProd($idprod); //to check if article can be added to cart
             
             if($avaiableCopies > 0){
                 if(count($matchInCart) <= 0){ //if first time to be added in cart
@@ -138,7 +138,6 @@
                 $stmt->execute();
                 return $stmt->insert_id;
             }
-            
         }
 
         private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present in user cart
