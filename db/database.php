@@ -183,11 +183,11 @@
 
 //-----------------------CATALOG-----------------------------//
         public function getLanguages(){
-            return getListOfFromComics('Lang');
+            return $this -> getListOfFromComics('Lang');
         }
 
         public function getAllAuthors(){
-            return getListOfFromComics('Author');
+            return $this -> getListOfFromComics('Author');
         }
 
         private function getListOfFromComics($attribute){ //NOTE: be sure the param is an attributo of Comics
