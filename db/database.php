@@ -119,6 +119,25 @@
             $stmt->execute();
             return $stmt->insert_id;
         }
+        public function addProductAlert($usrId,$idprod){
+            $query = "INSERT INTO `Alerts`(`UserId`, `ProductId`) 
+                        VALUES (?,?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $usrId,$idprod);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+
+        public function addProductToCart($usrId,$idprod,$quantity){
+            $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
+                    VALUES (?,?,?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+
+
     }
 
 ?>
