@@ -198,5 +198,13 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getAllCategories(){
+            $query = "SELECT * FROM `Categories`";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
 ?>

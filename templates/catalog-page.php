@@ -9,14 +9,11 @@
             <aside>
                 <button>Categoria</button>
                 <ul>
-                    <li>
-                        <input type="checkbox" id="comics" name="Fumetti" />
-                        <label for="comics">Fumetti</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="funk" name="Funko" />
-                        <label for="funk">Funko</label>
-                    </li>   
+                    <?php if(isset($templateParams["categories"])):
+                    foreach($templateParams["categories"] as $category):
+                        $idcategory= getIdFromName($category["Name"]);?>
+                        <li><input type="checkbox" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
+                        <label for="<?php echo $idcategory?>"><?php echo $category["Name"]?></label></li><?php endforeach;endif;?>  
                 </ul>
                 <button>Prezzo</button>
                 <ul>

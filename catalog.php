@@ -9,6 +9,9 @@
     $templateParams["publisher"] = $dbh -> getPartners();
     $templateParams["languages"] = $dbh -> getLanguages();
     $templateParams["authors"] = $dbh -> getAllAuthors();
+    $templateParams["products"] = $dbh -> getComicsOfCategory('hero');//getProductByFilter();
+    $templateParams["categories"] = $dbh -> getAllCategories();
+    
     $templateParams["logged"] = true;
     require 'templates/base.php';
     
