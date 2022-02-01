@@ -23,11 +23,11 @@ function loginAttempt(form, formData, target) {
             // add an error message
             if (data.errors.forcing) {
                 $(form).find("ul > li:nth-of-type(2)").append (
-                    '<div class="error">' + data.errors.forcing + '</div>'
+                    '<div class="message error">' + data.errors.forcing + '</div>'
                 );
             } else {
                 $(form).find("ul > li:nth-of-type(2)").append (
-                    '<div class="error">' + data.errors.wrong + '</div>'
+                    '<div class="message error">' + data.errors.wrong + '</div>'
                 );
             }
         } else {
