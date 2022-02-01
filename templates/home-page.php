@@ -86,8 +86,8 @@
         </article>
     <?php endforeach; endif;?>
     <!--end group of article-->
-    <input type="image" src="img/Back.svg" onclick="updateComic('review',-1)" onkeypress="updateComic('review',-1)" alt="recensione precedente" >
-    <input type="image" src="img/Forward.svg" onclick="updateComic('review',1)" onkeypress="updateComic('review',1)" alt="recensione precedente" >
+    <input type="image" src="img/Back.svg" onclick="updateReview(-1)" onkeypress="updateReview(-1)" alt="recensione precedente" >
+    <input type="image" src="img/Forward.svg" onclick="updateReview(1)" onkeypress="updateReview(1)" alt="recensione precedente" >
      </div>
 </section>
 <section id="partners">
