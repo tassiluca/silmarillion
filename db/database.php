@@ -129,15 +129,34 @@
         }
 
         public function addProductToCart($usrId,$idprod,$quantity){
-            $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
+            $matchInCart = $this->alreadyInCart($idprod,$usrId);
+            
+            if(count($matchInCart) <= 0){ //if first time to be added in cart
+                $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
                     VALUES (?,?,?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+            }
+            else{ //in case of update quantity prod in cart
+                $quantity += $matchInCart[0]['Quantity'];
+                $query = "UPDATE `Carts` SET `ProductId`=?,`UserId`=?,`Quantity`=?";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('iii',$idprod,$usrId,$quantity);
+            }
+            
             $stmt->execute();
             return $stmt->insert_id;
         }
 
-
+        private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present
+            $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` 
+                        WHERE ProductId = ? AND UserId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $idProd,$usrId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
     }
 
 ?>
