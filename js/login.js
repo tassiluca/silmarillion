@@ -7,6 +7,39 @@ function showElement(element) {
     }
 }
 
+function loginAttempt(form, formData, target) {
+    $(".hasError").removeClass("hasError");
+    $(".error").remove();
+
+    $.ajax({
+        type: "POST",
+        url: "utils/process-login.php",
+        data: formData,
+        dataType: "json",
+        encode: true
+    }).done(function (data) {
+        if (!data.success) { // there was an error
+            $(form).find("ul > li:first-of-type").addClass("hasError");
+            $(form).find("ul > li:nth-of-type(2)").addClass("hasError");
+            if (data.errors.forcing) {
+                $(form).find("ul > li:nth-of-type(2)").append (
+                    '<div class="error">' + data.errors.forcing + '</div>'
+                );
+            } else {
+                $(form).find("ul > li:nth-of-type(2)").append (
+                    '<div class="error">' + data.errors.wrong + '</div>'
+                );
+            }
+        } else {
+            window.location.href = target;
+        }
+    }).fail(function(data) {
+        $(form).find("ul > li:nth-of-type(2)").append (
+            '<div class="error">Errore connessione db! Riprova...</div>'
+        );
+    });
+}
+
 $(document).ready(function(){
     /* By default user login form is active and seller one is hidden */
     $("main > section > header > ul > li:first-child").addClass("active");
@@ -25,38 +58,22 @@ $(document).ready(function(){
     });
 
     $("main > section > form:first-of-type").submit(function(event) {
-        $(".hasError").removeClass("hasError");
-        $(".error").remove();
-
         var formData = {
             customerUsr: $("#customerUsr").val(),
             customerPwd: hex_sha512($("#customerPwd").val())
         };
+        /* TODO: modify the target */
+        loginAttempt($(this), formData, 'registration.php');
+        event.preventDefault();
+    });
 
-        $.ajax({
-            type: "POST",
-            url: "utils/process-login.php",
-            data: formData,
-            dataType: "json",
-            encode: true
-        }).done(function (data) {
-            if (!data.success) { // there was an error
-                $("ul#userlogin > li:first-of-type").addClass("hasError");
-                $("ul#userlogin > li:nth-of-type(2)").addClass("hasError");
-                if (data.errors.forcing) {
-                    $("ul#userlogin > li:nth-of-type(2)").append (
-                        '<div class="error">' + data.errors.forcing + '</div>'
-                    );
-                } else {
-                    $("ul#userlogin > li:nth-of-type(2)").append (
-                        '<div class="error">' + data.errors.wrong + '</div>'
-                    );
-                }
-            } else {
-                window.location.href = 'registration.php';
-            }
-        });
-
+    $("main > section > form:nth-of-type(2)").submit(function(event) {
+        var formData = {
+            sellerUsr: $("#sellerUsr").val(),
+            sellerPwd: hex_sha512($("#sellerPwd").val())
+        };
+        /* TODO: modify the target */
+        loginAttempt($(this), formData, 'registration.php');
         event.preventDefault();
     });
 })

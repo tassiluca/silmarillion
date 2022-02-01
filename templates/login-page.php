@@ -26,6 +26,7 @@
                 <input type="password" placeholder="Password" id="customerPwd" name="customerPwd" required />
             </li>
             <li>
+                <!-- TODO: link -->
                 <a href="">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
             </li>
@@ -36,7 +37,7 @@
         </ul>
     </form>
     <!-- Seller login form -->
-    <form action="#" method="POST" onsubmit="formHash(this, this.sellerPwd, 'sellerPwd');">
+    <form action="#" method="POST">
         <ul id="sellerlogin">
             <li>
                 <label for="sellerUsr">Username</label>
@@ -46,18 +47,8 @@
                 <label for="sellerPwd">Password</label>
                 <input type="password" placeholder="Password" id="sellerPwd" name="sellerPwd" />
             </li>
-            <li 
-                <?php 
-                    if (isset($templateParams["loginError"])) :
-                        echo 'class=active'; 
-                ?>
-            >
-                        <strong><?php echo $templateParams["loginError"] ?></strong>
-                <?php 
-                    endif;
-                ?>
-            </li>
             <li>
+                <!-- TODO: link -->
                 <a href="">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
             </li>
