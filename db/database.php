@@ -146,8 +146,8 @@
             $query = "INSERT INTO Products(Price, DiscountedPrice, Description, CoverImg, CategoryName)
                       VALUES(?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
-            $discountedPrice = empty($discountedPrice) ? 'NULL' : $discountedPrice;
-            $stmt->bind_param('sssss', $price, $discountedPrice, $desc, $img, $category);
+            $discountedPrice = empty($discountedPrice) ? NULL : $discountedPrice;
+            $stmt->bind_param('iisss', $price, $discountedPrice, $desc, $img, $category);
             $stmt->execute();
             return $stmt->insert_id;
         }

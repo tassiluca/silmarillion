@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <label for="publishDate">Data di pubblicazione</label>
-                    <input type="text" placeholder="es. 10/02/2020" id="publishDate" name="publishDate" />
+                    <input type="date" id="publishDate" name="publishDate" />
                 </li>
                 <li>
                     <label for="isbn">ISBN</label>
