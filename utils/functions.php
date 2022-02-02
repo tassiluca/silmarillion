@@ -57,6 +57,11 @@
         return isUserLoggedIn() && !$dbh->isCustomer($_SESSION['userId']);
     }
     
+    /**
+     * Check if all elements given in input are not empty.
+     * @param Array $inputs an array of inputs
+     * @return boolean true if **all** are **NON**-empty, false otherwise.
+     */
     function checkInputs($inputs){
         foreach ($inputs as $i) {
             if (empty($i)) {
