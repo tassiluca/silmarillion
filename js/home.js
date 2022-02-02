@@ -24,11 +24,12 @@ $(document).ready(function () {
 });
 
 function updateAll(n){
-  var sections = ['newArrival','manga','hero','funko','review'];
+  var sections = ['newArrival','manga','hero','funko'];
   sections.forEach(element => {
     updateComic(element,0);
   });
   updatePartner(0);
+  updateReview(0);
 }
 
 var slideIndex = 1;
@@ -38,15 +39,20 @@ function updateBanner(n) {
 }
 
 function updatePartner(n) {
-  showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize()+1);
-}
-function updateComic(category,n){
-  showDivs(slideIndex += n,"main > section."+category+" > div > article",checkScreenSize());
+  showDivs(slideIndex += n,"main > section:last-child > div > div > img",checkScreenSize(100,0.01));
 }
 
-function checkScreenSize(){
+function updateReview(n) {
+  showDivs(slideIndex += n,"main > section.review > div > article",checkScreenSize(420,0.05));
+}
+
+function updateComic(category,n){
+  showDivs(slideIndex += n,"main > section."+category+" > div > article",checkScreenSize(240,0.04));
+}
+
+function checkScreenSize(elemWidth,percMargin){
   var w = window.innerWidth;
-  var quantity = Math.floor((w-(0.20*w))/400);
+  var quantity = Math.floor((w-(0.20*w))/(elemWidth+(w*percMargin*2)));
   return quantity <= 0 ? 1 : quantity;
 }
 

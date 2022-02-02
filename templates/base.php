@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <?php 
             /**
              * Insert here all the style sheets needed by the single page.
@@ -67,27 +68,20 @@
                 <div id="navMenu">
                     <ul>
                         <li>
-                            <a href="catalog.html">Nuovi Arrivi</a>
-                        </li>
-                        <li>
+                            <a href="catalog.php">Nuovi Arrivi</a>
+                        </li><li>
                             <a href="catalog.html">Manga</a>
-                        </li>
-                        <li>
+                        </li><li>
                             <a href="catalog.html">Supoereroi</a>
-                        </li>
-                        <li>
+                        </li><li>
                             <a href="catalog.html">Funko Pop</a>
-                        </li>
-                        <li id="login">
+                        </li><li id="login">
                             <a href="login.html">Login</a>
-                        </li>
-                        <li>
-                            <a href="">Recensioni</a>
-                        </li>
-                        <li>
-                            <a href="">Partner</a>
-                        </li>
-                        <li>
+                        </li><li>
+                            <a href="index.php#reviews">Recensioni</a>
+                        </li><li>
+                            <a href="index.php#partners">Partner</a>
+                        </li><li>
                             <a href="">Supporto</a>
                         </li>
                     </ul> 

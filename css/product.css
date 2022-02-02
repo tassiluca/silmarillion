@@ -22,7 +22,7 @@ article > header {
     padding: 10px 0 5px 0;
 }
 /*comic image*/
-article > div > img {
+article > div:first-child > a > img {
     border-radius: 10px 10px 0 0;
     height: 279px;
     width: 100%;
