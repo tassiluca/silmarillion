@@ -1,6 +1,9 @@
 <?php
 
     define("MAX_LOGIN_ATTEMPTS", 5);
+    define("UPLOAD_DIR_NEWS", "./upload/news");
+    define("UPLOAD_DIR_PRODUCTS", "./upload/products");
+    define("UPLOAD_DIR_PUBLISHERS", "./upload/publishers");    
 
     /**
      * Implements a secure session_start() function.
