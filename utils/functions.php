@@ -56,5 +56,14 @@
         global $dbh;
         return isUserLoggedIn() && !$dbh->isCustomer($_SESSION['userId']);
     }
+    
+    function checkInputs($inputs){
+        foreach ($inputs as $i) {
+            if (empty($i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 ?>

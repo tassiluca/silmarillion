@@ -10,7 +10,7 @@
         <!-- TODO nel caso di modifica metti modifica !-->
         <h2>Inserisci articolo</h2>
     </header>
-    <form>
+    <form action="#" method="POST">
         <ul>
             <li>
                 <fieldset>
@@ -25,30 +25,30 @@
             <div id="funkoFields">
                 <li>
                     <label for="funkoName">Nome</label>
-                    <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" required />
+                    <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" />
                 </li>
             </div>
             <!-- for comics -->
             <div id="comicFields">
                 <li>
                     <label for="title">Titolo</label>
-                    <input type="text" placeholder="es. Two Moons 1" id="title" name="title" required />
+                    <input type="text" placeholder="es. Two Moons 1" id="title" name="title" />
                 </li>
                 <li>
                     <label for="author">Autore</label>
-                    <input type="text" placeholder="es. John Arcudi" id="author" name="author" required />
+                    <input type="text" placeholder="es. John Arcudi" id="author" name="author" />
                 </li>
                 <li>
                     <label for="language">Lingua</label>
-                    <input type="text" placeholder="es. Italiano" id="language" name="language" required />
+                    <input type="text" placeholder="es. Italiano" id="language" name="language" />
                 </li>
                 <li>
                     <label for="publishDate">Data di pubblicazione</label>
-                    <input type="text" placeholder="es. 10/02/2020" id="publishDate" name="publishDate" required />
+                    <input type="text" placeholder="es. 10/02/2020" id="publishDate" name="publishDate" />
                 </li>
                 <li>
                     <label for="isbn">ISBN</label>
-                    <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" required />
+                    <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" />
                 </li>
             </div>
             <!-- commons -->
