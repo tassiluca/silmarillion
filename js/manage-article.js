@@ -1,12 +1,21 @@
-$(document).ready(function(){
+function displayComicFields() {
+    $("#funkoFields").css("display", "none");
+    $("#comicFields").css("display", "block");
+}
+
+function displayFunkoFields() {
+    $("#comicFields").css("display", "none");
+    $("#funkoFields").css("display", "block");
+}
+
+$(document).ready(function() {
+    // at the beginiggin the default choice is comics
+    displayComicFields();
     $("input[type=radio][name=articleToInsert]").change(function() {
-        console.log($(this).attr("id"));
         if ($(this).attr("id") == "comic") {
-            $("#funkoFields").css("display", "none");
-            $("#comicFields").css("display", "block");
+            displayComicFields();
         } else {
-            $("#comicFields").css("display", "none");
-            $("#funkoFields").css("display", "block");
+            displayFunkoFields();
         }
     });
 });
