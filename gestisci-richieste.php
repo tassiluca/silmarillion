@@ -1,6 +1,5 @@
 <?php
     require_once 'bootstrap.php';
-    session_start();  // needed for sessions.
 
     if(isset($_SESSION['url'])){
          $lastPage = $_SESSION['url']; // holds url for last page visited.
