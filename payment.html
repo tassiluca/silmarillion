@@ -83,30 +83,36 @@
                 <div>
                     <div>
                         <article>
-                            <header><h3>Indirizzo di spedizione</h3></header>
+                            <header></header>
                             <form id="addressForm" method="post" action="#">
-                                <ul>
-                                    <li><label for="addressee">Spedisci a</label><input type="text" name="addressee" id="addressee" placeholder="Nome e Cognome" alt="Nome e Cognome destinatario" required></li>
-                                    <li><label for="destAddress">Indirizzo</label>
-                                    <input type="text" name="destAddress" id="destAddress" alt="Indirizzo" value="Via Cesare Pavese, 50"required disabled></li>
-                                    <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP" value="47522" required disabled></li>
-                                    <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città"  value="Cesena" required disabled></li>
-                                    <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia" value="FC" required disabled></li>
-                                    <li></li>
+                                <h3>Indirizzo di spedizione</h3>
+                                <div>
+                                    <ul>
+                                        <li><label for="addressee">Spedisci a</label><input type="text" name="addressee" id="addressee" placeholder="Nome e Cognome" alt="Nome e Cognome destinatario" required></li>
+                                        <li><label for="destAddress">Indirizzo</label><input type="text" name="destAddress" id="destAddress" alt="Indirizzo" value="Via Cesare Pavese, 50"required readonly></li>
+                                        <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP" value="47522" required readonly></li>
+                                        <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città"  value="Cesena" required readonly></li>
+                                        <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia" value="FC" required readonly></li>
+                                    </ul>
+                                    <a href="#" onclick="editAddress()" onkeypress="editAddress()">Modifica indirizzo</a>
+                                    <a href="#" onclick="editAddress()" onkeypress="editAddress()">Conferma</a>
+                                </div>
+                                <h3>Sommario</h3>
+                                <div>
+                                    <ul>
+                                    <li><label for="totPrice">Articoli</label><input type="text" name="totPrice" id="totPrice" value="94€" readonly></li>
+                                    <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost" value="4,55€" readonly></li>
+                                    <li> <label for="coupon">Hai un codice sconto?</label><input type="text" name="coupon" id="coupon" placeholder="Inserisci codice sconto"></li>
                                 </ul>
-                                <a href="#" onclick="editAddress()" onkeypress="editAddress()">Modifica indirizzo</a>
-                                <a href="#" onclick="editAddress()" onkeypress="editAddress()">Conferma</a>
+                                </div>
+                                <h3>Metodo di Pagamento</h3>
+                                <div>
+                                    <ul>
+                                    <li><input type="radio" name="paymethod" id="paypal" value="paypal" required><label for="paypal">PayPal</label></li>
+                                    <li><input type="radio" name="paymethod" id="card" value="card" required><label for="card">Carta</label></li>
+                                </ul>
+                                </div>
                             </form>
-                        </article>
-                        <article>
-                            <header><h3>Sommario</h3></header>
-                            <div>
-                                <ul>
-                                <li><label for="totPrice">Articoli</label><input type="text" name="totPrice" id="totPrice" value="94€" disabled></li>
-                                <li><label for="shipCost">Spedizione</label><input type="text" name="shipCost" id="shipCost" value="4,55€" disabled></li>
-                                <li> <label for="coupon">Hai un codice sconto?</label><input type="text" name="coupon" id="coupon" placeholder="Inserisci codice sconto"></li>
-                            </ul>
-                            </div> 
                         </article>
                     </div>
                     <div>

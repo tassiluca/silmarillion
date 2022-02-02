@@ -8,8 +8,7 @@ main > section > div > div > article > header{
     text-indent: 15px
 }
 
-main > section > div > div > article > form,
-main > section > div > div > article > div {
+main > section > div > div > article > form > div {
     background: #CBF6FF;
     border: 1px solid #0047A0;
     box-sizing: border-box;
@@ -18,28 +17,32 @@ main > section > div > div > article > div {
     text-align: center;
     padding: 2% 0;
 }
-main > section > div > div > article > form > a {
+main > section > div > div > article > form > div > a {
     font-weight: bold;
     color: #0047A0;
 }
-main > section > div > div > article > form > a:last-child {
+main > section > div > div > article > form > div > a:last-child {
     display: none;
 }
-main > section > div > div > article > form > ul > li,
-main > section > div > div > article > div > ul > li{
+main > section > div > div > article > form > div > ul > li{
     margin: 6px 0;
     list-style: none;
     display: flex;
     justify-content: space-evenly;
-    display: flex;
     align-items: center;
 }
-main > section > div > div > article > form > ul > li > label,
-main > section > div > div > article > div > ul > li > label {
+
+main > section > div > div > article > form > div:last-of-type > ul > li{
+    margin: 6px 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+main > section > div > div > article > form > div > ul > li > label {
     width: 20%;
 }
-main > section > div > div > article > form > ul > li > input,
-main > section > div > div > article > div > ul > li > input{
+main > section > div > div > article > form > div:not(:last-of-type) > ul > li > input{
     width: 60%;
     border-radius: 10px;
     height: 37px;
@@ -51,7 +54,7 @@ main > section > div > div > article > div > ul > li > input{
     font-size: 15px;
 }
 
-/*text totla price and price*/
+/*text total price and price*/
 main > section > div > div:nth-of-type(2) > p {
     font-size: 20pt;
 }
