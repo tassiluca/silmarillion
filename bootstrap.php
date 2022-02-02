@@ -3,8 +3,8 @@
     require_once 'db/database.php';
     require_once 'utils/functions.php';
 
-    secureSessionStart();
-
+    //secureSessionStart();
+    session_start();
     define("HOST", "localhost");
     define("USER", "root");
     define("PASSWORD", ""); //TOGLI PASSWORD PRIMA DI PUSHARE

@@ -9,32 +9,28 @@
         $lastPage = "index.php"; 
     }
 
-    //TODO: CONTROLLO DI LOGIN EFFETTUATO E STRINGA AZIONE GESTIBILE
-    //AGGIUNGERE VERIFICA CORRETTO LOGIN
-    if(isset($_GET["action"]) && isset($_GET["id"])){
+    if(isCustomerLoggedIn() && isset($_GET["action"]) && isset($_GET["id"])){
         $action = $_GET["action"];
         $idprod = $_GET["id"];
-
+        $idCustomer = $_SESSION['userId'];
+        
         if(!strcmp($action,'wish')){
-            //echo 'add to wishlist id'. $idprod;
-            $dbh -> addProductToWish(2,$idprod); //user and prodid
+            $dbh -> addProductToWish($idCustomer,$idprod);
         }
         else if(!strcmp($action,'addtoCart')){
-            //add article or increment quantity if avaiable
-            //echo 'add to cart id'. $idprod;
-            $dbh -> addProductToCart(3,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+            $dbh -> addProductToCart($idCustomer,$idprod,1);
         }
         else if(!strcmp($action,'decToCart')){
             //decrement quantity of product in cart
-            $dbh -> decrementProductToCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+            $dbh -> decrementProductToCart($idCustomer,$idprod,1);
         }
         else if(!strcmp($action,'delFromCart')){
-            //completely remove product from cart
-            $dbh -> deleteProductFromCart(2,$idprod,1); //iduser LO PREDNO DA $SESSION['userid'],id product, quantity
+            //completely remove product from cart in db
+            $dbh -> deleteProductFromCart($idCustomer,$idprod,1);
         }
         else if(!strcmp($action,'notify')){
             //echo 'notify me id'. $idprod;
-            $dbh -> addProductAlert(2,$idprod);
+            $dbh -> addProductAlert($idCustomer,$idprod);
         }
     }
     
