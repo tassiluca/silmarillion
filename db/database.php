@@ -2,6 +2,7 @@
 
     class DatabaseHelper {
         private $db;
+        private $MYSQLI_CODE_DUPLICATE_KEY = 1062;
 
         public function __construct($servername, $username, $password, $dbname, $port) {
             $this->db = new mysqli($servername, $username, $password, $dbname, $port);
@@ -10,10 +11,17 @@
             }
         }
 
-        public function getUserData($username) {
-            $query = "SELECT UserId, Password, Salt, IsActive
-                      FROM Users 
-                      WHERE Username = ?";
+        /**
+         * Get customer infos.
+         * @param string $username the username string
+         * @return void an associative array with all data
+         */
+        public function getCustomerData($username) {
+            $query = "SELECT U.*
+                      FROM Users AS U, Customers AS C
+                      WHERE C.UserId = U.UserId
+                      AND U.Username = ?
+                      AND U.IsActive = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $username);
             $stmt->execute();
@@ -21,16 +29,118 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get seller infos.
+         * @param string $username the username string
+         * @return array an associative array with all data
+         */
+        public function getSellerData($username) {
+            $query = "SELECT U.*
+                      FROM Users AS U, Sellers AS S
+                      WHERE S.UserId = U.UserId
+                      AND U.Username = ?
+                      AND U.IsActive = 1";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get the number of failed login attempts made by an user
+         * in the last period of time.
+         * @param int $userId the user id
+         * @param int $validAttempts the lower bound of time to check attempts
+         * @return int the number of attempts between [validAttempts, now]
+         */
         public function getLoginAttempts($userId, $validAttempts) {
             /* Please note validAttempts is generated from the system. */
             $query = "SELECT TimeLog
-                      FROM LoginAttemps 
+                      FROM LoginAttempts 
                       WHERE UserId = ?
                       AND TimeLog > '$validAttempts'";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userId);
             $stmt->execute();
             return $stmt->get_result()->num_rows;
+        }
+
+        /**
+         * Insert into table `LoginAttempts` a new failed login attempt.
+         * @param int $userId the user id
+         * @param int $time timestamp of attempt
+         * @return bool true on success or false on failure.
+         */
+        public function registerNewLoginAttempt($userId, $time) {
+            $query = "INSERT INTO LoginAttempts(UserId, TimeLog)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $userId, $time);
+            return $stmt->execute();
+        }
+
+        /**
+         * Insert into table `Users` a new user.
+         * @param string $username the username
+         * @param string $password the password
+         * @param string $salt the salt
+         * @param string $name the name
+         * @param string $surname the surname
+         * @param string $birthday the birth date 
+         * @param string $mail the e-mail
+         * @return int the UserId associated with the just inserted user
+         */
+        private function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
+            $query = "INSERT INTO Users(Username, Password, Salt, Name, Surname, DateBirth, Mail, IsActive)
+                      VALUES(?, ?, ?, ?, ?, ?, ?, 1)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssssss', $username, $password, $salt, $name, $surname, $birthday, $mail);
+            try {
+                $res = $stmt->execute();
+            } catch(Exception $e) {
+                // if a user with given username already exists in db
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return -1;
+                }
+            }
+            return $stmt->insert_id;
+        }
+
+        /**
+         * Insert into table `Customers` a new customer user. 
+         * [IMPORTANT] The user given in input must be present into the `Users` table!
+         * @param int $userId the user
+         * @return Array the success element a `boolean` to describe success or failure,
+         * the second a `boolean` to describe if there was duplicateKey error.
+         */
+        public function addCustomer($username, $password, $salt, $name, $surname, $birthday, $mail) {
+            // `res` contains the UserId associated with the just inserted user or -1 if there was an error.
+            $res = $this->addUser($username, $password, $salt, $name, $surname, $birthday, $mail);
+            if ($res != -1) {
+                $query = "INSERT INTO Customers(UserId)
+                          VALUES(?)";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('i', $res);
+                return array('success' => $stmt->execute(), 'duplicateKey' => false);
+            } else {
+                return array('success' => false, 'duplicateKey' => true);
+            }
+        }
+
+        /**
+         * Checks if the user given in input is a customer or not.
+         * @param int $userId the user id
+         * @return boolean true if is a customer, false otherwise
+         */
+        public function isCustomer($userId) {
+            $query = "SELECT Customers.UserId
+                      FROM Customers
+                      WHERE UserId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $userId);
+            $stmt->execute();
+            return $stmt->get_result()->num_rows > 0;
         }
 
     }

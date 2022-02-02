@@ -49,6 +49,16 @@ body > header > nav > ul > li > button {
     padding: 10px 10% 0 10%;
 }
 
+body > header > nav > ul > li > a {
+    display: inline-block;
+}
+
+body > header > nav > ul > li > a > img {
+    vertical-align: bottom;
+    max-width: 100%;
+    max-height: 100%;
+}
+
 body > header > nav > ul > li > button.navActive {
     background-color: #0047A0;
     border-radius: 10px 10px 0px 0;
@@ -325,28 +335,66 @@ body > header > nav > div#navLogin > form > ul {
 }
 
 body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) {
+    display: none;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background-color: red;
+    color: white;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3).active::before {
+    content: "\f00d";
+    font-family: FontAwesome;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3).active {
+    display: block;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) {
     display: flex;
     justify-content: center;
 }
 
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div {
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) > div {
     display: flex;
     flex-direction: column;
     align-self: center;
     margin-right: 3%;
 }
 
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div > a {
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) > div > a {
     color: white;
     padding-bottom: 5px;
 }
 
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > input {
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) > input {
     margin: 0;
 }
 
 body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
     color: white;
+}
+
+/* Errors */
+body > header > nav > div#navLogin > form > ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+body > header > nav > div#navLogin > form > ul > li > div.error {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    background-color: #F8D7DA;
+    color: #721C24;
+    text-align: left;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+body > header > nav > div#navLogin > form > ul > li > div.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
 }
 
 /********************** Navigation bar search **********************/
@@ -442,15 +490,20 @@ body > header > nav > div#navSearch > form > ul {
 
     /* buttons links */
     body > header > nav > ul {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        width: 18%;
         margin-right: 2%;
+        width: 17%;
+        padding-left: 1%;
         vertical-align: middle;
     }
 
-    body > header > nav > ul > li > button {
+    body > header > nav > ul > li {
+        list-style: none;
+        display: inline-block;
+        width: 25%;
+    }
+
+    body > header > nav > ul > li > button,
+    body > header > nav > ul > li > a {
         padding-top: 5px;
     }
 
@@ -526,15 +579,20 @@ body > header > nav > div#navSearch > form > ul {
 
     /* buttons links */
     body > header > nav > ul {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-        width: 15%;
-        margin-right: 5%;
+        margin-right: 2%;
+        width: 17%;
+        padding-left: 1%;
         vertical-align: middle;
     }
 
-    body > header > nav > ul > li > button {
+    body > header > nav > ul > li {
+        list-style: none;
+        display: inline-block;
+        width: 25%;
+    }
+
+    body > header > nav > ul > li > button,
+    body > header > nav > ul > li > a {
         padding-top: 5px;
     }
 

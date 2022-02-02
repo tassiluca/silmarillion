@@ -63,10 +63,10 @@ create table Funkos (
      constraint IDFunko primary key (FunkoId),
      constraint FKR_ID unique (ProductId));
 
-create table LoginAttemps (
+create table LoginAttempts (
      UserId int not null,
-     TimeLog timestamp not null,
-     constraint IDLoginAttemps primary key (UserId, TimeLog));
+     TimeLog varchar(30) not null,
+     constraint IDLoginAttempts primary key (UserId, TimeLog));
 
 create table LogOrderStatus (
      OrderStatus varchar(50) not null,
@@ -219,7 +219,7 @@ alter table Funkos add constraint FKR_FK_0
      foreign key (ProductId)
      references Products (ProductId);
 
-alter table LoginAttemps add constraint FKTryAccessCustomer
+alter table LoginAttempts add constraint FKTryAccessCustomer
      foreign key (UserId)
      references Users (UserId);
 

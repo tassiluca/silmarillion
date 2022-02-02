@@ -1,9 +1,9 @@
-/* Common rules for both user and seller login form */
+/* Common rules for both user, seller login and registration form */
 
 /* To hide the labels keeping them available to screen readers. 
  * See [https://www.w3.org/WAI/tutorials/forms/labels/#hidden]
  */
-main > form > ul > li > label {
+label {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -14,44 +14,28 @@ main > form > ul > li > label {
     width: 1px;
 }
 
-main > form > header > div {
+main > section > header > div {
     text-align: center;
 }
 
-main > form > header > ul > li {
-    width: 50%;
-    padding: 10px 0;
-    text-align: center;
-    color: #0047A0;
-    display: inline-block;
-    border-radius: 10px 10px 0 0;
-}
-
-main > form > header > ul > li > a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #0047A0;
-    font-size: 22px;
-}
-
-main > form > ul {
+main > section > form > ul {
     padding: 5% 10%;
     box-shadow: 10px 10px 5px rgba(196, 196, 196, 0.82);
     border-radius: 0 0 10px 10px;
     text-align: center;
 }
 
-main > form > ul > li {
+main > section > form > ul > li {
     display: block;
 }
 
-main > form > ul > li > input {
+main > section > form > ul > li > input {
     border-radius: 10px;
     margin: auto;
     display: block;
 }
 
-main > form > ul > li > input:not([type=submit]) {
+main > section > form > ul > li > input:not([type=submit]) {
     border: none;
     width: 100%;
     font-size: 15px;
@@ -61,13 +45,13 @@ main > form > ul > li > input:not([type=submit]) {
     font-weight: bold;
 }
 
-main > form > ul > li > input::placeholder {
+main > section > form > ul > li > input::placeholder {
     font-weight: normal;
     font-style: italic;
 }
 
-main > form > ul > li > input[type="submit"],
-main > form > ul > li > a:last-child {
+main > section > form > ul > li > input[type="submit"],
+main > section > form > ul > li > a:last-child {
     -webkit-appearance: none;   /* for Safari */
     font-weight: bold;
     font-size: 17px;
@@ -80,27 +64,60 @@ main > form > ul > li > a:last-child {
     box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > form > ul > li > a:last-child {
+main > section > form > ul > li > a:last-child {
     border-radius: 10px;
     text-decoration: none;
     margin: auto;
     display: inline-block;
 }
 
-main > form > ul > li > input[type="submit"]:hover, 
-main > form > ul > li > a:last-child:hover {
+main > section > form > ul > li > input[type="submit"]:hover, 
+main > section > form > ul > li > a:last-child:hover {
     box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > form > ul > li > a:hover {
+main > section > form > ul > li > a:hover {
     font-weight: bold;
 }
 
-main > form > ul > li > p {
+main > section > form > ul > li > p {
     color: #0047A0;
     font-weight: bold;
 }
 
-main > form > header > ul > li {
-    background-color: #c4c4c450;
+/************************* Errors **************************/
+main > section > form > ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.message {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+main > section > form > ul > li > div.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border-color: red;
+}
+
+main > section > form > ul > li > div.message.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > div.message.success {
+    background-color: #D4EDD5;
+    color: #155724;
+    border-color: green;
+}
+
+main > section > form > ul > li > div.message.success::before {
+    content: "\f00c";
+    padding-right: 5px;
+    font-family: FontAwesome;
 }
