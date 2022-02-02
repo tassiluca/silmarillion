@@ -14,7 +14,7 @@
             return $checkCompulsoryFields && $checkFunkoFields;
         } else {
             $checkComicFields = checkInputs(array($_POST['title'], $_POST['author'], 
-                $_POST['language'], $_POST['publishDate'], $_POST['isbn']));
+                $_POST['language'], $_POST['publishDate'], $_POST['isbn'], $_POST['publisher']));
             return $checkCompulsoryFields && $checkComicFields;
         }
     }

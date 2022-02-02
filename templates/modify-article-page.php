@@ -50,11 +50,19 @@
                     <label for="isbn">ISBN</label>
                     <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" />
                 </li>
+                <li>
+                    <label for="publisher">Editore</label>
+                    <select id="publisher" name="publisher">
+                        <option value="TODO">TODO</option>
+                    </select>
+                </li>
             </div>
             <!-- commons -->
             <li>
                 <label for="category">Categoria</label>
-                <input type="text" placeholder="es. Comics" id="category" name="category" required />
+                <select id="category" name="category">
+                    <option value="TODO">TODO</option>
+                </select>
             </li>
             <li>
                 <label for="price">Prezzo</label>
@@ -66,7 +74,7 @@
             </li>
             <li>
                 <label for="desc">Descrizione</label>
-                <input type="text" placeholder="es. Descrizione sintetica del prodotto" id="desc" name="desc" required />
+                <textarea placeholder="es. Descrizione sintetica del prodotto" id="desc" name="desc" required></textarea>
             </li>
             <li>
                 <label for="img">Immagine di Copertina</label>
