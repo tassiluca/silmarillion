@@ -10,7 +10,7 @@
         <!-- TODO nel caso di modifica metti modifica !-->
         <h2>Inserisci articolo</h2>
     </header>
-    <form action="#" method="POST">
+    <form action="process-article.php" method="POST" enctype="multipart/form-data">
         <ul>
             <li>
                 <fieldset>
@@ -81,10 +81,12 @@
                 <textarea placeholder="es. Descrizione sintetica del prodotto" id="desc" name="desc" required></textarea>
             </li>
             <li>
-                <label for="img">Immagine di Copertina</label>
-                <input type="file" id="img" name="img" required />
-                <!-- TODO -->
-                <img src="" alt="">
+                <!--
+                <label for="coverImg">Immagine di Copertina</label>
+                <input type="file" id="coverImg" name="coverImg" required />
+                -->
+                <label for="imgarticolo">Immagine Articolo</label><input type="file" name="imgarticolo" id="imgarticolo" />
+                <!-- TODO <img src="" alt=""> -->
             </li>
             <li>
                 <!-- TODO nel caso di modifica metti modifica !-->

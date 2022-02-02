@@ -1,9 +1,15 @@
 <?php
+    session_start();
+    define("UPLOAD_DIR", "./upload/");
+
+    define("UPLOAD_DIR_NEWS", "./upload/news/");
+    define("UPLOAD_DIR_PRODUCTS", "./upload/products/");
+    define("UPLOAD_DIR_PUBLISHERS", "./upload/publishers/");    
 
     require_once 'db/database.php';
     require_once 'utils/functions.php';
 
-    secureSessionStart();
+    // secureSessionStart();
 
     define("HOST", "localhost");
     define("USER", "root");
