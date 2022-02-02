@@ -37,7 +37,6 @@ function registrationAttempt(form, formData){
         encode: true
     }).done(function(data){
         if (data.error) { // if has been occured some error
-            console.log($(this));
             // add class hasError to username field
             $(form).find("ul > li:nth-last-of-type(4)").addClass("hasError");
             // add an error message
@@ -46,7 +45,7 @@ function registrationAttempt(form, formData){
             );
         } else {
             $(form).find("ul > li:nth-last-of-type(2)").append (
-                '<div class="message success">' + data.ok + '</div>'
+                '<div class="message success">' + data.success + '</div>'
             );
         }
     }).fail(function(data) { // error connecting to the server

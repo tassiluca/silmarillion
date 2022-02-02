@@ -91,7 +91,7 @@
          * @param string $mail the e-mail
          * @return int the UserId associated with the just inserted user
          */
-        public function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
+        private function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
             $query = "INSERT INTO Users(Username, Password, Salt, Name, Surname, DateBirth, Mail, IsActive)
                       VALUES(?, ?, ?, ?, ?, ?, ?, 1)";
             $stmt = $this->db->prepare($query);
@@ -111,14 +111,21 @@
          * Insert into table `Customers` a new customer user. 
          * [IMPORTANT] The user given in input must be present into the `Users` table!
          * @param int $userId the user
-         * @return bool true on success or false on failure
+         * @return Array the success element a `boolean` to describe success or failure,
+         * the second a `boolean` to describe if there was duplicateKey error.
          */
-        public function addCustomer($userId) {
-            $query = "INSERT INTO Customers(UserId)
-                      VALUES(?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $userId);
-            return $stmt->execute();
+        public function addCustomer($username, $password, $salt, $name, $surname, $birthday, $mail) {
+            // `res` contains the UserId associated with the just inserted user or -1 if there was an error.
+            $res = $this->addUser($username, $password, $salt, $name, $surname, $birthday, $mail);
+            if ($res != -1) {
+                $query = "INSERT INTO Customers(UserId)
+                          VALUES(?)";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('i', $res);
+                return array('success' => $stmt->execute(), 'duplicateKey' => false);
+            } else {
+                return array('success' => false, 'duplicateKey' => true);
+            }
         }
 
         /**
