@@ -21,7 +21,25 @@ $(document).ready(function(){
         /* **TODO**
          * Implements logic for filtering categories and others.
          */
-        console.log($(this).attr("name"));
+        var isChecked = $(this).is(':checked');
+        if(isChecked){
+            activeFilters.push($(this).attr("name"));
+        }
+        else{
+            activeFilters.splice(activeFilters.indexOf($(this).attr("name")),1);
+        }
+        
+        console.log(activeFilters);
+        var str = JSON.stringify(activeFilters);
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
+        };
+        xmlhttp.open("GET", "filtering.php?filter=" + str, true);
+        xmlhttp.send();
     })
 
 });
