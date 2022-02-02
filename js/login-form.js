@@ -1,13 +1,13 @@
 /**
  * Makes a new login attempt and displays errors if something wrong.
  * @param {form} form the login form submitted
- * @param {JSON} formData the login form data inserted by the user
+ * @param {object} formData the login form data to submit
  * @param {string} target the target page to which send the user if login success
  */
 function loginAttempt(form, formData, target) {
-    // Clears errors results of previous attempts
+    // Clears messages results of previous attempts
     $(".hasError").removeClass("hasError");
-    $(".error").remove();
+    $(".message").remove();
 
     $.ajax({
         type: "POST",
