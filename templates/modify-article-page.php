@@ -53,7 +53,7 @@
                 <li>
                     <label for="publisher">Editore</label>
                     <select id="publisher" name="publisher">
-                        <option value="TODO">TODO</option>
+                        <option value="189">TODO</option>
                     </select>
                 </li>
             </div>
@@ -61,7 +61,9 @@
             <li>
                 <label for="category">Categoria</label>
                 <select id="category" name="category">
-                    <option value="TODO">TODO</option>
+                    <?php foreach ($templateParams["categories"] as $category): ?>
+                        <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
+                    <?php endforeach; ?>
                 </select>
             </li>
             <li>

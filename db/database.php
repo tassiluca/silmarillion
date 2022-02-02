@@ -109,7 +109,6 @@
 
         /**
          * Insert into table `Customers` a new customer user. 
-         * [IMPORTANT] The user given in input must be present into the `Users` table!
          * @param int $userId the user
          * @return Array the success element a `boolean` to describe success or failure,
          * the second a `boolean` to describe if there was duplicateKey error.
@@ -141,6 +140,44 @@
             $stmt->bind_param('i', $userId);
             $stmt->execute();
             return $stmt->get_result()->num_rows > 0;
+        }
+
+        private function addProduct($price, $discountedPrice, $desc, $img, $category) {
+            $query = "INSERT INTO Products(Price, DiscountedPrice, Description, CoverImg, CategoryName)
+                      VALUES(?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $discountedPrice = empty($discountedPrice) ? 'NULL' : $discountedPrice;
+            $stmt->bind_param('sssss', $price, $discountedPrice, $desc, $img, $category);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+
+        public function addFunko($name, $price, $discountedPrice, $desc, $img, $category) {
+            $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
+            $query = "INSERT INTO Funkos(ProductId, Name)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('is', $productId, $name);
+            return $stmt->execute();
+        }
+
+        public function addComic($title, $author, $lang, $date, $isbn, $publisherId, 
+                                 $price, $discountedPrice, $desc, $img, $category) {
+            $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
+            $query = "INSERT INTO Comics(Title, Author, Lang, PublishDate, ISBN, ProductId, PublisherId)
+                      VALUES(?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $productId, $publisherId);
+            return $stmt->execute();
+        }
+
+        public function getCategories() {
+            $query = "SELECT Name, Description
+                      FROM Categories";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
         }
 
         public function getHomeBanner(){

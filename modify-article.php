@@ -5,10 +5,12 @@
     $templateParams["js"] = array("manage-article.js");
     $templateParams["main"] = "./templates/modify-article-page.php";
 
+    $templateParams["categories"] = $dbh->getCategories();
+
     function validateInputs() {
         // articleToInsert ?
         $checkCompulsoryFields = checkInputs(array($_POST['category'], $_POST['price'], 
-            $_POST['discountedPrice'], $_POST['desc'], $_POST['img']));
+            $_POST['desc'], $_POST['img']));
         if ($_POST["articleToInsert"] == "Funko") {
             $checkFunkoFields = checkInputs(array($_POST["funkoName"]));
             return $checkCompulsoryFields && $checkFunkoFields;
@@ -21,9 +23,9 @@
 
     if (isset($_POST["articleToInsert"])) {
         if (!validateInputs()){
-            echo "AIUTO!";
+            $templateParams["error"] = "Alcuni campi sono vuoti!";
         } else {
-            echo "ok";
+            print_r($_POST);
         }
     }
 
