@@ -53,7 +53,9 @@
                 <li>
                     <label for="publisher">Editore</label>
                     <select id="publisher" name="publisher">
-                        <option value="189">TODO</option>
+                        <?php foreach ($templateParams["publishers"] as $publisher): ?>
+                            <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </li>
             </div>

@@ -6,6 +6,7 @@
     $templateParams["main"] = "./templates/modify-article-page.php";
 
     $templateParams["categories"] = $dbh->getCategories();
+    $templateParams["publishers"] = $dbh->getPublishers();
 
     function validateInputs() {
         // articleToInsert ?

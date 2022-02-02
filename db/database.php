@@ -180,6 +180,15 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getPublishers() {
+            $query = "SELECT PublisherId, Name, ImgLogo
+                      FROM Publisher";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
         public function getHomeBanner(){
             $query = "SELECT NewsId, Title, Description, Img, UserId
                     FROM News";
