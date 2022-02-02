@@ -24,9 +24,6 @@ $(document).ready(function(){
     })
 
     $("main > aside > ul > li > input").click(function(){
-        /* **TODO**
-         * Implements logic for filtering categories and others.
-         */
         var isChecked = $(this).is(':checked');
         var type = $(this).attr('class');
 
@@ -38,13 +35,30 @@ $(document).ready(function(){
             filters[type].splice(filters[type].indexOf($(this).attr("name")),1);
         }
         console.log(filters);
+        submitFilters(filters);
     })
 
 });
 
+function submitFilters(allFilter){
+    $.ajax({
+        type: "POST",
+        url: "utils/process-filter.php",
+        data: allFilter,
+        dataType: "json",
+        encode: true
+    }).done(function (data){
+        if (data.error) { //in caso di errore ricezione dati 
+        } else {
+            //in caso di ricezione corretta dei dati
+            console.log(data);
+        }
+    }).fail(function(data){
+        //caso di errore di connessione al server 
+    });
+}
 
 /*
- 
 function loginAttempt(form, formData, target) {
     // Clears messages results of previous attempts
     $(".hasError").removeClass("hasError");
@@ -74,17 +88,5 @@ function loginAttempt(form, formData, target) {
             '<div class="error">Errore connessione al server! Riprova...</div>'
         );
     });
-}
+}*/
 
-$(document).ready(function() { 
-    $("div#navLogin > form").submit(function(event) {
-        var formData = {
-            customerUsr: $("#usernameNav").val(),
-            customerPwd: hex_sha512($("#userpasswordNav").val())
-        };
-        /* TODO: modify the target 
-        loginAttempt($(this), formData, 'userArea.php');
-        event.preventDefault();
-    });
-});
- */
