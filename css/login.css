@@ -62,6 +62,7 @@ main > section > form:last-of-type > ul > li > input:not([type="submit"])::place
     color: #0047A0;
 }
 
+main > section > form:last-of-type > ul > li > p,
 main > section > form:last-of-type > ul > li > a {
     color: #AAF1FF;
 }
