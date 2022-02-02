@@ -3,7 +3,7 @@
 
     $templateParams["css"] = array();
     $templateParams["js"] = array();
-    $templateParams["main"] = "./templates/manage-article-page.php";
+    $templateParams["main"] = "./templates/modify-article-page.php";
 
     require 'templates/base.php';
 ?>
