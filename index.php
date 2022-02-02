@@ -1,6 +1,5 @@
 <?php
     require_once 'bootstrap.php';
-    session_start(); 
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 
     $templateParams["css"] = array("homepage.css","product.css");
@@ -21,6 +20,6 @@
     $templateParams["reviews"] = $dbh-> getReviews();
     $templateParams["partners"] = $dbh-> getPartners();
 
-    $templateParams["logged"] = true;
+    $templateParams["logged"] = isCustomerLoggedIn();
     require 'templates/base.php';
 ?>
