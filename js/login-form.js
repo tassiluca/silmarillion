@@ -16,20 +16,14 @@ function loginAttempt(form, formData, target) {
         dataType: "json",
         encode: true
     }).done(function (data) {
-        if (!data.success) { // if has been occured some error
+        if (data.error) { // if has been occured some error
             // add class hasError to both username and password inputs
             $(form).find("ul > li:nth-of-type(2)").addClass("hasError");
             $(form).find("ul > li:nth-of-type(3)").addClass("hasError");
             // add an error message
-            if (data.errors.forcing) {
-                $(form).find("ul > li:nth-of-type(3)").append (
-                    '<div class="message error">' + data.errors.forcing + '</div>'
-                );
-            } else {
-                $(form).find("ul > li:nth-of-type(3)").append (
-                    '<div class="message error">' + data.errors.wrong + '</div>'
-                );
-            }
+            $(form).find("ul > li:nth-of-type(3)").append (
+                '<div class="message error">' + data.error + '</div>'
+            );
         } else {
             // send the user to target
             window.location.href = target;
