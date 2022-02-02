@@ -2,6 +2,10 @@
 
     define("MAX_LOGIN_ATTEMPTS", 5);
 
+    /**
+     * Implements a secure session_start() function.
+     * @return void
+     */
     function secureSessionStart(){
         $sessionName = 'secSessionId';
         $secure = true;     // true => https
@@ -14,6 +18,10 @@
         session_regenerate_id();
     }
 
+    /**
+     * Logout the current user. Redirect to the home.
+     * @return void
+     */
     function logout() {
         $_SESSION = array();    // delete all session values
         session_destroy();      // destroy the session
@@ -23,15 +31,27 @@
         header('Location: ./');
     }
 
+    /**
+     * Check if an user **BOTH CUSTOMER OR SELLER** is logged in.
+     * @return boolean true if a user is logged, false otherwise
+     */
     function isUserLoggedIn() {
         return !empty($_SESSION['userId']);
     }
 
+    /**
+     * Check if a customer is logged in.
+     * @return boolean true if a customer is logged, false otherwise
+     */
     function isCustomerLoggedIn() {
         global $dbh;
         return isUserLoggedIn() && $dbh->isCustomer($_SESSION['userId']);
     }
 
+    /**
+     * Check if a seller is logged in.
+     * @return boolean true if a seller is logged, false otherwise
+     */
     function isSellerLoggedIn() {
         global $dbh;
         return isUserLoggedIn() && !$dbh->isCustomer($_SESSION['userId']);
