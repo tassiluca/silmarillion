@@ -43,18 +43,21 @@ $(document).ready(function(){
 function submitFilters(allFilter){
     $.ajax({
         type: "POST",
-        url: "utils/process-filter.php",
+        url: "utils/process-filters.php",
         data: allFilter,
         dataType: "json",
         encode: true
     }).done(function (data){
         if (data.error) { //in caso di errore ricezione dati 
+            console.log('errore dati');
         } else {
             //in caso di ricezione corretta dei dati
             console.log(data);
+            console.log('ricezione ok');
         }
     }).fail(function(data){
         //caso di errore di connessione al server 
+        console.log('errore connessione');
     });
 }
 
