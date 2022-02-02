@@ -17,6 +17,9 @@
                 <h2>Ciao, <br/>conosciamoci meglio</h2>
             </li>
             <li>
+                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
+            </li>
+            <li>
                 <img src="./img/login/face-id-icon.svg" alt="" />
             </li>
             <li>

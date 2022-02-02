@@ -47,18 +47,18 @@ $(document).ready(function(){
             if (data.error) { // if has been occured some error
                 console.log($(this));
                 // add class hasError to username field
-                $("main > section > form > ul > li:nth-of-type(7)").addClass("hasError");
+                $(this).find("ul > li:nth-last-of-type(4)").addClass("hasError");
                 // add an error message
-                $("main > section > form > ul > li:nth-last-of-type(2)").append (
+                $(this).find("ul > li:nth-last-of-type(2)").append (
                     '<div class="message error">' + data.error + '</div>'
                 );
             } else {
-                $("main > section > form > ul > li:nth-last-of-type(2)").append (
+                $(this).find("ul > li:nth-last-of-type(2)").append (
                     '<div class="message success">' + data.ok + '</div>'
                 );
             }
         }).fail(function(data) { // error connecting to the server
-            $("main > section > form > ul > li:nth-of-type(2)").append (
+            $(this).find("ul > li:nth-of-type(2)").append (
                 '<div class="error">Errore connessione al server! Riprova...</div>'
             );
         });
