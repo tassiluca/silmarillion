@@ -1,4 +1,10 @@
-const activeFilters = [];
+const filters = {
+    lang: [],
+    author: [],
+    price: [],
+    availability: [],
+    publisher: [],
+};
 
 function hideElement(element) {
     element
@@ -22,24 +28,63 @@ $(document).ready(function(){
          * Implements logic for filtering categories and others.
          */
         var isChecked = $(this).is(':checked');
+        var type = $(this).attr('class');
+
         if(isChecked){
-            activeFilters.push($(this).attr("name"));
+            console.log($(this).attr('class'));
+            filters[type].push($(this).attr("name"));
         }
         else{
-            activeFilters.splice(activeFilters.indexOf($(this).attr("name")),1);
+            filters[type].splice(filters[type].indexOf($(this).attr("name")),1);
         }
-        
-        console.log(activeFilters);
-        var str = JSON.stringify(activeFilters);
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        };
-        xmlhttp.open("GET", "filtering.php?filter=" + str, true);
-        xmlhttp.send();
+        console.log(filters);
     })
 
 });
+
+
+/*
+ 
+function loginAttempt(form, formData, target) {
+    // Clears messages results of previous attempts
+    $(".hasError").removeClass("hasError");
+    $(".message").remove();
+
+    $.ajax({
+        type: "POST",
+        url: "utils/process-login.php",
+        data: formData,
+        dataType: "json",
+        encode: true
+    }).done(function (data) {
+        if (data.error) { // if has been occured some error
+            // add class hasError to both username and password inputs
+            $(form).find("ul > li:nth-of-type(2)").addClass("hasError");
+            $(form).find("ul > li:nth-of-type(3)").addClass("hasError");
+            // add an error message
+            $(form).find("ul > li:nth-of-type(3)").append (
+                '<div class="message error">' + data.error + '</div>'
+            );
+        } else {
+            // send the user to target
+            window.location.href = target;
+        }
+    }).fail(function(data) { // error connecting to the server
+        $(form).find("ul > li:nth-of-type(3)").append (
+            '<div class="error">Errore connessione al server! Riprova...</div>'
+        );
+    });
+}
+
+$(document).ready(function() { 
+    $("div#navLogin > form").submit(function(event) {
+        var formData = {
+            customerUsr: $("#usernameNav").val(),
+            customerPwd: hex_sha512($("#userpasswordNav").val())
+        };
+        /* TODO: modify the target 
+        loginAttempt($(this), formData, 'userArea.php');
+        event.preventDefault();
+    });
+});
+ */

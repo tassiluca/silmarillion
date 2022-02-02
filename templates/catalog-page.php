@@ -12,32 +12,32 @@
                     <?php if(isset($templateParams["categories"])):
                     foreach($templateParams["categories"] as $category):
                         $idcategory= getIdFromName($category["Name"]);?>
-                        <li><input type="checkbox" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
+                        <li><input type="checkbox" class="category" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
                         <label for="<?php echo $idcategory?>"><?php echo $category["Name"]?></label></li><?php endforeach;endif;?>  
                 </ul>
                 <button>Prezzo</button>
                 <ul>
                     <li>
-                        <input type="checkbox" id="cheap" name="0€ - 100€" />
+                        <input type="checkbox" class="price" id="cheap" name="0€ - 100€" />
                         <label for="cheap">0€ - 99,99€</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="medium" name="100€ - 199,99€" />
+                        <input type="checkbox" class="price" id="medium" name="100€ - 199,99€" />
                         <label for="medium">100€ - 199,99€</label>
                     </li>   
                     <li>
-                        <input type="checkbox" id="expensive" name="Più di 200,00€" />
+                        <input type="checkbox" class="price" id="expensive" name="Più di 200,00€" />
                         <label for="expensive">Più di 200,00€</label>
                     </li>
                 </ul>
                 <button>Disponibilità</button>
                 <ul>
                     <li>
-                        <input type="checkbox" id="available" name="Disponibile" />
+                        <input type="checkbox" class="availability" id="available" name="Disponibile" />
                         <label for="available">Disponibile</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="notavailable" name="Non Disponibile" />
+                        <input type="checkbox" class="availability" id="notavailable" name="Non Disponibile" />
                         <label for="notavailable">Non Disponibile</label>
                     </li>   
                 </ul>
@@ -46,7 +46,7 @@
                     <?php if(isset($templateParams["publisher"])):
                     foreach($templateParams["publisher"] as $publisher):
                         $idname= getIdFromName($publisher["Name"]);?>
-                        <li><input type="checkbox" id="<?php echo $idname?>" name="<?php echo $publisher["Name"]?>" />
+                        <li><input type="checkbox" class="publisher" id="<?php echo $idname?>" name="<?php echo $publisher["Name"]?>" />
                         <label for="<?php echo $idname?>"><?php echo $publisher["Name"]?></label></li><?php endforeach;endif;?>
                 </ul>
                 <button>Lingua</button>
@@ -55,7 +55,7 @@
                     foreach($templateParams["languages"] as $lang): 
                         $idlang= getIdFromName($lang['Lang']); ?>
                         <li>
-                        <input type="checkbox" id="<?php echo $idlang?>" name="<?php echo $lang['Lang']?>" />
+                        <input type="checkbox" class="lang" id="<?php echo $idlang?>" name="<?php echo $lang['Lang']?>" />
                         <label for="<?php echo $idlang?>"><?php echo $lang['Lang']?></label>
                     </li> 
                     <?php endforeach;endif;?>
@@ -66,7 +66,7 @@
                     foreach($templateParams["authors"] as $lang): 
                         $idlang= getIdFromName($lang['Author']); ?>
                         <li>
-                        <input type="checkbox" id="<?php echo $idlang?>" name="<?php echo $lang['Author']?>" />
+                        <input type="checkbox" class="author" id="<?php echo $idlang?>" name="<?php echo $lang['Author']?>" />
                         <label for="<?php echo $idlang?>"><?php echo $lang['Author']?></label>
                     </li> 
                     <?php endforeach;endif;?>
