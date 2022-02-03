@@ -4,6 +4,7 @@ const filters = {
     price: [],
     availability: [],
     publisher: [],
+    category: []
 };
 
 function hideElement(element) {
@@ -13,6 +14,7 @@ function hideElement(element) {
 }
 
 $(document).ready(function(){
+    submitFilters(filters);
     $("main > aside > button").click(function(){
         if ($(this).hasClass("selected")) {
             hideElement($(this));
@@ -28,7 +30,6 @@ $(document).ready(function(){
         var type = $(this).attr('class');
 
         if(isChecked){
-            console.log($(this).attr('class'));
             filters[type].push($(this).attr("name"));
         }
         else{
@@ -41,24 +42,10 @@ $(document).ready(function(){
 });
 
 function submitFilters(allFilter){
-    $.ajax({
-        type: "POST",
-        url: "utils/process-filters.php",
-        data: allFilter,
-        dataType: "json",
-        encode: true
-    }).done(function (data){
-        if (data.error) { //in caso di errore ricezione dati 
-            console.log('errore dati');
-        } else {
-            //in caso di ricezione corretta dei dati
+    $.post("utils/process-filters.php", allFilter,
+        function (data,status) {
             console.log(data);
-            console.log('ricezione ok');
-        }
-    }).fail(function(data){
-        //caso di errore di connessione al server 
-        console.log('errore connessione');
-    });
+        });
 }
 
 /*
