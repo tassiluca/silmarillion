@@ -18,26 +18,26 @@
                 <button>Prezzo</button>
                 <ul>
                     <li>
-                        <input type="checkbox" class="price" id="cheap" name="0€ - 100€" />
+                        <input type="checkbox" class="price" id="cheap" name="cheap" />
                         <label for="cheap">0€ - 99,99€</label>
                     </li>
                     <li>
-                        <input type="checkbox" class="price" id="medium" name="100€ - 199,99€" />
+                        <input type="checkbox" class="price" id="medium" name="medium" />
                         <label for="medium">100€ - 199,99€</label>
                     </li>   
                     <li>
-                        <input type="checkbox" class="price" id="expensive" name="Più di 200,00€" />
+                        <input type="checkbox" class="price" id="expensive" name="expensive" />
                         <label for="expensive">Più di 200,00€</label>
                     </li>
                 </ul>
                 <button>Disponibilità</button>
                 <ul>
                     <li>
-                        <input type="checkbox" class="availability" id="available" name="Disponibile" />
+                        <input type="checkbox" class="availability" id="available" name="available" />
                         <label for="available">Disponibile</label>
                     </li>
                     <li>
-                        <input type="checkbox" class="availability" id="notavailable" name="Non Disponibile" />
+                        <input type="checkbox" class="availability" id="notavailable" name="notavailable" />
                         <label for="notavailable">Non Disponibile</label>
                     </li>   
                 </ul>
@@ -63,11 +63,11 @@
                 <button>Autore</button>
                 <ul>
                     <?php if(isset($templateParams["authors"])):
-                    foreach($templateParams["authors"] as $lang): 
-                        $idlang= getIdFromName($lang['Author']); ?>
+                    foreach($templateParams["authors"] as $auth): 
+                        $idAuth= getIdFromName($auth['Author']); ?>
                         <li>
-                        <input type="checkbox" class="author" id="<?php echo $idlang?>" name="<?php echo $lang['Author']?>" />
-                        <label for="<?php echo $idlang?>"><?php echo $lang['Author']?></label>
+                        <input type="checkbox" class="author" id="<?php echo $idAuth?>" name="<?php echo $auth['Author']?>" />
+                        <label for="<?php echo $idAuth?>"><?php echo $auth['Author']?></label>
                     </li> 
                     <?php endforeach;endif;?>
                 </ul>

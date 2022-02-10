@@ -35,7 +35,7 @@ $(document).ready(function(){
         else{
             filters[type].splice(filters[type].indexOf($(this).attr("name")),1);
         }
-        console.log(filters);
+        //console.log(filters);
         submitFilters(filters);
     })
 
@@ -45,8 +45,15 @@ function submitFilters(allFilter){
     $.post("utils/process-filters.php", allFilter,
         function (data,status) {
             console.log(data);
+            updateCatalogView(data);
         });
 }
+
+function updateCatalogView(jsonData){
+    //var prods = JSON.parse(jsonData);
+    //console.log(prods);
+}
+
 
 /*
 function loginAttempt(form, formData, target) {
