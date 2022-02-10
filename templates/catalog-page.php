@@ -72,26 +72,6 @@
                     <?php endforeach;endif;?>
                 </ul>
             </aside><section>
-                <?php if(isset($templateParams["products"])): foreach($templateParams["products"] as $product): ?>
-                    <?php $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId'])?>
-                <article>
-                    <div>
-                        <img src="img/comics/<?php echo $product['CoverImg']?>" alt="<?php echo $product['CoverImg']?>">
-                    </div>
-                    <header><a href="article.php?id=<?php echo $product["ProductId"]?>"><h3><?php echo $product["Title"]?></h3></a></header>
-                    <footer>
-                        <div>
-                            <a <?php if((isset($templateParams["logged"])&& !$templateParams["logged"]) ||$countC <= 0){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=wish&id=<?php echo $product['ProductId']?>" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a <?php if((isset($templateParams["logged"])&& !$templateParams["logged"]) ||$countC <= 0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?></p>
-                        </div>
-                    </footer>
-                </article>
-                    <?php endforeach; endif;?>
                 <footer>
                     <!-- Pagination -->
                     <ul>

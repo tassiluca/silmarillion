@@ -35,7 +35,6 @@ $(document).ready(function(){
         else{
             filters[type].splice(filters[type].indexOf($(this).attr("name")),1);
         }
-        //console.log(filters);
         submitFilters(filters);
     })
 
@@ -44,46 +43,24 @@ $(document).ready(function(){
 function submitFilters(allFilter){
     $.post("utils/process-filters.php", allFilter,
         function (data,status) {
-            console.log(data);
+            //console.log(data);
             updateCatalogView(data);
         });
 }
 
 function updateCatalogView(jsonData){
-    //var prods = JSON.parse(jsonData);
-    //console.log(prods);
+    var prods = JSON.parse(jsonData);
+    console.log(prods);
+    var prodListHTML ='';
+    for(let e in prods){
+        var disabled = e["copies"]<= 0 ? 'class="disabled"' : '';
+        var price = e["DiscountedPrice"] === null? e["Price"] : e["DiscountedPrice"];
+        
+        prodListHTML += '<article><div><img src="img/comics/'+e["CoverImg"]+' alt='+e["CoverImg"]+'></div><header><a href=\"article.php?id=' + e["ProductId"] +
+                        '"><h3>'+e["Title"]+'</h3></a></header><footer><div><a ' + disabled+' href="gestisci-richieste.php?action=wish&id='+
+                        e["ProductId"]+'"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a></div>'+
+                        '<div><a '+ disabled + ' href="gestisci-richieste.php?action=addtoCart&id='+e["ProductId"]+
+                        '"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
+    };
+    $('main > section').innerHTML = prodListHTML;
 }
-
-
-/*
-function loginAttempt(form, formData, target) {
-    // Clears messages results of previous attempts
-    $(".hasError").removeClass("hasError");
-    $(".message").remove();
-
-    $.ajax({
-        type: "POST",
-        url: "utils/process-login.php",
-        data: formData,
-        dataType: "json",
-        encode: true
-    }).done(function (data) {
-        if (data.error) { // if has been occured some error
-            // add class hasError to both username and password inputs
-            $(form).find("ul > li:nth-of-type(2)").addClass("hasError");
-            $(form).find("ul > li:nth-of-type(3)").addClass("hasError");
-            // add an error message
-            $(form).find("ul > li:nth-of-type(3)").append (
-                '<div class="message error">' + data.error + '</div>'
-            );
-        } else {
-            // send the user to target
-            window.location.href = target;
-        }
-    }).fail(function(data) { // error connecting to the server
-        $(form).find("ul > li:nth-of-type(3)").append (
-            '<div class="error">Errore connessione al server! Riprova...</div>'
-        );
-    });
-}*/
-
