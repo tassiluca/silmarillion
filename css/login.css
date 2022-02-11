@@ -1,9 +1,12 @@
+/****************************************************************************
+ * Style sheet linked to login page
+ ****************************************************************************/
+
 main {
     margin-bottom: 50px;
 }
 
-/***************************** Section header *****************************/
-
+/****************************** Section header ******************************/
 main > section > header > ul > li {
     width: 50%;
     padding: 10px 0;
@@ -34,7 +37,7 @@ main > section > header > ul > li:last-child.active > a {
     color: #AAF1FF;
 }
 
-/***************************** User login form *****************************/
+/****************************** User login form ******************************/
 main > section > form:first-of-type > ul {
     background-color: #AAF1FF;
 }

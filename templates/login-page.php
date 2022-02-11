@@ -18,15 +18,15 @@
     <form action="#" method="POST">
         <ul id="userlogin">
             <li>
-                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
-            </li>
-            <li>
                 <label for="customerUsr">Username</label>
                 <input type="text" placeholder="es. giovadelnevo" id="customerUsr" name="customerUsr" required />
             </li>
             <li>
                 <label for="customerPwd">Password</label>
                 <input type="password" placeholder="Password" id="customerPwd" name="customerPwd" required />
+            </li>
+            <li>
+                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
             </li>
             <li>
                 <!-- TODO: link -->

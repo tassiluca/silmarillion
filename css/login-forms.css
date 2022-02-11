@@ -1,4 +1,6 @@
-/* Common rules for both user, seller login and registration form */
+/****************************************************************************
+ * Style sheet for bot user, seller login and registration forms.
+ ****************************************************************************/
 
 /* To hide the labels keeping them available to screen readers. 
  * See [https://www.w3.org/WAI/tutorials/forms/labels/#hidden]
@@ -85,7 +87,7 @@ main > section > form > ul > li > p {
     font-weight: bold;
 }
 
-/************************* Errors **************************/
+/******************************** Messages **********************************/
 main > section > form > ul > li.hasError > input {
     border: 2px solid red !important;
 }
