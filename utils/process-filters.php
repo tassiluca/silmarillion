@@ -102,7 +102,7 @@ filters = lang, author, price, availability, publisher,category*/
     }
     function getCorrectConcat(){
         global $isFirst,$SPACE, $OR_S, $AND_S;
-        $concatKeyword = $isFirst ? $SPACE : $OR_S;
+        $concatKeyword = $isFirst ? $SPACE : $AND_S;
         $isFirst = false;
         return $concatKeyword;
     }
