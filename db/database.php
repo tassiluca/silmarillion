@@ -189,6 +189,20 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getProduct($productId) {
+            $query = "SELECT *
+                      FROM Products as P, Funkos as F, Comics as C
+                      WHERE P.ProductId = F.ProductId 
+                      AND P.ProductId = C.ProductId
+                      AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $productId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        /*********/
+
         public function getHomeBanner(){
             $query = "SELECT NewsId, Title, Description, Img, UserId
                     FROM News";
