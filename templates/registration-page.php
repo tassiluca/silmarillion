@@ -1,8 +1,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <!-- TODO: link -->
-        <li><a href="./index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="./login.php">Login</a></li><li>Registrazione</li>
+        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="./login.php">Login</a></li><li>Registrazione</li>
     </ul>
 </div>
 <section>

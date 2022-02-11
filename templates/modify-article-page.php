@@ -6,8 +6,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <!-- TODO: link -->
-        <li><a href="./index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="./login.php">Area personale</a></li><li>Modifica Articolo</li>
+        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="login.php">Area personale</a></li><li>Modifica Articolo</li>
     </ul>
 </div>
 <section>
