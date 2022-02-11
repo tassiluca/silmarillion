@@ -1,8 +1,8 @@
 <?php 
 $SPACE = ' ';
-$AND = 'and';
 $EQ = '=';
 $AND_S = ' and '; //and with spaces
+$OR_S = ' or ';
 
 define('NOT_AVAILABLE', 0);
 define('AVAILABLE', 1);
@@ -14,23 +14,29 @@ $priceInterval = ["cheap"=> ["from"=>'0',"to"=>'99.99'],
 /*
 filters = lang, author, price, availability, publisher,category*/
     require_once '../bootstrap.php';
-   
-    //print_r($_POST['lang'][0]);
+    
     if(isset($_POST)){
         $availabFilter = ALL_AVAILABILITY;
         $keys = array_keys($_POST);
         $data = $_POST;
         $query = "SELECT * 
                 FROM Products as P, Comics as C, Publisher as PB 
-                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
+                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId and (";
         if(isset($keys) && count($keys)){
             $filtQuery = $query;
+        /**
+         * is first filter applied ? Used to append or not 'and' keyword in SQLquery
+         * If one filter selected not add 'or' statement, if more than one filter is applied
+         * add 'or statement in sql query'
+         * The change of $isFirst happen in method getCorrectConcat()
+         */
+            $isFirst = true;
             foreach($keys as $k){
                 if(!strcmp($k,'category')){
-                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$EQ);
+                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName');
                 }
                 else if(!strcmp($k,'publisher')){
-                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name',$EQ);
+                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name');
                 }
                 else if(!strcmp($k,'availability')){
                     if(!strcmp($data[$k][0],'available')){
@@ -47,25 +53,29 @@ filters = lang, author, price, availability, publisher,category*/
                     $filtQuery .= appendBetweenFilter($data[$k],'P.Price',$priceInterval);
                 }
                 else if(!strcmp($k,'author')){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Author',$EQ);
+                    $filtQuery .= appendEqualFilter($data[$k],'C.Author');
                 }
                 else if(!strcmp($k,'lang')){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang',$EQ);
+                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang');
                 }
+
             }
-            sendData($filtQuery,$availabFilter,$dbh);
+            $filtQuery .= ' )';
+            print_r($filtQuery);
+            //sendData($filtQuery,$availabFilter,$dbh);
         }
         else{
+            $query .= 'true )';
             sendData($query,$availabFilter,$dbh);
         }
-        
     }
    
     function appendEqualFilter($arr,$filt){
-        global $SPACE,$AND,$EQ,$AND_S;
+        global $SPACE,$EQ;
         $strQUery ='';
             foreach($arr as $e){
-            $strQUery .= $AND_S.$filt.$SPACE.$EQ.$SPACE."'".$e."'";
+            $concatMode = getCorrectConcat();
+            $strQUery .= $concatMode.$filt.$SPACE.$EQ.$SPACE."'".$e."'";
         }
         return $strQUery;
     }
@@ -75,22 +85,29 @@ filters = lang, author, price, availability, publisher,category*/
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
      */
     function appendBetweenFilter($arr,$filt,$interval){
-        global $SPACE,$AND,$BETWEEN,$AND_S;
+        global $SPACE,$AND_S,$isFirst;
         $strQUery ='';
             foreach($arr as $e){
+                $concatMode = getCorrectConcat();
                 if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-                    $strQUery .= $AND_S.$filt.$SPACE.'BETWEEN'.$SPACE."'".$interval[$e]["from"]."'".$AND_S."'".$interval[$e]["to"]."'";
+                    $strQUery .= $concatMode.$filt.$SPACE.'BETWEEN'.$SPACE."'".$interval[$e]["from"]."'".$AND_S."'".$interval[$e]["to"]."'";
                 }
                 else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-                    $strQUery .= $AND_S.$filt.$SPACE.'>='.$SPACE."'".$interval[$e]["from"]."'";
+                    $strQUery .= $concatMode.$filt.$SPACE.'>='.$SPACE."'".$interval[$e]["from"]."'";
                 }
                 else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
-                    $strQUery .= $AND_S.$filt.$SPACE.'<='.$SPACE."'".$interval[$e]["to"]."'";
+                    $strQUery .= $concatMode.$filt.$SPACE.'<='.$SPACE."'".$interval[$e]["to"]."'";
                 }
         }
-        print_r($strQUery);
         return $strQUery;
     }
+    function getCorrectConcat(){
+        global $isFirst,$SPACE, $OR_S;
+        $concatKeyword = $isFirst ? $SPACE : $OR_S;
+        $isFirst = false;
+        return $concatKeyword;
+    }
+    
 
     function sendData($query,$avail,$dbh){
         $prods = addAvaiableCopies($dbh -> getAllComics($query),$dbh); //get all products that match filters
