@@ -1,3 +1,8 @@
+<?php 
+    if (isset($templateParams["product"])) {
+        $product = $templateParams["product"];
+    }
+?>
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
@@ -70,7 +75,7 @@
             </li>
             <li>
                 <label for="price">Prezzo</label>
-                <input type="text" placeholder="es. 15,00" id="price" name="price" required />
+                <input type="text" placeholder="es. 15,00" id="price" name="price" />
             </li>
             <li>
                 <label for="discountedPrice">Prezzo Scontato</label>
@@ -78,16 +83,18 @@
             </li>
             <li>
                 <label for="desc">Descrizione</label>
-                <textarea placeholder="es. Descrizione sintetica del prodotto" id="desc" name="desc" required></textarea>
+                <textarea placeholder="es. Descrizione sintetica del prodotto" id="desc" name="desc" ></textarea>
             </li>
             <li>
-                <!--
-                <label for="coverImg">Immagine di Copertina</label>
-                <input type="file" id="coverImg" name="coverImg" required />
-                -->
-                <label for="imgarticolo">Immagine Articolo</label><input type="file" name="imgarticolo" id="imgarticolo" />
+                <label for="coverImg">Immagine Articolo</label>
+                <input type="file" name="coverImg" id="coverImg" />
                 <!-- TODO <img src="" alt=""> -->
             </li>
+            <?php if(isset($templateParams["formMsg"])):?>
+                <li>
+                    <p><?php echo $templateParams["formMsg"]; ?></p>
+                </li>
+            <?php endif; ?>
             <li>
                 <!-- TODO nel caso di modifica metti modifica !-->
                 <input type="submit" value="INSERISCI" />

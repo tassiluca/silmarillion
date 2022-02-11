@@ -15,13 +15,12 @@
         }
     }
 
-    // if (!validateInputs()) {
-    //     header("location: modify-article.php?formmsg=" . "Campi vuoti!");
-    // }
-    echo $_FILES["imgarticolo"];
-    list($result, $msg) = uploadImage(UPLOAD_DIR, $_FILES["imgarticolo"]);
+    if (!validateInputs()) {
+        header("location: modify-article.php?formMsg=Campi vuoti!");
+    }
+    list($result, $msg) = uploadImage(UPLOAD_DIR, $_FILES["coverImg"]);
     if ($result != 0) {
-        $imgarticolo = $msg;
+        $coverImg = $msg;
         $price = htmlspecialchars($_POST['price']);
         $desc = htmlspecialchars($_POST['desc']);
         $category = htmlspecialchars($_POST['category']);
@@ -33,7 +32,7 @@
                                   $price, 
                                   $discountedPrice, 
                                   $desc, 
-                                  $imgarticolo,
+                                  $coverImg,
                                   $category);
             $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
         } else if ($_POST["articleToInsert"] == "Fumetto") {
@@ -53,12 +52,12 @@
                                   $price,
                                   $discountedPrice,
                                   $desc,
-                                  $imgarticolo, 
+                                  $coverImg, 
                                   $category);
             $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
         }
     }
     
-    header("location: modify-article.php?formmsg=" . $msg);
+    header("location: modify-article.php?formMsg=" . $msg);
 
 ?>
