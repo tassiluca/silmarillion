@@ -41,9 +41,7 @@
     <!-- Seller login form -->
     <form action="#" method="POST">
         <ul id="sellerlogin">
-            <li>
-                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
-            </li>
+            
             <li>
                 <label for="sellerUsr">Username</label>
                 <input type="text" placeholder="es. silvymirry" id="sellerUsr" name="sellerUsr" />
@@ -51,6 +49,9 @@
             <li>
                 <label for="sellerPwd">Password</label>
                 <input type="password" placeholder="Password" id="sellerPwd" name="sellerPwd" />
+            </li>
+            <li>
+                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
             </li>
             <li>
                 <!-- TODO: link -->
