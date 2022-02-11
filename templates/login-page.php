@@ -28,8 +28,7 @@
                 <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
             </li>
             <li>
-                <!-- TODO: link -->
-                <a href="">Hai dimenticato la password?</a>
+                <a href="recovery.php">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
             </li>
             <li>
@@ -53,8 +52,7 @@
                 <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
             </li>
             <li>
-                <!-- TODO: link -->
-                <a href="">Hai dimenticato la password?</a>
+                <a href="recovery.php">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
             </li>
         </ul>

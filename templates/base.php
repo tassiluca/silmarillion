@@ -59,7 +59,7 @@
                             <button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button>
                         <?php endif; ?>
                     </li><li>
-                        <button type="button" >
+                        <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
                         </button>
                     </li>
@@ -75,7 +75,7 @@
                         </li><li>
                             <a href="catalog.html">Funko Pop</a>
                         </li><li id="login">
-                            <a href="login.html">Login</a>
+                            <a href="login.php">Login</a>
                         </li><li>
                             <a href="index.php#reviews">Recensioni</a>
                         </li><li>
@@ -137,14 +137,14 @@
                             </li>
                             <li>
                                 <div>
-                                    <a href="">Dimenticato la password?</a>
-                                    <a href="login.html">Accedi come venditore</a>
+                                    <a href="recovery.php">Dimenticato la password?</a>
+                                    <a href="login.php">Accedi come venditore</a>
                                 </div>
                                 <input type="submit" name="submit" value="ACCEDI" />
                             </li>
                             <li>
                                 <p>Non sei registrato?</p>
-                                <a href="./register.html">CREA IL TUO ACCOUNT</a>
+                                <a href="regisration.php">CREA IL TUO ACCOUNT</a>
                             </li>
                         </ul>
                     </form>
