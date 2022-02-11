@@ -5,6 +5,7 @@
     $templateParams["main"] = "./templates/recovery-page.php";
 
     if (isset($_POST['email'])) {
+        // TODO: implement logic to reset password
         print_r($dbh->getCustomerDataByMail($_POST['email']));
     }
 
