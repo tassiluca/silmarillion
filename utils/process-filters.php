@@ -21,9 +21,9 @@ filters = lang, author, price, availability, publisher,category*/
         $data = $_POST;
         $query = "SELECT * 
                 FROM Products as P, Comics as C, Publisher as PB 
-                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId and (";
+                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
         if(isset($keys) && count($keys)){
-            $filtQuery = $query;
+            $filtQuery = $query.$AND_S.'(';
         /**
          * is first filter applied ? Used to append or not 'and' keyword in SQLquery
          * If one filter selected not add 'or' statement, if more than one filter is applied
@@ -61,11 +61,10 @@ filters = lang, author, price, availability, publisher,category*/
 
             }
             $filtQuery .= ' )';
-            print_r($filtQuery);
-            //sendData($filtQuery,$availabFilter,$dbh);
+            //print_r($filtQuery);
+            sendData($filtQuery,$availabFilter,$dbh);
         }
         else{
-            $query .= 'true )';
             sendData($query,$availabFilter,$dbh);
         }
     }
@@ -102,7 +101,7 @@ filters = lang, author, price, availability, publisher,category*/
         return $strQUery;
     }
     function getCorrectConcat(){
-        global $isFirst,$SPACE, $OR_S;
+        global $isFirst,$SPACE, $OR_S, $AND_S;
         $concatKeyword = $isFirst ? $SPACE : $OR_S;
         $isFirst = false;
         return $concatKeyword;
