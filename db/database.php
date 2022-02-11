@@ -11,10 +11,13 @@
             }
         }
 
+        /**********************************************************************************
+         * Users management functions
+         **********************************************************************************/
         /**
          * Get customer infos.
          * @param string $username the username string
-         * @return void an associative array with all data
+         * @return array an associative array with all data.
          */
         public function getCustomerData($username) {
             $query = "SELECT U.*
@@ -30,9 +33,43 @@
         }
 
         /**
+         * Get customer infos.
+         * @param string $mail the mail
+         * @return array an associative array with all data.
+         */
+        public function getCustomerDataByMail($mail) {
+            $query = "SELECT U.*
+                      FROM Users AS U, Customers AS C
+                      WHERE C.UserId = U.UserId
+                      AND U.Mail = ?
+                      AND U.IsActive = 1";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $mail);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Reset the user password.
+         * @param int $userId the user id
+         * @param string $password the new password
+         * @param string $salt the new salt
+         * @return bool true on success or false on failure.
+         */
+        public function resetUserPassword($userId, $password, $salt) {
+            $query = "UPDATE Users
+                      SET Password = ?, Salt = ?
+                      WHERE UserId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssi', $password, $salt, $userId);
+            return $stmt->execute();
+        }
+
+        /**
          * Get seller infos.
          * @param string $username the username string
-         * @return array an associative array with all data
+         * @return array an associative array with all data.
          */
         public function getSellerData($username) {
             $query = "SELECT U.*
@@ -85,8 +122,8 @@
          * @param string $username the username
          * @param string $password the password
          * @param string $salt the salt
-         * @param string $name the name
-         * @param string $surname the surname
+         * @param string $name the user name
+         * @param string $surname the user surname
          * @param string $birthday the birth date 
          * @param string $mail the e-mail
          * @return int the UserId associated with the just inserted user
@@ -109,7 +146,13 @@
 
         /**
          * Insert into table `Customers` a new customer user. 
-         * @param int $userId the user
+         * @param string $username the username
+         * @param string $password the password
+         * @param string $salt the salt
+         * @param string $name the customer name
+         * @param string $surname the customer surname
+         * @param string $birthday the birth date
+         * @param string $mail the e-mail
          * @return Array the success element a `boolean` to describe success or failure,
          * the second a `boolean` to describe if there was duplicateKey error.
          */
@@ -142,6 +185,9 @@
             return $stmt->get_result()->num_rows > 0;
         }
 
+        /**********************************************************************************
+         * Products management functions
+         **********************************************************************************/
         private function addProduct($price, $discountedPrice, $desc, $img, $category) {
             $query = "INSERT INTO Products(Price, DiscountedPrice, Description, CoverImg, CategoryName)
                       VALUES(?, ?, ?, ?, ?)";
@@ -201,6 +247,7 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+
         /*********/
 
         public function getHomeBanner(){
