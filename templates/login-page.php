@@ -41,7 +41,6 @@
     <!-- Seller login form -->
     <form action="#" method="POST">
         <ul id="sellerlogin">
-            
             <li>
                 <label for="sellerUsr">Username</label>
                 <input type="text" placeholder="es. silvymirry" id="sellerUsr" name="sellerUsr" />
