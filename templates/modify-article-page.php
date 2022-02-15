@@ -61,6 +61,17 @@
                             <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <button aria-label="Aggiungi Editore">&#10010;</button>
+                    <ul>
+                        <li>
+                            <label for="publisherName">Nome Editore</label>
+                            <input type="text" id="publisherName" name="publisherName" placeholder="es. Panini Comics" />
+                        </li>
+                        <li>
+                            <label for="publisherLogo">Logo Editore</label>
+                            <input type="file" id="publisherLogo" name="publisherLogo" />
+                        </li>
+                    </ul>
                 </li>
             </div>
             <!-- commons -->
@@ -71,6 +82,17 @@
                         <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
                     <?php endforeach; ?>
                 </select>
+                <button aria-label="Aggiungi Categoria">&#10010;</button>
+                <ul>
+                    <li>
+                        <label for="categoryName">Nome Categoria</label>
+                        <input type="text" id="categoryName" name="categoryName" placeholder="es. Manga" />
+                    </li>
+                    <li>
+                        <label for="categoryDesc">Descrizione Categoria</label>
+                        <textarea id="categoryDesc" name="categoryDesc" placeholder="Descrizione della categoria: es. fumetti di piccolo formato originari del Giappone."></textarea>
+                    </li>
+                </ul>
             </li>
             <li>
                 <label for="price">Prezzo</label>
@@ -82,7 +104,7 @@
             </li>
             <li>
                 <label for="desc">Descrizione</label>
-                <textarea placeholder="es. Descrizione sintetica del prodotto" id="desc" name="desc" ></textarea>
+                <textarea placeholder="Descrizione sintetica del prodotto" id="desc" name="desc" ></textarea>
             </li>
             <li>
                 <label for="coverImg">Immagine Articolo</label>
