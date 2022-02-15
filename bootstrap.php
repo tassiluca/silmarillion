@@ -5,7 +5,7 @@
 
     define("HOST", "localhost");
     define("USER", "root");
-    define("PASSWORD", "root"); //TOGLI PASSWORD PRIMA DI PUSHARE
+    define("PASSWORD", ""); //TOGLI PASSWORD PRIMA DI PUSHARE
     define("DB_NAME", "silmarillion");
     define("DB_PORT", 3306);
 
