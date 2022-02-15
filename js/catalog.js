@@ -43,14 +43,13 @@ $(document).ready(function(){
 function submitFilters(allFilter){
     $.post("utils/process-filters.php", allFilter,
         function (data,status) {
-            //console.log(data);
+            //console.log(data); //all php prints are showed here in console browser
             updateCatalogView(data);
         });
 }
 
 function updateCatalogView(jsonData){
     var prods = JSON.parse(jsonData);
-    //console.log(prods);
     $('main > section > article').remove();
     $('main > section > p').remove();
     var prodListHTML ='';
@@ -59,7 +58,6 @@ function updateCatalogView(jsonData){
     }
     else{
         for(let i in prods){
-            //console.log(prods[i]);
             var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
             var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
             prodListHTML += '<article><div><img src="img/comics/'+prods[i].CoverImg+'" alt='+prods[i].CoverImg+'></div><header><a href=\"article.php?id=' + prods[i].ProductId +

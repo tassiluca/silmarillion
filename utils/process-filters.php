@@ -39,6 +39,9 @@ filters = lang, author, price, availability, publisher,category*/
                     $filtQuery .= appendEqualFilter($data[$k],'PB.Name');
                 }
                 else if(!strcmp($k,'availability')){
+                    if(count($keys)==1){ //the only key present is avaialbility
+                        $filtQuery .= '1'; //sql condition always true to get all comics
+                    }
                     if(!strcmp($data[$k][0],'available')){
                         $availabFilter = AVAILABLE;
                     }
