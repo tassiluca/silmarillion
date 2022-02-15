@@ -1,8 +1,8 @@
 <?php
     require_once 'bootstrap.php';
 
-    $templateParams["css"] = array("manage-article.css");
-    $templateParams["js"] = array("manage-article.js");
+    $templateParams["css"] = array("modify-article.css");
+    $templateParams["js"] = array("modify-article.js");
     $templateParams["main"] = "./templates/modify-article-page.php";
     $templateParams["categories"] = $dbh->getCategories();
     $templateParams["publishers"] = $dbh->getPublishers();
