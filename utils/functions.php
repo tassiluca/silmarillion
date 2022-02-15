@@ -57,4 +57,7 @@
         return isUserLoggedIn() && !$dbh->isCustomer($_SESSION['userId']);
     }
 
+function getIdFromName($name){
+    return preg_replace("/[^a-z]/", '', strtolower($name));
+}
 ?>

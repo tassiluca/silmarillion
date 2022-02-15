@@ -143,6 +143,7 @@
             return $stmt->get_result()->num_rows > 0;
         }
 
+//---------------------------HOMEPAGE------------------------------//
         public function getHomeBanner(){
             $query = "SELECT NewsId, Title, Description, Img, UserId
                     FROM News";
@@ -152,7 +153,7 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function getNewArrival($n=10){
+        public function getNewArrival($n=15){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
                     FROM Comics as C, Products as P
                     WHERE C.ProductId = P.ProductId
@@ -290,6 +291,39 @@
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
-    }
 
+//-----------------------CATALOG-----------------------------//
+        public function getLanguages(){
+            return $this -> getListOfFromComics('Lang');
+        }
+
+        public function getAllAuthors(){
+            return $this -> getListOfFromComics('Author');
+        }
+
+        private function getListOfFromComics($attribute){ //NOTE: be sure the param is an attributo of Comics
+            $query = "SELECT ".$attribute." FROM Comics Group by ". $attribute;
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getAllCategories(){
+            $query = "SELECT * FROM `Categories`";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+//---------------------------------------------------
+        public function getAllComics($query){
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+    }
+    
 ?>

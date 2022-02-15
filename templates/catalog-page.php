@@ -9,126 +9,69 @@
             <aside>
                 <button>Categoria</button>
                 <ul>
-                    <li>
-                        <input type="checkbox" id="comics" name="Fumetti" />
-                        <label for="comics">Fumetti</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="funk" name="Funko" />
-                        <label for="funk">Funko</label>
-                    </li>   
+                    <?php if(isset($templateParams["categories"])):
+                    foreach($templateParams["categories"] as $category):
+                        $idcategory= getIdFromName($category["Name"]);?>
+                        <li><input type="checkbox" class="category" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
+                        <label for="<?php echo $idcategory?>"><?php echo $category["Name"]?></label></li><?php endforeach;endif;?>  
                 </ul>
                 <button>Prezzo</button>
                 <ul>
                     <li>
-                        <input type="checkbox" id="cheap" name="0€ - 100€" />
+                        <input type="checkbox" class="price" id="cheap" name="cheap" />
                         <label for="cheap">0€ - 99,99€</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="medium" name="100€ - 199,99€" />
+                        <input type="checkbox" class="price" id="medium" name="medium" />
                         <label for="medium">100€ - 199,99€</label>
                     </li>   
                     <li>
-                        <input type="checkbox" id="expensive" name="Più di 200,00€" />
+                        <input type="checkbox" class="price" id="expensive" name="expensive" />
                         <label for="expensive">Più di 200,00€</label>
                     </li>
                 </ul>
                 <button>Disponibilità</button>
                 <ul>
                     <li>
-                        <input type="checkbox" id="available" name="Disponibile" />
+                        <input type="checkbox" class="availability" id="available" name="available" />
                         <label for="available">Disponibile</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="notavailable" name="Non Disponibile" />
+                        <input type="checkbox" class="availability" id="notavailable" name="notavailable" />
                         <label for="notavailable">Non Disponibile</label>
                     </li>   
                 </ul>
                 <button>Editore</button>
+                <ul>
+                    <?php if(isset($templateParams["publisher"])):
+                    foreach($templateParams["publisher"] as $publisher):
+                        $idname= getIdFromName($publisher["Name"]);?>
+                        <li><input type="checkbox" class="publisher" id="<?php echo $idname?>" name="<?php echo $publisher["Name"]?>" />
+                        <label for="<?php echo $idname?>"><?php echo $publisher["Name"]?></label></li><?php endforeach;endif;?>
+                </ul>
                 <button>Lingua</button>
+                <ul>
+                    <?php if(isset($templateParams["languages"])):
+                    foreach($templateParams["languages"] as $lang): 
+                        $idlang= getIdFromName($lang['Lang']); ?>
+                        <li>
+                        <input type="checkbox" class="lang" id="<?php echo $idlang?>" name="<?php echo $lang['Lang']?>" />
+                        <label for="<?php echo $idlang?>"><?php echo $lang['Lang']?></label>
+                    </li> 
+                    <?php endforeach;endif;?>
+                </ul>
                 <button>Autore</button>
+                <ul>
+                    <?php if(isset($templateParams["authors"])):
+                    foreach($templateParams["authors"] as $auth): 
+                        $idAuth= getIdFromName($auth['Author']); ?>
+                        <li>
+                        <input type="checkbox" class="author" id="<?php echo $idAuth?>" name="<?php echo $auth['Author']?>" />
+                        <label for="<?php echo $idAuth?>"><?php echo $auth['Author']?></label>
+                    </li> 
+                    <?php endforeach;endif;?>
+                </ul>
             </aside><section>
-                <article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>4,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto2.jpg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>4,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>14,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>11,90€</p>
-                        </div>
-                    </footer>
-                </article><article>
-                    <div>
-                        <img src="img/fumetto.svg" alt="The Seven deadly sins">
-                    </div>
-                    <header><a href="article.html"><h3>The Seven deadly sins</h3></a></header>
-                    <footer>
-                        <div>
-                            <a href="#" ><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
-                        </div>
-                        <div>
-                            <a href="#" ><img src="./img/add.svg" alt="Aggiungi al carrello"/></a>
-                        </div>
-                        <div>
-                            <p>4,90€</p>
-                        </div>
-                    </footer>
-                </article>
                 <footer>
                     <!-- Pagination -->
                     <ul>
