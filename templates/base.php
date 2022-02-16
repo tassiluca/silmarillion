@@ -68,15 +68,15 @@
                 <div id="navMenu">
                     <ul>
                         <li>
-                            <a href="catalog.php">Nuovi Arrivi</a>
+                            <a href="catalog.php">Catalogo</a>
                         </li><li>
-                            <a href="catalog.html">Manga</a>
+                            <a href="catalog.php?category=manga">Manga</a>
                         </li><li>
-                            <a href="catalog.html">Supoereroi</a>
+                            <a href="catalog.php?category=hero">Supoereroi</a>
                         </li><li>
-                            <a href="catalog.html">Funko Pop</a>
+                            <a href="catalog.php">Funko Pop</a>
                         </li><li id="login">
-                            <a href="login.html">Login</a>
+                            <a href="login.php">Login</a>
                         </li><li>
                             <a href="index.php#reviews">Recensioni</a>
                         </li><li>
