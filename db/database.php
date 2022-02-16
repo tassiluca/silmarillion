@@ -382,7 +382,6 @@
                 FROM Products as P, Comics as C, Publisher as PB 
                 WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
                 $query .= $filter;
-                print_r($query);
                 $stmt = $this->db->prepare($query);
                 $stmt->execute();
                 $result = $stmt->get_result();
