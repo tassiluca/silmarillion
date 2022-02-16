@@ -19,11 +19,9 @@ filters = lang, author, price, availability, publisher,category*/
         $availabFilter = ALL_AVAILABILITY;
         $keys = array_keys($_POST);
         $data = $_POST;
-        $query = "SELECT * 
-                FROM Products as P, Comics as C, Publisher as PB 
-                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
+        
         if(isset($keys) && count($keys)){
-            $filtQuery = $query.$AND_S.'(';
+            $filtQuery = $AND_S.'(';
         /**
          * is first filter applied ? Used to append or not 'and' keyword in SQLquery
          * If one filter selected not add 'or' statement, if more than one filter is applied
@@ -64,11 +62,10 @@ filters = lang, author, price, availability, publisher,category*/
 
             }
             $filtQuery .= ' )';
-            //print_r($filtQuery);
             sendData($filtQuery,$availabFilter,$dbh);
         }
         else{
-            sendData($query,$availabFilter,$dbh);
+            sendData('',$availabFilter,$dbh);
         }
     }
    
