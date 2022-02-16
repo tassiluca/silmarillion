@@ -14,7 +14,7 @@ function hideElement(element) {
 }
 
 $(document).ready(function(){
-    submitFilters(filters);
+    //submitFilters(filters);
     $("main > aside > button").click(function(){
         if ($(this).hasClass("selected")) {
             hideElement($(this));

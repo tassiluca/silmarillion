@@ -12,7 +12,7 @@
     }   
     $templateParams["product"] = $dbh -> getProductById($idprodotto)[0];
     $templateParams["copies"] = $dbh -> getAvaiableCopiesOfProd($idprodotto);
-    $templateParams["logged"] = true; // ci va la funzione che verifica se sei loggato
+    $templateParams["logged"] = isCustomerLoggedIn();
 
     require 'templates/base.php';
 ?>
