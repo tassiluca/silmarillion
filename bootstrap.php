@@ -1,8 +1,10 @@
 <?php
     session_start();
-    define("UPLOAD_DIR", "./upload/");
 
     define("UPLOAD_DIR_NEWS", "./upload/news/");
+    /**
+     * The directory in which store the products images.
+     */
     define("UPLOAD_DIR_PRODUCTS", "./upload/products/");
     define("UPLOAD_DIR_PUBLISHERS", "./upload/publishers/");    
 
