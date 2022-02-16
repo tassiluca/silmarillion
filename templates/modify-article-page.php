@@ -26,54 +26,58 @@
                 </fieldset>
             </li>
             <!-- for funko -->
-            <div id="funkoFields">
-                <li>
-                    <label for="funkoName">Nome</label>
-                    <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" />
-                </li>
-            </div>
+            <li>
+                <ul id="funkoFields">
+                    <li>
+                        <label for="funkoName">Nome</label>
+                        <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" />
+                    </li>
+                </ul>
+            </li>
             <!-- for comics -->
-            <div id="comicFields">
-                <li>
-                    <label for="title">Titolo</label>
-                    <input type="text" placeholder="es. Two Moons 1" id="title" name="title" />
-                </li>
-                <li>
-                    <label for="author">Autore</label>
-                    <input type="text" placeholder="es. John Arcudi" id="author" name="author" />
-                </li>
-                <li>
-                    <label for="language">Lingua</label>
-                    <input type="text" placeholder="es. Italiano" id="language" name="language" />
-                </li>
-                <li>
-                    <label for="publishDate">Data di pubblicazione</label>
-                    <input type="date" id="publishDate" name="publishDate" />
-                </li>
-                <li>
-                    <label for="isbn">ISBN</label>
-                    <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" />
-                </li>
-                <li>
-                    <label for="publisher">Editore</label>
-                    <select id="publisher" name="publisher">
-                        <?php foreach ($templateParams["publishers"] as $publisher): ?>
-                            <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <button aria-label="Aggiungi Editore">&#10010;</button>
-                    <ul>
-                        <li>
-                            <label for="publisherName">Nome Editore</label>
-                            <input type="text" id="publisherName" name="publisherName" placeholder="es. Panini Comics" />
-                        </li>
-                        <li>
-                            <label for="publisherLogo">Logo Editore</label>
-                            <input type="file" id="publisherLogo" name="publisherLogo" />
-                        </li>
-                    </ul>
-                </li>
-            </div>
+            <li>
+                <ul id="comicFields">
+                    <li>
+                        <label for="title">Titolo</label>
+                        <input type="text" placeholder="es. Two Moons 1" id="title" name="title" />
+                    </li>
+                    <li>
+                        <label for="author">Autore</label>
+                        <input type="text" placeholder="es. John Arcudi" id="author" name="author" />
+                    </li>
+                    <li>
+                        <label for="language">Lingua</label>
+                        <input type="text" placeholder="es. Italiano" id="language" name="language" />
+                    </li>
+                    <li>
+                        <label for="publishDate">Data di pubblicazione</label>
+                        <input type="date" id="publishDate" name="publishDate" />
+                    </li>
+                    <li>
+                        <label for="isbn">ISBN</label>
+                        <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" />
+                    </li>
+                    <li>
+                        <label for="publisher">Editore</label>
+                        <select id="publisher" name="publisher">
+                            <?php foreach ($templateParams["publishers"] as $publisher): ?>
+                                <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <button id="addPublisherBtn" aria-label="Aggiungi Editore"></button>
+                        <ul>
+                            <li>
+                                <label for="publisherName">Nome Editore</label>
+                                <input type="text" id="publisherName" name="publisherName" placeholder="es. Panini Comics" />
+                            </li>
+                            <li>
+                                <label for="publisherLogo">Logo Editore</label>
+                                <input type="file" id="publisherLogo" name="publisherLogo" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <!-- commons -->
             <li>
                 <label for="category">Categoria</label>
@@ -82,7 +86,7 @@
                         <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <button aria-label="Aggiungi Categoria">&#10010;</button>
+                <button id="addCategoryBtn" aria-label="Aggiungi Categoria"></button>
                 <ul>
                     <li>
                         <label for="categoryName">Nome Categoria</label>

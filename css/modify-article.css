@@ -19,3 +19,22 @@ main > section > form > ul > li > fieldset {
     text-align: center;
 }
 
+button {
+    background-color: none;
+    border: none;
+    cursor: pointer;
+}
+
+button#addCategoryBtn::after, button#addPublisherBtn::after {
+    content: "\f055";
+    font-family: FontAwesome;
+}
+
+button#addCategoryBtn + ul, button#addPublisherBtn + ul {
+    display: none;
+}
+
+button#addCategoryBtn.selected::after, button#addPublisherBtn.selected::after {
+    content: "\f056";
+    font-family: FontAwesome;
+}
