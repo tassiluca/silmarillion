@@ -188,6 +188,16 @@
         /**********************************************************************************
          * Products management functions
          **********************************************************************************/
+        /**
+         * Insert a new product.
+         *
+         * @param string $price the price of the product
+         * @param string $discountedPrice the discounted price of the product
+         * @param string $desc the product description
+         * @param string $img the product image
+         * @param string $category the product category
+         * @return int the id of the product just inserted
+         */
         private function addProduct($price, $discountedPrice, $desc, $img, $category) {
             $query = "INSERT INTO Products(Price, DiscountedPrice, Description, CoverImg, CategoryName)
                       VALUES(?, ?, ?, ?, ?)";
@@ -198,6 +208,17 @@
             return $stmt->insert_id;
         }
 
+        /**
+         * Insert a new funko.
+         *
+         * @param string $name the funko name
+         * @param string $price the funko price
+         * @param string $discountedPrice the funko discounted price
+         * @param string $desc the funko description
+         * @param string $img the funko image
+         * @param string $category the funko category
+         * @return bool true on success or false on failure.
+         */
         public function addFunko($name, $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Funkos(ProductId, Name)
@@ -207,6 +228,22 @@
             return $stmt->execute();
         }
 
+        /**
+         * Insert a new comic.
+         *
+         * @param string $title the comic title
+         * @param string $author the comic author
+         * @param string $lang the comic lang
+         * @param string $date the comic published date
+         * @param string $isbn the comic ISBN code
+         * @param [type] $publisherId the publisher id code
+         * @param string $price the comic price
+         * @param string $discountedPrice the comic discounted price
+         * @param string $desc the comic description
+         * @param string $img the comic image
+         * @param string $category the comic category
+         * @return bool true on success or false on failure.
+         */
         public function addComic($title, $author, $lang, $date, $isbn, $publisherId, 
                                  $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
@@ -217,6 +254,11 @@
             return $stmt->execute();
         }
 
+        /**
+         * Get all the categories.
+         *
+         * @return array an associative array with all categories.
+         */
         public function getCategories() {
             $query = "SELECT Name, Description
                       FROM Categories";
@@ -226,6 +268,11 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get all publishers.
+         *
+         * @return array an associative array with all publishers.
+         */
         public function getPublishers() {
             $query = "SELECT PublisherId, Name, ImgLogo
                       FROM Publisher";
@@ -235,6 +282,12 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get all infos of a given product.
+         *
+         * @param [type] $productId the id of the product
+         * @return array an associative array with all infos of the product given in input.
+         */
         public function getProduct($productId) {
             $query = "SELECT *
                       FROM Products as P, Funkos as F, Comics as C
@@ -247,8 +300,6 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-
-        /*********/
 
         public function getHomeBanner(){
             $query = "SELECT NewsId, Title, Description, Img, UserId
