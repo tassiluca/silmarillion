@@ -377,7 +377,12 @@
          * @param string SQL query to be executed on db
          * @return array associative array with all product that match query
          */
-        public function getAllComics($query){
+        public function getAllComics($filter=''){
+            $query = "SELECT * 
+                FROM Products as P, Comics as C, Publisher as PB 
+                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
+                $query .= $filter;
+                print_r($query);
                 $stmt = $this->db->prepare($query);
                 $stmt->execute();
                 $result = $stmt->get_result();
