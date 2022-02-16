@@ -126,7 +126,8 @@
          * @param string $surname the user surname
          * @param string $birthday the birth date 
          * @param string $mail the e-mail
-         * @return int the UserId associated with the just inserted user
+         * @return int the UserId associated with the just inserted user or -1 if a user
+         * with given `username` already exists in db.
          */
         private function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
             $query = "INSERT INTO Users(Username, Password, Salt, Name, Surname, DateBirth, Mail, IsActive)
@@ -134,7 +135,7 @@
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sssssss', $username, $password, $salt, $name, $surname, $birthday, $mail);
             try {
-                $res = $stmt->execute();
+                $stmt->execute();
             } catch(Exception $e) {
                 // if a user with given username already exists in db
                 if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
@@ -299,6 +300,45 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Insert into db a new publisher.
+         *
+         * @param string $name the publisher name
+         * @param string $img the path in which it's stored the publisher logo
+         * @return int the `PublisherId` associated with the publisher just inserted
+         * or -1 if a publisher with given `name` already exists.
+         */
+        public function addPublisher($name, $img) {
+            $query = "INSERT INTO Publisher(Name, ImgLogo)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ss', $name, $img);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                // if a publisher with given name already exists in db
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return -1;
+                }
+            }
+            return $stmt->insert_id;      
+        }
+
+        /**
+         * Insert into db a new category.
+         *
+         * @param string $name the category name
+         * @param string $description a short category description
+         * @return bool true on success or false on failure.
+         */
+        public function addCategory($name, $description) {
+            $query = "INSERT INTO Categories(Name, Description)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ss', $name, $description);
+            return $stmt->execute();
         }
 
         public function getHomeBanner(){
