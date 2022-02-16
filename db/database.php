@@ -153,6 +153,11 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get newest products added to website
+         * @param int $n amount of product to be loaded, default value is 15
+         * @return array associative array containing new added products
+         */
         public function getNewArrival($n=15){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
                     FROM Comics as C, Products as P
@@ -165,7 +170,11 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-
+        /**
+         * Get all products of a specific category
+         * @param string $category
+         * @return array associative array containing all prods of a category
+         */
         public function getComicsOfCategory($category){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
                     FROM Comics as C, Products as P
@@ -178,6 +187,10 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get all reviews about website
+         * @return array associative array with all reviews
+         */
         public function getReviews(){
             $query = "SELECT ReviewId,Vote,Description, R.UserId,U.Username
                     FROM Reviews as R, Users as U
@@ -188,6 +201,7 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+
         public function getPartners(){
             $query = "SELECT `PublisherId`, `Name`, `ImgLogo`
                     FROM Publisher";
@@ -197,6 +211,12 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get all infos about a specific product by id
+         * @param int $id unique id of product
+         * @return array containig a single element, if $id is not present in db
+         * array is empty
+         */
         public function getProductById($id){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,PB.Name as PublisherName
                     FROM Comics as C, Products as P, Publisher as PB
@@ -210,7 +230,11 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-
+        /**
+         * Add $idprod product to the $usrId personal wish/favourite list
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         */
         public function addProductToWish($usrId,$idprod){
             $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
                         VALUES (?,?)";
@@ -229,6 +253,12 @@
         }
 
         //-----------------------------ADD----TO---CART------------------------------//
+        /**
+         * Add $idprod product to the $usrId personal cart
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         * @return int value returned by db after insertion
+         */
         public function addProductToCart($usrId,$idprod,$quantity){
             $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
             $avaiableCopies = $this -> getAvaiableCopiesOfProd($idprod); //to check if article can be added to cart
@@ -252,7 +282,12 @@
                 }
             }
         }
-
+        /**
+         * Return all match of $idProd in a costumer's cart who has $usrId
+         * @param int $idProd unique id of product
+         * @param int $usrId unique id of user-costumer
+         * @return array associative array containing quantity of product in user's cart 
+         */
         private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present in user cart
             $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` 
                         WHERE ProductId = ? AND UserId = ?";
@@ -263,31 +298,44 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function getAvaiableCopiesOfProd($id){
+        /**
+         * Get all avaiable copies that can be bought from customer
+         * @param int $idProd unique id of product 
+         * @return int avaialble copies of specific product with $prodId
+         */
+        public function getAvaiableCopiesOfProd($idProd){
             //article copies in users cart - not avaiable for others users
-            $inCarts = $this -> getCopiesNotAvaiable($id);
+            $inCarts = $this -> getCopiesNotAvaiable($idProd);
             $inCarts = count($inCarts)>0? intval($inCarts[0]['total']):0;
 
-            $copiesInStock = count($this -> getCopiesInStock($id));
+            $copiesInStock = count($this -> getCopiesInStock($idProd));
             return $copiesInStock - $inCarts;
         }
-
-        private function getCopiesInStock($id){
+        /**
+         * Get all copies in stock of a specific product with $idProd
+         * @param int $idProd unique id of product 
+         * @return array associative array containing all copies of product
+         */
+        private function getCopiesInStock($idProd){
             $query = "SELECT `CopyId`, `ProductId` FROM `ProductCopies` WHERE ProductId = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
+            $stmt->bind_param('i', $idProd);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-
-        private function getCopiesNotAvaiable($id){
+        /**
+         * Get all copies not available to be bought, all copies in users carts
+         * @param int $idProd unique id of product
+         * @return array associative array containing amount of copies of specified prodcut $idProd
+         */
+        private function getCopiesNotAvaiable($idProd){
             $query = "SELECT ProductId,sum(Quantity) as total
                         FROM Carts
                         where ProductId = ?
                         group by `ProductId`";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
+            $stmt->bind_param('i', $idProd);
             $stmt->execute();
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
@@ -300,15 +348,22 @@
         public function getAllAuthors(){
             return $this -> getListOfFromComics('Author');
         }
-
-        private function getListOfFromComics($attribute){ //NOTE: be sure the param is an attributo of Comics
+        /**
+         * NOTE: be sure the param is an attributo of Comics
+         * @param string $attribute String that is an attribute of comics
+         * @return array associative array with all value that attribute can assume
+         */
+        private function getListOfFromComics($attribute){
             $query = "SELECT ".$attribute." FROM Comics Group by ". $attribute;
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-
+        /**
+         * Get all categories available and saved in db
+         * @return array Associative array like a list of categories
+         */
         public function getAllCategories(){
             $query = "SELECT * FROM `Categories`";
             $stmt = $this->db->prepare($query);
@@ -316,7 +371,12 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-//---------------------------------------------------
+//---------------------------------------------------//
+        /**
+         * WARNING: be carefull using that method, for now there are NO CHECK on $query
+         * @param string SQL query to be executed on db
+         * @return array associative array with all product that match query
+         */
         public function getAllComics($query){
                 $stmt = $this->db->prepare($query);
                 $stmt->execute();
