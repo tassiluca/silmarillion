@@ -68,5 +68,5 @@ function updateCatalogView(jsonData){
         };
     }
     
-    $('main > section ').prepend(prodListHTML);
+    $('main > section:first-of-type()').append(prodListHTML);
 }
