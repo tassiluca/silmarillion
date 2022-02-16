@@ -11,6 +11,12 @@
     $templateParams["authors"] = $dbh -> getAllAuthors();
     $templateParams["categories"] = $dbh -> getAllCategories();
     $templateParams["logged"] = isCustomerLoggedIn();
+
+    if(isset($_GET) && !empty($_GET)){
+        $category = $_GET['category'];
+        $templateParams["filter"] = $category;
+        $templateParams["products"] = $dbh-> getComicsOfCategory($category);
+    }
     require 'templates/base.php';
     
 ?>
