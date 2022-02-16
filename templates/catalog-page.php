@@ -11,8 +11,10 @@
                 <ul>
                     <?php if(isset($templateParams["categories"])):
                     foreach($templateParams["categories"] as $category):
-                        $idcategory= getIdFromName($category["Name"]);?>
-                        <li><input type="checkbox" class="category" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
+                        $idcategory= getIdFromName($category["Name"]);
+                        $checkState = isset($templateParams["filter"]) && !strcmp($idcategory,$templateParams["filter"]) ? 'checked' : '' ?>
+                        
+                        <li><input type="checkbox" <?php echo $checkState?> class="category" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
                         <label for="<?php echo $idcategory?>"><?php echo $category["Name"]?></label></li><?php endforeach;endif;?>  
                 </ul>
                 <button>Prezzo</button>
