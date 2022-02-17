@@ -24,19 +24,6 @@
         <script src="js/sha512.js"></script>
         <?php
             /**
-             * Insert here all the javascript files needed by the single page.
-             * To do so declare a $templateParams["js"] with an array of js script files name to import.
-             */
-            if (isset($templateParams["js"])):
-                foreach($templateParams["js"] as $jsScript):
-        ?>
-                    <script src=<?php echo "js/" . $jsScript ?>></script>
-        <?php
-                endforeach;
-            endif;
-        ?>
-        <?php
-            /**
              * Insert here all the EXTERNAL javascript files needed by the single page.
              * To do so declare a $templateParams["jsExt"] with an array of js script files name to import.
              */
@@ -48,6 +35,20 @@
                 endforeach;
             endif;
         ?>
+        <?php
+            /**
+             * Insert here all the javascript files needed by the single page.
+             * To do so declare a $templateParams["js"] with an array of js script files name to import.
+             */
+            if (isset($templateParams["js"])):
+                foreach($templateParams["js"] as $jsScript):
+        ?>
+                    <script src=<?php echo "js/" . $jsScript ?>></script>
+        <?php
+                endforeach;
+            endif;
+        ?>
+        
         <title>Silmarillion</title>
     </head>
     <body>
