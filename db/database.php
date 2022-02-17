@@ -392,7 +392,19 @@
         public function getNumOrdersPerMonth(){
             $query = "SELECT Month(O.OrderDate) AS Month, count(*) as 'Count'
                     FROM Orders as O
-                    group by Month";
+                    group by Month
+                    order by Month Asc";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        
+        public function getIncashPerMonth(){
+            $query = "SELECT Month(O.OrderDate) AS Month, sum(Price) as 'Total'
+                    FROM Orders as O
+                    group by Month
+                    order by Month Asc";
                 $stmt = $this->db->prepare($query);
                 $stmt->execute();
                 $result = $stmt->get_result();
