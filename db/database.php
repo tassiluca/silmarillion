@@ -387,7 +387,18 @@
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
         }
+    //------------------STATISTIC-PAGE-----------------//
+    //OrderId	Address	OrderDate	Price	UserId
+        public function getNumOrdersPerMonth(){
+            $query = "SELECT Month(O.OrderDate) AS Month, count(*) as 'Count'
+                    FROM Orders as O
+                    group by Month";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+        }
 
     }
-    
+
 ?>
