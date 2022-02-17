@@ -35,6 +35,19 @@
                 endforeach;
             endif;
         ?>
+        <?php
+            /**
+             * Insert here all the EXTERNAL javascript files needed by the single page.
+             * To do so declare a $templateParams["jsExt"] with an array of js script files name to import.
+             */
+            if (isset($templateParams["jsExt"])):
+                foreach($templateParams["jsExt"] as $jsScript):
+        ?>
+                    <script src=<?php echo $jsScript ?>></script>
+        <?php
+                endforeach;
+            endif;
+        ?>
         <title>Silmarillion</title>
     </head>
     <body>
