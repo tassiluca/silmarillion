@@ -1,27 +1,33 @@
 const UPDATE = 0;
+const DAY = 0;
+const MONTH = 1;
+const YEAR = 2;
+
 const data = {
-    action: [UPDATE]
+    action: [UPDATE],
+    period: [MONTH]
 }
 $(document).ready(function () {
-    //TODO get all data needed
+    //TODO: set period value after selection in html, to get data of selected period format
+    //-----HERE ADD THE BELOW THINGS----
     var dataChart;
     $.post("utils/manage-statistics.php", data,
         function (data,status) {
             dataChart = JSON.parse(data);
             
-            var labelMonthIn = [];
-            var valueMonthIn = [];
+            var labelPeriod = [];
+            var valueCashIn = [];
             var valueCountOrder = [];
 
-            for(var i =0; i < dataChart['monthIn'].length; i++){
-                valueMonthIn.push(dataChart['monthIn'][i].Total);
-                labelMonthIn.push(dataChart['monthIn'][i].Month);
+            for(var i = 0; i < dataChart['monthIn'].length; i++){
+                valueCashIn.push(dataChart['monthIn'][i].Total);
+                labelPeriod.push(dataChart['monthIn'][i].Month);
             }
-            for(var i =0; i < dataChart['countOrder'].length; i++){
+            for(var i = 0; i < dataChart['countOrder'].length; i++){
                 valueCountOrder.push(dataChart['countOrder'][i].Count);
             }
-            updateChart("collChart",labelMonthIn,valueMonthIn,"Incassi annui a mese");
-            updateChart("orderChart",labelMonthIn,valueCountOrder,"Ordini Annui per mese");
+            updateChart("collChart",labelPeriod,valueCashIn,"Incassi mensili");
+            updateChart("orderChart",labelPeriod,valueCountOrder,"Ordini mensili");
         });
 
         function updateChart(elementId,label,value,description){
