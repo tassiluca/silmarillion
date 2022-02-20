@@ -389,23 +389,29 @@
         }
     //------------------STATISTIC-PAGE-----------------//
     //OrderId	Address	OrderDate	Price	UserId
-        public function getNumOrdersPerMonth(){
-            $query = "SELECT Month(O.OrderDate) AS Month, count(*) as 'Count'
+        public function getNumOrdersPerPeriod($period){
+            $p = getStringPeriod($period);
+            //TODO: qui devo vedere se oltre a month() c'è anche day e/o week
+            $query = "SELECT Month(O.OrderDate) AS ?, count(*) as 'Count'
                     FROM Orders as O
-                    group by Month
-                    order by Month Asc";
+                    group by ?
+                    order by ? Asc";
                 $stmt = $this->db->prepare($query);
+                $stmt->bind_param('sss', $p,$p,$p);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
         }
         
-        public function getIncashPerMonth(){
-            $query = "SELECT Month(O.OrderDate) AS Month, sum(Price) as 'Total'
+        public function getIncashPerPeriod($period){
+            $p = getStringPeriod($period);
+            //TODO: qui devo vedere se oltre a month() c'è anche day e/o week
+            $query = "SELECT Month(O.OrderDate) AS ?, sum(Price) as 'Total'
                     FROM Orders as O
-                    group by Month
-                    order by Month Asc";
+                    group by ?
+                    order by ? Asc";
                 $stmt = $this->db->prepare($query);
+                $stmt->bind_param('sss', $p,$p,$p);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
