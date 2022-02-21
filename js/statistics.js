@@ -4,7 +4,6 @@ const MONTH = 1;
 const YEAR = 2;
 
 const data = {
-    action: [UPDATE],
     period: [YEAR],
     year: [2019]
 }
