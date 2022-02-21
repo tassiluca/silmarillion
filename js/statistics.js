@@ -5,11 +5,13 @@ const YEAR = 2;
 
 const data = {
     action: [UPDATE],
-    period: []
+    period: [YEAR],
+    year: [2019]
 }
 $(document).ready(function () {
-    //TODO: set period value after selection in html, to get data of selected period format
+    //TODO: set period value and year after selection in html, to get data of selected period format
     //-----HERE ADD THE BELOW THINGS----
+
     var dataChart;
     $.post("utils/manage-statistics.php", data,
         function (data,status) {
