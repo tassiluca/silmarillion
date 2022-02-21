@@ -8,16 +8,13 @@
 
     if(isset($_POST) && isset($_POST['action'])/*&& isSellerLoggedIn()*/){
         if(count($_POST['action']) >= 1 && $_POST['action'][0]== UPDATE){
-            if(count($_POST['period']) >= 1){
-                $numOrder = $dbh -> getNumOrdersPerPeriod($_POST['period'][0]);
-                $cashIn = $dbh -> getIncashPerPeriod($_POST['period'][0]);
+            if(isset($_POST['period']) && count($_POST['period']) >= 1){
+                $stats = $dbh -> getStatsPerPeriod($_POST['period'][0]);
             }
             else{
-                $numOrder = $dbh -> getNumOrdersPerPeriod();
-                $cashIn = $dbh -> getIncashPerPeriod();
+                $stats = $dbh -> getStatsPerPeriod();
             } 
-            $data = array('countOrder' => $numOrder, 'period' => $cashIn);
-            echo json_encode($data);
+            echo json_encode($stats);
         }
     }
 

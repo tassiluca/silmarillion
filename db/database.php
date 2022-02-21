@@ -388,33 +388,38 @@
                 return $result->fetch_all(MYSQLI_ASSOC);
         }
     //------------------STATISTIC-PAGE-----------------//
-    //OrderId	Address	OrderDate	Price	UserId
-        public function getNumOrdersPerPeriod($period){
-            $p = getStringPeriod($period);
-            //TODO: qui devo vedere se oltre a month() c'è anche day e/o week
-            $query = "SELECT Month(O.OrderDate) AS ?, count(*) as 'Count'
-                    FROM Orders as O
-                    group by ?
-                    order by ? Asc";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('sss', $p,$p,$p);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
+    /**
+         * Get correct string of Period by integer
+         * @param int $period
+         * @return string period string
+         */
+        private function getStringPeriod($period){
+            if($period == 0){
+                return "Day";
+            }
+            else if($period == 1){
+                return "Month";
+            }
+            else if($period == 2){
+                return "Year";
+            }
+            else{ //default value
+                return "Month";
+            }
         }
-        
-        public function getIncashPerPeriod($period){
-            $p = getStringPeriod($period);
-            //TODO: qui devo vedere se oltre a month() c'è anche day e/o week
-            $query = "SELECT Month(O.OrderDate) AS ?, sum(Price) as 'Total'
+    //OrderId	Address	OrderDate	Price	UserId
+        public function getStatsPerPeriod($period = 1){
+            $p = $this -> getStringPeriod($period);
+            $funct = $p ."(O.OrderDate)";
+            $query = "SELECT ". $funct ." AS ".$p.", count(*) as 'Count', sum(Price) as 'Total'
                     FROM Orders as O
-                    group by ?
-                    order by ? Asc";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('sss', $p,$p,$p);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
+                    group by ".$p."
+                    order by ".$p." Asc";
+            var_dump($query);
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
         }
 
     }
