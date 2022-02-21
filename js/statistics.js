@@ -5,7 +5,7 @@ const YEAR = 2;
 
 const data = {
     action: [UPDATE],
-    period: [MONTH]
+    period: []
 }
 $(document).ready(function () {
     //TODO: set period value after selection in html, to get data of selected period format
@@ -13,18 +13,17 @@ $(document).ready(function () {
     var dataChart;
     $.post("utils/manage-statistics.php", data,
         function (data,status) {
+            console.log(data);
             dataChart = JSON.parse(data);
             
             var labelPeriod = [];
             var valueCashIn = [];
             var valueCountOrder = [];
 
-            for(var i = 0; i < dataChart['monthIn'].length; i++){
-                valueCashIn.push(dataChart['monthIn'][i].Total);
-                labelPeriod.push(dataChart['monthIn'][i].Month);
-            }
-            for(var i = 0; i < dataChart['countOrder'].length; i++){
-                valueCountOrder.push(dataChart['countOrder'][i].Count);
+            for(var i = 0; i < dataChart.length; i++){
+                valueCashIn.push(dataChart[i].Total);
+                valueCountOrder.push(dataChart[i].Count);
+                labelPeriod.push(dataChart[i].Month);
             }
             updateChart("collChart",labelPeriod,valueCashIn,"Incassi mensili");
             updateChart("orderChart",labelPeriod,valueCountOrder,"Ordini mensili");
