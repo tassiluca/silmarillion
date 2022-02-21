@@ -415,7 +415,7 @@
                     FROM Orders as O
                     group by ".$p."
                     order by ".$p." Asc";
-            var_dump($query);
+            //var_dump($query);
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
