@@ -408,15 +408,20 @@
             }
         }
     //OrderId	Address	OrderDate	Price	UserId
-        public function getStatsPerPeriod($period = 1){
+        public function getStatsPerPeriod($period, $year){
             $p = $this -> getStringPeriod($period);
             $funct = $p ."(O.OrderDate)";
             $query = "SELECT ". $funct ." AS ".$p.", count(*) as 'Count', sum(Price) as 'Total'
-                    FROM Orders as O
-                    group by ".$p."
-                    order by ".$p." Asc";
+                    FROM Orders as O ";
+            if($period != YEAR){
+                $query .= " WHERE Year(O.OrderDate) = ? ";
+            }
+            $query .= " group by ".$p." order by ".$p." Asc";
             //var_dump($query);
             $stmt = $this->db->prepare($query);
+            if($period != YEAR){
+                $stmt->bind_param('i', $year);
+            }
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
