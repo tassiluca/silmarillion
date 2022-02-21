@@ -427,6 +427,14 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getYearsWithOrders(){
+            $query = "SELECT Year(OrderDate) as 'Year' FROM Orders GROUP by Year(OrderDate)";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
     }
 
 ?>
