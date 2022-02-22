@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     $("html > body > main").click(function(){
         closePopupOpen();
-        $("main").css("opacity", "1.0");
+        //$("main").css("opacity", "1.0");
     });
 
 });
@@ -33,6 +33,7 @@ function closePopupOpen(){
     /* if a popup was already opened, close it */
     $("body > header > nav > ul > li > button.navActive").removeClass("navActive");
     $("body > header > nav > div.active").slideUp();
+    $("main").css("opacity", "1.0");
 }
 
 /**
