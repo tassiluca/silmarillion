@@ -20,7 +20,7 @@
                 <label for="year">Anni</label>
             </li>
         </ul>
-        <label for="year">Scegli Anno:</label>
+        <label for="year">Scegli Anno: </label>
         <select name="year" id="year_selector">
             <?php if(isset($templateParams["ordersYears"])):
                 foreach($templateParams["ordersYears"] as $year): ?>
