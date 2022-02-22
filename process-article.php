@@ -11,7 +11,6 @@
      */
     function redirect($msg, $condition = true) {
         if ($condition) {
-            echo "ERROR: REDIRECTION";
             header("location: modify-article.php?action=insert&formMsg=" . $msg);
             exit(1);
         }
