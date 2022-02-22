@@ -41,7 +41,7 @@ $(document).ready(function () {
     const orderChart = createEmptyChart('orderChart');
     refreshData();
 
-    $('aside > form > ul >li > input').click(function (e) {
+    $('aside > div > div > ul >li > input').click(function (e) {
         if($(this).attr('value') == YEAR){
             document.getElementById("year_selector").disabled = true;
         }
@@ -51,12 +51,12 @@ $(document).ready(function () {
         refreshData();
     });
 
-    $('aside > form > select').change(function (){
+    $('aside > div > div > select').change(function (){
         refreshData();
     });
 
     function refreshData(){
-        var viewSelected = $("aside > form > ul >li > input:checked").val();
+        var viewSelected = $("aside > div > div > ul >li > input:checked").val();
         var dateSelected = document.getElementById("year_selector").value;
         requestData(viewSelected,dateSelected);
     }
