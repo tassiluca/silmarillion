@@ -92,9 +92,9 @@
                         </li><li id="login">
                             <a href="login.php">Login</a>
                         </li><li>
-                            <a href="index.php#reviews">Recensioni</a>
+                            <a href="index.php#reviews" onclick='closePopupOpen()'>Recensioni</a>
                         </li><li>
-                            <a href="index.php#partners">Partner</a>
+                            <a href="index.php#partners" onclick='closePopupOpen()'>Partner</a>
                         </li><li>
                             <a href="">Supporto</a>
                         </li>
