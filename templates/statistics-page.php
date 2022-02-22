@@ -21,7 +21,7 @@
             </li>
         </ul>
         <label for="year">Scegli Anno:</label>
-        <select name="year" id="year">
+        <select name="year" id="year_selector">
             <?php if(isset($templateParams["ordersYears"])):
                 foreach($templateParams["ordersYears"] as $year): ?>
             <option value="<?php echo $year['Year']?>"><?php echo $year['Year']?></option>
