@@ -6,7 +6,11 @@ const data = {
     period: [],
     year: []
 }
-
+/**
+ * Create an empty chart in div container specified by elementId
+ * @param {string} elementId 
+ * @returns empty chart object
+ */
 function createEmptyChart(elementId){
     return new Chart(elementId, {
         type: "bar",
@@ -56,7 +60,11 @@ $(document).ready(function () {
         var dateSelected = document.getElementById("year_selector").value;
         requestData(viewSelected,dateSelected);
     }
-
+/**
+ * Request json data to be shown in charts
+ * @param {int} periodView 
+ * @param {int} year 
+ */
     function requestData(periodView,year){
         data['period']= [parseInt(periodView)];
         data['year']= [parseInt(year)];
@@ -91,7 +99,13 @@ $(document).ready(function () {
             updateChart(orderChart,labelPeriod,valueCountOrder,"Ordini " + title);
         });
     }
-
+/**
+ * Update charts with all info from param
+ * @param {*} chartObj Chart obj to be updated
+ * @param {array} labels array of labels, asix-x
+ * @param {array} values array of values, asix-y
+ * @param {string} description Title of chart
+ */
     function updateChart(chartObj,labels,values,description){
         values.forEach(val => {
             chartObj.data.datasets.forEach((dataset) => {
