@@ -73,9 +73,10 @@
 
     /**
      * Move the given image inside the path.
+     * [NOTE] Please, remember `$path` MUST have all permissions.
      * @param string $path the folder in which move the image
      * @param string $image the image to move
-     * @return 
+     * @return int 1 if ok, 0 otherwise
      */
     function uploadImage($path, $image){
         $imageName = basename($image["name"]);
