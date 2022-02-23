@@ -100,13 +100,19 @@ $(document).ready(function () {
         });
     }
 /**
- * Update charts with all info from param
+ * Update (remove all data then add new) charts with all info from param
  * @param {*} chartObj Chart obj to be updated
  * @param {array} labels array of labels, asix-x
  * @param {array} values array of values, asix-y
  * @param {string} description Title of chart
  */
     function updateChart(chartObj,labels,values,description){
+        //remove all old data
+        chartObj.data.labels.pop();
+        chartObj.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+        });
+        //add new data
         values.forEach(val => {
             chartObj.data.datasets.forEach((dataset) => {
                 dataset.data.push(val);
