@@ -4,10 +4,11 @@
     </ul>
 </div>
 <div>
+<header><h3>Statistiche</h3></header>
 <aside>
     <div>
         <div>
-            <p>Visualizzazione per: </p>
+            <p>Periodo: </p>
             <ul>
                 <li>
                     <input type="radio" id="day" name="data_view" value="0">
@@ -36,7 +37,6 @@
     </div>
 </aside>
 <section>
-    <header><h3>Statistiche</h3></header>
     <article>
         <header><H4>Incassi</H4></header>
         <p>

@@ -1,8 +1,19 @@
 
+main > div:last-child > header > h3 {
+    margin: 10px 0;
+}
+
 main > div:last-child{
-    width: 100%;
+    margin: 2%;
     text-align: center;
 }
+
+main> div:last-child > aside {
+    background-color: #AAF1FF;
+    padding: 1%;
+    border-radius: 10px;
+}
+
 /*-----*/
 main > div:last-child > aside > div {
     display: flex;
@@ -20,10 +31,41 @@ main > div:last-child > aside > div > div {
 main > div:last-child > aside > div > div > p {
     width: 50%;
     display: inline-block;
-    margin: 0;
+    margin: 0 0 5px 0;
 }
 
 main > div:last-child > aside > div > div > ul > li{
     display: inline-block;
     margin: 0 1%;
+}
+
+@media screen and (min-width: 820px) {
+    main > div:last-child > aside,
+    main > div:last-child > section{
+        display: inline-block;
+    }
+
+    main > div:last-child > aside{
+        width: 20%;
+        margin: 0 2% 0 0;
+        vertical-align: top;
+    }
+
+    main > div:last-child > section{
+        width: 74%;
+    }
+
+    main > div:last-child > aside > div {
+        flex-direction: column;
+    }
+
+    main > div:last-child > aside > div > div,
+    main > div:last-child > aside > div > div > p {
+        width: 100%;
+    }
+
+    main > div:last-child > aside > div > div > ul > li{
+        display: block;
+        margin: 5px 1%;
+    }
 }
