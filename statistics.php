@@ -9,16 +9,13 @@
     
     $templateParams["ordersYears"] = $dbh -> getYearsWithOrders();
 
-    $templateParams["main"] = "./templates/statistics-page.php";
-
-    /*TODO: decomment that when all in fine
     if(isSellerLoggedIn()){
         $templateParams["main"] = "./templates/statistics-page.php";
     }
     else{
         echo "You not have permissions";
-        //$templateParams["main"] = ; //error page or message 
-    }*/
+        $templateParams["main"] = "./templates/error-page.php";
+    }
 
     require 'templates/base.php';
     
