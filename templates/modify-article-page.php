@@ -61,7 +61,7 @@
                         <label for="publisher">Editore</label>
                         <!-- TODO: consider using a datalist -->
                         <select id="publisher" name="publisher">
-                            <option disabled selected> -- seleziona un'opzione -- </option>
+                            <option selected value=""> -- seleziona un'opzione -- </option>
                             <?php foreach ($templateParams["publishers"] as $publisher): ?>
                                 <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
                             <?php endforeach; ?>
@@ -85,7 +85,7 @@
                 <label for="category">Categoria</label>
                 <!-- TODO: consider using a datalist -->
                 <select id="category" name="category">
-                    <option disabled selected> -- seleziona un'opzione -- </option>
+                    <option selected value=""> -- seleziona un'opzione -- </option>
                     <?php foreach ($templateParams["categories"] as $category): ?>
                         <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
                     <?php endforeach; ?>

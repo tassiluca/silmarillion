@@ -237,7 +237,7 @@
          * @param string $lang the comic lang
          * @param string $date the comic published date
          * @param string $isbn the comic ISBN code
-         * @param [type] $publisherId the publisher id code
+         * @param int $publisherId the publisher id code
          * @param string $price the comic price
          * @param string $discountedPrice the comic discounted price
          * @param string $desc the comic description

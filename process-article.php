@@ -16,8 +16,8 @@
         }
     }
 
-    function insertCategory($data){
-        global $dbh;
+    function insertCategory(){
+        global $dbh, $data;
         // check consistency
         if (empty($data['category'])) {
             $res = $dbh->addCategory($data['categoryName'], $data['categoryDesc']);
@@ -26,14 +26,14 @@
         }
     }
 
-    function insertPublisher($data) {
-        global $dbh;
+    function insertPublisher() {
+        global $dbh, $data;
         // check consistency
         if (empty($data['publisher'])) {
             list($result, $msg) = uploadImage(UPLOAD_DIR_PUBLISHERS, $_FILES["publisherLogo"]);
             redirect($msg, !$result);
-            $res = ($dbh->addPublisher($data['publisherName'], $msg) == -1 ? false : true);
-            redirect("Errore in inserimento editore", !$res);
+            $res = $dbh->addPublisher($data['publisherName'], $msg);
+            redirect("Errore in inserimento editore", $res == -1);
             $data['publisher'] = $res;
         }
     }
@@ -76,5 +76,5 @@
     }
     
     redirect($msg);
-
+    
 ?>
