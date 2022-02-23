@@ -11,21 +11,21 @@ const data = {
  * @param {string} elementId 
  * @returns empty chart object
  */
-function createEmptyChart(elementId){
+function createChart(elementId,labels,values,description){
     return new Chart(elementId, {
         type: "bar",
         data: {
-        labels: [],
+        labels: labels,
         datasets: [{
             backgroundColor: '#70bfff',
-            data: []
+            data: values
         }]
         },
         options: {
         legend: {display: false},
         title: {
             display: true,
-            text: ''
+            text: description
         },
         scales:{
             y: {
@@ -37,8 +37,8 @@ function createEmptyChart(elementId){
 }
 
 $(document).ready(function () {
-    const collChart = createEmptyChart('collChart');
-    const orderChart = createEmptyChart('orderChart');
+    const collChart = createChart('collChart',[],[],'');
+    const orderChart = createChart('orderChart',[],[],'');
     refreshData();
 
     $('aside > div > div > ul >li > input').click(function (e) {
@@ -60,22 +60,27 @@ $(document).ready(function () {
         var dateSelected = document.getElementById("year_selector").value;
         requestData(viewSelected,dateSelected);
     }
+    updateChart(collChart,labelPeriod,valueCashIn,"Incassi " + title);
+    //updateChart(orderChart,labelPeriod,valueCountOrder,"Ordini " + title);
 /**
  * Request json data to be shown in charts
  * @param {int} periodView 
- * @param {int} year 
+ * @param {int} year
+ * @return {array} return an array with all data of charts
  */
     function requestData(periodView,year){
         data['period']= [parseInt(periodView)];
         data['year']= [parseInt(year)];
+        var labelPeriod = [];
+        var valueCashIn = [];
+        var valueCountOrder = [];
+        var titleOrder = '';
+        var titleCash = '';
+
         $.post("utils/manage-statistics.php", data, 
             function (data,status) {
                 var dataChart = JSON.parse(data);
-                var labelPeriod = [];
-                var valueCashIn = [];
-                var valueCountOrder = [];
-                var title = '';
-
+                
                 for(var i = 0; i < dataChart.length; i++){
                     valueCashIn.push(dataChart[i].Total);
                     valueCountOrder.push(dataChart[i].Count);
@@ -95,9 +100,11 @@ $(document).ready(function () {
                             break;
                     }
                 }
-            updateChart(collChart,labelPeriod,valueCashIn,"Incassi " + title);
-            updateChart(orderChart,labelPeriod,valueCountOrder,"Ordini " + title);
         });
+        return {label: labelPeriod,
+            orders: {val: valueCountOrder, text: titleOrder},
+            cashIn: {val: valueCashIn, text: titleCash}
+        };
     }
 /**
  * Update (remove all data then add new) charts with all info from param
@@ -106,23 +113,10 @@ $(document).ready(function () {
  * @param {array} values array of values, asix-y
  * @param {string} description Title of chart
  */
-    function updateChart(chartObj,labels,values,description){
-        //remove all old data
-        chartObj.data.labels.pop();
-        chartObj.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-        });
-        //add new data
-        values.forEach(val => {
-            chartObj.data.datasets.forEach((dataset) => {
-                dataset.data.push(val);
-            });
-        });
-        chartObj.data.labels = labels;
-        chartObj.options.title.text = description;
-        chartObj.update();
-    }
-});
+function updateChart(chartObj,labels,values,description){
+    chartObj.destroy();
+    createChart(elementId,labels,values,description);
+};
 
 
 
