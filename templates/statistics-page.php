@@ -40,7 +40,7 @@
     <article>
         <header><H4>Incassi</H4></header>
         <p>
-            <canvas id="collChart" ></canvas>
+            <canvas id="cashChart" ></canvas>
         </p>
     </article>
     <article>

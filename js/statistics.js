@@ -36,9 +36,10 @@ function createChart(elementId,labels,values,description){
     });
 }
 
+
 $(document).ready(function () {
-    const collChart = createChart('collChart',[],[],'');
-    const orderChart = createChart('orderChart',[],[],'');
+    var cashChart = createChart('cashChart',[],[],'');
+    var orderChart = createChart('orderChart',[],[],'');
     refreshData();
 
     $('aside > div > div > ul >li > input').click(function (e) {
@@ -55,22 +56,25 @@ $(document).ready(function () {
         refreshData();
     });
 
+    /**
+     * Get selected setting of view mode then refresh charts
+     */
     function refreshData(){
         var viewSelected = $("aside > div > div > ul >li > input:checked").val();
         var dateSelected = document.getElementById("year_selector").value;
         requestData(viewSelected,dateSelected);
     }
-    updateChart(collChart,labelPeriod,valueCashIn,"Incassi " + title);
-    //updateChart(orderChart,labelPeriod,valueCountOrder,"Ordini " + title);
-/**
- * Request json data to be shown in charts
- * @param {int} periodView 
- * @param {int} year
- * @return {array} return an array with all data of charts
- */
+   
+    /**
+     * Request json data to be shown in charts
+     * @param {int} periodView 
+     * @param {int} year
+     * @return {array} return an array with all data of charts
+     */
     function requestData(periodView,year){
         data['period']= [parseInt(periodView)];
         data['year']= [parseInt(year)];
+
         var labelPeriod = [];
         var valueCashIn = [];
         var valueCountOrder = [];
@@ -100,23 +104,28 @@ $(document).ready(function () {
                             break;
                     }
                 }
-        });
-        return {label: labelPeriod,
-            orders: {val: valueCountOrder, text: titleOrder},
-            cashIn: {val: valueCashIn, text: titleCash}
-        };
+                titleOrder = "Ordini " + title;
+                titleCash = "Incassi " + title;
+                console.log(valueCashIn);
+
+                orderChart = updateChart(orderChart,'orderChart',labelPeriod,valueCountOrder,titleOrder);
+                cashChart = updateChart(cashChart,'cashChart',labelPeriod,valueCashIn,titleCash);
+                
+        });//end ajax request
     }
-/**
+
+    /**
  * Update (remove all data then add new) charts with all info from param
  * @param {*} chartObj Chart obj to be updated
  * @param {array} labels array of labels, asix-x
  * @param {array} values array of values, asix-y
  * @param {string} description Title of chart
+ * @return {chartObj} return new chart object
  */
-function updateChart(chartObj,labels,values,description){
+ function updateChart(chartObj,elementId,labels,values,description){
     chartObj.destroy();
-    createChart(elementId,labels,values,description);
-};
+    return createChart(elementId,labels,values,description);
+}
 
-
-
+//-------END DOCUMENT READY-----------//
+});
