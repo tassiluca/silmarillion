@@ -305,11 +305,10 @@
          */
         public function getAvaiableCopiesOfProd($idProd){
             //article copies in users cart - not avaiable for others users
-            $inCarts = $this -> getCopiesSold($idProd);
-            $inCarts = count($inCarts)>0? intval($inCarts[0]['total']):0;
+            $copiesSold = count($this -> getCopiesSold($idProd));
 
             $copiesInStock = count($this -> getCopiesInStock($idProd));
-            return $copiesInStock - $inCarts;
+            return $copiesInStock - $copiesSold;
         }
         /**
          * Get all copies in stock of a specific product with $idProd
@@ -330,10 +329,10 @@
          * @return array associative array containing amount of copies of specified prodcut $idProd
          */
         private function getCopiesSold($idProd){
-            $query = "SELECT ProductId,sum(Quantity) as total
-                        FROM Carts
-                        where ProductId = ?
-                        group by `ProductId`";
+            $query = "SELECT Od.CopyId
+                        FROM `ProductCopies` as Pc, `OrderDetails` as Od
+                        where Pc.CopyId = Od.CopyId
+                        and Pc.ProductId = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $idProd);
             $stmt->execute();
