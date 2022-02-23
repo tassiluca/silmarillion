@@ -305,7 +305,7 @@
          */
         public function getAvaiableCopiesOfProd($idProd){
             //article copies in users cart - not avaiable for others users
-            $inCarts = $this -> getCopiesNotAvaiable($idProd);
+            $inCarts = $this -> getCopiesSold($idProd);
             $inCarts = count($inCarts)>0? intval($inCarts[0]['total']):0;
 
             $copiesInStock = count($this -> getCopiesInStock($idProd));
@@ -329,7 +329,7 @@
          * @param int $idProd unique id of product
          * @return array associative array containing amount of copies of specified prodcut $idProd
          */
-        private function getCopiesNotAvaiable($idProd){
+        private function getCopiesSold($idProd){
             $query = "SELECT ProductId,sum(Quantity) as total
                         FROM Carts
                         where ProductId = ?
