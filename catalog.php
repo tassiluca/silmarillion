@@ -10,8 +10,9 @@
     $templateParams["languages"] = $dbh -> getLanguages();
     $templateParams["authors"] = $dbh -> getAllAuthors();
     $templateParams["categories"] = $dbh -> getAllCategories();
-    $templateParams["logged"] = isCustomerLoggedIn();
     $templateParams["products"] = $dbh -> getAllComics();
+
+    $templateParams["logged"] = isCustomerLoggedIn() || USE_COOKIE;
 
     if(isset($_GET) && !empty($_GET)){
         $category = $_GET['category'];
