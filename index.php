@@ -1,6 +1,6 @@
 <?php
     require_once 'bootstrap.php';
-    define('USE_COOKIE',true);
+
     $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
     $templateParams["css"] = array("homepage.css","product.css");
@@ -21,6 +21,5 @@
     $templateParams["reviews"] = $dbh-> getReviews();
     $templateParams["partners"] = $dbh-> getPartners();
 
-    $templateParams["logged"] = isCustomerLoggedIn() || USE_COOKIE;
     require 'templates/base.php';
 ?>

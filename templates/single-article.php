@@ -13,7 +13,7 @@
                 <header>
                     <ul id="productInfo">
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
-                        <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>"><?php if($templateParams["copies"] > 0){echo $templateParams["copies"] ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a <?php if(isset($templateParams["logged"]) && !$templateParams["logged"]){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li><li><a <?php if(isset($templateParams["logged"])&& !$templateParams["logged"]){ echo 'class="disabled"';}?> href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
+                        <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>"><?php if($templateParams["copies"] > 0){echo $templateParams["copies"] ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li><li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
                     <ul>
                         <li><strong>Autore:</strong><?php echo $templateParams["product"]["Author"]?></li>
@@ -34,7 +34,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a <?php if((isset($templateParams["logged"])&& !$templateParams["logged"]) || $templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>
