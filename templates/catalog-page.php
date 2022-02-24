@@ -77,6 +77,7 @@
 <section>
 <?php if(isset($templateParams['products'])): foreach($templateParams['products'] as $product):?>
     <article>
+        <?php $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId'])?>
         <div>
             <img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>">
         </div>
