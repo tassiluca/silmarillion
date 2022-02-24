@@ -173,13 +173,23 @@
         /**
          * Get all products of a specific category
          * @param string $category
+         * @param int $quantity, max number of prods returned, default value is infinite (-1)
          * @return array associative array containing all prods of a category
          */
-        public function getComicsOfCategory($category){
+        public function getComicsOfCategory($category,$quantity=-1){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
                     FROM Comics as C, Products as P
                     WHERE C.ProductId = P.ProductId
                     AND P.CategoryName = ?";
+            if($quantity == -1){
+                $query .= "LIMIT ?";
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('si', $category,$quantity);
+            }
+            else{
+                $stmt = $this->db->prepare($query);
+                $stmt->bind_param('s', $category);
+            }
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('s', $category);
             $stmt->execute();

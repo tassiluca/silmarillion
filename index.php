@@ -1,6 +1,6 @@
 <?php
     require_once 'bootstrap.php';
-
+    define("DEFAULT_HOME_QUANTITY",20);
     $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
     $templateParams["css"] = array("homepage.css","product.css");
@@ -14,9 +14,9 @@
     /*i nomi di classi in questo array devono essere rispettati nei rispettivi templateParams per il corretto funzionamento*/
     
     $templateParams["newArrival"] = $dbh -> getNewArrival(); //default amount of new comics is 10, specify as param desired quantity
-    $templateParams["manga"] = $dbh -> getComicsOfCategory('manga');
-    $templateParams["hero"] = $dbh -> getComicsOfCategory('hero');
-    $templateParams["funko"] = $dbh -> getComicsOfCategory('funko');
+    $templateParams["manga"] = $dbh -> getComicsOfCategory('manga',DEFAULT_HOME_QUANTITY);
+    $templateParams["hero"] = $dbh -> getComicsOfCategory('hero',DEFAULT_HOME_QUANTITY);
+    $templateParams["funko"] = $dbh -> getComicsOfCategory('funko',DEFAULT_HOME_QUANTITY);
 
     $templateParams["reviews"] = $dbh-> getReviews();
     $templateParams["partners"] = $dbh-> getPartners();
