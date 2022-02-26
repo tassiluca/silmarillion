@@ -43,11 +43,12 @@ $(document).ready(function(){
 var numPages = 1;
 var prods;
 var idxPage = 0;
-const NUM_PROD_PAGE = 2;
+const NUM_PROD_PAGE = 8; //amount of products per page to be shown
 
 function submitFilters(allFilter){
     $.post("utils/process-filters.php", allFilter,
         function (data,status) {
+            console.log(status);
             prods = JSON.parse(data);
             numPages = Math.floor(prods.length / NUM_PROD_PAGE);
 
@@ -76,10 +77,9 @@ function updateCatalogView(idxPage){
     else{
         var start = idxPage * NUM_PROD_PAGE;
         var end = (idxPage * NUM_PROD_PAGE) + NUM_PROD_PAGE;
-        console.log('Start: ' + start + ' end: ' + end);
+        //console.log('Start: ' + start + ' end: ' + end);
 
         for(let i=start; i < end && i < prods.length;i++){
-            console.log(prods);
             var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
             var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
             prodListHTML += '<article><div><img src="img/comics/'+prods[i].CoverImg+'" alt='+prods[i].CoverImg+'></div><header><a href=\"article.php?id=' + prods[i].ProductId +
