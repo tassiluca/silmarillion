@@ -58,20 +58,6 @@
     }
     
     /**
-     * Check if all elements given in input are not empty.
-     * @param Array $inputs an array of inputs
-     * @return boolean true if **all** are **NON**-empty, false otherwise.
-     */
-    function checkInputs($inputs){
-        foreach ($inputs as $i) {
-            if (empty($i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * Move the given image inside the path.
      * [NOTE] Please, remember `$path` MUST have all permissions.
      * @param string $path the folder in which move the image

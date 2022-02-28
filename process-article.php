@@ -1,5 +1,45 @@
 <?php 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     require_once './bootstrap.php';
+    // require_once __DIR__ . '/vendor/autoload.php';
+    // use Respect\Validation\Validator as v;
+
+    /** 
+     * [NOTES] Expecting these params:
+     * - articleToInsert: could be only Fumetto or Funk (TODO: change Fumetto in Comic)
+     * - (ok) funkoName: non-empty
+     * - (ok) title: non-empty
+     * - (ok) author: non-empty
+     * - (ok) language: non-empty
+     * - (ok) publishDate: must be a date
+     * - (ok) isbn: must be an integer of 13 digits
+     * - (ok) publisher: non-empty
+     * - (ok) publisherName, publisherLogo: non-empty
+     * - (ok) category: non-empty
+     * - (ok) categoryName, categoryDesc: non-empty
+     * - (ok) price, discountedPrice: must be a price non-negative
+     * - (ok) desc: non-empty
+     * - (ok) coverImg: non-empty
+     */
+
+    function validate($data) {
+        /*
+        $rules = array(
+            'compulsory' => v::notEmpty()->setName('compulsory'),
+            'date' => v::date()->setName('date'),
+            'isbn' => v::digit()->length(13)->setName('digit'),
+            'non-negative' => v::not(v::negative()),
+        );
+        */
+        $v = new UserInputValidator();
+        echo "" . $v->assert(array('compulsory' => $data['price']));
+        foreach ($v->getErrors() as $err) {
+            echo "" . $err;
+        }
+    }
 
     /**
      * Make a get request with the message to display if a condition 
@@ -52,29 +92,28 @@
     }
 
     $data = getInputData();
+    validate($data);
 
-    /* TODO: input validation */
+    // list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
+    // redirect($msg, !$result);
+    // $coverImg = $msg;
 
-    list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
-    redirect($msg, !$result);
-    $coverImg = $msg;
+    // insertCategory($data);
 
-    insertCategory($data);
-
-    if ($_POST["articleToInsert"] == "Funko") { // funko insert
-        // insert into db
-        $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
-                              $data['desc'], $coverImg, $data['category']);
-        $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
-    } else if ($_POST["articleToInsert"] == "Fumetto") { // comic insert
-        insertPublisher($data);
-        // insert into db
-        $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
-                              $data['isbn'], $data['publisher'], $data['price'], 
-                              $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
-        $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
-    }
+    // if ($_POST["articleToInsert"] == "Funko") { // funko insert
+    //     // insert into db
+    //     $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
+    //                           $data['desc'], $coverImg, $data['category']);
+    //     $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+    // } else if ($_POST["articleToInsert"] == "Fumetto") { // comic insert
+    //     insertPublisher($data);
+    //     // insert into db
+    //     $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
+    //                           $data['isbn'], $data['publisher'], $data['price'], 
+    //                           $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
+    //     $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+    // }
     
-    redirect($msg);
+    // redirect($msg);
     
 ?>
