@@ -42,7 +42,7 @@ $(document).ready(function(){
     var numPages = 1;
     var prods;
     var idxPage = 0;
-    const NUM_PROD_PAGE = 8; //amount of products per page to be shown
+    const NUM_PROD_PAGE = 3; //amount of products per page to be shown
 
     function submitFilters(allFilter){
         $.post("utils/process-filters.php", allFilter,
@@ -50,20 +50,40 @@ $(document).ready(function(){
                 prods = JSON.parse(data);
                 numPages = Math.floor(prods.length / NUM_PROD_PAGE);
 
-                changePage(0); //passing zero when don't affect default page idxPage = 0
                 updateCatalogView(0);//show all products of page 0
             });
     }
 
-    function changePage(incOrDec){
+    //go to previous page of catalog
+    $('main > section:last-of-type > footer > ul > li:first-child > a').click(function(e){
+        e.preventDefault();
+        var newIdx = updateIdxPage(-1,numPages);
+        updateCatalogView(newIdx);
+
+    })
+
+    //next page of catalog
+    $('main > section:last-of-type > footer > ul > li:last-child > a').click(function(e){
+        e.preventDefault();
+        var newIdx = updateIdxPage(1,numPages);
+        updateCatalogView(newIdx);
+    })
+
+    /**
+     * Get updated index of catalog page
+     * @param {int} incOrDec increment or decremet value to calc new index
+     * @param {int} numPages amount of catalog pages
+     * @returns updated idx page to be shown
+     */
+    function updateIdxPage(incOrDec,numPages){
         var tmpIdxPage = idxPage + incOrDec;
         idxPage = tmpIdxPage < 0 ? 0 : tmpIdxPage > numPages ? numPages: tmpIdxPage;
-        //console.log('idx: ' + idxPage + ' numPages: ' + numPages );
-        updateCatalogView(idxPage);
+        return idxPage;
     }
 
     /**
      * Refresh catalog page, showing prods that correpsond to filters selected
+     * @param {int} idxPage index page to be shown
      */
     function updateCatalogView(idxPage){
         $('main > section > article').remove();
@@ -75,7 +95,7 @@ $(document).ready(function(){
         else{
             var start = idxPage * NUM_PROD_PAGE;
             var end = (idxPage * NUM_PROD_PAGE) + NUM_PROD_PAGE;
-            //console.log('Start: ' + start + ' end: ' + end);
+            console.log('Start: ' + start + ' end: ' + end);
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
