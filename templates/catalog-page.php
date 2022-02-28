@@ -100,8 +100,8 @@
     <footer>
         <!-- Pagination -->
         <ul>
-            <li><a href="#" onclick="changePage(-1);return false;">&laquo; Articoli precedenti</a></li>
-            <li><a href="#" onclick="changePage(1);return false;">Articoli successivi &raquo;</a></li>
+            <li><a href="#">&laquo; Articoli precedenti</a></li>
+            <li><a href="#">Articoli successivi &raquo;</a></li>
         </ul>
     </footer>
 </section>
