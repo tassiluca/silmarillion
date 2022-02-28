@@ -120,7 +120,8 @@ create table PaymentMethods (
      CVV char(3),
      ExpiringDate date,
      Mail varchar(200),
-     constraint IDPaymentMethod primary key (MethodId));
+     constraint IDPaymentMethod primary key (MethodId),
+     constraint IDPaymentMethod unique(Mail));
 
 create table Payments (
      PayId int not null auto_increment,
@@ -172,8 +173,9 @@ create table Users (
      DateBirth date not null,
      Mail varchar(100) not null,
      IsActive boolean not null,
-     constraint IDSeller primary key (UserId),
-     constraint IDSeller_1 unique (Username));
+     constraint IDUsers primary key (UserId),
+     constraint IDUsers_1 unique (Username),
+     constraint IDUsers_2 unique(Mail));
 
 
 -- Constraints Section
