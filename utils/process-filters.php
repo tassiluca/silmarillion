@@ -123,15 +123,14 @@ filters = lang, author, price, availability, publisher,category*/
     }
 
     function applyFilterAvailable($prods,$selFilter){
-        $allProd = [];
+        $allProd = array();
         for($i=0; $i < count($prods);$i++){
             if(($prods[$i]["copies"] > 0 && $selFilter==AVAILABLE) ||  
             ($prods[$i]["copies"] <= 0 && $selFilter==NOT_AVAILABLE) ||
             $selFilter==ALL_AVAILABILITY){
-                $allProd[$i] = $prods[$i];
+                array_push($allProd,$prods[$i]);
             }
         }
-        print_r($allProd);
         return $allProd;
     }
 ?>

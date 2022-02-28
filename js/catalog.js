@@ -47,12 +47,11 @@ $(document).ready(function(){
     function submitFilters(allFilter){
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
-                console.log(data);
-                //prods = JSON.parse(data);
+                prods = JSON.parse(data);
                 numPages = Math.floor(prods.length / NUM_PROD_PAGE);
 
-                //changePage(0); //passing zero when don't affect default page idxPage = 0
-                //updateCatalogView(0);//show all products of page 0
+                changePage(0); //passing zero when don't affect default page idxPage = 0
+                updateCatalogView(0);//show all products of page 0
             });
     }
 
