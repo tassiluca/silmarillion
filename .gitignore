@@ -3,5 +3,6 @@
 /upload/news/* 
 /upload/publishers/*
 /upload/products/*
+/vendor/*
 
 !.gitkeep
