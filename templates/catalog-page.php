@@ -68,9 +68,9 @@
         foreach($templateParams["authors"] as $auth): 
             $idAuth= getIdFromName($auth['Author']); ?>
             <li>
-            <input type="checkbox" class="author" id="<?php echo $idAuth?>" name="<?php echo $auth['Author']?>" />
-            <label for="<?php echo $idAuth?>"><?php echo $auth['Author']?></label>
-        </li> 
+                <input type="checkbox" class="author" id="<?php echo $idAuth?>" name="<?php echo $auth['Author']?>" />
+                <label for="<?php echo $idAuth?>"><?php echo $auth['Author']?></label>
+            </li> 
         <?php endforeach;endif;?>
     </ul>
 </aside>
