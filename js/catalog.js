@@ -95,7 +95,6 @@ $(document).ready(function(){
      * @param {*} allFilter filters of priducts to be applied
      */
     function submitFilters(allFilter){
-        console.log(filters);
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
                 prods = JSON.parse(data);

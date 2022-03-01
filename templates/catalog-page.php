@@ -1,7 +1,7 @@
  <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Catalogo</li>
+        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Catalogo</li>
     </ul>
 </div>
 <h2>Catalogo</h2>
