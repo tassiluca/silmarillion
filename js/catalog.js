@@ -42,14 +42,13 @@ $(document).ready(function(){
     var numPages = 1;
     var prods;
     var idxPage = 0;
-    const NUM_PROD_PAGE = 3; //amount of products per page to be shown
+    const NUM_PROD_PAGE = 2; //amount of products per page to be shown
 
     function submitFilters(allFilter){
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
                 prods = JSON.parse(data);
                 numPages = Math.floor(prods.length / NUM_PROD_PAGE);
-
                 updateCatalogView(0);//show all products of page 0
             });
     }
@@ -78,6 +77,7 @@ $(document).ready(function(){
     function updateIdxPage(incOrDec,numPages){
         var tmpIdxPage = idxPage + incOrDec;
         idxPage = tmpIdxPage < 0 ? 0 : tmpIdxPage > numPages ? numPages: tmpIdxPage;
+        idxPage = (idxPage * NUM_PROD_PAGE) +1 > prods.length ? idxPage -1 : idxPage;
         return idxPage;
     }
 
@@ -90,12 +90,12 @@ $(document).ready(function(){
         $('main > section > p').remove();
         var prodListHTML ='';
         if(prods.length <= 0){
-            prodListHTML += '<p>Articoli Non Trovati, hai filtrato tropoo!!</p>';
+            prodListHTML += '<p>Articoli Non Trovati</p>';
         }
         else{
             var start = idxPage * NUM_PROD_PAGE;
-            var end = (idxPage * NUM_PROD_PAGE) + NUM_PROD_PAGE;
-            console.log('Start: ' + start + ' end: ' + end);
+            var end = (idxPage * NUM_PROD_PAGE ) + NUM_PROD_PAGE;
+            
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
