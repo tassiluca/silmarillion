@@ -50,7 +50,7 @@ $(document).ready(function(){
             filters[type].push($(this).attr("name"));
         }
         else{
-            filters[type].splice(filters[type].indexOf($(this).attr("name")),1);
+            filters[type] = filters[type].filter(i => i !== $(this).attr("name"));
         }
         submitFilters(filters);
     })
@@ -76,12 +76,8 @@ $(document).ready(function(){
     function firstLoadProds(){ //TODO it can be exended to other filters
         var category = getUrlParameter('category');
         filters["category"].push(category);
-        var str= "main > aside > ul > li > input.category > [name="+category+"]";
-        console.log(str);
-        console.log($(str).);
-        $("main > aside > ul > li > input.category > [name="+category+"]");
+        $("main > aside > ul > li > input[name="+category+"]").prop("checked",true);
         submitFilters(filters);
-        
     }
 
     var numPages = 1;
