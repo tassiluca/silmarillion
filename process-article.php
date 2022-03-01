@@ -10,27 +10,27 @@
     /** 
      * [NOTES] Expecting these params:
      * - articleToInsert: could be only Fumetto or Funk (TODO: change Fumetto in Comic)
-     * - (ok) funkoName: non-empty
-     * - (ok) title: non-empty
-     * - (ok) author: non-empty
-     * - (ok) language: non-empty
-     * - (ok) publishDate: must be a date
-     * - (ok) isbn: must be an integer of 13 digits
-     * - (ok) publisher: non-empty
-     * - (ok) publisherName, publisherLogo: non-empty
-     * - (ok) category: non-empty
-     * - (ok) categoryName, categoryDesc: non-empty
-     * - (ok) price, discountedPrice: must be a price non-negative
-     * - (ok) desc: non-empty
-     * - (ok) coverImg: non-empty
+     * - funkoName: non-empty
+     * - title: non-empty
+     * - author: non-empty
+     * - language: non-empty
+     * - publishDate: must be a date
+     * - isbn: must be an integer of 13 digits
+     * - publisher: non-empty
+     * - publisherName, publisherLogo: non-empty
+     * - category: non-empty
+     * - categoryName, categoryDesc: non-empty
+     * - price, discountedPrice: must be a price non-negative
+     * - desc: non-empty
+     * - coverImg: non-empty
      */
 
     function isFunkoInsertion() {
-        return $_POST["articleToInsert"] == "Funko";
+        return $_POST["articleToInsert"] == "funko";
     }
 
     function isComicInsertion() {
-        return $_POST["articleToInsert"] == "Fumetto";
+        return $_POST["articleToInsert"] == "comic";
     }
 
     function validate($data) {
@@ -51,7 +51,8 @@
      */
     function redirect($msg, $condition = true) {
         if ($condition) {
-            header("location: modify-article.php?action=insert&formMsg=" . $msg);
+            $article = isFunkoInsertion() ? 'funko' : 'comic';
+            header("location: modify-article.php?article=" . $article . "&action=insert&formMsg=" . $msg);
             exit(1);
         }
     }
@@ -92,28 +93,28 @@
     }
 
     $data = getInputData();
-    validate($data);
+    // validate($data);
 
-    // list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
-    // redirect($msg, !$result);
-    // $coverImg = $msg;
+    list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
+    redirect($msg, !$result);
+    $coverImg = $msg;
 
-    // insertCategory($data);
+    insertCategory($data);
 
-    // if (isFunkoInsertion()) { // funko insert
-    //     // insert into db
-    //     $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
-    //                           $data['desc'], $coverImg, $data['category']);
-    //     $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
-    // } else if (isComicInsertion()) { // comic insert
-    //     insertPublisher($data);
-    //     // insert into db
-    //     $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
-    //                           $data['isbn'], $data['publisher'], $data['price'], 
-    //                           $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
-    //     $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
-    // }
+    if (isFunkoInsertion()) { // funko insert
+        // insert into db
+        $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
+                              $data['desc'], $coverImg, $data['category']);
+        $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+    } else if (isComicInsertion()) { // comic insert
+        insertPublisher($data);
+        // insert into db
+        $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
+                              $data['isbn'], $data['publisher'], $data['price'], 
+                              $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
+        $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+    }
     
-    // redirect($msg);
+    redirect($msg);
     
 ?>
