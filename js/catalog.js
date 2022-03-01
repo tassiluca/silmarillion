@@ -37,13 +37,17 @@ $(document).ready(function(){
         }
         submitFilters(filters);
     })
-
     
     var numPages = 1;
     var prods;
     var idxPage = 0;
-    const NUM_PROD_PAGE = 2; //amount of products per page to be shown
+    const NUM_PROD_PAGE = 3; //amount of products per page to be shown
 
+    /**
+     * Send a request to server to get all prods matching filters
+     * then refresh showed prods
+     * @param {*} allFilter filters of priducts to be applied
+     */
     function submitFilters(allFilter){
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
@@ -82,12 +86,14 @@ $(document).ready(function(){
     }
 
     /**
-     * Refresh catalog page, showing prods that correpsond to filters selected
+     * Refresh catalog page, showing prods that correpsond to filters selected and the page selected
      * @param {int} idxPage index page to be shown
      */
     function updateCatalogView(idxPage){
         $('main > section > article').remove();
         $('main > section > p').remove();
+        $('main > section:last-of-type > footer > ul > li > p').empty();
+        $('main > section:last-of-type > footer > ul > li > p').append(idxPage+1 +'/'+numPages );
         var prodListHTML ='';
         if(prods.length <= 0){
             prodListHTML += '<p>Articoli Non Trovati</p>';
@@ -106,7 +112,6 @@ $(document).ready(function(){
                                 '"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
         }
-        
         $('main > section:first-of-type()').append(prodListHTML);
     }
 
