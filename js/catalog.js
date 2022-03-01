@@ -13,8 +13,25 @@ function hideElement(element) {
         .next().slideUp();
 }
 
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+
 $(document).ready(function(){
-    submitFilters(filters);
+    firstLoadProds();
+
     $("main > aside > button").click(function(){
         if ($(this).hasClass("selected")) {
             hideElement($(this));
@@ -37,7 +54,36 @@ $(document).ready(function(){
         }
         submitFilters(filters);
     })
-    
+
+    //go to previous page of catalog
+     $('main > section:last-of-type > footer > ul > li:first-child > a').click(function(e){
+        e.preventDefault();
+        var newIdx = updateIdxPage(-1,numPages);
+        updateCatalogView(newIdx);
+
+    })
+
+    //next page of catalog
+    $('main > section:last-of-type > footer > ul > li:last-child > a').click(function(e){
+        e.preventDefault();
+        var newIdx = updateIdxPage(1,numPages);
+        updateCatalogView(newIdx);
+    })
+
+    /**
+     * Get from url category to be filtered then apply filters
+     */
+    function firstLoadProds(){ //TODO it can be exended to other filters
+        var category = getUrlParameter('category');
+        filters["category"].push(category);
+        var str= "main > aside > ul > li > input.category > [name="+category+"]";
+        console.log(str);
+        console.log($(str).);
+        $("main > aside > ul > li > input.category > [name="+category+"]");
+        submitFilters(filters);
+        
+    }
+
     var numPages = 1;
     var prods;
     var idxPage = 0;
@@ -56,21 +102,6 @@ $(document).ready(function(){
                 updateCatalogView(0);//show all products of page 0
             });
     }
-
-    //go to previous page of catalog
-    $('main > section:last-of-type > footer > ul > li:first-child > a').click(function(e){
-        e.preventDefault();
-        var newIdx = updateIdxPage(-1,numPages);
-        updateCatalogView(newIdx);
-
-    })
-
-    //next page of catalog
-    $('main > section:last-of-type > footer > ul > li:last-child > a').click(function(e){
-        e.preventDefault();
-        var newIdx = updateIdxPage(1,numPages);
-        updateCatalogView(newIdx);
-    })
 
     /**
      * Get updated index of catalog page
