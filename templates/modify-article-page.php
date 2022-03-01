@@ -25,23 +25,23 @@
                 </li>
                 <li>
                     <label for="title">Titolo</label>
-                    <input type="text" placeholder="es. Two Moons 1" id="title" name="title" />
+                    <input type="text" placeholder="es. Two Moons 1" id="title" name="title" required />
                 </li>
                 <li>
                     <label for="author">Autore</label>
-                    <input type="text" placeholder="es. John Arcudi" id="author" name="author" />
+                    <input type="text" placeholder="es. John Arcudi" id="author" name="author" required />
                 </li>
                 <li>
                     <label for="language">Lingua</label>
-                    <input type="text" placeholder="es. Italiano" id="language" name="language" />
+                    <input type="text" placeholder="es. Italiano" id="language" name="language" required />
                 </li>
                 <li>
                     <label for="publishDate">Data di pubblicazione</label>
-                    <input type="date" id="publishDate" name="publishDate" />
+                    <input type="date" id="publishDate" name="publishDate" required />
                 </li>
                 <li>
                     <label for="isbn">ISBN</label>
-                    <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" />
+                    <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" required />
                 </li>
                 <li>
                     <label for="publisher">Editore</label>
@@ -71,7 +71,7 @@
                 </li>
                 <li>
                     <label for="funkoName">Nome</label>
-                    <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" />
+                    <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" required />
                 </li>
             <?php
                 endif;
@@ -98,7 +98,7 @@
             </li>
             <li>
                 <label for="price">Prezzo</label>
-                <input type="text" placeholder="es. 15,00" id="price" name="price" />
+                <input type="text" placeholder="es. 15,00" id="price" name="price" required />
             </li>
             <li>
                 <label for="discountedPrice">Prezzo Scontato</label>
@@ -106,11 +106,11 @@
             </li>
             <li>
                 <label for="desc">Descrizione</label>
-                <textarea placeholder="Descrizione sintetica del prodotto" id="desc" name="desc" ></textarea>
+                <textarea placeholder="Descrizione sintetica del prodotto" id="desc" name="desc" required ></textarea>
             </li>
             <li>
                 <label for="coverImg">Immagine Articolo</label>
-                <input type="file" name="coverImg" id="coverImg" />
+                <input type="file" name="coverImg" id="coverImg" required />
                 <!-- TODO <img src="" alt=""> -->
             </li>
             <?php if(isset($templateParams["formMsg"])):?>
