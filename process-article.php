@@ -5,7 +5,7 @@
 
     require_once './bootstrap.php';
     // require_once __DIR__ . '/vendor/autoload.php';
-    // use Respect\Validation\Validator as v;
+    use Respect\Validation\Validator as v;
 
     /** 
      * [NOTES] Expecting these params:
@@ -25,19 +25,19 @@
      * - (ok) coverImg: non-empty
      */
 
+    function isFunkoInsertion() {
+        return $_POST["articleToInsert"] == "Funko";
+    }
+
+    function isComicInsertion() {
+        return $_POST["articleToInsert"] == "Fumetto";
+    }
+
     function validate($data) {
-        /*
-        $rules = array(
-            'compulsory' => v::notEmpty()->setName('compulsory'),
-            'date' => v::date()->setName('date'),
-            'isbn' => v::digit()->length(13)->setName('digit'),
-            'non-negative' => v::not(v::negative()),
-        );
-        */
-        $v = new UserInputValidator();
-        echo "" . $v->assert(array('compulsory' => $data['price']));
-        foreach ($v->getErrors() as $err) {
-            echo "" . $err;
+        if (isFunkoInsertion()) {
+            // validate funko fields
+        } else if (isComicInsertion()) {
+            // validate comic fields
         }
     }
 
@@ -100,12 +100,12 @@
 
     // insertCategory($data);
 
-    // if ($_POST["articleToInsert"] == "Funko") { // funko insert
+    // if (isFunkoInsertion()) { // funko insert
     //     // insert into db
     //     $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
     //                           $data['desc'], $coverImg, $data['category']);
     //     $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
-    // } else if ($_POST["articleToInsert"] == "Fumetto") { // comic insert
+    // } else if (isComicInsertion()) { // comic insert
     //     insertPublisher($data);
     //     // insert into db
     //     $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
