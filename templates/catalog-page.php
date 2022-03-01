@@ -79,7 +79,7 @@
     <article>
         <?php $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId'])?>
         <div>
-            <img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>">
+            <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a>
         </div>
         <header><a href="article.php?id=<?php echo $product['ProductId']?>">
             <h3><?php echo $product["Title"]?></h3></a>
