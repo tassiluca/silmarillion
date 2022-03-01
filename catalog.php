@@ -11,16 +11,6 @@
     $templateParams["languages"] = $dbh -> getLanguages();
     $templateParams["authors"] = $dbh -> getAllAuthors();
     $templateParams["categories"] = $dbh -> getAllCategories();
-    $templateParams["products"] = $dbh -> getAllComics();
 
-    if(isset($_GET) && !empty($_GET)){
-        $category = $_GET['category'];
-        $prodOfCategory = $dbh-> getComicsOfCategory($category,CATALOG_PROD_QUANTITY);
-        if(count($prodOfCategory ) > 1){
-            $templateParams["filter"] = $category;
-            $templateParams["products"] = $prodOfCategory;
-        }
-    }
     require 'templates/base.php';
-    
 ?>
