@@ -6,7 +6,7 @@
     define("MONTH",1);
     define("YEAR",2);
 
-    if(isset($_POST['period']) && isset($_POST['year'])/*&& isSellerLoggedIn()*/){
+    if(isset($_POST['period']) && isset($_POST['year']) && isSellerLoggedIn()){
         if(count($_POST['period']) >= 1 && count($_POST['year']) >= 1){
             $stats = $dbh -> getStatsPerPeriod($_POST['period'][0],$_POST['year'][0]);
         }
