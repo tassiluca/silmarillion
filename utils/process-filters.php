@@ -15,7 +15,7 @@ $priceInterval = ["cheap"=> ["from"=>'0',"to"=>'99.99'],
 filters = lang, author, price, availability, publisher,category*/
     require_once '../bootstrap.php';
     
-    if(isset($_POST)){
+    if(isset($_POST)){  //TODO: make some chek of what server receive in post method
         $availabFilter = ALL_AVAILABILITY;
         $keys = array_keys($_POST);
         $data = $_POST;
