@@ -101,6 +101,7 @@
         <!-- Pagination -->
         <ul>
             <li><a href="#">&laquo; Articoli precedenti</a></li>
+            <li><p></p></li>
             <li><a href="#">Articoli successivi &raquo;</a></li>
         </ul>
     </footer>

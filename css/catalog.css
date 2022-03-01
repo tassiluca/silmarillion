@@ -83,7 +83,10 @@ main > section {
 } 
 
 main > section > footer > ul {
-    display: inline-block;
+    /*display: inline-block;*/
+    display: flex;
+    justify-content: space-around;
+    height: 38px;
 }
 
 main > section > footer > ul > li {
@@ -93,8 +96,10 @@ main > section > footer > ul > li {
     border-radius: 10px;
 }
 
-main > section > footer > ul > li > a {
+main > section > footer > ul > li > a,
+main > section > footer > ul > li > p{
     padding: 10px;
+    margin: 0;
     display: inline-block;
     color: black;
     text-decoration: none;
@@ -115,14 +120,17 @@ main > section > footer > ul > li > a:hover {
 
     main > aside {
         width: 25%;
+        height: 100%;
         margin: 0 1% 0 0;
         box-sizing: border-box;
     }
 
     main > section {
         width: 73%;
-        margin: 0 0 0 1%;     
         box-sizing: border-box;
+    }
+    main > section:last-of-type {
+        float: right;
     }
 }
 
