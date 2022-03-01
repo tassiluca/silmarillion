@@ -74,9 +74,13 @@ $(document).ready(function(){
      * Get from url category to be filtered then apply filters
      */
     function firstLoadProds(){ //TODO it can be exended to other filters
-        var category = getUrlParameter('category');
-        filters["category"].push(category);
-        $("main > aside > ul > li > input[name="+category+"]").prop("checked",true);
+        Object.keys(filters).forEach(key => {
+            var filtKey = getUrlParameter(key);
+            if(filtKey !== false){
+                filters[key].push(filtKey);
+                $("main > aside > ul > li > input[name="+filtKey+"]").prop("checked",true);
+            } 
+        });
         submitFilters(filters);
     }
 
@@ -91,6 +95,7 @@ $(document).ready(function(){
      * @param {*} allFilter filters of priducts to be applied
      */
     function submitFilters(allFilter){
+        console.log(filters);
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
                 prods = JSON.parse(data);
