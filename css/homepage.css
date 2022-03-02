@@ -112,6 +112,16 @@ main > section:last-child > div > div > img {
     margin: 5px;
 }
 
+/*Header of container group*/
+main > section > header > h2 {
+    text-align: center;
+}
+/*Container of articles of same group*/
+main > section > div {
+  text-align: center;
+  margin: 30px 0 80px 0;
+}
+
 /*aside*/
 main > aside {
     margin: 0 15% 0 15%;
