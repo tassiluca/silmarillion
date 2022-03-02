@@ -189,6 +189,23 @@
         /**********************************************************************************
          * Products management functions
          **********************************************************************************/
+
+        /**
+         * Get product info.
+         * => TODO: rename in getProductById() when the actual getProductById() is renamed in 
+         *          getComicById().
+         * 
+         * @param integer $productId the product id
+         * @return array ...
+         */
+        public function getProduct(int $productId) {
+            if ($this->isFunko($productId)) {
+                return $this->getFunkoById($productId);
+            } else {
+                return $this->getProductById($productId);
+            }
+        }
+
         /**
          * Insert a new product.
          *
@@ -278,25 +295,6 @@
             $query = "SELECT PublisherId, Name, ImgLogo
                       FROM Publisher";
             $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
-        }
-
-        /**
-         * Get all infos of a given product.
-         *
-         * @param [type] $productId the id of the product
-         * @return array an associative array with all infos of the product given in input.
-         */
-        public function getProduct($productId) {
-            $query = "SELECT *
-                      FROM Products as P, Funkos as F, Comics as C
-                      WHERE P.ProductId = F.ProductId 
-                      AND P.ProductId = C.ProductId
-                      AND P.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $productId);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -394,7 +392,7 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function getProductById($id){
+        public function getProductById($id) {
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,PB.Name as PublisherName
                     FROM Comics as C, Products as P, Publisher as PB
                     WHERE C.ProductId = P.ProductId
@@ -407,6 +405,48 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * TODO: to document -- added by Luca
+         */
+        public function getFunkoById($id){
+            $query = "SELECT F.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                      FROM Funkos as F, Products as P
+                      WHERE F.ProductId = P.ProductId
+                      AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * TODO: to document -- added by Luca
+         */
+        public function isFunko($id) {
+            $query = "SELECT P.ProductId
+                      FROM Products as P, Funkos as F
+                      WHERE P.ProductId = F.ProductId
+                      AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            return $stmt->get_result()->num_rows > 0;
+        }
+
+        /**
+         * TODO: to document -- added by Luca
+         */
+        public function isComic($id) {
+            $query = "SELECT P.ProductId
+                      FROM Products as P, Comics as C
+                      WHERE P.ProductId = C.ProductId
+                      AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            return $stmt->get_result()->num_rows > 0;
+        }
 
         public function addProductToWish($usrId,$idprod){
             $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
