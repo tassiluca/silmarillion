@@ -78,3 +78,14 @@ article > footer > div:nth-child(2) {
     position: relative;
     bottom: 25px;
 }
+
+/*favourite button*/
+article > footer > div:first-child > a {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+article > footer > div:first-child {
+    width: 35%;
+    margin: auto;
+}
