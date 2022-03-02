@@ -15,6 +15,7 @@
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>"><?php if($templateParams["copies"] > 0){echo $templateParams["copies"] ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="gestisci-richieste.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="./img/favourite.svg" alt="Preferito" /></a></li><li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
+                    <?php if(!isset($templateParams["product"]["FunkoId"])):?>
                     <ul>
                         <li><strong>Autore:</strong><?php echo $templateParams["product"]["Author"]?></li>
                         <li><strong>Editore:</strong><?php echo $templateParams["product"]["PublisherName"]?></li>
@@ -22,6 +23,7 @@
                         <li><strong>Lingua:</strong><?php echo $templateParams["product"]["Lang"]?></li>
                         <li><strong>ISBN:</strong><?php echo $templateParams["product"]["ISBN"]?></li>
                     </ul>
+                    <?php endif?>
                 </header>
                 <p><strong>Descrizione:</strong><?php echo $templateParams["product"]["Description"]?></p>
                 <footer>
