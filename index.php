@@ -3,7 +3,7 @@
     define("DEFAULT_HOME_QUANTITY",20);
     $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
-    $templateParams["css"] = array("homepage.css","products-homepage.css","products.css");
+    $templateParams["css"] = array("homepage.css","products.css");
     $templateParams["js"] = array("home.js");
     $templateParams["main"] = "./templates/home-page.php";
     $templateParams["newsBanner"] = $dbh->getHomeBanner();
