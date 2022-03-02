@@ -50,8 +50,8 @@
                             <?php $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId'])?>
                             <div> <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
                             <header><a href="article.php?id=<?php echo $product['ProductId']?>"><?php echo $product["Title"]?></a></header>
-                            <div><a href="gestisci-richieste.php?action=wish&id=<?php echo $product['ProductId']?>"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="aggiungi al carrello"/></a><div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
-                            </div>
+                            <footer><a href="gestisci-richieste.php?action=wish&id=<?php echo $product['ProductId']?>"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a><a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="aggiungi al carrello"/></a><div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
+                            </footer>
                         </article>
         <?php endforeach;?>
                 <!--end group of article-->
