@@ -9,6 +9,11 @@ article {
     text-align: center;
 }
 
+/*Hover effect button */
+article > footer > div > a:hover > img {
+    transform: rotateZ(10deg);
+}
+
 /*comic title-name*/
 article > header {
     height: 70px;
@@ -31,7 +36,7 @@ article > header > a > h3 {
 
 /*comic image*/
 article > div > a > img {
-    height: 279px;
+    height: 260px;
     width: 100%;
     border-radius: 10px 10px 0 0;
     width: 100%;
@@ -44,4 +49,32 @@ article > footer {
     height: 65px;
     border-radius: 0 0 10px 10px;
     display: flex;
+}
+
+/*price box*/
+article > footer > div:last-child {
+    width: 35%;
+    margin: auto;
+}
+
+/*price text*/
+article > footer > div > p {
+    font-weight: bold;
+    padding: 10px 0px;
+    border-radius: 10px;
+    background-color: #f0f8ff;
+    box-shadow: inset 1.22223px 1.22223px 1.22223px rgba(196, 196, 196, 0.25);
+}
+
+/*Icon button article*/
+article > footer > div > a > img {
+    vertical-align: middle;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* add to cart button*/
+article > footer > div:nth-child(2) {
+    position: relative;
+    bottom: 25px;
 }
