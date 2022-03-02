@@ -5,27 +5,6 @@ article > header {
     padding: 10px 2px 5px 2px;
 }
 
-article > footer > div > a > img {
-    vertical-align: middle;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-/*price box*/
-article > footer > div:last-child {
-    width: 35%;
-    margin: auto;
-}
-
-/*price text*/
-article > footer > div > p {
-    font-weight: bold;
-    padding: 10px 0px;
-    border-radius: 10px;
-    background-color: #f0f8ff;
-    box-shadow: inset 1.22223px 1.22223px 1.22223px rgba(196, 196, 196, 0.25);
-}
-
 article > footer > div:first-child {
     width: 35%;
     margin: auto;
@@ -35,11 +14,4 @@ article > footer > div:first-child {
 article > footer > div:first-child > a {
     display: inline-block;
     vertical-align: middle;
-}
-
-/* add to cart button*/
-article > footer > div:nth-child(2) {
-    width: 30%;
-    position: relative;
-    bottom: 25px;
 }
