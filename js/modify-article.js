@@ -14,4 +14,20 @@ $(document).ready(function() {
         e.preventDefault();
         slide($(this));
     });
+
+    $("section > form").submit(function(e){
+        e.preventDefault();
+        console.log(this);
+        $.ajax({
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
+            dataType: "JSON",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+        }).done(function(data){
+            console.log(data);
+        });  
+    });
+
 });

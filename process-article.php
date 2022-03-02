@@ -51,8 +51,7 @@
      */
     function redirect($msg, $condition = true) {
         if ($condition) {
-            $article = isFunkoInsertion() ? 'funko' : 'comic';
-            header("location: modify-article.php?article=" . $article . "&action=insert&formMsg=" . $msg);
+            echo json_encode($msg);
             exit(1);
         }
     }
@@ -93,7 +92,7 @@
     }
 
     $data = getInputData();
-    // validate($data);
+    validate($data);
 
     list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
     redirect($msg, !$result);
