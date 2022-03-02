@@ -199,7 +199,7 @@
          * @return array associative array containing all funkos
          */
         public function getFunkos($quantity=-1){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
 
