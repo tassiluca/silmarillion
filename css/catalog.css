@@ -111,6 +111,10 @@ main > section > footer > ul > li > a:hover {
     color: white;
 }
 
+main > section > article > footer > div > a > img:hover {
+    transform: rotateZ(10deg);
+}
+
 @media screen and (min-width: 768px) {
     main > aside, 
     main > section {
