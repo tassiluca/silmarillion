@@ -107,7 +107,7 @@
                 </li>
                 <li>
                     <label for="desc">Descrizione</label>
-                    <textarea placeholder="Descrizione sintetica del prodotto" id="desc" name="desc" required ><?php echo $product['Description']; ?>"</textarea>
+                    <textarea placeholder="Descrizione sintetica del prodotto" id="desc" name="desc" required ><?php echo $product['Description']; ?></textarea>
                 </li>
                 <li>
                     <?php if ($_GET['action'] == 'insert'): ?>
