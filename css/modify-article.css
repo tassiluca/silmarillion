@@ -15,8 +15,18 @@ main ul {
     list-style: none;
 }
 
-main > section > form > ul > li > fieldset {
+main > section > form {
+    background-color: #AAF1FF;
     text-align: center;
+}
+
+main > section > form > ul > li {
+    padding: 5px 0;
+}
+
+main > section > form > ul > li > input {
+    border-radius: 10px;
+    border: none;
 }
 
 button {
