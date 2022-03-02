@@ -227,7 +227,8 @@
          * @return array containig a single element, if $id is not present in db
          * array is empty
          */
-        public function getProductById($id){
+        //TODO: change name into getComicById
+        public function getComicById($id){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,PB.Name as PublisherName
                     FROM Comics as C, Products as P, Publisher as PB
                     WHERE C.ProductId = P.ProductId
