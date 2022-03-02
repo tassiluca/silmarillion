@@ -336,7 +336,14 @@
                       VALUES(?, ?)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('ss', $name, $description);
-            return $stmt->execute();
+            try {
+                return $stmt->execute();
+            } catch(Exception $e) {
+                // if a publisher with given name already exists in db
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return false;
+                }
+            }
         }
 
         public function getHomeBanner(){
