@@ -247,7 +247,7 @@
          * array is empty
          */
         public function getFunkoById($id){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId
                     AND P.ProductId = ?";
