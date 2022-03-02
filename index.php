@@ -16,7 +16,7 @@
     $templateParams["newArrival"] = $dbh -> getNewArrival(); //default amount of new comics is 10, specify as param desired quantity
     $templateParams["manga"] = $dbh -> getComicsOfCategory('manga',DEFAULT_HOME_QUANTITY);
     $templateParams["hero"] = $dbh -> getComicsOfCategory('hero',DEFAULT_HOME_QUANTITY);
-    $templateParams["funko"] = $dbh -> getFunkos('funko',DEFAULT_HOME_QUANTITY);
+    $templateParams["funko"] = $dbh -> getFunkos(DEFAULT_HOME_QUANTITY);
     
     $templateParams["reviews"] = $dbh-> getReviews();
     $templateParams["partners"] = $dbh-> getPartners();
