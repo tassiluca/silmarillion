@@ -124,7 +124,8 @@ $(document).ready(function(){
         $('main > section > article').remove();
         $('main > section > p').remove();
         $('main > section:last-of-type > footer > ul > li > p').empty();
-        $('main > section:last-of-type > footer > ul > li > p').append(idxPage+1 +'/'+numPages );
+        var maxPages = (numPages * NUM_PROD_PAGE) +1 > prods.length ? numPages : numPages + 1;
+        $('main > section:last-of-type > footer > ul > li > p').append(idxPage+1 +'/'+maxPages );
         var prodListHTML ='';
         if(prods.length <= 0){
             prodListHTML += '<p>Articoli Non Trovati</p>';
