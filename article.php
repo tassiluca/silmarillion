@@ -7,9 +7,13 @@
     $templateParams["main"] = "./templates/single-article.php";
 
     $idprodotto = -1;
-    if(isset($_GET["id"])){
-        $idprodotto = $_GET["id"];
-    }   
+    if(isset($_GET["prodId"])){
+        $templateParams["product"] = $dbh -> getComicById($_GET["prodId"])[0];
+    }
+    else if(isset($_GET["funkoId"])){
+        $templateParams["product"] = $dbh -> getFunkoById($_GET["funkoId"])[0];
+    }
+
     $templateParams["product"] = $dbh -> getProductById($idprodotto)[0];
     $templateParams["copies"] = $dbh -> getAvaiableCopiesOfProd($idprodotto);
     $templateParams["logged"] = isCustomerLoggedIn();
