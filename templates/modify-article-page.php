@@ -11,14 +11,16 @@
 </div>
 <section>
     <header>
-        <!-- TODO nel caso di modifica metti modifica, in caso di fumetto metti fumetto, altrimenti funko !-->
-        <h2>Inserisci articolo</h2>
+        <h2>
+            <?php echo ($_GET['action'] == 'insert' ? 'Inserisci' : 'Modifica'); ?> 
+            <?php echo ($templateParams['article'] == 'funko' ? 'Funko' : 'Fumetto'); ?>
+        </h2>
     </header>
     <!-- Comic insertion form -->
     <form action="process-article.php" method="POST" enctype="multipart/form-data" id="comicForm">
         <ul>
             <?php 
-                if (isset($templateParams['article']) && $templateParams['article'] == 'comic'):
+                if ($_GET['article'] == 'comic'):
             ?>
                 <li>
                     <input type="hidden" name="articleToInsert" value="comic" />
@@ -64,7 +66,7 @@
                     </ul>
                 </li>
             <?php
-                elseif (isset($templateParams['article']) && $templateParams['article'] == 'funko') :
+                elseif ($_GET['article'] == 'funko') :
             ?>
                 <li>
                     <input type="hidden" name="articleToInsert" value="funko" />
@@ -113,11 +115,6 @@
                 <input type="file" name="coverImg" id="coverImg" required />
                 <!-- TODO <img src="" alt=""> -->
             </li>
-            <?php if(isset($templateParams["formMsg"])):?>
-                <li>
-                    <p><?php echo $templateParams["formMsg"]; ?></p>
-                </li>
-            <?php endif; ?>
             <li>
                 <!-- TODO nel caso di modifica metti modifica !-->
                 <input type="submit" value="INSERISCI" />
