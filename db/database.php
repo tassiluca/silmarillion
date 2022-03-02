@@ -222,17 +222,34 @@
         }
 
         /**
-         * Get all infos about a specific product by id
+         * Get all infos about a specific COMIC by productId
          * @param int $id unique id of product
          * @return array containig a single element, if $id is not present in db
          * array is empty
          */
-        //TODO: change name into getComicById
         public function getComicById($id){
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,PB.Name as PublisherName
                     FROM Comics as C, Products as P, Publisher as PB
                     WHERE C.ProductId = P.ProductId
                     AND PB.PublisherId = C.PublisherId
+                    AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get all infos about a specific funko by ProductId
+         * @param int $id unique id of product
+         * @return array containing a single element, if $id is not present in db
+         * array is empty
+         */
+        public function getFunkoById($id){
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name
+                    FROM Funkos as F, Products as P
+                    WHERE F.ProductId = P.ProductId
                     AND P.ProductId = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $id);
