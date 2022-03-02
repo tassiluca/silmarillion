@@ -49,10 +49,12 @@ article > footer {
     height: 65px;
     border-radius: 0 0 10px 10px;
     display: flex;
+    justify-content: space-around;
 }
 
-/*price box*/
-article > footer > div:last-child {
+/*price box and favourite button*/
+article > footer > div:last-child,
+article > footer > div:first-child {
     width: 35%;
     margin: auto;
 }
@@ -77,15 +79,4 @@ article > footer > div > a > img {
 article > footer > div:nth-child(2) {
     position: relative;
     bottom: 25px;
-}
-
-/*favourite button*/
-article > footer > div:first-child > a {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-article > footer > div:first-child {
-    width: 35%;
-    margin: auto;
 }
