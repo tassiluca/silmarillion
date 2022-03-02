@@ -7,8 +7,8 @@
     $templateParams["main"] = "./templates/single-article.php";
 
     $idprodotto = -1;
-    if(isset($_GET["prodId"])){
-        $idprodotto = $_GET["prodId"];
+    if(isset($_GET["comicId"])){
+        $idprodotto = $_GET["comicId"];
         $templateParams["product"] = $dbh -> getComicById($_GET["comicId"])[0];
     }
     else if(isset($_GET["funkoId"])){
