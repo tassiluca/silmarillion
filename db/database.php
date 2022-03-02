@@ -180,18 +180,36 @@
             $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
                     FROM Comics as C, Products as P
                     WHERE C.ProductId = P.ProductId
-                    AND P.CategoryName = ?";
-            if($quantity == -1){
-                $query .= "LIMIT ?";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('si', $category,$quantity);
-            }
-            else{
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('s', $category);
+                    AND P.CategoryName = ? ";
+            if($quantity > -1){
+                $query .= " LIMIT ?";
             }
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $category);
+            if($quantity > -1){
+                $stmt->bind_param('si', $category,$quantity);
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get all funko
+         * @param int $quantity, max number of prods returned, default value is infinite (-1)
+         * @return array associative array containing all funkos
+         */
+        public function getFunkos($quantity=-1){
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                    FROM Funkos as F, Products as P
+                    WHERE F.ProductId = P.ProductId ";
+
+            if($quantity > 0){
+                $query .= " LIMIT ?"; 
+            }
+            $stmt = $this->db->prepare($query);
+            if($quantity > 0){
+                $stmt->bind_param('i',$quantity);
+            }
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
