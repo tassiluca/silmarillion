@@ -141,16 +141,22 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
-    function sendData($query,$avail,$dbh,$isFunko){
+    function sendData($query,$avail,$dbh,$typeReq){
         print_r($query);
-        /*
-        if($isFunko){
-            $prods = addAvaiableCopiesInfo($dbh -> getAllFunkosMatch($query),$dbh);
+        
+        if($typeReq == ONLY_FUNKOS){
+            $prods = $dbh -> getAllFunkosMatch($query);
         }
-        else{
-            $prods = addAvaiableCopiesInfo($dbh -> getAllComicsMatch($query),$dbh); //get all products that match filters
+        else if($typeReq == ONLY_COMICS){
+            $prods = $dbh -> getAllComicsMatch($query); //get all products that match filters
         }
+        else if($typeReq == ALL_PRODS){
+            $funkos = $dbh -> getAllFunkosMatch($query);
+            $comics = $dbh -> getAllComicsMatch($query);
+            $prods = array_merge($funkos,$comics);
+        }
+        $prods = addAvaiableCopiesInfo($prods,$dbh);
         $prods = applyFilterAvailable($prods,$avail);
-        echo json_encode($prods); //before send json add numCopies info foreach products*/
+        echo json_encode($prods); //before send json add numCopies info foreach products
     }
 ?>
