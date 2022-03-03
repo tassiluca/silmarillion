@@ -142,7 +142,6 @@ filters = lang, author, price, availability, publisher,category*/
     }
 
     function sendData($query,$avail,$dbh,$typeReq){
-        print_r($query);
         
         if($typeReq == ONLY_FUNKOS){
             $prods = $dbh -> getAllFunkosMatch($query);
