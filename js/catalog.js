@@ -137,7 +137,10 @@ $(document).ready(function(){
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
-                prodListHTML += '<article><div><a href="article.php?id='+prods[i].ProductId+'"><img src="img/comics/'+prods[i].CoverImg+'" alt='+prods[i].CoverImg+'></a></div><header><a href=\"article.php?id=' + prods[i].ProductId +
+                var linkProd = prods[i].CategoryName.toLowerCase() === 'funko' ? "funkoId=" : "comicId=";
+                
+                prodListHTML += '<article><div><a href="article.php?'+linkProd+prods[i].ProductId+'"><img src="img/comics/'+prods[i].CoverImg+
+                                '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?'+linkProd + prods[i].ProductId +
                                 '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="gestisci-richieste.php?action=wish&id='+
                                 prods[i].ProductId+'"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a></div>'+
                                 '<div><a '+ disabled + ' href="gestisci-richieste.php?action=addtoCart&id='+prods[i].ProductId+
