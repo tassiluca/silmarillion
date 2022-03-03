@@ -199,7 +199,7 @@
          * @return array associative array containing all funkos
          */
         public function getFunkos($quantity=-1){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
 
@@ -265,7 +265,7 @@
          * array is empty
          */
         public function getFunkoById($id){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId
                     AND P.ProductId = ?";
@@ -439,7 +439,7 @@
          * @return array associative array with all funkos that match query
          */
         public function getAllFunkosMatch($filter=''){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
                 $query .= $filter;
