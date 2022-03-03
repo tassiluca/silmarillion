@@ -30,14 +30,17 @@ filters = lang, author, price, availability, publisher,category*/
          */
             $isFirst = true;
             foreach($keys as $k){
-                if(!strcmp($k,'category')){
+                //KEEP IN MIND: strcmp return 0 if strings are equal
+                $isFunko = !strcmp($data['category'][0],'funko');
+
+                if(!strcmp($k,'category') && !$isFunko){
                     $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName');
                 }
-                else if(!strcmp($k,'publisher')){
+                else if(!strcmp($k,'publisher') && !$isFunko){
                     $filtQuery .= appendEqualFilter($data[$k],'PB.Name');
                 }
                 else if(!strcmp($k,'availability')){
-                    if(count($keys)==1){ //the only key present is avaialbility
+                    if(count($keys)==1 || $isFunko){ //the only key present is avaialbility
                         $filtQuery .= '1'; //sql condition always true to get all comics
                     }
                     if(!strcmp($data[$k][0],'available')){
@@ -53,19 +56,19 @@ filters = lang, author, price, availability, publisher,category*/
                 else if(!strcmp($k,'price')){
                     $filtQuery .= appendBetweenFilter($data[$k],'P.Price',$priceInterval);
                 }
-                else if(!strcmp($k,'author')){
+                else if(!strcmp($k,'author') && !$isFunko){
                     $filtQuery .= appendEqualFilter($data[$k],'C.Author');
                 }
-                else if(!strcmp($k,'lang')){
+                else if(!strcmp($k,'lang') && !$isFunko){
                     $filtQuery .= appendEqualFilter($data[$k],'C.Lang');
                 }
 
             }
             $filtQuery .= ' )';
-            sendData($filtQuery,$availabFilter,$dbh);
+            sendData($filtQuery,$availabFilter,$dbh,$isFunko);
         }
         else{
-            sendData('',$availabFilter,$dbh);
+            sendData('',$availabFilter,$dbh,$isFunko);
         }
     }
    
@@ -107,14 +110,7 @@ filters = lang, author, price, availability, publisher,category*/
         return $concatKeyword;
     }
     
-
-    function sendData($query,$avail,$dbh){
-        $prods = addAvaiableCopies($dbh -> getAllComics($query),$dbh); //get all products that match filters
-        $prods = applyFilterAvailable($prods,$avail);
-        echo json_encode($prods); //before send json add numCopies info foreach products
-    }
-
-    function addAvaiableCopies($prods,$dbh){
+    function addAvaiableCopiesInfo($prods,$dbh){
         $allProd = $prods;
         for($i=0; $i < count($prods);$i++){
             $allProd[$i]["copies"] = $dbh -> getAvaiableCopiesOfProd($allProd[$i]["ProductId"]);
@@ -132,5 +128,16 @@ filters = lang, author, price, availability, publisher,category*/
             }
         }
         return $allProd;
+    }
+
+    function sendData($query,$avail,$dbh,$isFunko){
+        if($isFunko){
+            $prods = addAvaiableCopiesInfo($dbh -> getAllFunkosMatch($query),$dbh);
+        }
+        else{
+            $prods = addAvaiableCopiesInfo($dbh -> getAllComicsMatch($query),$dbh); //get all products that match filters
+        }
+        $prods = applyFilterAvailable($prods,$avail);
+        echo json_encode($prods); //before send json add numCopies info foreach products
     }
 ?>
