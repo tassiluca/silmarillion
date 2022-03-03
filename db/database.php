@@ -199,7 +199,7 @@
          * @return array associative array containing all funkos
          */
         public function getFunkos($quantity=-1){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
 
@@ -265,7 +265,7 @@
          * array is empty
          */
         public function getFunkoById($id){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId
                     AND P.ProductId = ?";
@@ -416,16 +416,32 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-//---------------------------------------------------//
+//------------------APPLY FILTERS CATALOG---------------------------------//
         /**
          * WARNING: be carefull using that method, for now there are NO CHECK on $query
          * @param string SQL query to be executed on db
          * @return array associative array with all product that match query
          */
-        public function getAllComics($filter=''){
+        public function getAllComicsMatch($filter=''){
             $query = "SELECT * 
                 FROM Products as P, Comics as C, Publisher as PB 
                 WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
+                $query .= $filter;
+                $stmt = $this->db->prepare($query);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * WARNING: be carefull using that method, for now there are NO CHECK on $query
+         * @param string SQL query to be executed on db
+         * @return array associative array with all funkos that match query
+         */
+        public function getAllFunkosMatch($filter=''){
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg
+                    FROM Funkos as F, Products as P
+                    WHERE F.ProductId = P.ProductId ";
                 $query .= $filter;
                 $stmt = $this->db->prepare($query);
                 $stmt->execute();
