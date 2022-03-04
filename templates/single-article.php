@@ -7,7 +7,7 @@
             <h2><?php echo $templateParams["product"]["Title"]?></h2>
             <aside>
                 <div>
-                    <img src="./img/comics/<?php echo $templateParams["product"]["CoverImg"]?>" alt="">
+                    <img src="<?php echo PRODUCTS_DIR.$templateParams["product"]["CoverImg"]?>" alt="">
                 </div>
             </aside><section>
                 <header>
