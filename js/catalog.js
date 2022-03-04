@@ -1,3 +1,4 @@
+const prodsDir = "./upload/products/";
 const filters = {
     lang: [],
     author: [],
@@ -140,7 +141,7 @@ $(document).ready(function(){
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
                 var linkProd = prods[i].CategoryName.toLowerCase() === 'funko' ? "funkoId=" : "comicId=";
                 
-                prodListHTML += '<article><div><a href="article.php?'+linkProd+prods[i].ProductId+'"><img src="img/comics/'+prods[i].CoverImg+
+                prodListHTML += '<article><div><a href="article.php?'+linkProd+prods[i].ProductId+'"><img src="'+prodsDir+prods[i].CoverImg+
                                 '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?'+linkProd + prods[i].ProductId +
                                 '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="gestisci-richieste.php?action=wish&id='+
                                 prods[i].ProductId+'"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a></div>'+
