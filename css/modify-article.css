@@ -145,6 +145,10 @@ main > section > form input[type="submit"]:hover {
         width: 72% !important;
     }
 
+    main > section > form > ul > li:last-child {
+        text-align: center;
+    }
+
     main > section > form input[type="submit"] {
         width: 47%;
     }
@@ -173,6 +177,10 @@ main > section > form input[type="submit"]:hover {
         width: 74% !important;
     }
 
+    main > section > form > ul > li:last-child {
+        text-align: center;
+    }
+
     main > section > form input[type="submit"] {
         width: 47%;
     }
@@ -199,6 +207,10 @@ main > section > form input[type="submit"]:hover {
 
     main > section > form ul > li > select + span {
         width: 74% !important;
+    }
+
+    main > section > form > ul > li:last-child {
+        text-align: center;
     }
 
     main > section > form input[type="submit"] {

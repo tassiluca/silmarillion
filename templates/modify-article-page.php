@@ -82,7 +82,7 @@
                     <label for="category">Categoria</label>
                     <select id="category" name="category">
                         <!-- default option -->
-                        <option value=""> -- Seleziona Editore -- </option>
+                        <option value=""> -- Seleziona Categoria -- </option>
                         <?php foreach ($templateParams["categories"] as $category): ?>
                             <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
                         <?php endforeach; ?>
