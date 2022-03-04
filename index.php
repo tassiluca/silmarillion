@@ -19,7 +19,7 @@
     $templateParams["funko"] = $dbh -> getFunkos(DEFAULT_HOME_QUANTITY);
     
     $templateParams["reviews"] = $dbh-> getReviews();
-    $templateParams["partners"] = $dbh-> getPartners();
+    $templateParams["publisher"] = $dbh-> getPublishers();
 
     require 'templates/base.php';
 ?>

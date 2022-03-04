@@ -230,7 +230,7 @@
         }
 
 
-        public function getPartners(){
+        public function getPublishers(){
             $query = "SELECT `PublisherId`, `Name`, `ImgLogo`
                     FROM Publisher";
             $stmt = $this->db->prepare($query);
