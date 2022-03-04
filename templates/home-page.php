@@ -113,8 +113,10 @@
     <div class="partner">
         <div>
             <?php if(isset($templateParams["publisher"])): ?>
-                <?php foreach($templateParams["publisher"] as $publisher): ?>
-                    <a href="catalog.php?publisher=<?php echo $publisher['Name']?>">
+                <?php foreach($templateParams["publisher"] as $publisher): 
+                    $pubStringNoSpace = str_replace(" ","%20",$publisher['Name']);?>
+
+                    <a href="catalog.php?publisher=<?php echo $pubStringNoSpace?>" title="Apri prodotti di <?php echo $publisher['Name']?>">
                         <img src="<?php echo PUBLISHER_DIR.$publisher['ImgLogo']?>" alt="<?php echo $publisher['Name']?>" class="fade">
                     </a>
                     
