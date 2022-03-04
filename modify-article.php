@@ -1,10 +1,13 @@
 <?php
     require_once 'bootstrap.php';
 
+    /* [NOTE] For more details about select2: [https://select2.org/] */
     $templateParams["css"] = array("css/modify-article.css", 
-        "https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css");
+        /* includes select2 compiled css for select box with support for searching */
+        "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css");
     $templateParams["js"] = array("js/modify-article.js", 
-        "https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js");
+        /* includes select2 compiled js for select box with support for searching */
+        "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
     $templateParams["main"] = "./templates/modify-article-page.php";
     $templateParams["categories"] = $dbh->getCategories();
     $templateParams["publishers"] = $dbh->getPublishers();

@@ -15,28 +15,83 @@ main ul {
     list-style: none;
 }
 
+/********************************** form **********************************/
 main > section > form {
-    background-color: #AAF1FF;
-    text-align: center;
+    background: #CBF6FF;
+    border: 1px solid #0047A0;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 2% 0;
 }
 
-main > section > form > ul > li {
-    padding: 5px 0;
+main > section > form ul > li {
+    margin: 6px 5%;
 }
 
-main > section > form > ul > li > input {
+main > section > form ul > li > label {
+    display: block;
+    margin: 5px 0;
+}
+
+main > section > form ul > li > input, 
+main > section > form ul > li > textarea {
+    height: 30px;
+    width: 100%;
+    padding: 5px 2%;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #0047A0;
+    font-weight: bold;
+    background: #E7FBFF;
+    border-style: none;
     border-radius: 10px;
+}
+
+main > section > form ul > li > textarea {
+    height: 100px;
+}
+
+main > section > form ul > li > img {
+    max-width: 100%;
+}
+
+main > section > form ul > li > input[type="file"]::file-selector-button {
+    background: #0047A0;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border-style: none;
+}
+
+main > section > form ul > li > select + span {
+    width: 90% !important;
     border: none;
 }
 
-button {
-    background-color: none;
+main > section > form ul > li > select + span > span > span {
+    font-weight: bold;
+    background: #E7FBFF !important;
+    border: none !important;
+    padding: 0 2%;
+} 
+
+main > section > form ul > li > select + span > span > span > span {
+    color: #0047A0 !important;
+} 
+
+main > section > form button {
+    background: none;
     border: none;
     cursor: pointer;
+    height: 28px;
+    float: right;
+    vertical-align: middle;
 }
 
 button#addCategoryBtn::after, button#addPublisherBtn::after {
     content: "\f055";
+    font-size: 1.7em;
     font-family: FontAwesome;
 }
 
@@ -46,5 +101,20 @@ button#addCategoryBtn + ul, button#addPublisherBtn + ul {
 
 button#addCategoryBtn.selected::after, button#addPublisherBtn.selected::after {
     content: "\f056";
+    font-size: 1.7em;
     font-family: FontAwesome;
+}
+
+main > section > form input[type="submit"] {
+    height: 50px;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+    background: white;
+    color: #0047A0;
+    font-size: 17px;
+    border: 1px solid #0047A0;
+    margin: 5px 0;
+}
+
+main > section > form input[type="submit"]:hover {
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
 }

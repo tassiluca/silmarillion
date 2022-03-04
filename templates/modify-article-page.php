@@ -50,12 +50,13 @@
                     </li>
                     <li>
                         <label for="publisher">Editore</label>
-                        <input list="publishers" name="publisher" id="publisher" value="<?php echo $product['PublisherName']; ?>" />
-                        <datalist id="publishers">
+                        <select id="publisher" name="publisher">
+                            <!-- default option -->
+                            <option value=""> -- Seleziona Editore -- </option>
                             <?php foreach ($templateParams["publishers"] as $publisher): ?>
                                 <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
                             <?php endforeach; ?>
-                        </datalist>
+                        </select>
                         <button id="addPublisherBtn" aria-label="Aggiungi Editore"></button>
                         <ul>
                             <li>
@@ -79,12 +80,13 @@
                 <?php endif; ?>
                 <li>
                     <label for="category">Categoria</label>
-                    <input list="categories" name="category" id="category" value="<?php echo $product['CategoryName']; ?>" />
-                    <datalist id="categories">
+                    <select id="category" name="category">
+                        <!-- default option -->
+                        <option value=""> -- Seleziona Editore -- </option>
                         <?php foreach ($templateParams["categories"] as $category): ?>
                             <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
                         <?php endforeach; ?>
-                    </datalist>
+                    </select>
                     <button id="addCategoryBtn" aria-label="Aggiungi Categoria"></button>
                     <ul>
                         <li>
@@ -93,7 +95,7 @@
                         </li>
                         <li>
                             <label for="categoryDesc">Descrizione Categoria</label>
-                            <textarea id="categoryDesc" name="categoryDesc" placeholder="Descrizione della categoria: es. fumetti di piccolo formato originari del Giappone."></textarea>
+                            <textarea id="categoryDesc" name="categoryDesc" placeholder="es. fumetti di piccolo formato originari del Giappone."></textarea>
                         </li>
                     </ul>
                 </li>
@@ -114,15 +116,14 @@
                         <label for="coverImg">Immagine Articolo</label>
                         <input type="file" name="coverImg" id="coverImg" required />
                     <?php else: ?>
-                        <!-- TODO: alt ? -->
-                        <img src="<?php echo UPLOAD_DIR_PRODUCTS . $product['CoverImg']; ?>" alt="" />
+                        <img src="<?php echo UPLOAD_DIR_PRODUCTS . $product['CoverImg']; ?>" alt="Immagine articolo <?php echo $product['CoverImg']; ?>" id="coverImg" />
                     <?php endif; ?>
                 </li>
                 <li>
                     <?php  if ($_GET['action'] !== 'insert'): ?>
-                        <input type="submit" value="Elimina" />
+                        <input type="submit" value="ELIMINA" />
                     <?php endif; ?>
-                    <input type="submit" value="<?php echo ($_GET['action'] === 'insert' ? 'Inserisci' : 'Modifica'); ?>" />
+                    <input type="submit" value="<?php echo ($_GET['action'] === 'insert' ? 'INSERISCI' : 'MODIFICA'); ?>" />
                 </li>
             </ul>
         </form>
