@@ -112,10 +112,10 @@
     <!-- here put all divs with partners to be shown in banner-->
     <div class="partner">
         <div>
-            <?php if(isset($templateParams["publisher"])):?>
-                <?php foreach($templateParams["publisher"] as $partner):?>
-                    <a href="catalog.php?=<?php echo $partner?>">
-                        <img src="img/publishers/<?php echo $partner['ImgLogo']?>" alt="<?php echo $partner['Name']?>" class="fade">
+            <?php if(isset($templateParams["publisher"])): ?>
+                <?php foreach($templateParams["publisher"] as $publisher):?>
+                    <a href="catalog.php?publisher=<?php echo $publisher['PublisherId']?>">
+                        <img src="img/publishers/<?php echo $publisher['ImgLogo']?>" alt="<?php echo $publisher['Name']?>" class="fade">
                     </a>
                     
             <?php endforeach;endif?>
