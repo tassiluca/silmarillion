@@ -107,7 +107,7 @@ main > section:last-child > div > div {
     justify-content: space-around;
     flex-wrap: wrap;
 }
-main > section:last-child > div > div > img {
+main > section:last-child > div > div > a > img {
     height: 50px;
     margin: 5px;
 }

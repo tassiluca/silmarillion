@@ -114,7 +114,10 @@
         <div>
             <?php if(isset($templateParams["partners"])):?>
                 <?php foreach($templateParams["partners"] as $partner):?>
-                <img src="img/partners/<?php echo $partner['ImgLogo']?>" alt="<?php echo $partner['Name']?>" class="fade">
+                    <a href="">
+                        <img src="img/partners/<?php echo $partner['ImgLogo']?>" alt="<?php echo $partner['Name']?>" class="fade">
+                    </a>
+                    
             <?php endforeach;endif?>
         </div> 
     </div>
