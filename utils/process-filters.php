@@ -35,13 +35,17 @@ filters = lang, author, price, availability, publisher,category*/
             $isFirst = true;
             foreach($keys as $k){
                 //KEEP IN MIND: strcmp return 0 if strings are equal
-                
-                $isFunko = in_array('funko',$data['category']);
+                if(isset($data['category']) && in_array('funko',$data['category'])){
+                    $isFunko = ONLY_FUNKOS;
+                }
+                else{
+                    $isFunko = ONLY_COMICS;
+                }
 
-                if(!strcmp($k,'category') && !$isFunko){
+                if(!strcmp($k,'category') && $isFunko != ONLY_FUNKOS){
                     $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName');
                 }
-                else if(!strcmp($k,'publisher') && !$isFunko){
+                else if(!strcmp($k,'publisher') && $isFunko != ONLY_FUNKOS){
                     $filtQuery .= appendEqualFilter($data[$k],'PB.Name');
                 }
                 else if(!strcmp($k,'availability')){
@@ -61,15 +65,15 @@ filters = lang, author, price, availability, publisher,category*/
                 else if(!strcmp($k,'price')){
                     $filtQuery .= appendBetweenFilter($data[$k],'P.Price',$priceInterval);
                 }
-                else if(!strcmp($k,'author') && !$isFunko){
+                else if(!strcmp($k,'author') && $isFunko != ONLY_FUNKOS){
                     $filtQuery .= appendEqualFilter($data[$k],'C.Author');
                 }
-                else if(!strcmp($k,'lang') && !$isFunko){
+                else if(!strcmp($k,'lang') && $isFunko != ONLY_FUNKOS){
                     $filtQuery .= appendEqualFilter($data[$k],'C.Lang');
                 }
 
             }
-            if($isFunko && !in_array('price', $keys)){
+            if($isFunko==ONLY_FUNKOS && !in_array('price', $keys)){
                 $filtQuery .= ' 1)';
             }
             else{

@@ -98,6 +98,7 @@ $(document).ready(function(){
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
                 prods = JSON.parse(data);
+                //console.log(data);
                 numPages = Math.floor(prods.length / NUM_PROD_PAGE);
                 updateCatalogView(0);//show all products of page 0
             });
