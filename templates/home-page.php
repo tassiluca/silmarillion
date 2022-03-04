@@ -58,7 +58,7 @@
                                 }
                                 
                             ?>
-                            <div> <a href="article.php?<?php echo $linkProd?>"><img src="img/comics/<?php echo $product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
+                            <div> <a href="article.php?<?php echo $linkProd?>"><img src="<?php echo PRODUCTS_DIR.$product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
                             <header><a href="article.php?<?php echo $linkProd?>"><h3><?php echo $product["Title"]?></h3></a></header>
                             <footer>
                                 <div>
@@ -115,7 +115,7 @@
             <?php if(isset($templateParams["publisher"])): ?>
                 <?php foreach($templateParams["publisher"] as $publisher): ?>
                     <a href="catalog.php?publisher=<?php echo $publisher['Name']?>">
-                        <img src="img/publishers/<?php echo $publisher['ImgLogo']?>" alt="<?php echo $publisher['Name']?>" class="fade">
+                        <img src="<?php echo PUBLISHER_DIR.$publisher['ImgLogo']?>" alt="<?php echo $publisher['Name']?>" class="fade">
                     </a>
                     
             <?php endforeach;endif?>
