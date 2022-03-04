@@ -116,6 +116,7 @@
                         <label for="coverImg">Immagine Articolo</label>
                         <input type="file" name="coverImg" id="coverImg" required />
                     <?php else: ?>
+                        <p>Immagine Articolo</p>
                         <img src="<?php echo UPLOAD_DIR_PRODUCTS . $product['CoverImg']; ?>" alt="Immagine articolo <?php echo $product['CoverImg']; ?>" id="coverImg" />
                     <?php endif; ?>
                 </li>

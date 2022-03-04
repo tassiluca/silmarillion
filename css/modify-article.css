@@ -53,7 +53,8 @@ main > section > form ul > li > textarea {
 }
 
 main > section > form ul > li > img {
-    max-width: 100%;
+    width: 100%;
+    max-width: 300px;
 }
 
 main > section > form ul > li > input[type="file"]::file-selector-button {
@@ -93,6 +94,7 @@ button#addCategoryBtn::after, button#addPublisherBtn::after {
     content: "\f055";
     font-size: 1.7em;
     font-family: FontAwesome;
+    color: #0047A0;
 }
 
 button#addCategoryBtn + ul, button#addPublisherBtn + ul {
@@ -103,6 +105,7 @@ button#addCategoryBtn.selected::after, button#addPublisherBtn.selected::after {
     content: "\f056";
     font-size: 1.7em;
     font-family: FontAwesome;
+    color: #0047A0;
 }
 
 main > section > form input[type="submit"] {
@@ -112,9 +115,94 @@ main > section > form input[type="submit"] {
     color: #0047A0;
     font-size: 17px;
     border: 1px solid #0047A0;
-    margin: 5px 0;
+    margin: 5px 1%;
 }
 
 main > section > form input[type="submit"]:hover {
     box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 10% 50px;
+    }
+
+    main > section > form ul > li > label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+    }
+
+    main > section > form ul > li > input,
+    main > section > form ul > li > textarea {
+        vertical-align: middle;
+        display: inline-block;
+        width: 79%;
+    }
+
+    main > section > form ul > li > select + span {
+        width: 72% !important;
+    }
+
+    main > section > form input[type="submit"] {
+        width: 47%;
+    }
+
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 15% 50px;
+    }
+
+    main > section > form ul > li > label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+    }
+
+    main > section > form ul > li > input,
+    main > section > form ul > li > textarea {
+        vertical-align: middle;
+        display: inline-block;
+        width: 79%;
+    }
+
+    main > section > form ul > li > select + span {
+        width: 74% !important;
+    }
+
+    main > section > form input[type="submit"] {
+        width: 47%;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 20% 50px;
+    }
+
+    main > section > form ul > li > label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+    }
+
+    main > section > form ul > li > input,
+    main > section > form ul > li > textarea {
+        vertical-align: middle;
+        display: inline-block;
+        width: 79%;
+    }
+
+    main > section > form ul > li > select + span {
+        width: 74% !important;
+    }
+
+    main > section > form input[type="submit"] {
+        width: 47%;
+    }
+
 }
