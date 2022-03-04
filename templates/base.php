@@ -12,7 +12,7 @@
             if (isset($templateParams["css"])):
                 foreach($templateParams["css"] as $styleSheet): 
         ?>
-                    <link rel="stylesheet" type="text/css" href=<?php echo "./css/" . $styleSheet ?> />
+                    <link rel="stylesheet" type="text/css" href=<?php echo $styleSheet ?> />
         <?php
                 endforeach;
             endif;
@@ -29,7 +29,7 @@
             if (isset($templateParams["js"])):
                 foreach($templateParams["js"] as $jsScript):
         ?>
-                    <script src=<?php echo "js/" . $jsScript ?>></script>
+                    <script src=<?php echo $jsScript ?>></script>
         <?php
                 endforeach;
             endif;

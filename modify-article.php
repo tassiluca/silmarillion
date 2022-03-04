@@ -1,8 +1,10 @@
 <?php
     require_once 'bootstrap.php';
 
-    $templateParams["css"] = array("modify-article.css");
-    $templateParams["js"] = array("modify-article.js");
+    $templateParams["css"] = array("css/modify-article.css", 
+        "https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css");
+    $templateParams["js"] = array("js/modify-article.js", 
+        "https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js");
     $templateParams["main"] = "./templates/modify-article-page.php";
     $templateParams["categories"] = $dbh->getCategories();
     $templateParams["publishers"] = $dbh->getPublishers();

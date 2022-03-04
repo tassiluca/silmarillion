@@ -3,8 +3,8 @@
 
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 
-    $templateParams["css"] = array("homepage.css","product.css");
-    $templateParams["js"] = array("home.js");
+    $templateParams["css"] = array("css/homepage.css","css/product.css");
+    $templateParams["js"] = array("js/home.js");
     $templateParams["main"] = "./templates/home-page.php";
     $templateParams["newsBanner"] = $dbh->getHomeBanner();
 
