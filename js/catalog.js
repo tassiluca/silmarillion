@@ -71,14 +71,14 @@ $(document).ready(function(){
     })
 
     /**
-     * Get from url category to be filtered then apply filters
+     * Get from url filter to be filtered then apply
      */
-    function firstLoadProds(){ //TODO it can be exended to other filters
+    function firstLoadProds(){
         Object.keys(filters).forEach(key => {
             var filtKey = getUrlParameter(key);
             if(filtKey !== false){
                 filters[key].push(filtKey);
-                $("main > aside > ul > li > input[name="+filtKey+"]").prop("checked",true);
+                $("main > aside > ul > li > input[name='"+filtKey+"']").prop("checked",true);
             } 
         });
         submitFilters(filters);
