@@ -13,4 +13,8 @@
 
     $dbh = new DatabaseHelper(HOST, USER, PASSWORD, DB_NAME, DB_PORT);
 
+    define("UPLOAD_DIR", "./upload");
+    define("PRODUCTS_DIR", UPLOAD_DIR."/products/");
+    define("PUBLISHER_DIR", UPLOAD_DIR."/publishers/");
+    define("BANNER_DIR", UPLOAD_DIR."/banner/");
 ?>
