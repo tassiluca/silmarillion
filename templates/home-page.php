@@ -113,8 +113,8 @@
     <div class="partner">
         <div>
             <?php if(isset($templateParams["publisher"])): ?>
-                <?php foreach($templateParams["publisher"] as $publisher):?>
-                    <a href="catalog.php?publisher=<?php echo $publisher['PublisherId']?>">
+                <?php foreach($templateParams["publisher"] as $publisher): ?>
+                    <a href="catalog.php?publisher=<?php echo $publisher['Name']?>">
                         <img src="img/publishers/<?php echo $publisher['ImgLogo']?>" alt="<?php echo $publisher['Name']?>" class="fade">
                     </a>
                     
