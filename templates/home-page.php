@@ -72,8 +72,8 @@
                         </article>
         <?php endforeach;?>
                 <!--end group of article-->
-                    <input type="image" src="img/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" at="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
-                    <input type="image" src="img/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" at="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
+                    <input type="image" src="img/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
+                    <input type="image" src="img/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
                 </div>
             </section>
         <?php endif ?>
