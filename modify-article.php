@@ -28,8 +28,6 @@
         ($_GET['article'] !== 'funko' && $_GET['article'] !== 'comic')) ||
         ($_GET['action'] !== 'insert' && !isset($_GET['id'])))) {
             header("location: login.php");
-    } else {
-        $templateParams['article'] = $_GET['article'];
     }
 
     if ($_GET["action"] !== 'insert') {
@@ -41,6 +39,7 @@
             $templateParams["product"] = $productInfo[0];
         }
     } else {
+        $templateParams['article'] = $_GET['article'];
         $templateParams['product'] = getEmptyFormData();
     }
 
