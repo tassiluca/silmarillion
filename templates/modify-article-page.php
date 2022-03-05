@@ -52,10 +52,19 @@
                         <label for="publisher">Editore</label>
                         <select id="publisher" name="publisher">
                             <!-- default option -->
-                            <option value=""> -- Seleziona Editore -- </option>
-                            <?php foreach ($templateParams["publishers"] as $publisher): ?>
+                            <option value="">
+                                <?php echo (empty($product['PublisherName']) 
+                                    ? '-- Seleziona Editore --' 
+                                    : $product['PublisherName']); ?>
+                            </option>
+                            <?php foreach ($templateParams["publishers"] as $publisher): 
+                                if ($publisher['Name'] != $product['PublisherName']):
+                            ?>
                                 <option value="<?php echo $publisher["PublisherId"]; ?>"><?php echo $publisher["Name"]; ?></option>
-                            <?php endforeach; ?>
+                            <?php 
+                                endif;
+                            endforeach; 
+                            ?>
                         </select>
                         <button id="addPublisherBtn" aria-label="Aggiungi Editore"></button>
                         <ul>
@@ -82,10 +91,20 @@
                     <label for="category">Categoria</label>
                     <select id="category" name="category">
                         <!-- default option -->
-                        <option value=""> -- Seleziona Categoria -- </option>
-                        <?php foreach ($templateParams["categories"] as $category): ?>
-                            <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
-                        <?php endforeach; ?>
+                        <option value="">
+                            <?php echo (empty($product['CategoryName']) 
+                                ? '-- Seleziona Categoria --' 
+                                : $product['CategoryName']); ?>
+                        </option>
+                        <?php 
+                        foreach ($templateParams['categories'] as $category): 
+                            if ($category['Name'] != $product['CategoryName']):
+                        ?>
+                                <option value="<?php echo $category['Name']; ?>"><?php echo $category['Name']; ?></option>
+                        <?php 
+                            endif;
+                        endforeach; 
+                        ?>
                     </select>
                     <button id="addCategoryBtn" aria-label="Aggiungi Categoria"></button>
                     <ul>
