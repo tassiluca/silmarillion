@@ -74,7 +74,7 @@ main > section > form ul > li > select + span > span > span {
     font-weight: bold;
     background: #E7FBFF !important;
     border: none !important;
-    padding: 0 2%;
+    padding: 0 1%;
 } 
 
 main > section > form ul > li > select + span > span > span > span {
