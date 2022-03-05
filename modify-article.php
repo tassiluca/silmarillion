@@ -47,7 +47,7 @@
     function getEmptyFormData(){
         $fields = array("Name", "Title", "Author", "Lang", "PublishDate", "ISBN", "ProductId", "PublisherId", 
         "Price", "DiscountedPrice", "Description", "CategoryName", "PublisherName", "CoverImg");
-        return array_map(function() { return ""; }, $fields);
+        return array_fill_keys($fields, '');
     }
 
     require 'templates/base.php';
