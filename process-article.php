@@ -1,8 +1,4 @@
 <?php 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     require_once './bootstrap.php';
     // require_once __DIR__ . '/vendor/autoload.php';
     use Respect\Validation\Validator as v;
@@ -94,26 +90,43 @@
     $data = getInputData();
     validate($data);
 
-    list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
-    redirect($msg, !$result);
-    $coverImg = $msg;
+    // TODO: refactor common code!
 
-    insertCategory($data);
+    if ($_POST['action'] === 'insert') {
+        list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
+        redirect($msg, !$result);
+        $coverImg = $msg;
+    
+        insertCategory($data);
+    
+        if (isFunkoInsertion()) { // funko insert
+            // insert into db
+            $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
+                                  $data['desc'], $coverImg, $data['category']);
+            $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+        } else if (isComicInsertion()) { // comic insert
+            insertPublisher($data);
+            // insert into db
+            $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
+                                  $data['isbn'], $data['publisher'], $data['price'], 
+                                  $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
+            $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+        }
+        redirect($msg);
+    } else if ($_POST['action'] === 'modify') {
+        insertCategory($data);
+        if (isFunkoInsertion()) {
 
-    if (isFunkoInsertion()) { // funko insert
-        // insert into db
-        $res = $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
-                              $data['desc'], $coverImg, $data['category']);
-        $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
-    } else if (isComicInsertion()) { // comic insert
-        insertPublisher($data);
-        // insert into db
-        $res = $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
-                              $data['isbn'], $data['publisher'], $data['price'], 
-                              $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
-        $msg = $res ? "Inserimento completato correttamente" : "Errore in inserimento";
+        } else if (isComicInsertion()) {
+            insertPublisher($data);
+            $res = $dbh->updateComic($data['productId'], $data['title'], $data['author'], $data['language'], 
+                                     $data['publishDate'], $data['isbn'], $data['publisher'], $data['price'], 
+                                     $data['discountedPrice'], $data['desc'], $data['category']);
+            $msg = $res ? "Modifica completata correttamente" : "Errore durante la modifica";
+        }
+        redirect($msg);
+    } else if ($_POST['action'] === 'delete') {
+
     }
-    
-    redirect($msg);
-    
+
 ?>

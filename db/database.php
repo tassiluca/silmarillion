@@ -272,6 +272,35 @@
             return $stmt->execute();
         }
 
+        public function updateComic($productId, $title, $author, $lang, $date, $isbn, $publisherId, 
+                                    $price, $discountedPrice, $desc, $category) {
+            $query = "UPDATE Comics 
+                      SET Title = ?, Author = ?, Lang = ?, PublishDate = ?, ISBN = ?, PublisherId = ?
+                      WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $publisherId, $productId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return $e->getMessage();
+            }
+            $query1 = "UPDATE Products 
+                      SET Price = ?, DiscountedPrice = ?, Description = ?, CategoryName = ?
+                      WHERE ProductId = ?";
+            $stmt1 = $this->db->prepare($query1);
+            $stmt1->bind_param('ssssi', $price, $discountedPrice, $desc, $category, $productId);
+            try {
+                $stmt1->execute();
+            } catch(Exception $e) {
+                return $e->getMessage();
+            }
+            return true;
+        }
+
+        public function updateFunko($name, $price, $discountedPrice, $desc, $category) {
+            return true;
+        }
+
         /**
          * Get all the categories.
          *
@@ -416,7 +445,7 @@
          * TODO: to document -- added by Luca
          */
         public function getFunkoById($id){
-            $query = "SELECT F.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+            $query = "SELECT F.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName, P.ProductId
                       FROM Funkos as F, Products as P
                       WHERE F.ProductId = P.ProductId
                       AND P.ProductId = ?";
