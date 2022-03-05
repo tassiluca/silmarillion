@@ -1,7 +1,5 @@
 <?php 
-    if (isset($templateParams["product"])) {
-        $product = $templateParams["product"];
-    }
+    $product = $templateParams["product"];
 ?>
 <!-- Breadcrumb pagination -->
 <div>
@@ -52,11 +50,10 @@
                         <label for="publisher">Editore</label>
                         <select id="publisher" name="publisher">
                             <!-- default option -->
-                            <option value="">
-                                <?php echo (empty($product['PublisherName']) 
-                                    ? '-- Seleziona Editore --' 
-                                    : $product['PublisherName']); ?>
-                            </option>
+                            <?php if (!empty($product['PublisherName'])): ?>
+                                <option value="<?php echo $product['PublisherId']; ?>"><?php echo $product['PublisherName']; ?></option>
+                            <?php endif; ?>
+                            <option value="">-- Seleziona Editore --</option>
                             <?php foreach ($templateParams["publishers"] as $publisher): 
                                 if ($publisher['Name'] != $product['PublisherName']):
                             ?>
@@ -91,11 +88,10 @@
                     <label for="category">Categoria</label>
                     <select id="category" name="category">
                         <!-- default option -->
-                        <option value="">
-                            <?php echo (empty($product['CategoryName']) 
-                                ? '-- Seleziona Categoria --' 
-                                : $product['CategoryName']); ?>
-                        </option>
+                        <?php if (!empty($product['CategoryName'])): ?>
+                            <option value="<?php echo $product['CategoryName']; ?>"><?php echo $product['CategoryName']; ?></option>
+                        <?php endif; ?>
+                        <option value="">-- Seleziona Categoria --</option>
                         <?php 
                         foreach ($templateParams['categories'] as $category): 
                             if ($category['Name'] != $product['CategoryName']):
@@ -140,9 +136,8 @@
                     <?php endif; ?>
                 </li>
                 <li>
-                    <?php  if ($_GET['action'] !== 'insert'): ?>
-                        <input type="submit" value="ELIMINA" />
-                    <?php endif; ?>
+                    <input type="hidden" name="action" value="<?php echo $_GET['action']; ?>" />
+                    <input type="hidden" name="productId" value="<?php echo $product['ProductId']; ?>" />
                     <input type="submit" value="<?php echo ($_GET['action'] === 'insert' ? 'INSERISCI' : 'MODIFICA'); ?>" />
                 </li>
             </ul>
