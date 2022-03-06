@@ -116,7 +116,9 @@
     } else if ($_POST['action'] === 'modify') {
         insertCategory($data);
         if (isFunkoInsertion()) {
-
+            $res = $dbh->updateFunko($data['productId'], $data['funkoName'], $data['price'],  
+                                     $data['discountedPrice'], $data['desc'], $data['category']);
+            $msg = $res ? "Modifica completata correttamente" : "Errore durante la modifica";
         } else if (isComicInsertion()) {
             insertPublisher($data);
             $res = $dbh->updateComic($data['productId'], $data['title'], $data['author'], $data['language'], 

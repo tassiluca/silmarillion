@@ -272,6 +272,20 @@
             return $stmt->execute();
         }
 
+        private function updateProduct($productId, $price, $discountedPrice, $desc, $category) {
+            $query = "UPDATE Products 
+                      SET Price = ?, DiscountedPrice = ?, Description = ?, CategoryName = ?
+                      WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssssi', $price, $discountedPrice, $desc, $category, $productId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return true;
+        }
+
         public function updateComic($productId, $title, $author, $lang, $date, $isbn, $publisherId, 
                                     $price, $discountedPrice, $desc, $category) {
             $query = "UPDATE Comics 
@@ -282,23 +296,23 @@
             try {
                 $stmt->execute();
             } catch(Exception $e) {
-                return $e->getMessage();
+                return false;
             }
-            $query1 = "UPDATE Products 
-                      SET Price = ?, DiscountedPrice = ?, Description = ?, CategoryName = ?
-                      WHERE ProductId = ?";
-            $stmt1 = $this->db->prepare($query1);
-            $stmt1->bind_param('ssssi', $price, $discountedPrice, $desc, $category, $productId);
-            try {
-                $stmt1->execute();
-            } catch(Exception $e) {
-                return $e->getMessage();
-            }
-            return true;
+            return $this->updateProduct($productId, $price, $discountedPrice, $desc, $category);
         }
 
-        public function updateFunko($name, $price, $discountedPrice, $desc, $category) {
-            return true;
+        public function updateFunko($productId, $name, $price, $discountedPrice, $desc, $category) {
+            $query = "UPDATE Funkos 
+                      SET Name = ?
+                      WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('si', $name, $productId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return $this->updateProduct($productId, $price, $discountedPrice, $desc, $category);
         }
 
         /**
