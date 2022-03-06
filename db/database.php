@@ -269,7 +269,12 @@
                       VALUES(?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $productId, $publisherId);
-            return $stmt->execute();
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return true;
         }
 
         private function updateProduct($productId, $price, $discountedPrice, $desc, $category) {
@@ -298,7 +303,7 @@
             } catch(Exception $e) {
                 return false;
             }
-            return $this->updateProduct($productId, $price, $discountedPrice, $desc, $category);
+            return $this->updateProduct($productId, $price, empty($discountedPrice) ? NULL : $discountedPrice, $desc, $category);
         }
 
         public function updateFunko($productId, $name, $price, $discountedPrice, $desc, $category) {
@@ -312,7 +317,7 @@
             } catch(Exception $e) {
                 return false;
             }
-            return $this->updateProduct($productId, $price, $discountedPrice, $desc, $category);
+            return $this->updateProduct($productId, $price, empty($discountedPrice) ? NULL : $discountedPrice, $desc, $category);
         }
 
         /**

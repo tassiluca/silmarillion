@@ -1,5 +1,7 @@
 <?php
 
+    use Respect\Validation\Exceptions\NestedValidationException;
+
     define("MAX_LOGIN_ATTEMPTS", 5);
 
     /**
@@ -55,6 +57,20 @@
     function isSellerLoggedIn() {
         global $dbh;
         return isUserLoggedIn() && !$dbh->isCustomer($_SESSION['userId']);
+    }
+
+    function validateInput($rules, $data) {
+        $res['errors'] = false;
+        foreach($data as $rule => $attributes) {
+            foreach($attributes as $attr) {
+                try {
+                    $rules[$rule]->assert($attr);
+                } catch (NestedValidationException $exc) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     /**
