@@ -30,7 +30,15 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
         }).done(function(data){
-            console.log(data);
+            if (data.error) {
+                $("section > form").find("ul > li:last-of-type").prepend (
+                    '<div class="message error">' + data.error + '</div>'
+                );
+            } else if (data.success) {
+                $("section > form").find("ul > li:last-of-type").prepend (
+                    '<div class="message success">' + data.success + '</div>'
+                );
+            }
         });
     });
 

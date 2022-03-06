@@ -122,6 +122,43 @@ main > section > form input[type="submit"]:hover {
     box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
 }
 
+/******************************** Messages **********************************/
+main > section > form ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.message {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+main > section > form > ul > li > div.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border-color: red;
+}
+
+main > section > form > ul > li > div.message.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > div.message.success {
+    background-color: #D4EDD5;
+    color: #155724;
+    border-color: green;
+}
+
+main > section > form > ul > li > div.message.success::before {
+    content: "\f00c";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
 /***************************** Desktop viewport ******************************/
 @media screen and (min-width: 768px) and (max-width:992px) {
     main {

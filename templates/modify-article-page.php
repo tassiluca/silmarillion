@@ -20,7 +20,7 @@
             </h2>
         </header>
         <!-- Comic insertion form -->
-        <form action="process-article.php" method="POST" enctype="multipart/form-data" id="comicForm">
+        <form action="process-article.php" method="POST" enctype="multipart/form-data">
             <ul>
                 <?php if ($templateParams['article'] === 'comic'): ?>
                     <li>

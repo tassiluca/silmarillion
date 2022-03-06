@@ -11,8 +11,10 @@
     }
 
     function redirect($msg, $condition = true) {
+        $res = [];
         if ($condition) {
-            echo json_encode($msg);
+            $res['error'] = $msg;
+            echo json_encode($res);
             exit(1);
         }
     }
@@ -141,7 +143,9 @@
         insertPublisher($data);
         $res = ($_POST['action'] === 'insert' ? insertComic($data, $coverImg) : updateComic($data));
     }
-    $msg = $res ? "Operazione completata correttamente" : "Si è verificato un errore... riprova!";
-    redirect($msg);
-
+    redirect("Si è verificato un errore", !$res);
+    $res = [];
+    $res['success'] = 'ok';
+    echo json_encode($res);
+    exit(0);
 ?>
