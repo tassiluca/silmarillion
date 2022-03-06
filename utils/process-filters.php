@@ -129,19 +129,22 @@ filters = lang, author, price, availability, publisher,category*/
                     array_push($queryVars,floatval($interval[$e]["from"]));
                     array_push($queryVars,floatval($interval[$e]["to"]));
 
-                    $strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
+                    $strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE.'?'.AND_S.'?';
+                    //$strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
                 }
                 else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
                     $queryTypes .= getSqlStringType(floatval($interval[$e]["from"]));
                     array_push($queryVars,floatval($interval[$e]["from"]));
 
-                    $strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
+                    $strQUery .= $concatMode.$filt.SPACE.'>='.SPACE.'?';
+                    //$strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
                 }
                 else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
                     $queryTypes .= getSqlStringType(floatval($interval[$e]["to"]));
                     array_push($queryVars,floatval($interval[$e]["to"]));
 
-                    $strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
+                    $strQUery .= $concatMode.$filt.SPACE.'<='.SPACE.'?';
+                    //$strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
                 }
         }
         return $strQUery;
@@ -188,14 +191,14 @@ filters = lang, author, price, availability, publisher,category*/
     function sendData($query,$avail,$dbh,$typeReq,$varTypes,$varArray){
         
         if($typeReq == ONLY_FUNKOS){
-            $prods = $dbh -> getAllFunkosMatch($query,$varTypes,$varArray);
+            $prods = $dbh -> getAllFunkosMatch($varTypes,$varArray,$query);
         }
         else if($typeReq == ONLY_COMICS){
-            $prods = $dbh -> getAllComicsMatch($query,$varTypes,$varArray); //get all products that match filters
+            $prods = $dbh -> getAllComicsMatch($varTypes,$varArray,$query); //get all products that match filters
         }
         else if($typeReq == ALL_PRODS){
-            $funkos = $dbh -> getAllFunkosMatch($query,$varTypes,$varArray);
-            $comics = $dbh -> getAllComicsMatch($query,$varTypes,$varArray);
+            $funkos = $dbh -> getAllFunkosMatch($varTypes,$varArray,$query);
+            $comics = $dbh -> getAllComicsMatch($varTypes,$varArray,$query);
             $prods = array_merge($funkos,$comics);
         }
         $prods = addAvaiableCopiesInfo($prods,$dbh);
