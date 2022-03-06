@@ -87,8 +87,7 @@ filters = lang, author, price, availability, publisher,category*/
             else{
                 $filtQuery .= ' )';
             }
-            print_r($varTypes);
-            print_r($varArray);
+            
             sendData($filtQuery,$availabFilter,$dbh,$isFunko,$varTypes,$varArray);
         }
         else{
