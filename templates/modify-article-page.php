@@ -22,9 +22,9 @@
         <!-- Comic insertion form -->
         <form action="process-article.php" method="POST" enctype="multipart/form-data" id="comicForm">
             <ul>
-                <?php if ($templateParams['article'] == 'comic'): ?>
+                <?php if ($templateParams['article'] === 'comic'): ?>
                     <li>
-                        <input type="hidden" name="articleToInsert" value="comic" />
+                        <input type="hidden" name="article" value="comic" />
                     </li>
                     <li>
                         <label for="title">Titolo</label>
@@ -75,9 +75,9 @@
                             </li>
                         </ul>
                     </li>
-                <?php elseif ($templateParams['article'] == 'funko') : ?>
+                <?php elseif ($templateParams['article'] === 'funko') : ?>
                     <li>
-                        <input type="hidden" name="articleToInsert" value="funko" />
+                        <input type="hidden" name="article" value="funko" />
                     </li>
                     <li>
                         <label for="funkoName">Nome</label>

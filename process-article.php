@@ -2,19 +2,35 @@
     require_once './bootstrap.php';
     use Respect\Validation\Validator as v;
 
-    /**
-     * Make a get request with the message to display if a condition 
-     * is evaluated true.
-     *
-     * @param string $msg the message
-     * @param boolean $condition if true the request is handled, otherwise not
-     * @return void
-     */
+    function isFunkoProcessing() {
+        return $_POST["article"] === "funko";
+    }
+
+    function isComicProcessing() {
+        return $_POST["article"] === "comic";
+    }
+
     function redirect($msg, $condition = true) {
         if ($condition) {
             echo json_encode($msg);
             exit(1);
         }
+    }
+
+    function validateCategory($data) {
+        return (empty($data['category']) && !empty($data['categoryName']) && !empty($data['categoryDesc'])) ||
+               (!empty($data['category']) && empty($data['categoryName']) && empty($data['categoryDesc']));
+    }
+
+    function validatePublisher($data) {
+        return isFunkoProcessing() ||
+               (empty($data['publisher']) && !empty($data['publisherName']) && !$_FILES['publisherLogo']['error']) ||
+               (!empty($data['publisher']) && empty($data['publisherName']) && $_FILES['publisherLogo']['error']);
+    }
+
+    function validateDiscountedPrice($data) {
+        return empty($data['discountedPrice'] || 
+               (!empty($data['discountedPrice']) && $data['discountedPrice'] < $data['price']));
     }
 
     function validate($data) {
@@ -31,30 +47,17 @@
             'price' => [$data['price']],
             'discountedPrice' => [$data['discountedPrice']]
         );
-        if (isFunkoInsertion()) {
+        if (isFunkoProcessing()) {
             array_push($dataDic['compulsory'], $data['funkoName']);
-        } else if (isComicInsertion()) {
+        } else if (isComicProcessing()) {
             array_push($dataDic['compulsory'], $data['title'], $data['author'], $data['language']);
             $dataDic['date'] = [$data['publishDate']];
             $dataDic['isbn'] = [$data['isbn']];
         }
 
         $tmp = validateInput($rules, $dataDic);
-        $tmp = $tmp && 
-            ((empty($data['category']) && !empty($data['categoryName']) && !empty($data['categoryDesc'])) ||
-             (!empty($data['category']) && empty($data['categoryName']) && empty($data['categoryDesc']))) &&
-            ((empty($data['publisher']) && !empty($data['publisherName']) && !$_FILES['publisherLogo']['error']) ||
-             (!empty($data['publisher']) && empty($data['publisherName']) && $_FILES['publisherLogo']['error'])) &&
-            ((!empty($data['discountedPrice']) && $data['discountedPrice'] < $data['price']) || empty($data['discountedPrice']));
+        $tmp = $tmp && validateCategory($data) && validatePublisher($data) && validateDiscountedPrice($data);
         redirect("ERRORE INSERIMENTO DATI", !$tmp);
-    }
-
-    function isFunkoInsertion() {
-        return $_POST["articleToInsert"] === "funko";
-    }
-
-    function isComicInsertion() {
-        return $_POST["articleToInsert"] === "comic";
     }
 
     function insertCategory(){
@@ -122,7 +125,7 @@
     validate($data);
 
     if ($_POST['action'] === 'delete') {
-
+        // TODO
     }
 
     if ($_POST['action'] === 'insert') {
@@ -132,9 +135,9 @@
     } 
 
     insertCategory($data);
-    if (isFunkoInsertion()) {
+    if (isFunkoProcessing()) {
         $res = ($_POST['action'] === 'insert' ? insertFunko($data, $coverImg) : updateFunko($data));
-    } else if (isComicInsertion()) {
+    } else if (isComicProcessing()) {
         insertPublisher($data);
         $res = ($_POST['action'] === 'insert' ? insertComic($data, $coverImg) : updateComic($data));
     }
