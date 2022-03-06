@@ -445,7 +445,7 @@
                 FROM Products as P, Comics as C, Publisher as PB 
                 WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
             
-            if($filter != ''){
+            if($filter != '' && count($varArray)){
                 $query .= $filter;
                 $result = $this -> bindAndExecuteQuery($varTypes,$varArray,$query);
             }
@@ -467,7 +467,7 @@
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
                 
-                if($filter != ''){
+                if($filter != '' && count($varArray)){
                     $query .= $filter;
                     $result = $this -> bindAndExecuteQuery($varTypes,$varArray,$query);
                 }
