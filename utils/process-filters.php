@@ -1,13 +1,16 @@
 <?php 
+//SQL KEYWORD
 define('SPACE', ' ');
 define('EQ', '=');
 define('AND_S', ' and ');
 define('OR_S', ' or ');
 
+//PRODS AVAILABILITY
 define('NOT_AVAILABLE', 0);
 define('AVAILABLE', 1);
 define('ALL_AVAILABILITY', 2);
 
+//PRODS SELECTION
 define('ONLY_COMICS', 0);
 define('ONLY_FUNKOS', 1);
 define('ALL_PRODS', 2);
