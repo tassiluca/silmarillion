@@ -438,12 +438,16 @@
          * @param string SQL query to be executed on db
          * @return array associative array with all funkos that match query
          */
-        public function getAllFunkosMatch($filter=''){
+        public function getAllFunkosMatch($filter='',$varTypes,$varArray){
             $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
                 $query .= $filter;
                 $stmt = $this->db->prepare($query);
+                
+                if($filter == ''){
+                    $stmt->bind_param($varTypes, $varArray);
+                }
                 $stmt->execute();
                 $result = $stmt->get_result();
                 return $result->fetch_all(MYSQLI_ASSOC);
