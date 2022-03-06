@@ -196,6 +196,9 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
+    /**
+     * Get from db prods that match filters then send json data to client js
+    */
     function sendData($query,$avail,$dbh,$typeReq,$varTypes,$varArray){
         
         if($typeReq == ONLY_FUNKOS){
