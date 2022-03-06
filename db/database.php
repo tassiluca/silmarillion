@@ -417,20 +417,44 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 //------------------APPLY FILTERS CATALOG---------------------------------//
+
+        private function bindAndExecuteQuery($varTypes,$varArray,$query){
+            $a_params[] = & $varTypes;
+            $n = count($varArray);
+            for($i = 0; $i < $n; $i++) {
+                /* with call_user_func_array, array params must be passed by reference */
+                $a_params[] = & $varArray[$i];
+            }
+            $stmt = $this->db->prepare($query);
+
+            //binding params only if there is something to bind
+            call_user_func_array(array($stmt, 'bind_param'), $a_params);
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }
+
         /**
-         * WARNING: be carefull using that method, for now there are NO CHECK on $query
+         * Get all comics and bind all params passed
          * @param string SQL query to be executed on db
          * @return array associative array with all product that match query
          */
-        public function getAllComicsMatch($filter=''){
+        public function getAllComicsMatch($varTypes,$varArray,$filter=''){
             $query = "SELECT * 
                 FROM Products as P, Comics as C, Publisher as PB 
                 WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
+            
+            if($filter != ''){
                 $query .= $filter;
+                $result = $this -> bindAndExecuteQuery($varTypes,$varArray,$query);
+            }
+            else {
                 $stmt = $this->db->prepare($query);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                return $result->fetch_all(MYSQLI_ASSOC);
+            }
+            return $result->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -438,18 +462,20 @@
          * @param string SQL query to be executed on db
          * @return array associative array with all funkos that match query
          */
-        public function getAllFunkosMatch($filter='',$varTypes,$varArray){
+        public function getAllFunkosMatch($varTypes,$varArray,$filter=''){
             $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
-                $query .= $filter;
-                $stmt = $this->db->prepare($query);
                 
-                if($filter == ''){
-                    $stmt->bind_param($varTypes, $varArray);
+                if($filter != ''){
+                    $query .= $filter;
+                    $result = $this -> bindAndExecuteQuery($varTypes,$varArray,$query);
                 }
-                $stmt->execute();
-                $result = $stmt->get_result();
+                else {
+                    $stmt = $this->db->prepare($query);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                }
                 return $result->fetch_all(MYSQLI_ASSOC);
         }
     //------------------STATISTIC-PAGE-----------------//
