@@ -12,6 +12,8 @@ define('ONLY_COMICS', 0);
 define('ONLY_FUNKOS', 1);
 define('ALL_PRODS', 2);
 
+$varTypes = ''; //string containing all types of passed var to bind_param()
+
 $priceInterval = ["cheap"=> ["from"=>'0',"to"=>'99.99'],
 "medium"=> ["from"=>'100',"to"=>'199.99'],
 "expensive"=>["from"=>'99.99']];
