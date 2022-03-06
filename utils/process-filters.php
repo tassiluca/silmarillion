@@ -27,6 +27,8 @@ filters = lang, author, price, availability, publisher,category*/
     
     if(isset($_POST)){  //TODO: make some chek of what server receive in post method
         $availabFilter = ALL_AVAILABILITY;
+        $varTypes = '';
+        $varArray = [];
         $keys = array_keys($_POST);
         $data = $_POST;
         
@@ -40,7 +42,7 @@ filters = lang, author, price, availability, publisher,category*/
          */
             $isFirst = true;
             foreach($keys as $k){
-                //KEEP IN MIND: strcmp return 0 if strings are equal
+                
                 if(isset($data['category']) && in_array('funko',$data['category'])){
                     $isFunko = ONLY_FUNKOS;
                 }
@@ -49,10 +51,10 @@ filters = lang, author, price, availability, publisher,category*/
                 }
 
                 if(!strcmp($k,'category') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName');
+                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varTypes,$varArray);
                 }
                 else if(!strcmp($k,'publisher') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name');
+                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name',$varTypes,$varArray);
                 }
                 else if(!strcmp($k,'availability')){
                     if(count($keys)==1){ //the only key present is avaialbility
@@ -69,13 +71,13 @@ filters = lang, author, price, availability, publisher,category*/
                     }
                 }
                 else if(!strcmp($k,'price')){
-                    $filtQuery .= appendBetweenFilter($data[$k],'P.Price',$priceInterval);
+                    $filtQuery .= appendBetweenFilterPrice($data[$k],'P.Price',$priceInterval,$varTypes,$varArray);
                 }
                 else if(!strcmp($k,'author') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Author');
+                    $filtQuery .= appendEqualFilter($data[$k],'C.Author',$varTypes,$varArray);
                 }
                 else if(!strcmp($k,'lang') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang');
+                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang',$varTypes,$varArray);
                 }
 
             }
@@ -85,39 +87,60 @@ filters = lang, author, price, availability, publisher,category*/
             else{
                 $filtQuery .= ' )';
             }
-            
-            sendData($filtQuery,$availabFilter,$dbh,$isFunko);
+            print_r($varTypes);
+            print_r($varArray);
+            sendData($filtQuery,$availabFilter,$dbh,$isFunko,$varTypes,$varArray);
         }
         else{
-            sendData('',$availabFilter,$dbh,ALL_PRODS);
+            sendData('',$availabFilter,$dbh,ALL_PRODS,$varTypes,$varArray);
         }
     }
    
-    function appendEqualFilter($arr,$filt){
-        $strQUery ='';
+    /**
+     * @param array $arr array of value of same filter to be applied
+     * @param string $filt sql attribute to be compared with values
+     * @param string &$queryTypes string containing all type of values for bind_param
+     * @param array &$queryVars array of var used in bind_param
+     */
+    function appendEqualFilter($arr,$filt,&$queryTypes, &$queryVars){
+        $strQuery ='';
             foreach($arr as $e){
-            $concatMode = getCorrectConcat();
-            $strQUery .= $concatMode.$filt.SPACE.EQ.SPACE."'".$e."'";
-        }
-        return $strQUery;
+                $concatMode = getCorrectConcat();
+                $strQuery .= $concatMode.$filt.SPACE.EQ.SPACE.'?';//"'".$e."'";
+                $queryTypes .= getSqlStringType($e);
+                array_push($queryVars,$e);
+            }
+        return $strQuery;
     }
 
     /**
      * $interval must be structured as $intervalDef = ["rangeTag"=> ["from"=>'value',"to"=>'value'],
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
      */
-    function appendBetweenFilter($arr,$filt,$interval){
+    function appendBetweenFilterPrice($arr,$filt,$interval,&$queryTypes,&$queryVars){
         global $isFirst;
         $strQUery ='';
+        
             foreach($arr as $e){
                 $concatMode = getCorrectConcat();
                 if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
+                    $queryTypes .= getSqlStringType(floatval($interval[$e]["from"]));
+                    $queryTypes .= getSqlStringType(floatval($interval[$e]["to"]));
+                    array_push($queryVars,floatval($interval[$e]["from"]));
+                    array_push($queryVars,floatval($interval[$e]["to"]));
+
                     $strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
                 }
                 else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
+                    $queryTypes .= getSqlStringType(floatval($interval[$e]["from"]));
+                    array_push($queryVars,floatval($interval[$e]["from"]));
+
                     $strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
                 }
                 else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
+                    $queryTypes .= getSqlStringType(floatval($interval[$e]["to"]));
+                    array_push($queryVars,floatval($interval[$e]["to"]));
+
                     $strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
                 }
         }
@@ -130,6 +153,18 @@ filters = lang, author, price, availability, publisher,category*/
         return $concatKeyword;
     }
     
+    function getSqlStringType($var){
+        if(is_int($var)){
+            return 'i';
+        }
+        else if(is_double($var)){
+            return 'd';
+        }
+        else if(is_string($var)){
+            return 's';
+        }
+    }
+
     function addAvaiableCopiesInfo($prods,$dbh){
         $allProd = $prods;
         for($i=0; $i < count($prods);$i++){
@@ -150,17 +185,17 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
-    function sendData($query,$avail,$dbh,$typeReq){
+    function sendData($query,$avail,$dbh,$typeReq,$varTypes,$varArray){
         
         if($typeReq == ONLY_FUNKOS){
-            $prods = $dbh -> getAllFunkosMatch($query);
+            $prods = $dbh -> getAllFunkosMatch($query,$varTypes,$varArray);
         }
         else if($typeReq == ONLY_COMICS){
-            $prods = $dbh -> getAllComicsMatch($query); //get all products that match filters
+            $prods = $dbh -> getAllComicsMatch($query,$varTypes,$varArray); //get all products that match filters
         }
         else if($typeReq == ALL_PRODS){
-            $funkos = $dbh -> getAllFunkosMatch($query);
-            $comics = $dbh -> getAllComicsMatch($query);
+            $funkos = $dbh -> getAllFunkosMatch($query,$varTypes,$varArray);
+            $comics = $dbh -> getAllComicsMatch($query,$varTypes,$varArray);
             $prods = array_merge($funkos,$comics);
         }
         $prods = addAvaiableCopiesInfo($prods,$dbh);
