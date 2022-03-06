@@ -1,8 +1,8 @@
 <?php 
-$SPACE = ' ';
-$EQ = '=';
-$AND_S = ' and '; //and with spaces
-$OR_S = ' or ';
+define('SPACE', ' ');
+define('EQ', '=');
+define('AND_S', ' and ');
+define('OR_S', ' or ');
 
 define('NOT_AVAILABLE', 0);
 define('AVAILABLE', 1);
@@ -13,6 +13,7 @@ define('ONLY_FUNKOS', 1);
 define('ALL_PRODS', 2);
 
 $varTypes = ''; //string containing all types of passed var to bind_param()
+$varArray = []; //array of references of all variables to be binded
 
 $priceInterval = ["cheap"=> ["from"=>'0',"to"=>'99.99'],
 "medium"=> ["from"=>'100',"to"=>'199.99'],
@@ -27,7 +28,7 @@ filters = lang, author, price, availability, publisher,category*/
         $data = $_POST;
         
         if(isset($keys) && count($keys)){
-            $filtQuery = $AND_S.'(';
+            $filtQuery = AND_S.'(';
         /**
          * is first filter applied ? Used to append or not 'and' keyword in SQLquery
          * If one filter selected not add 'or' statement, if more than one filter is applied
@@ -90,11 +91,10 @@ filters = lang, author, price, availability, publisher,category*/
     }
    
     function appendEqualFilter($arr,$filt){
-        global $SPACE,$EQ;
         $strQUery ='';
             foreach($arr as $e){
             $concatMode = getCorrectConcat();
-            $strQUery .= $concatMode.$filt.$SPACE.$EQ.$SPACE."'".$e."'";
+            $strQUery .= $concatMode.$filt.SPACE.EQ.SPACE."'".$e."'";
         }
         return $strQUery;
     }
@@ -104,25 +104,25 @@ filters = lang, author, price, availability, publisher,category*/
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
      */
     function appendBetweenFilter($arr,$filt,$interval){
-        global $SPACE,$AND_S,$isFirst;
+        global $isFirst;
         $strQUery ='';
             foreach($arr as $e){
                 $concatMode = getCorrectConcat();
                 if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-                    $strQUery .= $concatMode.$filt.$SPACE.'BETWEEN'.$SPACE."'".$interval[$e]["from"]."'".$AND_S."'".$interval[$e]["to"]."'";
+                    $strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
                 }
                 else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-                    $strQUery .= $concatMode.$filt.$SPACE.'>='.$SPACE."'".$interval[$e]["from"]."'";
+                    $strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
                 }
                 else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
-                    $strQUery .= $concatMode.$filt.$SPACE.'<='.$SPACE."'".$interval[$e]["to"]."'";
+                    $strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
                 }
         }
         return $strQUery;
     }
     function getCorrectConcat(){
-        global $isFirst,$SPACE, $OR_S, $AND_S;
-        $concatKeyword = $isFirst ? $SPACE : $AND_S;
+        global $isFirst;
+        $concatKeyword = $isFirst ? SPACE : AND_S;
         $isFirst = false;
         return $concatKeyword;
     }
