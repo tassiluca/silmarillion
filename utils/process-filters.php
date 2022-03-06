@@ -159,7 +159,11 @@ filters = lang, author, price, availability, publisher,category*/
         $isFirst = false;
         return $concatKeyword;
     }
-    
+    /**
+     * Get correct char to rapresent type of $var
+     * @param mixed $var variable to get string type
+     * @return string String of len 1
+     */
     function getSqlStringType($var){
         if(is_int($var)){
             return 'i';
