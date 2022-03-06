@@ -113,14 +113,19 @@ filters = lang, author, price, availability, publisher,category*/
     }
 
     /**
-     * $interval must be structured as $intervalDef = ["rangeTag"=> ["from"=>'value',"to"=>'value'],
+     * @param array $priceFilters array of all price-range filters selected
+     * @param string $filt Attribute to check in db for compare
+     * @param array $interval must be structured as $intervalDef = ["rangeTag"=> ["from"=>'value',"to"=>'value'],
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
+     * @param string &$queryTypes reference to string that indicate type of values to check during sql binding
+     * @param array &$queryVars Array with all values to be binded
+     * @return string $strQUery partial query, composed query that filter price ranges
      */
-    function appendBetweenFilterPrice($arr,$filt,$interval,&$queryTypes,&$queryVars){
+    function appendBetweenFilterPrice($priceFilters,$filt,$interval,&$queryTypes,&$queryVars){
         global $isFirst;
         $strQUery ='';
         
-            foreach($arr as $e){
+            foreach($priceFilters as $e){
                 $concatMode = getCorrectConcat();
                 if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
                     $queryTypes .= getSqlStringType(floatval($interval[$e]["from"]));
