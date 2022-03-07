@@ -1,8 +1,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <!-- TODO: link -->
-        <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Login</li>
+        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Login</li>
     </ul>
 </div>
 <section>
@@ -18,9 +17,6 @@
     <form action="#" method="POST">
         <ul id="userlogin">
             <li>
-                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
-            </li>
-            <li>
                 <label for="customerUsr">Username</label>
                 <input type="text" placeholder="es. giovadelnevo" id="customerUsr" name="customerUsr" required />
             </li>
@@ -29,8 +25,10 @@
                 <input type="password" placeholder="Password" id="customerPwd" name="customerPwd" required />
             </li>
             <li>
-                <!-- TODO: link -->
-                <a href="">Hai dimenticato la password?</a>
+                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
+            </li>
+            <li>
+                <a href="recovery.php">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
             </li>
             <li>
@@ -43,9 +41,6 @@
     <form action="#" method="POST">
         <ul id="sellerlogin">
             <li>
-                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
-            </li>
-            <li>
                 <label for="sellerUsr">Username</label>
                 <input type="text" placeholder="es. silvymirry" id="sellerUsr" name="sellerUsr" />
             </li>
@@ -54,8 +49,10 @@
                 <input type="password" placeholder="Password" id="sellerPwd" name="sellerPwd" />
             </li>
             <li>
-                <!-- TODO: link -->
-                <a href="">Hai dimenticato la password?</a>
+                <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
+            </li>
+            <li>
+                <a href="recovery.php">Hai dimenticato la password?</a>
                 <input type="submit" name="submit" value="ACCEDI" />
             </li>
         </ul>

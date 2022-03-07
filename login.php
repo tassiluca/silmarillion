@@ -1,8 +1,8 @@
 <?php
     require_once 'bootstrap.php';
 
-    $templateParams["css"] = array("login-forms.css", "login.css");
-    $templateParams["js"] = array("login.js");
+    $templateParams["css"] = array("css/login-forms.css", "css/login.css");
+    $templateParams["js"] = array("js/login.js");
     $templateParams["main"] = "./templates/login-page.php";
 
     /* if the user is already logged, redirect him into his personal area */

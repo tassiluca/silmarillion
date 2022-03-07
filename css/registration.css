@@ -1,3 +1,7 @@
+/****************************************************************************
+ * Style sheet linked to registration page.
+ ****************************************************************************/
+
 main {
     margin-bottom: 50px;
 }
@@ -55,7 +59,7 @@ main > section > form > ul > li > input[type="date"]::-webkit-calendar-picker-in
     padding-right: 10px;
 }
 
-/************************** Message for password requirements **************************/
+/********************* Message for password requirements ********************/
 main > section > form > ul > li > input[type="password"] + section {
     display: none;
     border-radius: 10px;

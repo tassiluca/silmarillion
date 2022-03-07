@@ -4,8 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="./css/style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <?php 
+        <?php
             /**
              * Insert here all the style sheets needed by the single page.
              * To do so declare a $templateParams["css"] with an array of style sheet files name to import.
@@ -13,7 +12,7 @@
             if (isset($templateParams["css"])):
                 foreach($templateParams["css"] as $styleSheet): 
         ?>
-                    <link rel="stylesheet" type="text/css" href=<?php echo "./css/" . $styleSheet ?> />
+                    <link rel="stylesheet" type="text/css" href=<?php echo $styleSheet ?> />
         <?php
                 endforeach;
             endif;
@@ -24,26 +23,13 @@
         <script src="js/sha512.js"></script>
         <?php
             /**
-             * Insert here all the EXTERNAL javascript files needed by the single page.
-             * To do so declare a $templateParams["jsExt"] with an array of js script files name to import.
-             */
-            if (isset($templateParams["jsExt"])):
-                foreach($templateParams["jsExt"] as $jsScript):
-        ?>
-                    <script src=<?php echo $jsScript ?>></script>
-        <?php
-                endforeach;
-            endif;
-        ?>
-        <?php
-            /**
              * Insert here all the javascript files needed by the single page.
              * To do so declare a $templateParams["js"] with an array of js script files name to import.
              */
             if (isset($templateParams["js"])):
                 foreach($templateParams["js"] as $jsScript):
         ?>
-                    <script src=<?php echo "js/" . $jsScript ?>></script>
+                    <script src=<?php echo $jsScript ?>></script>
         <?php
                 endforeach;
             endif;
@@ -74,7 +60,7 @@
                             <button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button>
                         <?php endif; ?>
                     </li><li>
-                        <button type="button" >
+                        <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
                         </button>
                     </li>
@@ -150,27 +136,16 @@
                                 <label for="userpasswordNav">Password</label>
                                 <input type="password" placeholder="Password" id="userpasswordNav" name="customerPwd" required />
                             </li>
-                            <li 
-                                <?php 
-                                    if (isset($templateParams["loginError"])) :
-                                        echo 'class=active'; 
-                                ?>
-                            >
-                                        <strong><?php echo $templateParams["loginError"] ?></strong>
-                                <?php 
-                                    endif;
-                                ?>
-                            </li>
                             <li>
                                 <div>
-                                    <a href="">Dimenticato la password?</a>
-                                    <a href="login.html">Accedi come venditore</a>
+                                    <a href="recovery.php">Dimenticato la password?</a>
+                                    <a href="login.php">Accedi come venditore</a>
                                 </div>
                                 <input type="submit" name="submit" value="ACCEDI" />
                             </li>
                             <li>
                                 <p>Non sei registrato?</p>
-                                <a href="./register.html">CREA IL TUO ACCOUNT</a>
+                                <a href="regisration.php">CREA IL TUO ACCOUNT</a>
                             </li>
                         </ul>
                     </form>

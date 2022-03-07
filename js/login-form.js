@@ -18,10 +18,10 @@ function loginAttempt(form, formData, target) {
     }).done(function (data) {
         if (data.error) { // if has been occured some error
             // add class hasError to both username and password inputs
+            $(form).find("ul > li:nth-of-type(1)").addClass("hasError");
             $(form).find("ul > li:nth-of-type(2)").addClass("hasError");
-            $(form).find("ul > li:nth-of-type(3)").addClass("hasError");
             // add an error message
-            $(form).find("ul > li:nth-of-type(3)").append (
+            $(form).find("ul > li:nth-of-type(2)").append (
                 '<div class="message error">' + data.error + '</div>'
             );
         } else {
@@ -29,7 +29,7 @@ function loginAttempt(form, formData, target) {
             window.location.href = target;
         }
     }).fail(function(data) { // error connecting to the server
-        $(form).find("ul > li:nth-of-type(3)").append (
+        $(form).find("ul > li:nth-of-type(2)").append (
             '<div class="error">Errore connessione al server! Riprova...</div>'
         );
     });
