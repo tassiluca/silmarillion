@@ -88,7 +88,7 @@ $(document).ready(function(){
     var numPages = 1;
     var prods;
     var idxPage = 0;
-    const NUM_PROD_PAGE = 3; //amount of products per page to be shown
+    const NUM_PROD_PAGE = 10; //amount of products per page to be shown
 
     /**
      * Send a request to server to get all prods matching filters
@@ -96,6 +96,7 @@ $(document).ready(function(){
      * @param {*} allFilter filters of priducts to be applied
      */
     function submitFilters(allFilter){
+
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
                 prods = JSON.parse(data);
