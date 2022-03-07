@@ -2,7 +2,7 @@
     require_once 'bootstrap.php';
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
     
-    $templateParams["css"] = array("article.css");
+    $templateParams["css"] = array("css/article.css");
     $templateParams["js"] = array("");
     $templateParams["main"] = "./templates/single-article.php";
 

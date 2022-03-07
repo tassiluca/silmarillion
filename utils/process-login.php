@@ -56,12 +56,14 @@
 
     /* customer login */
     if (isset($_POST['customerUsr']) && isset($_POST['customerPwd'])) {
+        /* TODO: input validation */
         $userData = $dbh->getCustomerData($_POST['customerUsr']);
         echo json_encode(login($userData, $_POST['customerPwd']));
     }
 
     /* seller login */
     if (isset($_POST['sellerUsr']) && isset($_POST['sellerPwd'])) {
+        /* TODO: input validation */
         $userData = $dbh->getSellerData($_POST['sellerUsr']);
         echo json_encode(login($userData, $_POST['sellerPwd']));
     }

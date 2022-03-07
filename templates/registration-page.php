@@ -1,8 +1,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <!-- TODO: link -->
-        <li><a href="./index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="./login.php">Login</a></li><li>Registrazione</li>
+        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="./login.php">Login</a></li><li>Registrazione</li>
     </ul>
 </div>
 <section>
@@ -40,7 +39,7 @@
             <li>
                 <label for="email">Email</label><input type="text" id="email" placeholder="Email" name="email" pattern="^\S+@\S+$" title="Deve contenere un indirizzo mail valido" required />
             </li>
-                <li>
+            <li>
                 <label for="password">Password</label><input type="password" placeholder="Password" id="password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Deve contenere almeno un numero, una minuscolo e una maiuscola, nonché almeno 8 caratteri" required />
                 <section>
                     <p>Ai fini di sicurezza, la password deve contenere almeno:</p>

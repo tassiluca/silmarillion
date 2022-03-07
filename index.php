@@ -1,10 +1,11 @@
 <?php
     require_once 'bootstrap.php';
     define("DEFAULT_HOME_QUANTITY",20);
-    $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
-    $templateParams["css"] = array("homepage.css","products.css");
-    $templateParams["js"] = array("home.js");
+    $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
+
+    $templateParams["css"] = array("css/homepage.css","css/product.css");
+    $templateParams["js"] = array("js/home.js");
     $templateParams["main"] = "./templates/home-page.php";
     $templateParams["newsBanner"] = $dbh->getHomeBanner();
 

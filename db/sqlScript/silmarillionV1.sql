@@ -172,8 +172,9 @@ create table Users (
      DateBirth date not null,
      Mail varchar(100) not null,
      IsActive boolean not null,
-     constraint IDSeller primary key (UserId),
-     constraint IDSeller_1 unique (Username));
+     constraint IDUsers primary key (UserId),
+     constraint IDUsers_1 unique (Username),
+     constraint IDUsers_2 unique(Mail));
 
 
 -- Constraints Section

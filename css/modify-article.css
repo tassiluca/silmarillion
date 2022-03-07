@@ -1,0 +1,257 @@
+/****************************************************************************
+ * Style sheet linked to modify-article page
+ ****************************************************************************/
+
+main > section {
+    margin: 0 4% 50px;
+}
+
+main > section > header > h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+main ul {
+    list-style: none;
+}
+
+/********************************** form **********************************/
+main > section > form {
+    background: #CBF6FF;
+    border: 1px solid #0047A0;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 2% 0;
+}
+
+main > section > form ul > li {
+    margin: 6px 5%;
+}
+
+main > section > form ul > li > label {
+    display: block;
+    margin: 5px 0;
+}
+
+main > section > form ul > li > input, 
+main > section > form ul > li > textarea {
+    height: 30px;
+    width: 100%;
+    padding: 5px 2%;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #0047A0;
+    font-weight: bold;
+    background: #E7FBFF;
+    border-style: none;
+    border-radius: 10px;
+}
+
+main > section > form ul > li > textarea {
+    height: 100px;
+}
+
+main > section > form ul > li > img {
+    width: 100%;
+    max-width: 300px;
+}
+
+main > section > form ul > li > input[type="file"]::file-selector-button {
+    background: #0047A0;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border-style: none;
+}
+
+main > section > form ul > li > select + span {
+    width: 90% !important;
+    border: none;
+}
+
+main > section > form ul > li > select + span > span > span {
+    font-weight: bold;
+    background: #E7FBFF !important;
+    border: none !important;
+    padding: 0 1%;
+} 
+
+main > section > form ul > li > select + span > span > span > span {
+    color: #0047A0 !important;
+} 
+
+main > section > form button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 28px;
+    float: right;
+    vertical-align: middle;
+}
+
+button#addCategoryBtn::after, button#addPublisherBtn::after {
+    content: "\f055";
+    font-size: 1.7em;
+    font-family: FontAwesome;
+    color: #0047A0;
+}
+
+button#addCategoryBtn + ul, button#addPublisherBtn + ul {
+    display: none;
+}
+
+button#addCategoryBtn.selected::after, button#addPublisherBtn.selected::after {
+    content: "\f056";
+    font-size: 1.7em;
+    font-family: FontAwesome;
+    color: #0047A0;
+}
+
+main > section > form input[type="submit"] {
+    height: 50px;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+    background: white;
+    color: #0047A0;
+    font-size: 17px;
+    border: 1px solid #0047A0;
+    margin: 5px 1%;
+}
+
+main > section > form input[type="submit"]:hover {
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+}
+
+/******************************** Messages **********************************/
+main > section > form ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.message {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+main > section > form > ul > li > div.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border-color: red;
+}
+
+main > section > form > ul > li > div.message.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > div.message.success {
+    background-color: #D4EDD5;
+    color: #155724;
+    border-color: green;
+}
+
+main > section > form > ul > li > div.message.success::before {
+    content: "\f00c";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 10% 50px;
+    }
+
+    main > section > form ul > li > label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+    }
+
+    main > section > form ul > li > input,
+    main > section > form ul > li > textarea {
+        vertical-align: middle;
+        display: inline-block;
+        width: 79%;
+    }
+
+    main > section > form ul > li > select + span {
+        width: 72% !important;
+    }
+
+    main > section > form > ul > li:last-child {
+        text-align: center;
+    }
+
+    main > section > form input[type="submit"] {
+        width: 47%;
+    }
+
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 15% 50px;
+    }
+
+    main > section > form ul > li > label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+    }
+
+    main > section > form ul > li > input,
+    main > section > form ul > li > textarea {
+        vertical-align: middle;
+        display: inline-block;
+        width: 79%;
+    }
+
+    main > section > form ul > li > select + span {
+        width: 74% !important;
+    }
+
+    main > section > form > ul > li:last-child {
+        text-align: center;
+    }
+
+    main > section > form input[type="submit"] {
+        width: 47%;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 20% 50px;
+    }
+
+    main > section > form ul > li > label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 20%;
+    }
+
+    main > section > form ul > li > input,
+    main > section > form ul > li > textarea {
+        vertical-align: middle;
+        display: inline-block;
+        width: 79%;
+    }
+
+    main > section > form ul > li > select + span {
+        width: 74% !important;
+    }
+
+    main > section > form > ul > li:last-child {
+        text-align: center;
+    }
+
+    main > section > form input[type="submit"] {
+        width: 47%;
+    }
+
+}

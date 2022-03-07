@@ -1,4 +1,6 @@
-
+/****************************************************************************
+ * Common rules for all website.
+ ****************************************************************************/
 body, h1, h2, ul, button {
     margin: 0;
     padding: 0;
@@ -235,6 +237,10 @@ body > header > nav > div#navCart > ul > li > div > div > p{
     margin: 0 10px 0;
 }
 
+/* =============================================================================
+ * ====== TODO REFACTOR WITH RULES OF LOGIN AND REGISTRATION STYLE SHEETS ====== 
+ * =============================================================================
+ */
 /**************** commons for login and search navbar **************/
 body > header > nav > div > form > ul > li > label {
     border: 0;
@@ -335,40 +341,23 @@ body > header > nav > div#navLogin > form > ul {
 }
 
 body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) {
-    display: none;
-    padding: 10px 0;
-    margin-bottom: 10px;
-    background-color: red;
-    color: white;
-}
-
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(3).active::before {
-    content: "\f00d";
-    font-family: FontAwesome;
-}
-
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(3).active {
-    display: block;
-}
-
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) {
     display: flex;
     justify-content: center;
 }
 
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) > div {
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div {
     display: flex;
     flex-direction: column;
     align-self: center;
     margin-right: 3%;
 }
 
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) > div > a {
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div > a {
     color: white;
     padding-bottom: 5px;
 }
 
-body > header > nav > div#navLogin > form > ul > li:nth-of-type(4) > input {
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > input {
     margin: 0;
 }
 
@@ -376,7 +365,7 @@ body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
     color: white;
 }
 
-/* Errors */
+/******************************** Messages  *******************************/
 body > header > nav > div#navLogin > form > ul > li.hasError > input {
     border: 2px solid red !important;
 }

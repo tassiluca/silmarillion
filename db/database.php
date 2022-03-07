@@ -11,10 +11,13 @@
             }
         }
 
+        /**********************************************************************************
+         * Users management functions
+         **********************************************************************************/
         /**
          * Get customer infos.
          * @param string $username the username string
-         * @return void an associative array with all data
+         * @return array an associative array with all data.
          */
         public function getCustomerData($username) {
             $query = "SELECT U.*
@@ -30,9 +33,43 @@
         }
 
         /**
+         * Get customer infos.
+         * @param string $mail the mail
+         * @return array an associative array with all data.
+         */
+        public function getCustomerDataByMail($mail) {
+            $query = "SELECT U.*
+                      FROM Users AS U, Customers AS C
+                      WHERE C.UserId = U.UserId
+                      AND U.Mail = ?
+                      AND U.IsActive = 1";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $mail);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Reset the user password.
+         * @param int $userId the user id
+         * @param string $password the new password
+         * @param string $salt the new salt
+         * @return bool true on success or false on failure.
+         */
+        public function resetUserPassword($userId, $password, $salt) {
+            $query = "UPDATE Users
+                      SET Password = ?, Salt = ?
+                      WHERE UserId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssi', $password, $salt, $userId);
+            return $stmt->execute();
+        }
+
+        /**
          * Get seller infos.
          * @param string $username the username string
-         * @return array an associative array with all data
+         * @return array an associative array with all data.
          */
         public function getSellerData($username) {
             $query = "SELECT U.*
@@ -85,11 +122,12 @@
          * @param string $username the username
          * @param string $password the password
          * @param string $salt the salt
-         * @param string $name the name
-         * @param string $surname the surname
+         * @param string $name the user name
+         * @param string $surname the user surname
          * @param string $birthday the birth date 
          * @param string $mail the e-mail
-         * @return int the UserId associated with the just inserted user
+         * @return int the UserId associated with the just inserted user or -1 if a user
+         * with given `username` already exists in db.
          */
         private function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
             $query = "INSERT INTO Users(Username, Password, Salt, Name, Surname, DateBirth, Mail, IsActive)
@@ -97,7 +135,7 @@
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sssssss', $username, $password, $salt, $name, $surname, $birthday, $mail);
             try {
-                $res = $stmt->execute();
+                $stmt->execute();
             } catch(Exception $e) {
                 // if a user with given username already exists in db
                 if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
@@ -109,8 +147,13 @@
 
         /**
          * Insert into table `Customers` a new customer user. 
-         * [IMPORTANT] The user given in input must be present into the `Users` table!
-         * @param int $userId the user
+         * @param string $username the username
+         * @param string $password the password
+         * @param string $salt the salt
+         * @param string $name the customer name
+         * @param string $surname the customer surname
+         * @param string $birthday the birth date
+         * @param string $mail the e-mail
          * @return Array the success element a `boolean` to describe success or failure,
          * the second a `boolean` to describe if there was duplicateKey error.
          */
@@ -143,7 +186,212 @@
             return $stmt->get_result()->num_rows > 0;
         }
 
-//---------------------------HOMEPAGE------------------------------//
+        /**********************************************************************************
+         * Products management functions
+         **********************************************************************************/
+
+        /**
+         * Get product info.
+         * 
+         * @param integer $productId the product id
+         * @return array ...
+         */
+        public function getProduct(int $productId) {
+            if ($this->isFunko($productId)) {
+                return $this->getFunkoById($productId);
+            } else {
+                return $this->getComicById($productId);
+            }
+        }
+
+        /**
+         * Insert a new product.
+         *
+         * @param string $price the price of the product
+         * @param string $discountedPrice the discounted price of the product
+         * @param string $desc the product description
+         * @param string $img the product image
+         * @param string $category the product category
+         * @return int the id of the product just inserted
+         */
+        private function addProduct($price, $discountedPrice, $desc, $img, $category) {
+            $query = "INSERT INTO Products(Price, DiscountedPrice, Description, CoverImg, CategoryName)
+                      VALUES(?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $discountedPrice = empty($discountedPrice) ? NULL : $discountedPrice;
+            $stmt->bind_param('iisss', $price, $discountedPrice, $desc, $img, $category);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+
+        /**
+         * Insert a new funko.
+         *
+         * @param string $name the funko name
+         * @param string $price the funko price
+         * @param string $discountedPrice the funko discounted price
+         * @param string $desc the funko description
+         * @param string $img the funko image
+         * @param string $category the funko category
+         * @return bool true on success or false on failure.
+         */
+        public function addFunko($name, $price, $discountedPrice, $desc, $img, $category) {
+            $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
+            $query = "INSERT INTO Funkos(ProductId, Name)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('is', $productId, $name);
+            return $stmt->execute();
+        }
+
+        /**
+         * Insert a new comic.
+         *
+         * @param string $title the comic title
+         * @param string $author the comic author
+         * @param string $lang the comic lang
+         * @param string $date the comic published date
+         * @param string $isbn the comic ISBN code
+         * @param int $publisherId the publisher id code
+         * @param string $price the comic price
+         * @param string $discountedPrice the comic discounted price
+         * @param string $desc the comic description
+         * @param string $img the comic image
+         * @param string $category the comic category
+         * @return bool true on success or false on failure.
+         */
+        public function addComic($title, $author, $lang, $date, $isbn, $publisherId, 
+                                 $price, $discountedPrice, $desc, $img, $category) {
+            $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
+            $query = "INSERT INTO Comics(Title, Author, Lang, PublishDate, ISBN, ProductId, PublisherId)
+                      VALUES(?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $productId, $publisherId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return true;
+        }
+
+        private function updateProduct($productId, $price, $discountedPrice, $desc, $category) {
+            $query = "UPDATE Products 
+                      SET Price = ?, DiscountedPrice = ?, Description = ?, CategoryName = ?
+                      WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssssi', $price, $discountedPrice, $desc, $category, $productId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return true;
+        }
+
+        public function updateComic($productId, $title, $author, $lang, $date, $isbn, $publisherId, 
+                                    $price, $discountedPrice, $desc, $category) {
+            $query = "UPDATE Comics 
+                      SET Title = ?, Author = ?, Lang = ?, PublishDate = ?, ISBN = ?, PublisherId = ?
+                      WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $publisherId, $productId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return $this->updateProduct($productId, $price, empty($discountedPrice) ? NULL : $discountedPrice, $desc, $category);
+        }
+
+        public function updateFunko($productId, $name, $price, $discountedPrice, $desc, $category) {
+            $query = "UPDATE Funkos 
+                      SET Name = ?
+                      WHERE ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('si', $name, $productId);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                return false;
+            }
+            return $this->updateProduct($productId, $price, empty($discountedPrice) ? NULL : $discountedPrice, $desc, $category);
+        }
+
+        /**
+         * Get all the categories.
+         *
+         * @return array an associative array with all categories.
+         */
+        public function getCategories() {
+            $query = "SELECT Name, Description
+                      FROM Categories";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get all publishers.
+         *
+         * @return array an associative array with all publishers.
+         */
+        public function getPublishers() {
+            $query = "SELECT PublisherId, Name, ImgLogo
+                      FROM Publisher";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Insert into db a new publisher.
+         *
+         * @param string $name the publisher name
+         * @param string $img the path in which it's stored the publisher logo
+         * @return int the `PublisherId` associated with the publisher just inserted
+         * or -1 if a publisher with given `name` already exists.
+         */
+        public function addPublisher($name, $img) {
+            $query = "INSERT INTO Publisher(Name, ImgLogo)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ss', $name, $img);
+            try {
+                $stmt->execute();
+            } catch(Exception $e) {
+                // if a publisher with given name already exists in db
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return -1;
+                }
+            }
+            return $stmt->insert_id;      
+        }
+
+        /**
+         * Insert into db a new category.
+         *
+         * @param string $name the category name
+         * @param string $description a short category description
+         * @return bool true on success or false on failure.
+         */
+        public function addCategory($name, $description) {
+            $query = "INSERT INTO Categories(Name, Description)
+                      VALUES(?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ss', $name, $description);
+            try {
+                return $stmt->execute();
+            } catch(Exception $e) {
+                // if a publisher with given name already exists in db
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return false;
+                }
+            }
+        }
+
         public function getHomeBanner(){
             $query = "SELECT NewsId, Title, Description, Img, UserId
                     FROM News";
@@ -229,16 +477,6 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-
-        public function getPublishers(){
-            $query = "SELECT `PublisherId`, `Name`, `ImgLogo`
-                    FROM Publisher";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
-        }
-
         /**
          * Get all infos about a specific COMIC by productId
          * @param int $id unique id of product
@@ -274,6 +512,34 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * TODO: to document -- added by Luca
+         */
+        public function isFunko($id) {
+            $query = "SELECT P.ProductId
+                      FROM Products as P, Funkos as F
+                      WHERE P.ProductId = F.ProductId
+                      AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            return $stmt->get_result()->num_rows > 0;
+        }
+
+        /**
+         * TODO: to document -- added by Luca
+         */
+        public function isComic($id) {
+            $query = "SELECT P.ProductId
+                      FROM Products as P, Comics as C
+                      WHERE P.ProductId = C.ProductId
+                      AND P.ProductId = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            return $stmt->get_result()->num_rows > 0;
         }
 
         /**
@@ -385,7 +651,7 @@
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
-//-----------------------CATALOG-----------------------------//
+        //-----------------------CATALOG-----------------------------//
         public function getLanguages(){
             return $this -> getListOfFromComics('Lang');
         }
@@ -416,7 +682,7 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
-//------------------APPLY FILTERS CATALOG---------------------------------//
+        //------------------APPLY FILTERS CATALOG---------------------------------//
 
         private function bindAndExecuteQuery($varTypes,$varArray,$query){
             $a_params[] = & $varTypes;
@@ -478,8 +744,8 @@
                 }
                 return $result->fetch_all(MYSQLI_ASSOC);
         }
-    //------------------STATISTIC-PAGE-----------------//
-    /**
+        //------------------STATISTIC-PAGE-----------------//
+        /**
          * Get correct string of Period by integer
          * @param int $period
          * @return string period string
@@ -498,7 +764,7 @@
                 return "Month";
             }
         }
-    //OrderId	Address	OrderDate	Price	UserId
+        //OrderId	Address	OrderDate	Price	UserId
         public function getStatsPerPeriod($period, $year){
             $p = $this -> getStringPeriod($period);
             $funct = $p ."(O.OrderDate)";
