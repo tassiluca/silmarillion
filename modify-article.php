@@ -2,10 +2,10 @@
     require_once 'bootstrap.php';
 
     /* [NOTE] For more details about select2: [https://select2.org/] */
-    $templateParams["css"] = array("css/modify-article.css", 
+    $templateParams["css"] = array("./css/modify-article.css", 
         /* includes select2 compiled css for select box with support for searching */
         "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css");
-    $templateParams["js"] = array("js/modify-article.js", 
+    $templateParams["js"] = array("./js/modify-article.js", 
         /* includes select2 compiled js for select box with support for searching */
         "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
     $templateParams["main"] = "./templates/modify-article-page.php";

@@ -3,9 +3,9 @@
     require_once 'utils/functions.php';
     //$_SESSION['url'] = $_SERVER['REQUEST_URI'];
     
-    $templateParams["css"] = array("statistics.css");
-    $templateParams["js"] = array("statistics.js");
-    $templateParams["jsExt"] = array("https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js");
+    $templateParams["css"] = array("./css/statistics.css");
+    $templateParams["js"] = array("./js/statistics.js", 
+        "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js");
     
     $templateParams["ordersYears"] = $dbh -> getYearsWithOrders();
 

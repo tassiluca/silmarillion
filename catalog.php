@@ -3,8 +3,8 @@
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
     define("CATALOG_PROD_QUANTITY",25);
     
-    $templateParams["css"] = array("catalog.css","products.css");
-    $templateParams["js"] = array("catalog.js");
+    $templateParams["css"] = array("./css/catalog.css","./css/products.css");
+    $templateParams["js"] = array("./js/catalog.js");
     $templateParams["main"] = "./templates/catalog-page.php";
 
     $templateParams["publisher"] = $dbh -> getPublishers();

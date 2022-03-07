@@ -1,7 +1,7 @@
 <?php
     require_once 'bootstrap.php';
 
-    $templateParams["css"] = array("css/login-forms.css", "css/registration.css");
+    $templateParams["css"] = array("./css/login-forms.css", "./css/registration.css");
     $templateParams["main"] = "./templates/recovery-page.php";
 
     if (isset($_POST['email'])) {
