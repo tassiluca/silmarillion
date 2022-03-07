@@ -192,8 +192,6 @@
 
         /**
          * Get product info.
-         * => TODO: rename in getProductById() when the actual getProductById() is renamed in 
-         *          getComicById().
          * 
          * @param integer $productId the product id
          * @return array ...
@@ -202,7 +200,7 @@
             if ($this->isFunko($productId)) {
                 return $this->getFunkoById($productId);
             } else {
-                return $this->getProductById($productId);
+                return $this->getComicById($productId);
             }
         }
 
@@ -473,16 +471,6 @@
             $query = "SELECT ReviewId,Vote,Description, R.UserId,U.Username
                     FROM Reviews as R, Users as U
                     WHERE R.UserId = U.UserId";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
-        }
-
-
-        public function getPublishers(){
-            $query = "SELECT `PublisherId`, `Name`, `ImgLogo`
-                    FROM Publisher";
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
