@@ -1,0 +1,79 @@
+main > section {
+    margin: 0 4% 50px;
+}
+
+main > section > header {
+    text-align: center;
+    margin: 0 0 30px 0;
+}
+
+main > section > header > h2 {
+    margin: 10px 0;
+}
+
+input#search {
+    width: 50%;
+    color: #0047A0;
+    font-weight: bold;
+    font-size: 1em;
+    background-image: url(../img/commons/search-icon-magnifier.svg);
+    background-repeat: no-repeat;
+    background-position: center left;
+    border-radius: 10px;
+    border: 1px solid #0047A0;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    padding: 10px 20px 10px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input#search:focus {
+    width: 100%;
+}
+
+main > section > ul > li {
+    border-radius: 10px;
+    border: 1px solid #0047A0;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main > section > ul > li > div:first-child {
+    width: 15%;
+}
+
+main > section > ul > li > div:nth-child(2),
+main > section > ul > li > div:last-child {
+    width: 30%;
+}
+
+main > section > ul > li > div > img {
+    width: 100%;
+    height: 100%;
+}
+
+main > section > ul > li > a {
+    border: 1px solid #0047A0;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main > section > ul > li > a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+main > section > ul > li > a:first-child:hover {
+    background-color: #0047A0;
+}
+
+main > section > ul > li > a:nth-child(2):hover {
+    background-color: red;
+}

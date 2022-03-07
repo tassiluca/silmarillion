@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/navbar.js"></script>
+        <script src="js/login-form.js"></script>
+        <script src="js/sha512.js"></script>
+        <title>Silmarillion</title>
+        <!-- to include -->
+        <link rel="stylesheet" type="text/css" href="./css/manage-article.css" />
+        <script src="js/manage-articles.js"></script>
+    </head>
+    <body>
+        <main>
+            <!-- Breadcrumb pagination -->
+            <div>
+                <ul>
+                    <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="login.php">Area personale</a></li><li>Gestisci articoli</li>
+                </ul>
+            </div>
+            <section>
+                <header>
+                    <h2>Gestisci Articoli</h2>
+                    <input type="text" name="search" id="search" placeholder="Cerca..." aria-label="Cerca prodotto" onkeyup="filter()" />
+                </header>
+                <ul id="products">
+                    <li>
+                        <div>
+                            <img src="upload/products/panini_11.png" alt="" />
+                        </div>
+                        <div>
+                            <strong><a href="">Titolo Articolo</a></strong>
+                        </div>
+                        <div>
+                            <a href="">Modifica</a>
+                            <a href="">Elimina</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="upload/products/panini_11.png" alt="" />
+                        </div>
+                        <div>
+                            <strong><a href="">Stranezza Articolo 1</a></strong>
+                        </div>
+                        <a href="">Modifica</a>
+                        <a href="">Elimina</a>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="upload/products/panini_11.png" alt="" />
+                        </div>
+                        <div>
+                            <strong><a href="">Fuori Posto</a></strong>
+                        </div>
+                        <a href="">Modifica</a>
+                        <a href="">Elimina</a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>
