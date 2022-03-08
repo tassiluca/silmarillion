@@ -1,0 +1,29 @@
+main > section {
+    text-align: center;
+}
+/*Error page Title*/
+main > section > header > h3 {
+    margin: 0;
+}
+main > section > div {
+    margin: 0 5% 20px 5%;
+}
+/*Image dog*/
+main > section > div > img {
+    max-width: 400px;
+    width: 60%;
+}
+/*Pop up dog*/
+main > section > div > div {
+    width: 30%;
+    position: relative;
+    top: 40px;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.5);
+    border-radius: 10px 10px 0;
+}
+main > section > div > div > p{
+    margin: 0;
+}
