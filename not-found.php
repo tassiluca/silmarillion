@@ -5,6 +5,7 @@
 
     $templateParams["css"] = array("./css/homepage.css","./css/products.css");
     $templateParams["js"] = array("./js/home.js");
-    $templateParams["main"] = "./templates/home-page.php";
+    $templateParams["main"] = "./templates/not-found-page.php";
 
+    require 'templates/base.php';
 ?>
