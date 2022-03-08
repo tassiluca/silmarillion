@@ -3,7 +3,7 @@
     
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 
-    $templateParams["css"] = array("./css/homepage.css","./css/products.css");
+    $templateParams["css"] = array("./css/not-found.css",);
     $templateParams["js"] = array("./js/home.js");
     $templateParams["main"] = "./templates/not-found-page.php";
 
