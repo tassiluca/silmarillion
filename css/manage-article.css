@@ -11,7 +11,7 @@ main > section > header > h2 {
     margin: 10px 0;
 }
 
-input#search {
+main > section > header > input#search {
     width: 50%;
     color: #0047A0;
     font-weight: bold;
@@ -28,12 +28,13 @@ input#search {
     transition: width 0.4s ease-in-out;
 }
 
-input#search:focus {
+main > section > header > input#search:focus {
     width: 100%;
 }
 
 main > section > ul > li {
     border-radius: 10px;
+    height: 100px;
     border: 1px solid #0047A0;
     box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
     margin: 10px 0;
@@ -63,6 +64,7 @@ main > section > ul > li > div > img {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 main > section > ul > li > div > a {
@@ -84,5 +86,86 @@ main > section > ul > li > div > a:first-child:hover {
 }
 
 main > section > ul > li > div > a:nth-child(2):hover {
+    border-color: red;
     background-color: red;
+}
+
+/******************************** Messages **********************************/
+main > section > form ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.message {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+main > section > form > ul > li > div.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border-color: red;
+}
+
+main > section > form > ul > li > div.message.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > div.message.success {
+    background-color: #D4EDD5;
+    color: #155724;
+    border-color: green;
+}
+
+main > section > form > ul > li > div.message.success::before {
+    content: "\f00c";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 10% 50px;
+    }
+
+    main > section > ul > li {
+        height: 150px;
+    }
+    
+    main > section > ul > li > div:first-child {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 15% 50px;
+    }
+
+    main > section > ul > li {
+        height: 150px;
+    }
+    
+    main > section > ul > li > div:first-child {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 20% 50px;
+    }
+
+    main > section > ul > li {
+        height: 150px;
+    }
+    
+    main > section > ul > li > div:first-child {
+        height: 150px;
+    }
 }
