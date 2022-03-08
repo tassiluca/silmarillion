@@ -81,7 +81,7 @@
                     </li>
                     <li>
                         <label for="funkoName">Nome</label>
-                        <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" value="<?php echo $product['Name']; ?>" required />
+                        <input type="text" placeholder="es. Joan Jett Pop" id="funkoName" name="funkoName" value="<?php echo $product['Title']; ?>" required />
                     </li>
                 <?php endif; ?>
                 <li>
