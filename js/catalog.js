@@ -136,7 +136,7 @@ $(document).ready(function(){
         else{
             var start = idxPage * NUM_PROD_PAGE;
             var end = (idxPage * NUM_PROD_PAGE ) + NUM_PROD_PAGE;
-        //TODO CHANGE COLOR OF ICON FAVOURITE IF NOT CHECKED AS FAVOURITE FROM USER
+        
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
