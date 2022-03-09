@@ -131,5 +131,26 @@
         }
         return array($result, $msg);
     }
+    /**
+     * Append isFavourite param to associative array of products/comics/funko,
+     * if customer is logged-in and has product in favourite list return true then false,
+     * if customer is not logged are used cookiess
+     * @param $prods associative array where add to each element favourite flag
+     * @param $dbh Database hepler, in order to call mehtod that check each product
+     * @return array Associative array like the input one $prods but each element has boolean value 
+     * to know if is a favourite product
+     */
+    function addIsFavouriteInfo($prods,$dbh){
+        $allProd = $prods;
+        for($i=0; $i < count($prods);$i++){
+            if(isCustomerLoggedIn()){
+                $allProd[$i]["isFavourite"] = $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
+            }
+            else if(isset($_COOKIE[''])){
 
+                //$allProd[$i]["isFavourite"] = $_COOKIE[];
+            }
+        }
+        return $allProd;
+    }
 ?>
