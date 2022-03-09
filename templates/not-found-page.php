@@ -7,7 +7,7 @@
 </div>
 <section>
     <header>
-        <h3>Sei c091i0n3 hai fatto un marone !!</h3>
+        <h3>Ops ... Pagina non trovata</h3>
     </header>
     <div>
         <?php
