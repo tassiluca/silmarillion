@@ -99,8 +99,8 @@ $(document).ready(function(){
 
         $.post("utils/process-filters.php", allFilter,
             function (data,status) {
-                prods = JSON.parse(data);
-                //console.log(data);
+                //prods = JSON.parse(data);
+                console.log(data);
                 numPages = Math.floor(prods.length / NUM_PROD_PAGE);
                 updateCatalogView(0);//show all products of page 0
             });
@@ -140,11 +140,12 @@ $(document).ready(function(){
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
+                var favImg = prods[i].isFavourite ? "./img/favourite.svg" : "./img/un-favourite.svg";
                 
                 prodListHTML += '<article><div><a href="article.php?id='+prods[i].ProductId+'"><img src="'+prodsDir+prods[i].CoverImg+
                                 '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?id='+ prods[i].ProductId +
                                 '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="gestisci-richieste.php?action=wish&id='+
-                                prods[i].ProductId+'"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a></div>'+
+                                prods[i].ProductId+'"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
                                 '<div><a '+ disabled + ' href="gestisci-richieste.php?action=addtoCart&id='+prods[i].ProductId+
                                 '"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
