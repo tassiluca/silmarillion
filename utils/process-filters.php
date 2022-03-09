@@ -184,6 +184,20 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
+    function addIsFavouriteInfo($prods,$dbh){
+        $allProd = $prods;
+        for($i=0; $i < count($prods);$i++){
+            if(isCustomerLoggedIn()){
+                print_r($_SESSION['userId']);
+                $allProd[$i]["isFavourite"] = $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
+            }
+            else if(true){
+
+            }
+        }
+        return $allProd;
+    }
+
     function applyFilterAvailable($prods,$selFilter){
         $allProd = array();
         for($i=0; $i < count($prods);$i++){
@@ -212,6 +226,7 @@ filters = lang, author, price, availability, publisher,category*/
             $comics = $dbh -> getAllComicsMatch($varTypes,$varArray,$query);
             $prods = array_merge($funkos,$comics);
         }
+        $prods = addIsFavouriteInfo($prods,$dbh);
         $prods = addAvaiableCopiesInfo($prods,$dbh);
         $prods = applyFilterAvailable($prods,$avail);
         echo json_encode($prods); //before send json add numCopies info foreach products
