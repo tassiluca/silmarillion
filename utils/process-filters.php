@@ -184,19 +184,6 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
-    function addIsFavouriteInfo($prods,$dbh){
-        $allProd = $prods;
-        for($i=0; $i < count($prods);$i++){
-            if(isCustomerLoggedIn()){
-                $allProd[$i]["isFavourite"] = $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
-            }
-            else if(true){
-
-            }
-        }
-        return $allProd;
-    }
-
     function applyFilterAvailable($prods,$selFilter){
         $allProd = array();
         for($i=0; $i < count($prods);$i++){
