@@ -188,7 +188,6 @@ filters = lang, author, price, availability, publisher,category*/
         $allProd = $prods;
         for($i=0; $i < count($prods);$i++){
             if(isCustomerLoggedIn()){
-                print_r($_SESSION['userId']);
                 $allProd[$i]["isFavourite"] = $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
             }
             else if(true){
