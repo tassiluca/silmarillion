@@ -11,7 +11,8 @@ main > section > div {
 /*Image dog*/
 main > section > div > img {
     max-width: 400px;
-    width: 60%;
+    /*width: 60%;*/
+    max-height: 300px;
 }
 /*Pop up dog*/
 main > section > div > div {
