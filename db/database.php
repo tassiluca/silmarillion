@@ -690,8 +690,8 @@
             $stmt->bind_param('ii', $usrId,$prodId);
             $stmt->execute();
             $result = $stmt->get_result();
-            var_dump($resutl);
-            return $result;
+            $isFav = $result->fetch_assoc()['Count'] > 0 ? true : false;
+            return $isFav;
         }
 
         //------------------APPLY FILTERS CATALOG---------------------------------//
