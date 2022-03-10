@@ -61,7 +61,8 @@ create table Funkos (
      ProductId int not null,
      Name varchar(200) not null,
      constraint IDFunko primary key (FunkoId),
-     constraint FKR_ID unique (ProductId));
+     constraint FKR_ID unique (ProductId),
+     constraint FKR_ID_1 unique (Name));
 
 create table LoginAttempts (
      UserId int not null,
@@ -105,7 +106,7 @@ create table Orders (
      OrderId int not null auto_increment,
      Address varchar(150) not null,
      OrderDate timestamp not null,
-     Price int not null,
+     Price decimal(10, 2) not null,
      UserId int not null,
      constraint IDOrder primary key (OrderId));
 
@@ -137,8 +138,8 @@ create table ProductCopies (
 
 create table Products (
      ProductId int not null auto_increment,
-     Price int not null,
-     DiscountedPrice int,
+     Price decimal(10, 2) not null,
+     DiscountedPrice decimal(10, 2),
      Description varchar(1000) not null,
      CoverImg varchar(100) not null,
      CategoryName varchar(50) not null,
