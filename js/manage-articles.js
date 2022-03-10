@@ -1,16 +1,12 @@
-function filter() {
-    // [NOTE] toLowerCase() => **NO** case sensitive filter
-    var input = document.getElementById('search').value.toLowerCase();
-    var li = document.getElementById('products').getElementsByTagName('li');
+$(document).ready(function(){
 
-    for (let i = 0; i < li.length; i++) {
-        let txtValue = li[i].getElementsByTagName('strong')[0]
-                            .getElementsByTagName('a')[0].innerText.toLowerCase();
-        if (txtValue.indexOf(input) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
+    $("ul#products").load("test.php?page=1");
 
-}
+    $("main > section > footer > ul > li > a").click(function(e){
+        e.preventDefault();
+        $.get("test.php", {page : $(this).text()}, function(data){
+            $("ul#products").html(data);
+        });
+    });
+    
+});

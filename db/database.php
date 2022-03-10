@@ -442,25 +442,59 @@
         }
 
         /**
-         * Get all funko
+         * Get `quantity` funkos
          * @param int $quantity, max number of prods returned, default value is infinite (-1)
          * @return array associative array containing all funkos
          */
-        public function getFunkos($quantity=-1){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
-                    FROM Funkos as F, Products as P
-                    WHERE F.ProductId = P.ProductId ";
-
-            if($quantity > 0){
+        public function getFunkos($quantity = -1) {
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, 
+                             P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                      FROM  Funkos as F, Products as P
+                      WHERE F.ProductId = P.ProductId";
+            if ($quantity > 0){
                 $query .= " LIMIT ?"; 
             }
             $stmt = $this->db->prepare($query);
-            if($quantity > 0){
+            if ($quantity > 0){
                 $stmt->bind_param('i',$quantity);
             }
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get `quantity` comics data.
+         *
+         * @param integer $quantity the number of comics to get. If not specified are returned all comics.
+         * @return array associative array containing the comics data
+         */
+        public function getComics($quantity = -1) {
+            $query = "SELECT C.Title, C.Author, C.Lang, C.PublishDate, C.ISBN, C.PublisherId,
+                             P.ProductId, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                      FROM  Comics C, Products P
+                      WHERE C.ProductId = P.ProductId";
+            if ($quantity > 0) {
+                $query .= " LIMIT ?";
+            }            
+            $stmt = $this->db->prepare($query);
+            if ($quantity > 0){
+                $stmt->bind_param('i', $quantity);
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);        
+        }
+
+        public function getProducts($offset, $limit) {
+            $query = "SELECT P.ProductId, P.CoverImg
+                      FROM Products P
+                      LIMIT ?, ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $offset, $limit);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);        
         }
 
         /**

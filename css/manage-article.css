@@ -11,7 +11,7 @@ main > section > header > h2 {
     margin: 10px 0;
 }
 
-main > section > header > input#search {
+main > section > header > input {
     width: 50%;
     color: #0047A0;
     font-weight: bold;
@@ -28,7 +28,7 @@ main > section > header > input#search {
     transition: width 0.4s ease-in-out;
 }
 
-main > section > header > input#search:focus {
+main > section > header > input:focus {
     width: 100%;
 }
 
