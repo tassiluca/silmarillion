@@ -7,7 +7,6 @@
 
     session_start();
 
-    define("UPLOAD_DIR_NEWS", "./upload/news/");
     /**
      * The directory in which store the products images.
      */
@@ -22,7 +21,7 @@
 
     define("HOST", "localhost");
     define("USER", "root");
-    define("PASSWORD", "");     // Remove it before pushing
+    define("PASSWORD", "root");     // Remove it before pushing
     define("DB_NAME", "silmarillion");
     define("DB_PORT", 3306);
 
@@ -32,4 +31,5 @@
     define("PRODUCTS_DIR", UPLOAD_DIR."/products/");
     define("PUBLISHER_DIR", UPLOAD_DIR."/publishers/");
     define("BANNER_DIR", UPLOAD_DIR."/banner/");
+    define("UPLOAD_DIR_NEWS", UPLOAD_DIR."/news/");
 ?>
