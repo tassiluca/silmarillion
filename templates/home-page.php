@@ -49,6 +49,7 @@
                         <article class="fade">
                             <?php 
                                 $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId']);
+                                //TODO: call method that check if is favourite (both case logged and cookie)
                                 $favImg = $product['isFavourite'] ? "./img/favourite.svg" : "./img/un-favourite.svg";
                             ?>
 
