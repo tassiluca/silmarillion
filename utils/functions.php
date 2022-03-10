@@ -143,14 +143,30 @@
     function addIsFavouriteInfo($prods,$dbh){
         $allProd = $prods;
         for($i=0; $i < count($prods);$i++){
-            if(isCustomerLoggedIn()){
-                $allProd[$i]["isFavourite"] = $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
+            //TODO
+            //$allProd[$i]["isFavourite"] = metodoCheritorna true/false e fa la stessa roba che fa il codice qui sotto;
+            /*if(isCustomerLoggedIn()){
+                $allProd[$i]["isFavourite"] = 
             }
             else if(isset($_COOKIE[''])){
 
                 //$allProd[$i]["isFavourite"] = $_COOKIE[];
-            }
+            }*/
         }
         return $allProd;
+    }
+
+    /**
+     * 
+     */
+    function isProdFavourite($dbh,$idProd){
+        if(isCustomerLoggedIn()){
+            return $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
+        }
+        else if(!isCustomerLoggedIn() && isset($_COOKIE['favs'])){
+            $favs = json_decode(stripslashes($_COOKIE['favs']), true);
+            return in_array($idProd, $favs);
+        }
+        else false;
     }
 ?>
