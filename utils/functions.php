@@ -157,7 +157,11 @@
     }
 
     /**
-     * 
+     * That method tell you if product is a customer's favourite one, it is considered both cases:
+     * Customer is logged and customer isn't logged but cookie are setted
+     * @param DatabaseHelper $dbh Database helper object to check on db if customer is logged
+     * @param int $idProd Porduct id to be checked if in customer's favourites
+     * @return boolean True if in db or cookie $idProd is present
      */
     function isProdFavourite($dbh,$idProd){
         if(isCustomerLoggedIn()){
