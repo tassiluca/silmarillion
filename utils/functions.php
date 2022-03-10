@@ -165,11 +165,12 @@
      */
     function isProdFavourite($dbh,$idProd){
         if(isCustomerLoggedIn()){
-            return $dbh -> isFavourite($_SESSION['userId'],$allProd[$i]["ProductId"]);
+            return $dbh -> isFavourite($_SESSION['userId'],$idProd);
         }
         else if(!isCustomerLoggedIn() && isset($_COOKIE['favs'])){
             $favs = json_decode(stripslashes($_COOKIE['favs']), true);
-            return in_array($idProd, $favs);
+
+            return in_array(strval($idProd), $favs);
         }
         else false;
     }

@@ -49,8 +49,8 @@
                         <article class="fade">
                             <?php 
                                 $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId']);
-                                //TODO: call method that check if is favourite (both case logged and cookie)
-                                $favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";
+                                //$favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";
+                                var_dump(isProdFavourite($dbh,$product['ProductId']));
                             ?>
 
                             <div> <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="<?php echo PRODUCTS_DIR.$product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
