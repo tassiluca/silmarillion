@@ -69,12 +69,11 @@
     */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
-            $isFav = $dbh -> isFavourite($_SESSION['userId'],$idProd);
-            if($isFav){
+            $isFav = $dbh -> isFavourite($_SESSION['userId'],$idprod);
+            if(!$isFav){
                 $dbh -> addProductToWish($idCustomer,$idprod);
             }
             else{
-                //TODO that method
                 $dbh -> removeProductToWish($idCustomer,$idprod);
             }
 
@@ -97,5 +96,5 @@
         }
     }
     
-   //header("Location: $lastPage"); //redirect to lastpage where action was sent
+   header("Location: $lastPage"); //redirect to lastpage where action was sent
 ?>
