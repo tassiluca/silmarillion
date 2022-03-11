@@ -143,7 +143,6 @@
     function addIsFavouriteInfo($prods,$dbh){
         $allProd = $prods;
         for($i=0; $i < count($prods);$i++){
-            //TODO
             //$allProd[$i]["isFavourite"] = metodoCheritorna true/false e fa la stessa roba che fa il codice qui sotto;
             /*if(isCustomerLoggedIn()){
                 $allProd[$i]["isFavourite"] = 
@@ -164,14 +163,14 @@
      * @return boolean True if in db or cookie $idProd is present
      */
     function isProdFavourite($dbh,$idProd){
+        var_dump(isset($_COOKIE['favs']));
         if(isCustomerLoggedIn()){
             return $dbh -> isFavourite($_SESSION['userId'],$idProd);
         }
-        else if(!isCustomerLoggedIn() && isset($_COOKIE['favs'])){
+        else if(isset($_COOKIE['favs'])){
             $favs = json_decode(stripslashes($_COOKIE['favs']), true);
-
             return in_array(strval($idProd), $favs);
         }
-        else false;
+        else return false;
     }
 ?>
