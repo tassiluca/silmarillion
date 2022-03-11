@@ -14,20 +14,47 @@
         if(isCustomerLoggedIn()){
             handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$idprod);
         }
-        else if(isset($_COOKIE['favs'])){ //case where cookie ha been already setted--> append new infos
-            $favs = json_decode(stripslashes($_COOKIE['favs']), true);
-            if(!in_array($idprod, $favs)){
-                array_push($favs,$idprod);
-            }
-            else if(in_array($idprod, $favs)){
-                
-            }
-            setcookie('favs', json_encode($favs), time()+3600,"/");
+        else {
+            handleUsingCookieRequest($dbh,$action,$idprod);
         }
-        else if(!isset($_COOKIE['favs'])){ //first time we save cart and favourite costumer data in cookie
-            $favs = array($idprod);
-            var_dump("First setup cookie");
-            setcookie('favs', json_encode($favs), time()+3600,"/");
+    }
+
+    function handleUsingCookieRequest($dbh,$action,$idprod){
+        if(!strcmp($action,'wish')){
+            //cookie favourite is already setted
+            if(isset($_COOKIE['favs'])){ 
+                $favs = json_decode(stripslashes($_COOKIE['favs']), true);
+
+                if(!in_array($idprod, $favs)){
+                    //add product to favourite list
+                    array_push($favs,$idprod);
+                }
+                else if(in_array($idprod, $favs)){
+                    //removed product from favourite list
+                    unset($favs[array_search(strval($idprod), $favs)]);
+                }
+                setcookie('favs', json_encode($favs), time()+3600,"/");
+
+            }//first time we save cart and favourite costumer data in cookie
+            else if(!isset($_COOKIE['favs'])){ 
+                $favs = array($idprod);
+                setcookie('favs', json_encode($favs), time()+3600,"/");
+            }
+        }
+        else if(!strcmp($action,'addtoCart')){
+            $dbh -> addProductToCart($idCustomer,$idprod,1);
+        }
+        else if(!strcmp($action,'decToCart')){
+            //decrement quantity of product in cart
+            $dbh -> decrementProductToCart($idCustomer,$idprod,1);
+        }
+        else if(!strcmp($action,'delFromCart')){
+            //completely remove product from cart in db
+            $dbh -> deleteProductFromCart($idCustomer,$idprod,1);
+        }
+        else if(!strcmp($action,'notify')){
+            //echo 'notify me id'. $idprod;
+            $dbh -> addProductAlert($idCustomer,$idprod);
         }
     }
 
@@ -41,6 +68,8 @@
     */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
+            //TODO: If prod already in favourites -> remove it else add it
+            
             $dbh -> addProductToWish($idCustomer,$idprod);
         }
         else if(!strcmp($action,'addtoCart')){
@@ -59,7 +88,6 @@
             $dbh -> addProductAlert($idCustomer,$idprod);
         }
     }
-    
     
    header("Location: $lastPage"); //redirect to lastpage where action was sent
 ?>
