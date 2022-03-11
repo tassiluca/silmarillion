@@ -19,12 +19,12 @@
             if(!in_array($idprod, $favs)){
                 array_push($favs,$idprod);
             }
-            setcookie('favs', json_encode($favs), time()+3600);
+            setcookie('favs', json_encode($favs), time()+3600,"/");
         }
         else if(!isset($_COOKIE['favs'])){ //first time we save cart and favourite costumer data in cookie
             $favs = array($idprod);
             var_dump("First setup cookie");
-            setcookie('favs', json_encode($favs), time()+3600);
+            setcookie('favs', json_encode($favs), time()+3600,"/");
         }
     }
 
