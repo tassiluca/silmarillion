@@ -12,7 +12,7 @@
             </aside><section>
                 <header>
                     <ul id="productInfo">
-                        <?php $favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";?>
+                        <?php $favImg = isProdFavourite($dbh,$templateParams["product"]['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";?>
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>"><?php if($templateParams["copies"] > 0){echo $templateParams["copies"] ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="/utils/process-request.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="<?php echo $favImg?>" alt="Preferito" /></a></li><li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
