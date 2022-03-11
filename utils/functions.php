@@ -163,11 +163,10 @@
      * @return boolean True if in db or cookie $idProd is present
      */
     function isProdFavourite($dbh,$idProd){
-        var_dump(isset($_COOKIE['favs']));
         if(isCustomerLoggedIn()){
             return $dbh -> isFavourite($_SESSION['userId'],$idProd);
         }
-        else if(isset($_COOKIE['favs'])){
+        else if(!isCustomerLoggedIn() && isset($_COOKIE['favs'])){
             $favs = json_decode(stripslashes($_COOKIE['favs']), true);
             return in_array(strval($idProd), $favs);
         }
