@@ -541,7 +541,20 @@
             $stmt->execute();
             return $stmt->get_result()->num_rows > 0;
         }
-
+        //------------------------FAVOURITE/WISHLIST---------------------//
+        /**
+         * Get all customer's favourite products
+         * @param int $usrId unique id of consumer user
+         * @return array Associative array with all product-id of prods favourite to customer
+         */
+        public function getCustomerWishlist($usrId){
+            $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $usrId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
         /**
          * Add $idprod product to the $usrId personal wish/favourite list
          * @param int $usrId unique id of consumer user
