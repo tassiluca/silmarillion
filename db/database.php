@@ -568,6 +568,15 @@
             $stmt->execute();
             return $stmt->insert_id;
         }
+        public function removeProductToWish($usrId,$idprod){
+            $query = "DELETE FROM `Favourites` WHERE `UserId` = ? and `ProductId`= ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $usrId,$idprod);
+            $stmt->execute();
+            return $stmt->insert_id;
+        }
+
+        //---------------------ALERT-PRODUCT-------------------//
         public function addProductAlert($usrId,$idprod){
             $query = "INSERT INTO `Alerts`(`UserId`, `ProductId`) 
                         VALUES (?,?)";
