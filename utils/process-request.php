@@ -26,11 +26,9 @@
                 $favs = json_decode(stripslashes($_COOKIE['favs']), true);
 
                 if(!in_array($idprod, $favs)){
-                    //add product to favourite list
                     array_push($favs,$idprod);
                 }
                 else if(in_array($idprod, $favs)){
-                    //removed product from favourite list
                     unset($favs[array_search(strval($idprod), $favs)]);
                 }
                 setcookie('favs', json_encode($favs), time()+3600,"/");
@@ -40,7 +38,10 @@
                 $favs = array($idprod);
                 setcookie('favs', json_encode($favs), time()+3600,"/");
             }
-        }
+
+
+
+        }//--VVVVVVVV--NO ROBA MIA----VVVVVVVVVVV
         else if(!strcmp($action,'addtoCart')){
             $dbh -> addProductToCart($idCustomer,$idprod,1);
         }
@@ -68,10 +69,17 @@
     */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
-            //TODO: If prod already in favourites -> remove it else add it
-            
-            $dbh -> addProductToWish($idCustomer,$idprod);
-        }
+            $isFav = $dbh -> isFavourite($_SESSION['userId'],$idProd);
+            if($isFav){
+                $dbh -> addProductToWish($idCustomer,$idprod);
+            }
+            else{
+                //TODO that method
+                $dbh -> removeProductToWish($idCustomer,$idprod);
+            }
+
+
+        }//--VVVVVVVV--NO ROBA MIA----VVVVVVVVVVV
         else if(!strcmp($action,'addtoCart')){
             $dbh -> addProductToCart($idCustomer,$idprod,1);
         }
@@ -89,5 +97,5 @@
         }
     }
     
-   header("Location: $lastPage"); //redirect to lastpage where action was sent
+   //header("Location: $lastPage"); //redirect to lastpage where action was sent
 ?>
