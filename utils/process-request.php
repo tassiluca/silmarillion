@@ -19,6 +19,9 @@
             if(!in_array($idprod, $favs)){
                 array_push($favs,$idprod);
             }
+            else if(in_array($idprod, $favs)){
+                
+            }
             setcookie('favs', json_encode($favs), time()+3600,"/");
         }
         else if(!isset($_COOKIE['favs'])){ //first time we save cart and favourite costumer data in cookie
@@ -28,6 +31,14 @@
         }
     }
 
+    /**
+     * Handle request about a product from a Customer that is logged-in, all action have effect on user's data on db
+     * @param DatabaseHelper $dbh
+     * @param string $action What to do with the product 
+     * @param int $idCustomer Unique customer id 
+     * @param int $idprod Unique product id
+     * @return boolean If action not executed for any reason return false
+    */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
             $dbh -> addProductToWish($idCustomer,$idprod);
