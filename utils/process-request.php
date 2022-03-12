@@ -19,6 +19,14 @@
         }
     }
 
+    /**
+     * Handle request about a product from a Customer that is NOT logged-in, all action have effect on user's data on db
+     * @param DatabaseHelper $dbh
+     * @param string $action What to do with the product 
+     * @param int $idCustomer Unique customer id 
+     * @param int $idprod Unique product id
+     * TODO @return boolean If action not executed for any reason return false
+    */
     function handleUsingCookieRequest($dbh,$action,$idprod){
         if(!strcmp($action,'wish')){
             //cookie favourite is already setted
@@ -69,12 +77,13 @@
     */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
-            $isFav = $dbh -> isFavourite($_SESSION['userId'],$idprod);
-            if(!$isFav){
-                $dbh -> addProductToWish($idCustomer,$idprod);
+            //$isFav = $dbh -> isFavourite($_SESSION['userId'],$idprod);
+            $isFav = $dbh -> addProductToWish($idCustomer,$idprod);
+            if($isFav == -1){
+                return $dbh -> removeProductToWish($idCustomer,$idprod);
             }
             else{
-                $dbh -> removeProductToWish($idCustomer,$idprod);
+                return $dbh -> addProductToWish($idCustomer,$idprod);
             }
 
 
