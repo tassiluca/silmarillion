@@ -49,8 +49,7 @@
                         <article class="fade">
                             <?php 
                                 $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId']);
-                                //$favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";
-                                var_dump(isProdFavourite($dbh,$product['ProductId']));
+                                $favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";
                             ?>
 
                             <div> <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="<?php echo PRODUCTS_DIR.$product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>

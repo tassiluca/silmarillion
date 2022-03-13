@@ -141,6 +141,7 @@
                 if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
                     return -1;
                 }
+                
             }
             return $stmt->insert_id;
         }
@@ -575,7 +576,20 @@
             $stmt->execute();
             return $stmt->get_result()->num_rows > 0;
         }
-
+        //------------------------FAVOURITE/WISHLIST---------------------//
+        /**
+         * Get all customer's favourite products
+         * @param int $usrId unique id of consumer user
+         * @return array Associative array with all product-id of prods favourite to customer
+         */
+        public function getCustomerWishlist($usrId){
+            $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $usrId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
         /**
          * Add $idprod product to the $usrId personal wish/favourite list
          * @param int $usrId unique id of consumer user
@@ -586,9 +600,25 @@
                         VALUES (?,?)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('ii', $usrId,$idprod);
+            try{
+                $stmt->execute();
+            }
+            catch(Exception $e){
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return -1;
+                }
+            }
+            return $stmt->insert_id;
+        }
+        public function removeProductToWish($usrId,$idprod){
+            $query = "DELETE FROM `Favourites` WHERE `UserId` = ? and `ProductId`= ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $usrId,$idprod);
             $stmt->execute();
             return $stmt->insert_id;
         }
+
+        //---------------------ALERT-PRODUCT-------------------//
         public function addProductAlert($usrId,$idprod){
             $query = "INSERT INTO `Alerts`(`UserId`, `ProductId`) 
                         VALUES (?,?)";
@@ -728,9 +758,9 @@
             return $isFav;
         }
 
-        //------------------APPLY FILTERS CATALOG---------------------------------//
+        //------------------APPLY FILTERS CATALOG---------------------------------/
 
-        private function bindAndExecuteQuery($varTypes,$varArray,$query){
+        private function bindAndExecuteQueryShit($varTypes,$varArray,$query){
             $a_params[] = & $varTypes;
             $n = count($varArray);
             for($i = 0; $i < $n; $i++) {
