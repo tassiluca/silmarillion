@@ -716,6 +716,18 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+
+        public function isFavourite($usrId,$prodId){
+            $query = "SELECT count(*) as 'Count' 
+            FROM `Favourites` WHERE `UserId` = ? and `ProductId` = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $usrId,$prodId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $isFav = $result->fetch_assoc()['Count'] > 0 ? true : false;
+            return $isFav;
+        }
+
         //------------------APPLY FILTERS CATALOG---------------------------------//
 
         private function bindAndExecuteQuery($varTypes,$varArray,$query){
@@ -758,7 +770,7 @@
         }
 
         /**
-         * WARNING: be carefull using that method, for now there are NO CHECK on $query
+         * 
          * @param string SQL query to be executed on db
          * @return array associative array with all funkos that match query
          */

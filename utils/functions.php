@@ -130,5 +130,47 @@
         }
         return array($result, $msg);
     }
+    /**
+     * Append isFavourite param to associative array of products/comics/funko,
+     * if customer is logged-in and has product in favourite list return true then false,
+     * if customer is not logged are used cookiess
+     * @param $prods associative array where add to each element favourite flag
+     * @param $dbh Database hepler, in order to call mehtod that check each product
+     * @return array Associative array like the input one $prods but each element has boolean value 
+     * to know if is a favourite product
+     */
+    function addIsFavouriteInfo($prods,$dbh){
+        $allProd = $prods;
+        for($i=0; $i < count($prods);$i++){
+            //TODO
+            //$allProd[$i]["isFavourite"] = metodoCheritorna true/false e fa la stessa roba che fa il codice qui sotto;
+            /*if(isCustomerLoggedIn()){
+                $allProd[$i]["isFavourite"] = 
+            }
+            else if(isset($_COOKIE[''])){
 
+                //$allProd[$i]["isFavourite"] = $_COOKIE[];
+            }*/
+        }
+        return $allProd;
+    }
+
+    /**
+     * That method tell you if product is a customer's favourite one, it is considered both cases:
+     * Customer is logged and customer isn't logged but cookie are setted
+     * @param DatabaseHelper $dbh Database helper object to check on db if customer is logged
+     * @param int $idProd Porduct id to be checked if in customer's favourites
+     * @return boolean True if in db or cookie $idProd is present
+     */
+    function isProdFavourite($dbh,$idProd){
+        if(isCustomerLoggedIn()){
+            return $dbh -> isFavourite($_SESSION['userId'],$idProd);
+        }
+        else if(!isCustomerLoggedIn() && isset($_COOKIE['favs'])){
+            $favs = json_decode(stripslashes($_COOKIE['favs']), true);
+
+            return in_array(strval($idProd), $favs);
+        }
+        else false;
+    }
 ?>

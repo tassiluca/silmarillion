@@ -47,16 +47,20 @@
                 <!--here insert other article to be scrolled-->
                     <?php foreach($templateParams[$section] as $product):?>
                         <article class="fade">
-                            <?php $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId']);?>
+                            <?php 
+                                $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId']);
+                                //$favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";
+                                var_dump(isProdFavourite($dbh,$product['ProductId']));
+                            ?>
 
                             <div> <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="<?php echo PRODUCTS_DIR.$product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
                             <header><a href="article.php?id=<?php echo $product['ProductId']?>"><h3><?php echo $product["Title"]?></h3></a></header>
                             <footer>
                                 <div>
-                                    <a href="gestisci-richieste.php?action=wish&id=<?php echo $product['ProductId']?>"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a>
+                                    <a href="utils/process-request.php?action=wish&id=<?php echo $product['ProductId']?>"><img src="<?php echo $favImg?>" alt="Aggiungi ai preferiti"/></a>
                                 </div>
                                 <div>
-                                    <a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="gestisci-richieste.php?action=addtoCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="aggiungi al carrello"/></a>
+                                    <a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="utils/process-request.php?action=addtoCart&id=<?php echo $product['ProductId']?>"><img src="./img/add.svg" alt="aggiungi al carrello"/></a>
                                 </div>
                                 <div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
                             </footer>

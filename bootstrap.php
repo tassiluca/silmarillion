@@ -7,7 +7,6 @@
 
     session_start();
 
-    define("UPLOAD_DIR_NEWS", "./upload/news/");
     /**
      * The directory in which store the products images.
      */
@@ -32,4 +31,5 @@
     define("PRODUCTS_DIR", UPLOAD_DIR."/products/");
     define("PUBLISHER_DIR", UPLOAD_DIR."/publishers/");
     define("BANNER_DIR", UPLOAD_DIR."/banner/");
+    define("UPLOAD_DIR_NEWS", UPLOAD_DIR."/news/");
 ?>

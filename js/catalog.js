@@ -136,16 +136,17 @@ $(document).ready(function(){
         else{
             var start = idxPage * NUM_PROD_PAGE;
             var end = (idxPage * NUM_PROD_PAGE ) + NUM_PROD_PAGE;
-        //TODO CHANGE COLOR OF ICON FAVOURITE IF NOT CHECKED AS FAVOURITE FROM USER
+        
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
+                var favImg = prods[i].isFavourite ? "./img/favourite.svg" : "./img/un-favourite.svg";
                 
                 prodListHTML += '<article><div><a href="article.php?id='+prods[i].ProductId+'"><img src="'+prodsDir+prods[i].CoverImg+
                                 '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?id='+ prods[i].ProductId +
-                                '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="gestisci-richieste.php?action=wish&id='+
-                                prods[i].ProductId+'"><img src="./img/favourite.svg" alt="Aggiungi ai preferiti"/></a></div>'+
-                                '<div><a '+ disabled + ' href="gestisci-richieste.php?action=addtoCart&id='+prods[i].ProductId+
+                                '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="utils/process-request.php?action=wish&id='+
+                                prods[i].ProductId+'"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
+                                '<div><a '+ disabled + ' href="utils/process-request.php?action=addtoCart&id='+prods[i].ProductId+
                                 '"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
         }
