@@ -4,11 +4,6 @@ $(document).ready(function () {
     $("main > section:first-child > img.banner").hide();
     $("main > section:first-child > img.banner:first-child").show();
 
-    if(getCookie("favs") == ""){
-        empty = [];
-        setCookie("favs", JSON.stringify(empty), 30);
-    }
-
     updateAll(0);
     showSlide(infoidx);
     
@@ -26,22 +21,6 @@ $(document).ready(function () {
         showSlide(infoidx);
         setTimeout(autoSlide, 5000);
     }
-
-    //Favourite button
-    $('main > section > div > article > footer > div:first-child > a').click(function (e) { 
-        e.preventDefault();
-        urlRequest = $(this).attr("href");
-        var prodId = parseInt(getUrlParameter("id",urlRequest));
-        updateWishlist(prodId);
-        //TODO: check if logged, if not use cookies
-        //if customer is logged --> ajax request --> server apply to db --> return status of operation to client javascript
-    });
-
-    //add to cart button
-    $('main > section > div > article > footer > div:nth-child(2) > a').click(function (e) { 
-        e.preventDefault();
-        console.log('cart');
-    });
 
 });
 
