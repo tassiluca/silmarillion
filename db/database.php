@@ -29,6 +29,7 @@
                 // | foreach(array_keys($parameters) as $type) {
                 // |    $types .= $type;
                 // |}
+                $types = getSqlStringType($parameters);
                 $values = array_values($parameters);
                 $stmt->bind_param($types, ...$values);
             }
@@ -37,6 +38,29 @@
             return $stmt;
         }
 
+        /**
+         * Get correct string containing a sequence of char thats rappresent parameters types to be binded
+         * @param Array $parameters array of alla parameters to be binded in query sql
+         * @return string Sequence of types of passed params $parameters
+         */
+        function getSqlStringType($parameters){
+            $sequenceTypes = '';
+            foreach(array_keys($parameters) as $param) {
+                if(is_int($param)){
+                    $sequenceTypes .= 'i';
+                }
+                else if(is_double($param)){
+                    $sequenceTypes .= 'd';
+                }
+                else if(is_string($param)){
+                    $sequenceTypes .= 's';
+                }
+                else {
+                    $sequenceTypes .= 'b';
+                }
+            }
+            return  $sequenceTypes;
+        }
         /**********************************************************************************
          * Users management functions
          **********************************************************************************/
