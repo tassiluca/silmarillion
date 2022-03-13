@@ -11,6 +11,32 @@
             }
         }
 
+        /**
+         * A common function to prepare, bind and execute a query.
+         *
+         * @param string $query the query to be executed
+         * @param array $parameters an associative array like [valueType => value].
+         * An example: ['i' => 10, 's' => 'Hello World', ...]
+         * @return PDOStatement the statement in order to do other staff like `get_results` and so on...
+         * @throws PDOException if an error occurs in the `prepare` or `execute` methods.
+         */
+        private function executeQuery($query, $parameters) {
+            $stmt = $this->db->prepare($query);
+            // bind the parameters in the query if necessary
+            if (!empty($parameters)){
+                // [TOOD] here call the magical Teo's function to determine the parameters string of types!
+                // | $types = '';
+                // | foreach(array_keys($parameters) as $type) {
+                // |    $types .= $type;
+                // |}
+                $values = array_values($parameters);
+                $stmt->bind_param($types, ...$values);
+            }
+            // execute the query
+            $stmt->execute();
+            return $stmt;
+        }
+
         /**********************************************************************************
          * Users management functions
          **********************************************************************************/
