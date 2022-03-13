@@ -24,11 +24,6 @@
             $stmt = $this->db->prepare($query);
             // bind the parameters in the query if necessary
             if (!empty($parameters)){
-                // [TOOD] here call the magical Teo's function to determine the parameters string of types!
-                // | $types = '';
-                // | foreach(array_keys($parameters) as $type) {
-                // |    $types .= $type;
-                // |}
                 $types = getSqlStringType($parameters);
                 $values = array_values($parameters);
                 $stmt->bind_param($types, ...$values);
