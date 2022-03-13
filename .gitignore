@@ -4,5 +4,5 @@
 /upload/publishers/*
 /upload/products/*
 /vendor/*
-
+composer.phar
 !.gitkeep
