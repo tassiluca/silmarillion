@@ -64,17 +64,16 @@
     }
     
     function validateInput($rules, $data) {
-        $res['errors'] = false;
         foreach($data as $rule => $attributes) {
             foreach($attributes as $attr) {
                 try {
                     $rules[$rule]->assert($attr);
                 } catch (NestedValidationException $exc) {
-                    return false;
+                    return array(false, implode(", ", $exc->getMessages()));
                 }
             }
         }
-        return true;
+        return array(true, '');
     }
     
     /**

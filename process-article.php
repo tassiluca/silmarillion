@@ -49,6 +49,7 @@
             'price' => [$data['price']],
             'discountedPrice' => [$data['discountedPrice']]
         );
+
         if (isFunkoProcessing()) {
             array_push($dataDic['compulsory'], $data['funkoName']);
         } else if (isComicProcessing()) {
@@ -57,8 +58,10 @@
             $dataDic['isbn'] = [$data['isbn']];
         }
 
-        $tmp = validateInput($rules, $dataDic);
-        $tmp = $tmp && validateCategory($data) && validatePublisher($data) && validateDiscountedPrice($data);
+        list($tmp, $msg) = validateInput($rules, $dataDic);
+        $tmp = $tmp && validateCategory($data) && 
+               (isFunkoProcessing() ? true : validatePublisher($data)) && 
+               validateDiscountedPrice($data);
         redirect("ERRORE INSERIMENTO DATI", !$tmp);
     }
 
