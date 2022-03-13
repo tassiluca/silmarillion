@@ -1,6 +1,10 @@
-function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
+function getUrlParameter(sParam,url) {
+
+    var sPageURL = window.location.search.substring(1);
+    if(url !== undefined){
+        sPageURL = url;
+    }
+    var sURLVariables = sPageURL.split('&'),
         sParameterName,
         i;
 
@@ -42,10 +46,10 @@ function updateWishlist(idProd){
     curWishlist =JSON.parse(strCookie); //lo converto in oggetto javascript
 
     if(curWishlist.includes(idProd)){
-    curWishlist.splice(curWishlist.indexOf(idProd));
+        curWishlist.splice(curWishlist.indexOf(idProd),1);
     }
     else{
-    curWishlist.push(idProd);
+        curWishlist.push(idProd);
     }
 
     var json_str = JSON.stringify(curWishlist);
