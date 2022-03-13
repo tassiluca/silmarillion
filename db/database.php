@@ -726,7 +726,7 @@
 
         //------------------APPLY FILTERS CATALOG---------------------------------/
 
-        private function bindAndExecuteQueryShit($varTypes,$varArray,$query){
+        private function bindAndExecuteQuery($varTypes,$varArray,$query){
             $a_params[] = & $varTypes;
             $n = count($varArray);
             for($i = 0; $i < $n; $i++) {
