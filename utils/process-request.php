@@ -77,13 +77,13 @@
     */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
-            //$isFav = $dbh -> isFavourite($_SESSION['userId'],$idprod);
-            $isFav = $dbh -> addProductToWish($idCustomer,$idprod);
-            if($isFav == -1){
-                return $dbh -> removeProductToWish($idCustomer,$idprod);
+            $isFav = $dbh -> isFavourite($_SESSION['userId'],$idprod);
+            
+            if(!$isFav){
+                return $dbh -> addProductToWish($idCustomer,$idprod);
             }
             else{
-                return $dbh -> addProductToWish($idCustomer,$idprod);
+                return $dbh -> removeProductToWish($idCustomer,$idprod);
             }
 
 
