@@ -30,10 +30,9 @@ $(document).ready(function () {
     //Favourite button
     $('main > section > div > article > footer > div:first-child > a').click(function (e) { 
         e.preventDefault();
-        console.log('wish');
         urlRequest = $(this).attr("href");
-        //utils/process-request.php?action=wish&id=6
-        updateWishlist();
+        var prodId = parseInt(getUrlParameter("id",urlRequest));
+        updateWishlist(prodId);
         //TODO: check if logged, if not use cookies
         //if customer is logged --> ajax request --> server apply to db --> return status of operation to client javascript
     });
