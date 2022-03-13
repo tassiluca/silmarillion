@@ -4,7 +4,7 @@ $(document).ready(function () {
         setCookie("favs", JSON.stringify(empty), 30);
     }
     //Favourite button
-    $('main > section > div > article > footer > div:first-child > a').click(function (e) { 
+    $('article > footer > div:first-child > a').click(function (e) { 
         e.preventDefault();
         urlRequest = $(this).attr("href");
         var prodId = parseInt(getUrlParameter("id",urlRequest));
@@ -14,7 +14,7 @@ $(document).ready(function () {
     });
 
     //add to cart button
-    $('main > section > div > article > footer > div:nth-child(2) > a').click(function (e) { 
+    $('article > footer > div:nth-child(2) > a').click(function (e) { 
         e.preventDefault();
         console.log('cart');
     });
