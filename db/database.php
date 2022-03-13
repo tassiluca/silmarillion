@@ -141,6 +141,7 @@
                 if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
                     return -1;
                 }
+                
             }
             return $stmt->insert_id;
         }
@@ -565,7 +566,14 @@
                         VALUES (?,?)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('ii', $usrId,$idprod);
-            $stmt->execute();
+            try{
+                $stmt->execute();
+            }
+            catch(Exception $e){
+                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
+                    return -1;
+                }
+            }
             return $stmt->insert_id;
         }
         public function removeProductToWish($usrId,$idprod){
@@ -716,9 +724,9 @@
             return $isFav;
         }
 
-        //------------------APPLY FILTERS CATALOG---------------------------------//
+        //------------------APPLY FILTERS CATALOG---------------------------------/
 
-        private function bindAndExecuteQuery($varTypes,$varArray,$query){
+        private function bindAndExecuteQueryShit($varTypes,$varArray,$query){
             $a_params[] = & $varTypes;
             $n = count($varArray);
             for($i = 0; $i < $n; $i++) {
