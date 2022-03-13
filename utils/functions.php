@@ -2,6 +2,7 @@
 
     use Respect\Validation\Exceptions\NestedValidationException;
 
+    define("MYSQLI_CODE_DUPLICATE_KEY", 1062);
     define("MAX_LOGIN_ATTEMPTS", 5);
 
     /**

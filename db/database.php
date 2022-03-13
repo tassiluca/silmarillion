@@ -2,7 +2,6 @@
 
     class DatabaseHelper {
         private $db;
-        private $MYSQLI_CODE_DUPLICATE_KEY = 1062;
 
         public function __construct($servername, $username, $password, $dbname, $port) {
             $this->db = new mysqli($servername, $username, $password, $dbname, $port);
@@ -12,35 +11,13 @@
         }
 
         /**
-         * A common function to prepare, bind and execute a query.
-         *
-         * @param string $query the query to be executed
-         * @param array $parameters an associative array like [valueType => value].
-         * An example: ['i' => 10, 's' => 'Hello World', ...]
-         * @return PDOStatement the statement in order to do other staff like `get_results` and so on...
-         * @throws PDOException if an error occurs in the `prepare` or `execute` methods.
-         */
-        private function executeQuery($query, $parameters) {
-            $stmt = $this->db->prepare($query);
-            // bind the parameters in the query if necessary
-            if (!empty($parameters)){
-                $types = getSqlStringType($parameters);
-                $values = array_values($parameters);
-                $stmt->bind_param($types, ...$values);
-            }
-            // execute the query
-            $stmt->execute();
-            return $stmt;
-        }
-
-        /**
          * Get correct string containing a sequence of char thats rappresent parameters types to be binded
          * @param Array $parameters array of alla parameters to be binded in query sql
          * @return string Sequence of types of passed params $parameters
          */
         function getSqlStringType($parameters){
             $sequenceTypes = '';
-            foreach(array_keys($parameters) as $param) {
+            foreach(array_values($parameters) as $param) {
                 if(is_int($param)){
                     $sequenceTypes .= 'i';
                 }
@@ -54,8 +31,30 @@
                     $sequenceTypes .= 'b';
                 }
             }
-            return  $sequenceTypes;
+            return $sequenceTypes;
         }
+
+        /**
+         * A common function to prepare, bind and execute a query.
+         *
+         * @param string $query the query to be executed
+         * @param array $parameters an associative array like [valueType => value].
+         * An example: ['i' => 10, 's' => 'Hello World', ...]
+         * @return PDOStatement the statement in order to do other staff like `get_results` and so on...
+         */
+        private function executeQuery($query, $parameters = []) {
+            $stmt = $this->db->prepare($query);
+            // bind the parameters in the query if necessary
+            if (!empty($parameters)){
+                $types = $this->getSqlStringType($parameters);
+                $values = array_values($parameters);
+                $stmt->bind_param($types, ...$values);
+            }
+            // execute the query
+            $stmt->execute();
+            return $stmt;
+        }
+
         /**********************************************************************************
          * Users management functions
          **********************************************************************************/
@@ -70,11 +69,9 @@
                       WHERE C.UserId = U.UserId
                       AND U.Username = ?
                       AND U.IsActive = 1";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [$username])
+                        ->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -88,11 +85,9 @@
                       WHERE C.UserId = U.UserId
                       AND U.Mail = ?
                       AND U.IsActive = 1";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $mail);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [$mail])
+                        ->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -100,15 +95,12 @@
          * @param int $userId the user id
          * @param string $password the new password
          * @param string $salt the new salt
-         * @return bool true on success or false on failure.
          */
         public function resetUserPassword($userId, $password, $salt) {
             $query = "UPDATE Users
                       SET Password = ?, Salt = ?
                       WHERE UserId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ssi', $password, $salt, $userId);
-            return $stmt->execute();
+            $this->executeQuery($query, [$password, $salt, $userId]);
         }
 
         /**
@@ -122,11 +114,9 @@
                       WHERE S.UserId = U.UserId
                       AND U.Username = ?
                       AND U.IsActive = 1";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [$username])
+                        ->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -142,24 +132,20 @@
                       FROM LoginAttempts 
                       WHERE UserId = ?
                       AND TimeLog > '$validAttempts'";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $userId);
-            $stmt->execute();
-            return $stmt->get_result()->num_rows;
+            return $this->executeQuery($query, [$userId])
+                        ->get_result()
+                        ->num_rows;
         }
 
         /**
          * Insert into table `LoginAttempts` a new failed login attempt.
          * @param int $userId the user id
          * @param int $time timestamp of attempt
-         * @return bool true on success or false on failure.
          */
         public function registerNewLoginAttempt($userId, $time) {
             $query = "INSERT INTO LoginAttempts(UserId, TimeLog)
                       VALUES(?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $userId, $time);
-            return $stmt->execute();
+            $this->executeQuery($query, [$userId, $time]);
         }
 
         /**
@@ -171,27 +157,23 @@
          * @param string $surname the user surname
          * @param string $birthday the birth date 
          * @param string $mail the e-mail
-         * @return int the UserId associated with the just inserted user or -1 if a user
-         * with given `username` already exists in db.
+         * @return array in the first position a `boolean` to describe if occurred some errors, in the second
+         * the inserted user id if no errors occurred, the error code otherwise.
          */
         private function addUser($username, $password, $salt, $name, $surname, $birthday, $mail) {
             $query = "INSERT INTO Users(Username, Password, Salt, Name, Surname, DateBirth, Mail, IsActive)
                       VALUES(?, ?, ?, ?, ?, ?, ?, 1)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sssssss', $username, $password, $salt, $name, $surname, $birthday, $mail);
-            try {
-                $stmt->execute();
-            } catch(Exception $e) {
-                // if a user with given username already exists in db
-                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
-                    return -1;
-                }
+            $stmt = $this->executeQuery($query, [$username, $password, $salt, $name, $surname, $birthday, $mail]);
+            if ($stmt->errno != 0) {
+                return array(false, $stmt->errno);
             }
-            return $stmt->insert_id;
+            return array(true, $stmt->insert_id);
         }
 
         /**
          * Insert into table `Customers` a new customer user. 
+         * [NOTE] An error occured during the insertion of a new customer determine no insert into the 
+         * `Customers` table BUT the corresponding user have been already inserted!
          * @param string $username the username
          * @param string $password the password
          * @param string $salt the salt
@@ -199,20 +181,16 @@
          * @param string $surname the customer surname
          * @param string $birthday the birth date
          * @param string $mail the e-mail
-         * @return Array the success element a `boolean` to describe success or failure,
-         * the second a `boolean` to describe if there was duplicateKey error.
+         * @return int describing the error occurred or 0 if no error occurred.
          */
         public function addCustomer($username, $password, $salt, $name, $surname, $birthday, $mail) {
-            // `res` contains the UserId associated with the just inserted user or -1 if there was an error.
-            $res = $this->addUser($username, $password, $salt, $name, $surname, $birthday, $mail);
-            if ($res != -1) {
+            list($res, $msg) = $this->addUser($username, $password, $salt, $name, $surname, $birthday, $mail);
+            if ($res === true) {
                 $query = "INSERT INTO Customers(UserId)
                           VALUES(?)";
-                $stmt = $this->db->prepare($query);
-                $stmt->bind_param('i', $res);
-                return array('success' => $stmt->execute(), 'duplicateKey' => false);
+                return $this->executeQuery($query, [$msg])->errno;
             } else {
-                return array('success' => false, 'duplicateKey' => true);
+                return $msg;
             }
         }
 
@@ -225,10 +203,7 @@
             $query = "SELECT Customers.UserId
                       FROM Customers
                       WHERE UserId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $userId);
-            $stmt->execute();
-            return $stmt->get_result()->num_rows > 0;
+            return $this->executeQuery($query, [$userId])->get_result()->num_rows > 0;
         }
 
         /**********************************************************************************
@@ -236,10 +211,9 @@
          **********************************************************************************/
 
         /**
-         * Get product info.
-         * 
+         * Get product info, regardless if the product is a funko or comic.
          * @param integer $productId the product id
-         * @return array ...
+         * @return array an associative array with all data.
          */
         public function getProduct(int $productId) {
             if ($this->isFunko($productId)) {
@@ -251,9 +225,8 @@
 
         /**
          * Insert a new product.
-         *
-         * @param string $price the price of the product
-         * @param string $discountedPrice the discounted price of the product
+         * @param double $price the price of the product
+         * @param double $discountedPrice the discounted price of the product
          * @param string $desc the product description
          * @param string $img the product image
          * @param string $category the product category
@@ -262,36 +235,34 @@
         private function addProduct($price, $discountedPrice, $desc, $img, $category) {
             $query = "INSERT INTO Products(Price, DiscountedPrice, Description, CoverImg, CategoryName)
                       VALUES(?, ?, ?, ?, ?)";
-            $stmt = $this->db->prepare($query);
             $discountedPrice = empty($discountedPrice) ? NULL : $discountedPrice;
-            $stmt->bind_param('iisss', $price, $discountedPrice, $desc, $img, $category);
-            $stmt->execute();
-            return $stmt->insert_id;
+            return $this->executeQuery($query, [$price, $discountedPrice, $desc, $img, $category])
+                        ->insert_id;
         }
 
         /**
          * Insert a new funko.
-         *
+         * [NOTE] An error occured during the insertion of a new funko determine no insert into the 
+         * `Funkos` table BUT the corresponding product have been already inserted.
          * @param string $name the funko name
          * @param string $price the funko price
          * @param string $discountedPrice the funko discounted price
          * @param string $desc the funko description
          * @param string $img the funko image
          * @param string $category the funko category
-         * @return bool true on success or false on failure.
+         * @return int describing the error occurred or 0 if no error occurred.
          */
         public function addFunko($name, $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Funkos(ProductId, Name)
                       VALUES(?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('is', $productId, $name);
-            return $stmt->execute();
+            return $this->executeQuery($query, [$productId, $name])->errno;
         }
 
         /**
          * Insert a new comic.
-         *
+         * [NOTE] An error occured during the insertion of a new comic determine no insert into the 
+         * `Funkos` table BUT the corresponding product have been already inserted.
          * @param string $title the comic title
          * @param string $author the comic author
          * @param string $lang the comic lang
@@ -303,138 +274,120 @@
          * @param string $desc the comic description
          * @param string $img the comic image
          * @param string $category the comic category
-         * @return bool true on success or false on failure.
+         * @return int describing the error occurred or 0 if no error occurred.
          */
         public function addComic($title, $author, $lang, $date, $isbn, $publisherId, 
                                  $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Comics(Title, Author, Lang, PublishDate, ISBN, ProductId, PublisherId)
                       VALUES(?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $productId, $publisherId);
-            try {
-                $stmt->execute();
-            } catch(Exception $e) {
-                return false;
-            }
-            return true;
+            return $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId])
+                        ->errno;
         }
 
+        /**
+         * Update the product infos.
+         * @param int $productId the product id to be modified
+         * @param double $price the new price
+         * @param double $discountedPrice the new discounted price
+         * @param string $desc the new description
+         * @param string $category the new category name
+         * @return int describing the error occurred or 0 if no error occurred.
+         */
         private function updateProduct($productId, $price, $discountedPrice, $desc, $category) {
             $query = "UPDATE Products 
                       SET Price = ?, DiscountedPrice = ?, Description = ?, CategoryName = ?
                       WHERE ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ssssi', $price, $discountedPrice, $desc, $category, $productId);
-            try {
-                $stmt->execute();
-            } catch(Exception $e) {
-                return false;
-            }
-            return true;
+            return $this->executeQuery($query, [$price, $discountedPrice, $desc, $category, $productId])
+                        ->errno;
         }
 
+        /**
+         * Update the comic infos.
+         * @param int $productId the product id to be modified
+         * @param string $title the new title
+         * @param string $author the new author
+         * @param string $lang the new lang
+         * @param string $date the new publishing date
+         * @param string $isbn the new ISBN
+         * @param int $publisherId the new publisher id
+         * @param double $price the new price
+         * @param double $discountedPrice the new discounted price
+         * @param string $desc the new description
+         * @param string $category the new category name
+         * @return int describing the error occurred or 0 if no error occurred.
+         */
         public function updateComic($productId, $title, $author, $lang, $date, $isbn, $publisherId, 
                                     $price, $discountedPrice, $desc, $category) {
             $query = "UPDATE Comics 
                       SET Title = ?, Author = ?, Lang = ?, PublishDate = ?, ISBN = ?, PublisherId = ?
                       WHERE ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sssssii', $title, $author, $lang, $date, $isbn, $publisherId, $productId);
-            try {
-                $stmt->execute();
-            } catch(Exception $e) {
-                return false;
-            }
-            return $this->updateProduct($productId, $price, empty($discountedPrice) ? NULL : $discountedPrice, $desc, $category);
+            $discountedPrice = empty($discountedPrice) ? NULL : $discountedPrice;
+            $res = $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $publisherId, $productId])->errno;
+            return ($res !== 0 ? $res : $this->updateProduct($productId, $price, $discountedPrice, $desc, $category));
         }
 
+        /**
+         * Update the funko infos.
+         * @param int $productId the product id to be modified
+         * @param string $name the new name
+         * @param double $price the new price
+         * @param double $discountedPrice the new discounted price
+         * @param string $desc the new description
+         * @param string $category the new category name
+         * @return void
+         */
         public function updateFunko($productId, $name, $price, $discountedPrice, $desc, $category) {
             $query = "UPDATE Funkos 
                       SET Name = ?
                       WHERE ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('si', $name, $productId);
-            try {
-                $stmt->execute();
-            } catch(Exception $e) {
-                return false;
-            }
-            return $this->updateProduct($productId, $price, empty($discountedPrice) ? NULL : $discountedPrice, $desc, $category);
+            $discountedPrice = empty($discountedPrice) ? NULL : $discountedPrice;
+            $res = $this->executeQuery($query, [$name, $productId])->errno;
+            return ($res !== 0 ? $res : $this->updateProduct($productId, $price, $discountedPrice, $desc, $category));
         }
 
         /**
          * Get all the categories.
-         *
          * @return array an associative array with all categories.
          */
         public function getCategories() {
             $query = "SELECT Name, Description
                       FROM Categories";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query)->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
          * Get all publishers.
-         *
          * @return array an associative array with all publishers.
          */
         public function getPublishers() {
             $query = "SELECT PublisherId, Name, ImgLogo
                       FROM Publisher";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query)->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
          * Insert into db a new publisher.
-         *
          * @param string $name the publisher name
          * @param string $img the path in which it's stored the publisher logo
-         * @return int the `PublisherId` associated with the publisher just inserted
-         * or -1 if a publisher with given `name` already exists.
+         * @return int describing the error occurred or 0 if no error occurred.
          */
         public function addPublisher($name, $img) {
             $query = "INSERT INTO Publisher(Name, ImgLogo)
                       VALUES(?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ss', $name, $img);
-            try {
-                $stmt->execute();
-            } catch(Exception $e) {
-                // if a publisher with given name already exists in db
-                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
-                    return -1;
-                }
-            }
-            return $stmt->insert_id;      
+            return $this->executeQuery($query, [$name, $img])->errno;   
         }
 
         /**
          * Insert into db a new category.
-         *
          * @param string $name the category name
          * @param string $description a short category description
-         * @return bool true on success or false on failure.
+         * @return int describing the error occurred or 0 if no error occurred.
          */
         public function addCategory($name, $description) {
             $query = "INSERT INTO Categories(Name, Description)
                       VALUES(?, ?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ss', $name, $description);
-            try {
-                return $stmt->execute();
-            } catch(Exception $e) {
-                // if a publisher with given name already exists in db
-                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
-                    return false;
-                }
-            }
+            return $this->executeQuery($query, [$name, $description])->errno;
         }
 
         public function getHomeBanner(){
