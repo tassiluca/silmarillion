@@ -1,45 +1,48 @@
 /* jquery che nasconde tutti i banner  tranne il primo*/
 
 $(document).ready(function () {
-  $("main > section:first-child > img.banner").hide();
-  $("main > section:first-child > img.banner:first-child").show();
+    $("main > section:first-child > img.banner").hide();
+    $("main > section:first-child > img.banner:first-child").show();
 
-  if(getCookie("favs") == ""){
-    empty = [];
-    setCookie("favs", JSON.stringify(empty), 30);
-  }
-
-  updateAll(0);
-  showSlide(infoidx);
-  
-  $(window).resize(function () { 
-    updateAll(0);
-  });
-
-  var sizeInfoBanner = $("main > aside > div:first-child > div.infoBanner").length;
-  autoSlide();
-  function autoSlide(){
-    infoidx++;
-    if(infoidx > sizeInfoBanner){
-      infoidx = 1;
+    if(getCookie("favs") == ""){
+        empty = [];
+        setCookie("favs", JSON.stringify(empty), 30);
     }
+
+    updateAll(0);
     showSlide(infoidx);
-    setTimeout(autoSlide, 5000);
-  }
-
-  $('main > section > div > article > footer > div:first-child > a').click(function (e) { 
-    e.preventDefault();
-    console.log('wish');
-    urlRequest = $(this).attr("href");
-
-    updateWishlist(3);
     
-  });
+    $(window).resize(function () { 
+        updateAll(0);
+    });
 
-  $('main > section > div > article > footer > div:nth-child(2) > a').click(function (e) { 
-    e.preventDefault();
-    console.log('cart');
-  });
+    var sizeInfoBanner = $("main > aside > div:first-child > div.infoBanner").length;
+    autoSlide();
+    function autoSlide(){
+        infoidx++;
+        if(infoidx > sizeInfoBanner){
+        infoidx = 1;
+        }
+        showSlide(infoidx);
+        setTimeout(autoSlide, 5000);
+    }
+
+    //Favourite button
+    $('main > section > div > article > footer > div:first-child > a').click(function (e) { 
+        e.preventDefault();
+        console.log('wish');
+        urlRequest = $(this).attr("href");
+        //utils/process-request.php?action=wish&id=6
+        updateWishlist();
+        //TODO: check if logged, if not use cookies
+        //if customer is logged --> ajax request --> server apply to db --> return status of operation to client javascript
+    });
+
+    //add to cart button
+    $('main > section > div > article > footer > div:nth-child(2) > a').click(function (e) { 
+        e.preventDefault();
+        console.log('cart');
+    });
 
 });
 
