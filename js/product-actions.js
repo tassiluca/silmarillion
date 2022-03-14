@@ -6,8 +6,9 @@ $(document).ready(function () {
         empty = [];
         setCookie("favs", JSON.stringify(empty), 30);
     }
+
     //Favourite button
-    $('article > footer > div:first-child > a').click(function (e) { 
+    $('article > footer > div:first-child > a').click(function (e) {
         e.preventDefault();
         
         btn = $(this);
