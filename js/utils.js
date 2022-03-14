@@ -41,7 +41,7 @@ function getCookie(cname) {
     return "";
   }
 
-function updateWishlist(idProd){
+function updateCookieWishlist(idProd){
     strCookie = getCookie('favs'); //prendo cookie che mi interessa
     curWishlist =JSON.parse(strCookie); //lo converto in oggetto javascript
 
