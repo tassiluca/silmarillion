@@ -23,42 +23,42 @@ $(document).ready(function () {
         e.preventDefault();
         console.log('cart');
     });
+});
 
-    /**
+/**
      * Handle request of add/remove product to wishlist, if customer is logged send request 
      * to sevrer using href link else use cookie to keep wishlist elements
      * @param {object} clickedBtn Element that launch click event
      * @param {string} urlLink href link that button point
      */
-    function handleWishlistAction(clickedBtn,urlLink){
-    
-        var prodId = parseInt(getUrlParameter("id",urlLink));
-        $.get(urlLink, function (data) {
-            jsonData = JSON.parse(data);
-            isLogged = jsonData["isLogged"];
-            correctExec = jsonData["execDone"];
-    
-            if(!isLogged){ //if customer logged = false --> use cookie
-                updateCookieWishlist(prodId);
+function handleWishlistAction(clickedBtn,urlLink){
+
+    var prodId = parseInt(getUrlParameter("id",urlLink));
+    $.get(urlLink, function (data) {
+        jsonData = JSON.parse(data);
+        isLogged = jsonData["isLogged"];
+        correctExec = jsonData["execDone"];
+
+        if(!isLogged){ //if customer logged = false --> use cookie
+            updateCookieWishlist(prodId);
+            updateWishIconLink(clickedBtn);
+        }
+        else{ //user logged = true then check if all goes right on db
+            //if something goes wrong with db --> info banner 
+            if(!correctExec){//if executon of operation on db has error, shows banner 
+                console.log("errore nella esecuzione della operzione");
+            }
+            else{
                 updateWishIconLink(clickedBtn);
             }
-            else{ //user logged = true then check if all goes right on db
-                //if something goes wrong with db --> info banner 
-                if(!correctExec){//if executon of operation on db has error, shows banner 
-                    console.log("errore nella esecuzione della operzione");
-                }
-                else{
-                    updateWishIconLink(clickedBtn);
-                }
-            }
-        });
-    }
+        }
+    });
+}
 
-    function updateWishIconLink(btn){
-        newIcon = $(btn).children("img").attr("src") == wishImageUnselect ? wishImageSelected : wishImageUnselect;
-        $(btn).children("img").attr("src",newIcon);
-    }
-});
+function updateWishIconLink(btn){
+    newIcon = $(btn).children("img").attr("src") == wishImageUnselect ? wishImageSelected : wishImageUnselect;
+    $(btn).children("img").attr("src",newIcon);
+}
 
 function updateCookieWishlist(idProd){
     strCookie = getCookie('favs'); //prendo cookie che mi interessa
