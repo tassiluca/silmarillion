@@ -4,6 +4,7 @@
     
     $templateParams["css"] = array("./css/article.css");
     $templateParams["main"] = "./templates/single-article.php";
+    $templateParams["js"] = array("./js/utils.js","./js/product-actions.js");
 
     $idprodotto = -1;
     if(isset($_GET["id"]) && $dbh -> isComic($_GET["id"])){
