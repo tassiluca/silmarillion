@@ -44,11 +44,11 @@
                     </li>
                     <li>
                         <label for="isbn">ISBN</label>
-                        <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" value="<?php echo $product['ISBN']; ?>" required />
+                        <input type="text" placeholder="es. 9781534319110" id="isbn" name="isbn" value="<?php echo $product['ISBN']; ?>" pattern="[0-9]+" minlength="13" maxlength="13" title="Il codice ISBN è un identificativo univoco di 13 cifre" required />
                     </li>
                     <li>
                         <label for="publisher">Editore</label>
-                        <select id="publisher" name="publisher">
+                        <select id="publisher" name="publisher" required>
                             <!-- default option -->
                             <?php if (!empty($product['PublisherName'])): ?>
                                 <option value="<?php echo $product['PublisherId']; ?>"><?php echo $product['PublisherName']; ?></option>
@@ -86,7 +86,7 @@
                 <?php endif; ?>
                 <li>
                     <label for="category">Categoria</label>
-                    <select id="category" name="category">
+                    <select id="category" name="category" required>
                         <!-- default option -->
                         <?php if (!empty($product['CategoryName'])): ?>
                             <option value="<?php echo $product['CategoryName']; ?>"><?php echo $product['CategoryName']; ?></option>
