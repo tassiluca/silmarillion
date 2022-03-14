@@ -129,7 +129,7 @@ $(document).ready(function(){
                 prodListHTML += '<article><div><a href="article.php?id='+prods[i].ProductId+'"><img src="'+prodsDir+prods[i].CoverImg+
                                 '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?id='+ prods[i].ProductId +
                                 '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="utils/process-request.php?action=wish&id='+
-                                prods[i].ProductId+'"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
+                                prods[i].ProductId+'" class="wishButton"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
                                 '<div><a '+ disabled + ' href="utils/process-request.php?action=addtoCart&id='+prods[i].ProductId+
                                 '"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
