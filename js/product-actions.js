@@ -8,7 +8,18 @@ $(document).ready(function () {
         e.preventDefault();
         urlRequest = $(this).attr("href");
         var prodId = parseInt(getUrlParameter("id",urlRequest));
-        updateWishlist(prodId);
+        
+        $.get(urlRequest, function (data) {
+                console.log(data);
+                isLogged = JSON.decode(data);
+                if(isLogged){
+                    updateCookieWishlist(prodId);
+                }
+                else{
+                    console.log("eseguito su db");
+                }
+            }
+        );
         //TODO: check if logged, if not use cookies
         //if customer is logged --> ajax request --> server apply to db --> return status of operation to client javascript
     });
