@@ -19,20 +19,26 @@
         }
     }
 
+    function checkErrors($error, $initMsg) {
+        redirect(($error === MYSQLI_CODE_DUPLICATE_KEY ? 
+            $initMsg . " già presente nel Data Base!" : 
+            "Si è verificato un errore imprevisto (Codice " . $error . ")"), $error);
+    }
+
     function validateCategory($data) {
         return (empty($data['category']) && !empty($data['categoryName']) && !empty($data['categoryDesc'])) ||
-               (!empty($data['category']) && empty($data['categoryName']) && empty($data['categoryDesc']));
+            (!empty($data['category']) && empty($data['categoryName']) && empty($data['categoryDesc']));
     }
 
     function validatePublisher($data) {
         return isFunkoProcessing() ||
-               (empty($data['publisher']) && !empty($data['publisherName']) && !$_FILES['publisherLogo']['error']) ||
-               (!empty($data['publisher']) && empty($data['publisherName']) && $_FILES['publisherLogo']['error']);
+            (empty($data['publisher']) && !empty($data['publisherName']) && !$_FILES['publisherLogo']['error']) ||
+            (!empty($data['publisher']) && empty($data['publisherName']) && $_FILES['publisherLogo']['error']);
     }
 
     function validateDiscountedPrice($data) {
-        return empty($data['discountedPrice'] || 
-               (!empty($data['discountedPrice']) && $data['discountedPrice'] < $data['price']));
+        return empty($data['discountedPrice']) || 
+            (!empty($data['discountedPrice']) && $data['discountedPrice'] < $data['price']);
     }
 
     function validate($data) {
@@ -59,10 +65,12 @@
         }
 
         list($tmp, $msg) = validateInput($rules, $dataDic);
+        redirect("Errore validazione " . $msg, !$tmp);
+
         $tmp = $tmp && validateCategory($data) && 
-               (isFunkoProcessing() ? true : validatePublisher($data)) && 
-               validateDiscountedPrice($data);
-        redirect("ERRORE INSERIMENTO DATI", !$tmp);
+            (isFunkoProcessing() ? true : validatePublisher($data)) && 
+            validateDiscountedPrice($data);
+        redirect("Errore validazione", !$tmp);
     }
 
     function insertCategory(){
@@ -70,7 +78,7 @@
         // check consistency
         if (empty($data['category'])) {
             $res = $dbh->addCategory($data['categoryName'], $data['categoryDesc']);
-            redirect("Errore in inserimento categoria", !$res);
+            checkErrors($res, 'Categoria');
             $data['category'] = $data['categoryName'];
         }
     }
@@ -81,41 +89,40 @@
         if (empty($data['publisher'])) {
             list($result, $msg) = uploadImage(UPLOAD_DIR_PUBLISHERS, $_FILES["publisherLogo"]);
             redirect($msg, !$result);
-            $res = $dbh->addPublisher($data['publisherName'], $msg);
-            redirect("Errore in inserimento editore", $res == -1);
-            $data['publisher'] = $res;
+            list($res, $id) = $dbh->addPublisher($data['publisherName'], $msg);
+            checkErrors($res, 'Editore');
+            $data['publisher'] = $id;
         }
     }
 
     function insertFunko($data, $coverImg) {
         global $dbh;
         return $dbh->addFunko($data['funkoName'], $data['price'], $data['discountedPrice'], 
-                              $data['desc'], $coverImg, $data['category']);
+            $data['desc'], $coverImg, $data['category']);
     }
 
     function insertComic($data, $coverImg) {
         global $dbh;
         return $dbh->addComic($data['title'], $data['author'], $data['language'], $data['publishDate'], 
-                              $data['isbn'], $data['publisher'], $data['price'], 
-                              $data['discountedPrice'], $data['desc'], $coverImg, $data['category']);
+            $data['isbn'], $data['publisher'], $data['price'], $data['discountedPrice'], $data['desc'], 
+            $coverImg, $data['category']);
     }
 
     function updateFunko($data) {
         global $dbh;
         return $dbh->updateFunko($data['productId'], $data['funkoName'], $data['price'],  
-                                 $data['discountedPrice'], $data['desc'], $data['category']);
+            $data['discountedPrice'], $data['desc'], $data['category']);
     }
 
     function updateComic($data) {
         global $dbh;
         return $dbh->updateComic($data['productId'], $data['title'], $data['author'], $data['language'], 
-                                 $data['publishDate'], $data['isbn'], $data['publisher'], $data['price'], 
-                                 $data['discountedPrice'], $data['desc'], $data['category']);
+            $data['publishDate'], $data['isbn'], $data['publisher'], $data['price'], $data['discountedPrice'], 
+            $data['desc'], $data['category']);
     }
 
     /**
      * Puts in an associative array all the inputs inserted in the form.
-     *
      * @return array an associative array with [propertyName => value]
      */
     function getInputData() {
@@ -146,7 +153,7 @@
         insertPublisher($data);
         $res = ($_POST['action'] === 'insert' ? insertComic($data, $coverImg) : updateComic($data));
     }
-    redirect("Si è verificato un errore", !$res);
+    checkErrors($res, 'Prodotto');
     $res = [];
     $res['success'] = 'ok';
     echo json_encode($res);

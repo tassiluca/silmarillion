@@ -335,7 +335,7 @@
          * @param double $discountedPrice the new discounted price
          * @param string $desc the new description
          * @param string $category the new category name
-         * @return void
+         * @return int describing the error occurred or 0 if no error occurred.
          */
         public function updateFunko($productId, $name, $price, $discountedPrice, $desc, $category) {
             $query = "UPDATE Funkos 
@@ -370,12 +370,14 @@
          * Insert into db a new publisher.
          * @param string $name the publisher name
          * @param string $img the path in which it's stored the publisher logo
-         * @return int describing the error occurred or 0 if no error occurred.
+         * @return array in first position the error code, 0 if everything ok, and in the second
+         * the inserted publisher id or null if some error occurred.
          */
         public function addPublisher($name, $img) {
             $query = "INSERT INTO Publisher(Name, ImgLogo)
                       VALUES(?, ?)";
-            return $this->executeQuery($query, [$name, $img])->errno;   
+            $stmt = $this->executeQuery($query, [$name, $img]);
+            return array($stmt->errno, $stmt->errno === 0 ? $stmt->insert_id : null);   
         }
 
         /**
