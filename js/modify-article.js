@@ -27,6 +27,8 @@ $(document).ready(function() {
 
     $("section > form").submit(function(e){
         e.preventDefault();
+        // Clears messages results of previous attempts
+        $(".message").remove();
         // [NOTE] prices must be dot-formatted instead of comma-formatted
         $("#price").val($("#price").val().replace(",", "."));
         $("#discountedPrice").val($("#discountedPrice").val().replace(",", "."));
