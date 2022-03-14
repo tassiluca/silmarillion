@@ -54,7 +54,5 @@ function updateCookieWishlist(idProd){
 
     var json_str = JSON.stringify(curWishlist);
     setCookie('favs', json_str,30);
-
-    console.log(getCookie('favs'));
 }
   
