@@ -10,18 +10,22 @@ $(document).ready(function () {
         var prodId = parseInt(getUrlParameter("id",urlRequest));
         
         $.get(urlRequest, function (data) {
-                console.log(data);
-                isLogged = JSON.decode(data);
-                if(isLogged){
-                    updateCookieWishlist(prodId);
-                }
-                else{
-                    console.log("eseguito su db");
+            console.log(data);
+            jsonData = JSON.parse(data);
+            isLogged = jsonData["isLogged"];
+            correctExec = jsonData["execDone"];
+
+            if(!isLogged){ //if customer logged = false --> use cookie
+                updateCookieWishlist(prodId);
+            }
+            else{ //user logged = true then check if all goes right on db
+                //if something goes wrong with db --> info banner 
+                if(!correctExec){//if executon of operation on db has error, shows banner 
+                    console.log("errore nella esecuzione della operzione");
                 }
             }
+            }
         );
-        //TODO: check if logged, if not use cookies
-        //if customer is logged --> ajax request --> server apply to db --> return status of operation to client javascript
     });
 
     //add to cart button
