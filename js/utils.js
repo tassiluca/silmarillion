@@ -40,19 +40,4 @@ function getCookie(cname) {
     }
     return "";
   }
-
-function updateCookieWishlist(idProd){
-    strCookie = getCookie('favs'); //prendo cookie che mi interessa
-    curWishlist =JSON.parse(strCookie); //lo converto in oggetto javascript
-
-    if(curWishlist.includes(idProd)){
-        curWishlist.splice(curWishlist.indexOf(idProd),1);
-    }
-    else{
-        curWishlist.push(idProd);
-    }
-
-    var json_str = JSON.stringify(curWishlist);
-    setCookie('favs', json_str,30);
-}
   
