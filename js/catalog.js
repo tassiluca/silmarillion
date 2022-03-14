@@ -135,6 +135,13 @@ $(document).ready(function(){
             };
         }
         $('main > section:first-of-type()').append(prodListHTML);
+        $('.wishButton').click(function (e) {
+            e.preventDefault();
+            btn = $(this);
+            urlRequest = btn.attr("href");
+            handleWishlistAction(btn,urlRequest);
+            //console.log(getCookie('favs'));
+        });
     }
 
 });
