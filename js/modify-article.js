@@ -10,9 +10,14 @@ function slide(element) {
 
 $(document).ready(function() {
     /* [NOTE] select2 for for select box with support for searching. 
-     * See more on [https://select2.org/] */
+     * See more on [https://select2.org/]. */
     $("#category").select2();
     $("#publisher").select2();
+
+    /* [NOTE] at the reload page re-format correctly prices input (in db are dot-formatted)!
+     * See below. */
+    $("#price").val($("#price").val().replace(".", ","));
+    $("#discountedPrice").val($("#discountedPrice").val().replace(".", ","));
 
     $("#addPublisherBtn, #addCategoryBtn").click(function(e){
         // [NOTE] by default, button elements in forms are submit buttons.
