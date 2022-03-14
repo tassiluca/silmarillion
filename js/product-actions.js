@@ -8,7 +8,7 @@ $(document).ready(function () {
     }
 
     //Favourite button
-    $('article > footer > div:first-child > a').click(function (e) {
+    $('.wishButton').click(function (e) {
         e.preventDefault();
         
         btn = $(this);
