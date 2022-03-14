@@ -5,7 +5,7 @@
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 
     $templateParams["css"] = array("./css/homepage.css","./css/products.css");
-    $templateParams["js"] = array("./js/home.js","./js/utils.js");
+    $templateParams["js"] = array("./js/home.js","./js/utils.js","./js/product-actions.js");
     $templateParams["main"] = "./templates/home-page.php";
     $templateParams["newsBanner"] = $dbh->getHomeBanner();
 
