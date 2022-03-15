@@ -1,18 +1,19 @@
 <?php
     require_once '../bootstrap.php';
-
+/*
     if(isset($_SESSION['url'])){
          $lastPage = $_SESSION['url']; // holds url for last page visited.
     }
     else{
         $lastPage = "index.php"; 
     }
+*/
 
     if(isset($_GET["action"]) && isset($_GET["id"])){
         $action = $_GET["action"];
         $idprod = $_GET["id"];
         $response = array("isLogged" => false,"execDone" => false);
-
+        
         if(isCustomerLoggedIn()){
             $result = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$idprod);
             $result = $result == 0 ? false : true; 
@@ -61,5 +62,4 @@
         }
     }
     
-   //header("Location: $lastPage"); //redirect to lastpage where action was sent
 ?>
