@@ -12,7 +12,8 @@
     if(isset($_GET["action"]) && isset($_GET["id"])){
         $action = $_GET["action"];
         $idprod = $_GET["id"];
-        $response = array("isLogged" => false,"execDone" => false);
+        $countCopies = $dbh->getAvaiableCopiesOfProd($idprod);
+        $response = array("isLogged" => false,"execDone" => false, "count" => $countCopies);
         
         if(isCustomerLoggedIn()){
             $result = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$idprod);
