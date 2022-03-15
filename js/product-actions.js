@@ -36,7 +36,7 @@ function addEventListenerWishButtons(){
         handleCartAction(btn,urlRequest);
     });
 }
-
+//-----------------------WISHLIST--------------------------//
 /**
      * Handle request of add/remove product to wishlist, if customer is logged send request 
      * to sevrer using href link else use cookie to keep wishlist elements
@@ -85,4 +85,39 @@ function updateCookieWishlist(idProd){
 
     var json_str = JSON.stringify(curWishlist);
     setCookie('favs', json_str,30); //keep cookie for 30 days then delete them
+}
+//-----------------------WISHLIST--------------------------//
+
+//--------------------------CART--------------------------//
+function handleCartAction(clickedBtn,urlLink){
+    var prodId = parseInt(getUrlParameter("id",urlLink));
+    $.get(urlLink, function (data) {
+
+        jsonData = JSON.parse(data);
+        isLogged = jsonData["isLogged"];
+        correctExec = jsonData["execDone"];
+        countCopies = jsonData["count"];
+
+        if(!isLogged){ //if customer logged = false --> use cookie
+            updateCart(countCopies);
+            //updateWishIconLink(clickedBtn);
+        }
+        else{ //user logged = true then check if all goes right on db
+            //if something goes wrong with db --> info banner 
+            if(!correctExec){//if executon of operation on db has error, shows banner 
+                console.log("errore nella esecuzione della operzione");
+            }
+            else{
+                updateCartLink(clickedBtn);
+            }
+        }
+    });
+}
+ /**
+  * This fucntion ask server the amoutn of product copies avilable then check if is possible to add to cart
+  * the item
+  * @param {*} idProd Product id to add/remove from cookie-cart
+  */
+function updateCart(countCopies){
+    console.log(countCopies);
 }
