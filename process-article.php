@@ -18,12 +18,39 @@
         return $_POST["article"] === "comic";
     }
 
-    function redirect($msg, $condition = true) {
-        $res = [];
-        if ($condition) {
-            $res['error'] = $msg;
-            echo json_encode($res);
+    /**
+     * Send to the client a message.
+     * @param string $msgType the type of the message, generally success or error
+     * @param string $msg the message to send
+     */
+    function redirect($msgType, $msg) {
+        $res[$msgType] = $msg;
+        echo json_encode($res);
+    }
+
+    /**
+     * Send to the client a message error if a given condition is true.
+     * [NOTE] This function terminate the current script.
+     * @param string $msg the message to send
+     * @param boolean $condError teh condition to evaluate
+     */
+    function redirectOnFailure($msg, $condError = true) {
+        if ($condError) {
+            redirect('error', $msg);
             exit(1);
+        }
+    }
+
+    /**
+     * Send to the client a message of success if a given condition is true.
+     * [NOTE] This function terminate the current script.
+     * @param string $msg the message to send
+     * @param boolean $condError teh condition to evaluate
+     */
+    function redirectOnSuccess($msg, $condSuccess = true) {
+        if ($condSuccess) {
+            redirect('success', $msg);
+            exit(0);
         }
     }
 
@@ -33,7 +60,7 @@
      * @param string $initMsg the field which generates the error
      */
     function checkErrors($error, $initMsg) {
-        redirect(($error === MYSQLI_CODE_DUPLICATE_KEY ? 
+        redirectOnFailure(($error === MYSQLI_CODE_DUPLICATE_KEY ? 
             $initMsg . " già presente nel Data Base!" : 
             "Si è verificato un errore imprevisto (Codice " . $error . ")"), $error);
     }
@@ -103,7 +130,7 @@
         $tmp = $tmp && validateCategory($data) && 
             (isFunkoProcessing() ? true : validatePublisher($data)) && 
             validateDiscountedPrice($data);
-        redirect("Errore inserimento dati. Ricontrolla i campi!", !$tmp);
+        redirectOnFailure("Errore inserimento dati. Ricontrolla i campi!", !$tmp);
     }
 
     /**
@@ -127,7 +154,7 @@
         // check consistency
         if (empty($data['publisher'])) {
             list($result, $msg) = uploadImage(UPLOAD_DIR_PUBLISHERS, $_FILES["publisherLogo"]);
-            redirect($msg, !$result);
+            redirectOnFailure($msg, !$result);
             list($res, $id) = $dbh->addPublisher($data['publisherName'], $msg);
             checkErrors($res, 'Editore');
             $data['publisher'] = $id;
@@ -195,7 +222,7 @@
 
     if ($_POST['action'] === 'insert') {
         list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
-        redirect($msg, !$result);
+        redirectOnFailure($msg, !$result);
         $coverImg = $msg;
     } 
 
@@ -208,12 +235,10 @@
     }
     checkErrors($res, 'Prodotto');
 
-    for ($i = 0; $i < $data['quantity'] - $dbh->getAvaiableCopiesOfProd($data['productId']); $i++) {
+    $actualQuantity = $dbh->getAvaiableCopiesOfProd($data['productId']);
+    for ($i = 0; $i < $data['quantity'] - $actualQuantity; $i++) {
         $dbh->addProductCopy($data['productId']);
     }
 
-    $res = [];
-    $res['success'] = 'ok';
-    echo json_encode($res);
-    exit(0);
+    redirectOnSuccess("Operazione avvenuta con successo");
 ?>
