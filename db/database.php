@@ -39,7 +39,7 @@
          * @param string $query the query to be executed
          * @param array $parameters an associative array like [valueType => value].
          * An example: ['i' => 10, 's' => 'Hello World', ...]
-         * @return PDOStatement the statement in order to do other staff like `get_results` and so on...
+         * @return false|mysqli_stmt the statement in order to do other staff like `get_results` and so on...
          */
         private function executeQuery($query, $parameters = []) {
             $stmt = $this->db->prepare($query);
