@@ -138,6 +138,7 @@ $(document).ready(function(){
 
         //add event listener to all wishlist buttons
         addEventListenerWishButtons();
+        addEventListenerCartButtons();
     }
 
 });
