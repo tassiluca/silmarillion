@@ -1,7 +1,7 @@
 <?php
     require_once '../bootstrap.php';
 
-    define("ERROR_USERNAME", "Username già presente nel sistema!");
+    define("ERROR_USERNAME", "Username/Mail già presente nel sistema!");
     define("ERROR_DB", "Errore nel sistema! Riprova...");
     define("SUCCESS", "Registrazione avvenuta con successo!");
 
@@ -14,12 +14,12 @@
         // add to db new user
         $res = $dbh->addCustomer($_POST["usr"], $password, $salt, 
             $_POST["name"], $_POST["surname"], $_POST["birthday"], $_POST["email"]);
-        if (!$res['success'] && $res['duplicateKey']) { // username already present in db
-            $result["error"] = ERROR_USERNAME;
-        } else if (!$res['success'] && !$res['duplicateKey']) { // other type of error
-            $result["error"] = ERROR_DB;
-        } else {
+        if ($res === 0) {
             $result["success"] = SUCCESS;
+        } else if ($res === MYSQLI_CODE_DUPLICATE_KEY) {
+            $result["error"] = ERROR_USERNAME;
+        } else { // other type of error
+            $result["error"] = ERROR_DB;
         }
         echo json_encode($result);
     }
