@@ -16,7 +16,7 @@ $(document).ready(function () {
     addEventListenerWishButtons(); //wishlist
     addEventListenerCartButtons(); //cart
 
-    console.log(getCookie('favs'));
+    //console.log(getCookie('favs'));
 });
 
 /**
@@ -44,17 +44,18 @@ function addEventListenerWishButtons(){
 }
 /**
  * Update cookie list adding or removing the idProd param from list saved in cookie of name listName
+ * If elem is and object the check if already present become always true, make check before passing
  * @param {string} listName name of cookie-list where add/remove idProd
- * @param {*} idProd unique product id
+ * @param {*} elem unique product id
  */
-function updateCookielist(listName,idProd){
+function updateCookielist(listName,elem){
     curList =JSON.parse(getCookie(listName));
 
-    if(curList.includes(idProd)){//remove element from array if already present
-        curList.splice(curList.indexOf(idProd),1); 
+    if(curList.includes(elem)){//remove element from array if already present
+        curList.splice(curList.indexOf(elem),1);
     }
     else{//insert to listName
-        curList.push(idProd);
+        curList.push(elem);
     }
 
     var json_str = JSON.stringify(curList);
@@ -109,8 +110,15 @@ function handleCartAction(clickedBtn,urlLink){
         countCopies = jsonData["count"];
 
         if(!isLogged){ //if customer logged = false --> use cookie
-            updateCart(countCopies);
-            //updateWishIconLink(clickedBtn);
+            isPresent = isInCookieCart(prodId);
+            console.log(article);
+            if(isPresent){
+
+            }
+            else{ //append new article
+                updateCookielist(cartList,article);
+            }
+            
         }
         else{ //user logged = true then check if all goes right on db
             //if something goes wrong with db --> info banner 
@@ -123,11 +131,20 @@ function handleCartAction(clickedBtn,urlLink){
         }
     });
 }
- /**
-  * This fucntion ask server the amoutn of product copies avilable then check if is possible to add to cart
-  * the item
-  * @param {*} idProd Product id to add/remove from cookie-cart
-  */
-function updateCart(countCopies){
-    console.log(countCopies);
+
+/**
+ * Find fisrt occurence of product-obj that 'id' is equal to prodId
+ * @param {*} prodId Product id to search
+ * @returns Product object
+ */
+function isInCookieCart(prodId){
+    cart = JSON.parse(getCookie(cartList));
+    len = cart.length;
+    for(var i=0;i<len;i++){
+        console.log(cart[i]);
+        if(cart[i].id == prodId){
+           return true;
+        }
+    }
+    return false;
 }
