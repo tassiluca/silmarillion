@@ -7,23 +7,35 @@ $(document).ready(function () {
         setCookie("favs", JSON.stringify(empty), 30);
     }
 
-    //Favourite button
+    addEventListenerWishButtons(); //wishlist
+    addEventListenerCartButtons(); //cart
+
+    console.log(getCookie('favs'));
+});
+
+/**
+ * Add event listener to all wishlist buttons
+ */
+function addEventListenerWishButtons(){
     $('.wishButton').click(function (e) {
         e.preventDefault();
-
         btn = $(this);
         urlRequest = btn.attr("href");
-        
         handleWishlistAction(btn,urlRequest);
-        //console.log(getCookie('favs'));
     });
+}
 
-    //add to cart button
-    $('article > footer > div:nth-child(2) > a').click(function (e) { 
+/**
+ * Add event listener to all cart buttons
+ */
+ function addEventListenerCartButtons(){
+    $('.cartButton').click(function (e) {
         e.preventDefault();
-        console.log('cart');
+        btn = $(this);
+        urlRequest = btn.attr("href");
+        handleCartAction(btn,urlRequest);
     });
-});
+}
 
 /**
      * Handle request of add/remove product to wishlist, if customer is logged send request 
@@ -61,16 +73,16 @@ function updateWishIconLink(btn){
 }
 
 function updateCookieWishlist(idProd){
-    strCookie = getCookie('favs'); //prendo cookie che mi interessa
-    curWishlist =JSON.parse(strCookie); //lo converto in oggetto javascript
+    strCookie = getCookie('favs'); //get cookie about wishlist
+    curWishlist =JSON.parse(strCookie);
 
-    if(curWishlist.includes(idProd)){
-        curWishlist.splice(curWishlist.indexOf(idProd),1);
+    if(curWishlist.includes(idProd)){//remove element from array if already present
+        curWishlist.splice(curWishlist.indexOf(idProd),1); 
     }
-    else{
+    else{//insert to wishlist
         curWishlist.push(idProd);
     }
 
     var json_str = JSON.stringify(curWishlist);
-    setCookie('favs', json_str,30);
+    setCookie('favs', json_str,30); //keep cookie for 30 days then delete them
 }

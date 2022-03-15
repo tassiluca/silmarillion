@@ -131,17 +131,13 @@ $(document).ready(function(){
                                 '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="utils/process-request.php?action=wish&id='+
                                 prods[i].ProductId+'" class="wishButton"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
                                 '<div><a '+ disabled + ' href="utils/process-request.php?action=addtoCart&id='+prods[i].ProductId+
-                                '"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
+                                '" class="cartButton"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
         }
         $('main > section:first-of-type()').append(prodListHTML);
-        $('.wishButton').click(function (e) {
-            e.preventDefault();
-            btn = $(this);
-            urlRequest = btn.attr("href");
-            handleWishlistAction(btn,urlRequest);
-            //console.log(getCookie('favs'));
-        });
+
+        //add event listener to all wishlist buttons
+        addEventListenerWishButtons();
     }
 
 });
