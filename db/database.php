@@ -36,7 +36,6 @@
 
         /**
          * A common function to prepare, bind and execute a query.
-         *
          * @param string $query the query to be executed
          * @param array $parameters an associative array like [valueType => value].
          * An example: ['i' => 10, 's' => 'Hello World', ...]
@@ -70,8 +69,8 @@
                       AND U.Username = ?
                       AND U.IsActive = 1";
             return $this->executeQuery($query, [$username])
-                        ->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -86,8 +85,8 @@
                       AND U.Mail = ?
                       AND U.IsActive = 1";
             return $this->executeQuery($query, [$mail])
-                        ->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -115,8 +114,8 @@
                       AND U.Username = ?
                       AND U.IsActive = 1";
             return $this->executeQuery($query, [$username])
-                        ->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -133,8 +132,8 @@
                       WHERE UserId = ?
                       AND TimeLog > '$validAttempts'";
             return $this->executeQuery($query, [$userId])
-                        ->get_result()
-                        ->num_rows;
+                ->get_result()
+                ->num_rows;
         }
 
         /**
@@ -203,7 +202,9 @@
             $query = "SELECT Customers.UserId
                       FROM Customers
                       WHERE UserId = ?";
-            return $this->executeQuery($query, [$userId])->get_result()->num_rows > 0;
+            return $this->executeQuery($query, [$userId])
+                ->get_result()
+                ->num_rows > 0;
         }
 
         /**********************************************************************************
@@ -281,8 +282,7 @@
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Comics(Title, Author, Lang, PublishDate, ISBN, ProductId, PublisherId)
                       VALUES(?, ?, ?, ?, ?, ?, ?)";
-            return $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId])
-                        ->errno;
+            return $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId])->errno;
         }
 
         /**
@@ -298,8 +298,7 @@
             $query = "UPDATE Products 
                       SET Price = ?, DiscountedPrice = ?, Description = ?, CategoryName = ?
                       WHERE ProductId = ?";
-            return $this->executeQuery($query, [$price, $discountedPrice, $desc, $category, $productId])
-                        ->errno;
+            return $this->executeQuery($query, [$price, $discountedPrice, $desc, $category, $productId])->errno;
         }
 
         /**
@@ -353,7 +352,9 @@
         public function getCategories() {
             $query = "SELECT Name, Description
                       FROM Categories";
-            return $this->executeQuery($query)->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -363,7 +364,9 @@
         public function getPublishers() {
             $query = "SELECT PublisherId, Name, ImgLogo
                       FROM Publisher";
-            return $this->executeQuery($query)->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
