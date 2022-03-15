@@ -1,10 +1,14 @@
 function slide(element) {
     if (element.hasClass("selected")) {
-        element.removeClass("selected")
-            .next().slideUp();
+        element.removeClass("selected").next().slideUp();
+        // [NOTE] Be aware select2 inserts a span between the button and the select item
+        element.prev().prev().attr("required", "true");
+        element.next().children().children().not("label").removeAttr("required");
     } else {
-        element.addClass("selected")
-            .next().slideDown();
+        element.addClass("selected").next().slideDown();
+        // [NOTE] Be aware select2 inserts a span between the button and the select item
+        element.prev().prev().removeAttr("required");
+        element.next().children().children().not("label").attr("required", true);
     }
 }
 
