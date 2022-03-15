@@ -346,6 +346,38 @@
         }
 
         /**
+         * Deletes a product from `Products` table
+         * @param int $productId the product id to delete
+         */
+        public function deleteProduct($productId) {
+            $query = "DELETE FROM Products
+                      WHERE ProductId = ?";
+            $this->executeQuery($query, [$productId]);
+        }
+
+        /**
+         * Deletes a funko from `Funkos` table
+         * @param int $productId the product id to delete
+         */
+        public function deleteFunko($productId) {
+            $this->deleteProduct($productId);
+            $query = "DELETE FROM Funkos
+                      WHERE ProductId = ?";
+            $this->executeQuery($query, [$productId]);
+        }
+
+        /**
+         * Deletes a comic from `Comics` table
+         * @param int $productId the product id to delete
+         */
+        public function deleteComic($productId) {
+            $this->deleteProduct($productId);
+            $query = "DELETE FROM Comics
+                      WHERE ProductId = ?";
+            $this->executeQuery($query, [$productId]);
+        }
+
+        /**
          * Get all the categories.
          * @return array an associative array with all categories.
          */
@@ -645,6 +677,16 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Insert a new copy of the product given in input.
+         * @param int $productId the product id of the copy
+         */
+        public function addProductCopy($productId) {
+            $query = "INSERT INTO ProductCopies(ProductId)
+                      VALUES(?)";
+            return $this->executeQuery($query, [$productId])->errno;
         }
 
         /**

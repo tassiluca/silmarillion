@@ -127,6 +127,10 @@
                     <textarea placeholder="Descrizione sintetica del prodotto" id="desc" name="desc" required ><?php echo $product['Description']; ?></textarea>
                 </li>
                 <li>
+                    <label for="quantity">Q.tà disponibile</label>
+                    <input type="number" pattern="[0-9]+" placeholder="es. 23" id="quantity" name="quantity" value="<?php echo $product['Quantity']; ?>" min="<?php echo $product['Quantity']; ?>" required />
+                </li> 
+                <li>
                     <?php if ($_GET['action'] == 'insert'): ?>
                         <label for="coverImg">Immagine Articolo</label>
                         <input type="file" name="coverImg" id="coverImg" required />

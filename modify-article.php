@@ -37,6 +37,7 @@
             $templateParams["product"] = null;
         } else {
             $templateParams["product"] = $productInfo[0];
+            $templateParams["product"]["Quantity"] = $dbh->getAvaiableCopiesOfProd($_GET['id']);
         }
     } else {
         $templateParams['article'] = $_GET['article'];
@@ -45,7 +46,7 @@
 
     function getEmptyFormData(){
         $fields = array("Name", "Title", "Author", "Lang", "PublishDate", "ISBN", "ProductId", "PublisherId", 
-        "Price", "DiscountedPrice", "Description", "CategoryName", "PublisherName", "CoverImg");
+        "Price", "DiscountedPrice", "Description", "CategoryName", "PublisherName", "CoverImg", "Quantity");
         return array_fill_keys($fields, '');
     }
 

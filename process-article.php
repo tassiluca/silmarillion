@@ -47,13 +47,15 @@
             'date'              => v::date()->notEmpty(),
             'isbn'              => v::stringType()->length(13, 13),
             'price'             => v::numericVal()->not(v::negative())->notEmpty(),
-            'discountedPrice'   => v::not(v::numericVal()->negative())
+            'discountedPrice'   => v::not(v::numericVal()->negative()),
+            'quantity'          => v::intVal()->not(v::negative())->notEmpty()
         );
 
         $dataDic = array (
             'compulsory' => [$data['desc']],
             'price' => [$data['price']],
-            'discountedPrice' => [$data['discountedPrice']]
+            'discountedPrice' => [$data['discountedPrice']],
+            'quantity' => [$data['quantity']]
         );
 
         if (isFunkoProcessing()) {
@@ -65,12 +67,10 @@
         }
 
         list($tmp, $msg) = validateInput($rules, $dataDic);
-        redirect("Errore validazione " . $msg, !$tmp);
-
         $tmp = $tmp && validateCategory($data) && 
             (isFunkoProcessing() ? true : validatePublisher($data)) && 
             validateDiscountedPrice($data);
-        redirect("Errore validazione", !$tmp);
+        redirect("Errore inserimento dati. Ricontrolla i campi!", !$tmp);
     }
 
     function insertCategory(){
@@ -154,6 +154,11 @@
         $res = ($_POST['action'] === 'insert' ? insertComic($data, $coverImg) : updateComic($data));
     }
     checkErrors($res, 'Prodotto');
+
+    for ($i = 0; $i < $data['quantity'] - $dbh->getAvaiableCopiesOfProd($data['productId']); $i++) {
+        $dbh->addProductCopy($data['productId']);
+    }
+
     $res = [];
     $res['success'] = 'ok';
     echo json_encode($res);
