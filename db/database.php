@@ -648,7 +648,6 @@
         public function getAvaiableCopiesOfProd($idProd){
             //article copies in users cart - not avaiable for others users
             $copiesSold = count($this -> getCopiesSold($idProd));
-
             $copiesInStock = count($this -> getCopiesInStock($idProd));
             return $copiesInStock - $copiesSold;
         }

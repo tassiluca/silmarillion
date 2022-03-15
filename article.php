@@ -7,11 +7,16 @@
     $templateParams["js"] = array("./js/utils.js","./js/product-actions.js");
 
     $idprodotto = -1;
-    if(isset($_GET["id"]) && $dbh -> isComic($_GET["id"])){
-        $templateParams["product"] = $dbh -> getComicById($_GET["id"])[0];
-    }
-    else if(isset($_GET["id"]) && $dbh -> isFunko($_GET["id"])){
-        $templateParams["product"] = $dbh -> getFunkoById($_GET["id"])[0];
+    
+    if(isset($_GET["id"])){
+        $idprodotto = $_GET["id"];
+
+        if($dbh -> isComic($idprodotto)){
+            $templateParams["product"] = $dbh -> getComicById($idprodotto)[0];
+        }
+        else if($dbh -> isFunko( $idprodotto)){
+            $templateParams["product"] = $dbh -> getFunkoById($idprodotto)[0];
+        }
     }
     
     $templateParams["copies"] = $dbh -> getAvaiableCopiesOfProd($idprodotto);
