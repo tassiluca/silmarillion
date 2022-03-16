@@ -1,19 +1,19 @@
 <?php 
 //SQL KEYWORD
-define('SPACE', ' ');
-define('EQ', '=');
-define('AND_S', ' and ');
-define('OR_S', ' or ');
+const SPACE = ' ';
+const EQ = '=';
+const AND_S = ' and ';
+const OR_S = ' or ';
 
 //PRODS AVAILABILITY
-define('NOT_AVAILABLE', 0);
-define('AVAILABLE', 1);
-define('ALL_AVAILABILITY', 2);
+const NOT_AVAILABLE = 0;
+const AVAILABLE = 1;
+const ALL_AVAILABILITY = 2;
 
 //PRODS SELECTION
-define('ONLY_COMICS', 0);
-define('ONLY_FUNKOS', 1);
-define('ALL_PRODS', 2);
+const ONLY_COMICS = 0;
+const ONLY_FUNKOS = 1;
+const ALL_PRODS = 2;
 
 $varTypes = ''; //string containing all types of passed var to bind_param()
 $varArray = []; //array of references of all variables to be binded
@@ -51,10 +51,10 @@ filters = lang, author, price, availability, publisher,category*/
                 }
 
                 if(!strcmp($k,'category') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varTypes,$varArray);
+                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varArray);
                 }
                 else if(!strcmp($k,'publisher') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name',$varTypes,$varArray);
+                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name',$varArray);
                 }
                 else if(!strcmp($k,'availability')){
                     if(count($keys)==1){ //the only key present is avaialbility
@@ -71,13 +71,13 @@ filters = lang, author, price, availability, publisher,category*/
                     }
                 }
                 else if(!strcmp($k,'price')){
-                    $filtQuery .= appendBetweenFilterPrice($data[$k],'P.Price',$priceInterval,$varTypes,$varArray);
+                    $filtQuery .= appendBetweenFilterPrice($data[$k],'P.Price',$priceInterval,$varArray);
                 }
                 else if(!strcmp($k,'author') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Author',$varTypes,$varArray);
+                    $filtQuery .= appendEqualFilter($data[$k],'C.Author',$varArray);
                 }
                 else if(!strcmp($k,'lang') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang',$varTypes,$varArray);
+                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang',$varArray);
                 }
 
             }
@@ -88,25 +88,23 @@ filters = lang, author, price, availability, publisher,category*/
                 $filtQuery .= ' )';
             }
             
-            sendData($filtQuery,$availabFilter,$dbh,$isFunko,$varTypes,$varArray);
+            sendData($filtQuery,$availabFilter,$dbh,$isFunko,$varArray);
         }
         else{
-            sendData('',$availabFilter,$dbh,ALL_PRODS,$varTypes,$varArray);
+            sendData('',$availabFilter,$dbh,ALL_PRODS,$varArray);
         }
     }
    
     /**
      * @param array $arr array of value of same filter to be applied
      * @param string $filt sql attribute to be compared with values
-     * @param string &$queryTypes string containing all type of values for bind_param
      * @param array &$queryVars array of var used in bind_param
      */
-    function appendEqualFilter($arr,$filt,&$queryTypes, &$queryVars){
+    function appendEqualFilter($arr,$filt,&$queryVars){
         $strQuery ='';
             foreach($arr as $e){
                 $concatMode = getCorrectConcat();
                 $strQuery .= $concatMode.$filt.SPACE.EQ.SPACE.'?';//"'".$e."'";
-                $queryTypes .= getSqlStringType($e);
                 array_push($queryVars,$e);
             }
         return $strQuery;
@@ -117,37 +115,31 @@ filters = lang, author, price, availability, publisher,category*/
      * @param string $filt Attribute to check in db for compare
      * @param array $interval must be structured as $intervalDef = ["rangeTag"=> ["from"=>'value',"to"=>'value'],
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
-     * @param string &$queryTypes reference to string that indicate type of values to check during sql binding
-     * @param array &$queryVars Array with all values to be binded
      * @return string $strQUery partial query, composed query that filter price ranges
      */
-    function appendBetweenFilterPrice($priceFilters,$filt,$interval,&$queryTypes,&$queryVars){
+    function appendBetweenFilterPrice($priceFilters,$filt,$interval){
         global $isFirst;
         $strQUery ='';
         
             foreach($priceFilters as $e){
                 $concatMode = getCorrectConcat();
                 if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-                    $queryTypes .= getSqlStringType(floatval($interval[$e]["from"]));
-                    $queryTypes .= getSqlStringType(floatval($interval[$e]["to"]));
-                    array_push($queryVars,floatval($interval[$e]["from"]));
-                    array_push($queryVars,floatval($interval[$e]["to"]));
 
                     $strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE.'?'.AND_S.'?';
+                    array_push($queryVars,floatval($interval[$e]["from"]));
+                    array_push($queryVars,floatval($interval[$e]["to"]));
                     //$strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
                 }
                 else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-                    $queryTypes .= getSqlStringType(floatval($interval[$e]["from"]));
-                    array_push($queryVars,floatval($interval[$e]["from"]));
 
                     $strQUery .= $concatMode.$filt.SPACE.'>='.SPACE.'?';
+                    array_push($queryVars,floatval($interval[$e]["from"]));
                     //$strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
                 }
                 else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
-                    $queryTypes .= getSqlStringType(floatval($interval[$e]["to"]));
-                    array_push($queryVars,floatval($interval[$e]["to"]));
 
                     $strQUery .= $concatMode.$filt.SPACE.'<='.SPACE.'?';
+                    array_push($queryVars,floatval($interval[$e]["to"]));
                     //$strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
                 }
         }
@@ -158,22 +150,6 @@ filters = lang, author, price, availability, publisher,category*/
         $concatKeyword = $isFirst ? SPACE : AND_S;
         $isFirst = false;
         return $concatKeyword;
-    }
-    /**
-     * Get correct char to rapresent type of $var
-     * @param mixed $var variable to get string type
-     * @return string String of len 1
-     */
-    function getSqlStringType($var){
-        if(is_int($var)){
-            return 'i';
-        }
-        else if(is_double($var)){
-            return 'd';
-        }
-        else if(is_string($var)){
-            return 's';
-        }
     }
 
     function addAvaiableCopiesInfo($prods,$dbh){
@@ -199,17 +175,17 @@ filters = lang, author, price, availability, publisher,category*/
     /**
      * Get from db prods that match filters then send json data to client js
     */
-    function sendData($query,$avail,$dbh,$typeReq,$varTypes,$varArray){
+    function sendData($query,$avail,$dbh,$typeReq,$varArray){
         
         if($typeReq == ONLY_FUNKOS){
-            $prods = $dbh -> getAllFunkosMatch($varTypes,$varArray,$query);
+            $prods = $dbh -> getAllFunkosMatch($varArray,$query);
         }
         else if($typeReq == ONLY_COMICS){
-            $prods = $dbh -> getAllComicsMatch($varTypes,$varArray,$query); //get all products that match filters
+            $prods = $dbh -> getAllComicsMatch($varArray,$query); //get all products that match filters
         }
         else if($typeReq == ALL_PRODS){
-            $funkos = $dbh -> getAllFunkosMatch($varTypes,$varArray,$query);
-            $comics = $dbh -> getAllComicsMatch($varTypes,$varArray,$query);
+            $funkos = $dbh -> getAllFunkosMatch($varArray,$query);
+            $comics = $dbh -> getAllComicsMatch($varArray,$query);
             $prods = array_merge($funkos,$comics);
         }
         $prods = addIsFavouriteInfo($prods,$dbh);
