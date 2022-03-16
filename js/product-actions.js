@@ -108,27 +108,34 @@ function handleCartAction(clickedBtn,urlLink){
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
+        let countCopies = jsonData["count"];
+        
+        if(countCopies-1 > 0){ 
+            if(!isLogged){ //if customer logged = false --> use cookie
+                let cart = new Map(JSON.parse((getCookie(cartList))));
 
-        if(!isLogged){ //if customer logged = false --> use cookie
-            let cart = new Map(JSON.parse((getCookie(cartList))));
-            
-            if(cart.has(prodId)){ //if already added update cart quantity of prod
-                let newQuantity = cart.get(prodId)+1;
-                cart.set(prodId,newQuantity);
+                if(cart.has(prodId)){ //if already added update cart quantity of prod
+                    let newQuantity = cart.get(prodId)+1;
+                    cart.set(prodId,newQuantity);
+                }
+                else{ //add to cart for first time
+                    cart.set(prodId,1);
+                }
+                setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
             }
-            else{ //add to cart for first time
-                cart.set(prodId,1);
-            }
-            setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
-        }
-        else{ //user logged = true then check if all goes right on db
-            //if something goes wrong with db --> info banner 
-            if(!correctExec){//if executon of operation on db has error, shows banner 
-                console.log("errore nella esecuzione della operzione");
-            }
-            else{
-                updateCartLink(clickedBtn);
+            else{ //user logged = true then check if all goes right on db
+                //if something goes wrong with db --> info banner 
+                if(!correctExec){//if executon of operation on db has error, shows banner 
+                    console.log("errore nella esecuzione della operzione");
+                }
+                else{
+                    updateCartLink(clickedBtn);
+                }
             }
         }
+        else{//if in a while someone bought the product and becomes un-available, disable add to cart button
+            clickedBtn.addClass("disabled");
+        }
+
     });
 }
