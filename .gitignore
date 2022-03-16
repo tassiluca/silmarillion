@@ -7,11 +7,4 @@
 /vendor/*
 composer.phar
 !.gitkeep
-.idea/vcs.xml
-.gitignore
-.idea/modules.xml
-.gitignore
-.idea/jsLibraryMappings.xml
-.idea/php.xml
-.idea/silmarillion.iml
-.idea/dataSources.xml
+.idea/*
