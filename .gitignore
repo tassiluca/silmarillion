@@ -6,7 +6,4 @@
 /vendor/*
 
 !.gitkeep
-.idea/dataSources.local.xml
-.gitignore
-.idea/dataSources/57b90030-1b14-43fb-84b9-85f0101e56c7/storage_v2/_src_/schema/sys.zb4BAA.meta
-.idea/dataSources.xml
+.idea/*
