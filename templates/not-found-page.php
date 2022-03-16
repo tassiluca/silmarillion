@@ -12,7 +12,7 @@
     <div>
         <?php
             $images = glob("./img/not-found/*");
-            $imgAmount = count($images)-1 < 0 ? 0 : count($images)-1;
+            $imgAmount = (count($images) - 1 < 0) ? 0 : (count($images) - 1);
         ?>
         <div><p>Wolf Wolf !!</p></div>
         <img src="<?php echo $images[random_int(0,$imgAmount)]?>" alt="">

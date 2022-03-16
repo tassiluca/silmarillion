@@ -14,7 +14,7 @@
                     <ul id="productInfo">
                         <?php $favImg = isProdFavourite($dbh,$templateParams["product"]['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";?>
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
-                        <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>"><?php if($templateParams["copies"] > 0){echo $templateParams["copies"] ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="/utils/process-request.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" ><img src="<?php echo $favImg?>" alt="Preferito" /></a></li><li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
+                        <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>"><?php if($templateParams["copies"] > 0){echo $templateParams["copies"] ." copie disponibili";}else{echo "Non disponibile";}?></li><li><a href="/utils/process-request.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" class="wishButton"><img src="<?php echo $favImg?>" alt="Preferito" /></a></li><li><a href="gestisci-richieste.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">Avvisami quando questo prodotto sarà disponibile</a></li>
                     </ul>
                     <?php if($dbh -> isComic($templateParams["product"]["ProductId"])):?>
                     <ul>
@@ -37,7 +37,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="/utils/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="/utils/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>" class="cartButton"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>

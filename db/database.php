@@ -726,7 +726,6 @@
         public function getAvaiableCopiesOfProd($idProd){
             //article copies in users cart - not avaiable for others users
             $copiesSold = count($this -> getCopiesSold($idProd));
-
             $copiesInStock = count($this -> getCopiesInStock($idProd));
             return $copiesInStock - $copiesSold;
         }
@@ -804,7 +803,7 @@
 
         //------------------APPLY FILTERS CATALOG---------------------------------/
 
-        private function bindAndExecuteQueryShit($varTypes,$varArray,$query){
+        private function bindAndExecuteQuery($varTypes,$varArray,$query){
             $a_params[] = & $varTypes;
             $n = count($varArray);
             for($i = 0; $i < $n; $i++) {
