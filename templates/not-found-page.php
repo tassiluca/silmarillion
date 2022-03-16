@@ -14,7 +14,9 @@
             $images = glob("./img/not-found/*");
             $imgAmount = (count($images) - 1 < 0) ? 0 : (count($images) - 1);
         ?>
-        <div><p><?php if(isset($templateParams["msgError"])){echo $templateParams["msgError"];}?></p></div>
+        <div><p><?php 
+                if(isset($templateParams["msgError"])){echo $templateParams["msgError"];}
+                ?></p></div>
         <img src="<?php echo $images[random_int(0,$imgAmount)]?>" alt="Cane seduto">
     </div>
 </section>
