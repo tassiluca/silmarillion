@@ -719,6 +719,19 @@
         }
 
         /**
+         * Deletes all copies of a given product which are not associated to an existing order.
+         * @param int $productId the id of the product to be deleted
+         * @return void
+         */
+        public function deleteProductCopies($productId) {
+            $query = "DELETE FROM ProductCopies
+                      WHERE ProductId = ?
+                      AND CopyId NOT IN (SELECT CopyId 
+                                         FROM OrderDetails)";
+            $this->executeQuery($query, [$productId]);
+        }
+
+        /**
          * Get all avaiable copies that can be bought from customer
          * @param int $idProd unique id of product 
          * @return int avaialble copies of specific product with $prodId

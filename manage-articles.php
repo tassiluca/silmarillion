@@ -1,8 +1,7 @@
 <?php
-    require_once 'bootstrap.php';
-    
-    define("COMICS_NUM", 5);
-    define("FUNKOS_NUM", 5);
+    require_once __DIR__ . '/bootstrap.php';
+
+    define("PRODUCTS_PER_PAGE", 4);
 
     $templateParams["css"] = array("./css/manage-article.css");
     $templateParams["js"] = array("./js/manage-articles.js");

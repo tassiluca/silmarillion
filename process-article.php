@@ -218,6 +218,15 @@
 
     if ($_POST['action'] === 'delete') {
         // TODO
+        /*
+        if (isFunkoProcessing()) {
+            $dbh->deleteFunko($data['productId']);
+        } else if (isComicProcessing()) {
+            $dbh->deleteComic($data['productId']);
+        }
+        $dbh->deleteProductCopies($data['productId']);
+        exit(0);
+        */
     }
 
     if ($_POST['action'] === 'insert') {

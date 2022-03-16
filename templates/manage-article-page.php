@@ -1,5 +1,4 @@
 <?php 
-    define("PRODUCTS_PER_PAGE", 10);
     $totalAmountOfProducts = count(array_merge($dbh->getComics(), $dbh->getFunkos()));
     $totalPages = ceil($totalAmountOfProducts / PRODUCTS_PER_PAGE);
 ?>
