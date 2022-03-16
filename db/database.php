@@ -842,18 +842,24 @@
             $funct = $p ."(O.OrderDate)";
             $query = "SELECT ". $funct ." AS ".$p.", count(*) as 'Count', sum(Price) as 'Total'
                     FROM Orders as O ";
+            
+            $params =[];
             if($period != YEAR){
                 $query .= " WHERE Year(O.OrderDate) = ? ";
+                $params = array($year);
             }
             $query .= " group by ".$p." order by ".$p." Asc";
+            
             //var_dump($query);
+            /*
             $stmt = $this->db->prepare($query);
             if($period != YEAR){
                 $stmt->bind_param('i', $year);
             }
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->execute();*/
+
+            $stmt = $this->executeQuery($query, $params);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         public function getYearsWithOrders(){
