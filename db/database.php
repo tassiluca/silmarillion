@@ -447,11 +447,9 @@
                     WHERE C.ProductId = P.ProductId
                     ORDER BY C.PublishDate DESC
                     LIMIT ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $n);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $this -> executeQuery($query,[$n]);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
         /**
          * Get all products of a specific category
@@ -464,16 +462,15 @@
                     FROM Comics as C, Products as P
                     WHERE C.ProductId = P.ProductId
                     AND P.CategoryName = ? ";
-            if($quantity > -1){
+
+            $params = array();
+            if($quantity > 0){
                 $query .= " LIMIT ?";
+                $params = array($category,$quantity);
             }
-            $stmt = $this->db->prepare($query);
-            if($quantity > -1){
-                $stmt->bind_param('si', $category,$quantity);
-            }
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $stmt = $this -> executeQuery($query,$params);
+
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -486,14 +483,14 @@
                              P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                       FROM  Funkos as F, Products as P
                       WHERE F.ProductId = P.ProductId";
-            if ($quantity > 0){
-                $query .= " LIMIT ?"; 
+
+            $params = array();
+            if($quantity > 0){
+                $query .= " LIMIT ?";
+                $params = array($quantity);
             }
-            $stmt = $this->db->prepare($query);
-            if ($quantity > 0){
-                $stmt->bind_param('i',$quantity);
-            }
-            $stmt->execute();
+            $stmt = $this -> executeQuery($query,$params);
+            
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
@@ -509,6 +506,7 @@
                              P.ProductId, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                       FROM  Comics C, Products P
                       WHERE C.ProductId = P.ProductId";
+            
             if ($quantity > 0) {
                 $query .= " LIMIT ?";
             }            
@@ -540,10 +538,10 @@
             $query = "SELECT ReviewId,Vote,Description, R.UserId,U.Username
                     FROM Reviews as R, Users as U
                     WHERE R.UserId = U.UserId";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            
+            $stmt = $this -> executeQuery($query,[]);
+            return $stmt->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -558,11 +556,10 @@
                     WHERE C.ProductId = P.ProductId
                     AND PB.PublisherId = C.PublisherId
                     AND P.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $this -> executeQuery($query,[$id]);
+            return $stmt->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -576,11 +573,10 @@
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId
                     AND P.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $this -> executeQuery($query,[$id]);
+            return $stmt->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -619,10 +615,10 @@
         public function getCustomerWishlist($usrId){
             $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $usrId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $this -> executeQuery($query,[$usrId]);
+            return $stmt->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
         }
         /**
          * Add $idprod product to the $usrId personal wish/favourite list
@@ -632,23 +628,17 @@
         public function addProductToWish($usrId,$idprod){
             $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
                         VALUES (?,?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $usrId,$idprod);
-            try{
-                $stmt->execute();
-            }
-            catch(Exception $e){
-                if ($e->getCode() == $this->MYSQLI_CODE_DUPLICATE_KEY) {
-                    return -1;
-                }
-            }
+            $params = array($usrId,$idprod);
+            $stmt = $this -> executeQuery($query,$params);
+            //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
             return $stmt->insert_id;
         }
         public function removeProductToWish($usrId,$idprod){
             $query = "DELETE FROM `Favourites` WHERE `UserId` = ? and `ProductId`= ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $usrId,$idprod);
-            $stmt->execute();
+
+            $params = array($usrId,$idprod);
+            $stmt = $this -> executeQuery($query,$params);
+            //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
             return $stmt->insert_id;
         }
 
@@ -677,17 +667,17 @@
                 if(count($matchInCart) <= 0){ //if first time to be added in cart
                     $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
                         VALUES (?,?,?)";
-                    $stmt = $this->db->prepare($query);
-                    $stmt->bind_param('iii',$idprod,$usrId,$quantity);
-                    $stmt->execute();
+
+                    $stmt = $this -> executeQuery($query,array($idprod,$usrId,$quantity));
+                    //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
                     return $stmt->insert_id;
                 }
                 else{ //in case of update quantity prod in cart 
                     $quantity += $matchInCart[0]['Quantity'];
                     $query = "UPDATE Carts SET ProductId=?,UserId=?,Quantity=?";
-                    $stmt = $this->db->prepare($query);
-                    $stmt->bind_param('iii',$idprod,$usrId,$quantity);
-                    $stmt->execute();
+
+                    $stmt = $this -> executeQuery($query,array($idprod,$usrId,$quantity));
+                    //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
                     return $stmt->insert_id;
                 }
             }
@@ -701,11 +691,9 @@
         private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present in user cart
             $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` 
                         WHERE ProductId = ? AND UserId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $idProd,$usrId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            
+            $stmt = $this -> executeQuery($query,array($idProd,$usrId));
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -736,11 +724,8 @@
          */
         private function getCopiesInStock($idProd){
             $query = "SELECT `CopyId`, `ProductId` FROM `ProductCopies` WHERE ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $idProd);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $stmt = $this->executeQuery($query, [$idProd]);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
         /**
          * Get all copies not available to be bought, all copies in users carts
@@ -752,9 +737,7 @@
                         FROM `ProductCopies` as Pc, `OrderDetails` as Od
                         where Pc.CopyId = Od.CopyId
                         and Pc.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $idProd);
-            $stmt->execute();
+            $stmt = $this->executeQuery($query, [$idProd]);
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
@@ -773,10 +756,8 @@
          */
         private function getListOfFromComics($attribute){
             $query = "SELECT ".$attribute." FROM Comics Group by ". $attribute;
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $stmt = $this->executeQuery($query, []);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
         /**
          * Get all categories available and saved in db
@@ -784,18 +765,15 @@
          */
         public function getAllCategories(){
             $query = "SELECT * FROM `Categories`";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $stmt = $this->executeQuery($query, []);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         public function isFavourite($usrId,$prodId){
             $query = "SELECT count(*) as 'Count' 
             FROM `Favourites` WHERE `UserId` = ? and `ProductId` = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $usrId,$prodId);
-            $stmt->execute();
+
+            $stmt = $this->executeQuery($query, [$usrId,$prodId]);
             $result = $stmt->get_result();
             $isFav = $result->fetch_assoc()['Count'] > 0 ? true : false;
             return $isFav;
@@ -803,43 +781,22 @@
 
         //------------------APPLY FILTERS CATALOG---------------------------------/
 
-        private function bindAndExecuteQuery($varTypes,$varArray,$query){
-            $a_params[] = & $varTypes;
-            $n = count($varArray);
-            for($i = 0; $i < $n; $i++) {
-                /* with call_user_func_array, array params must be passed by reference */
-                $a_params[] = & $varArray[$i];
-            }
-            $stmt = $this->db->prepare($query);
-
-            //binding params only if there is something to bind
-            call_user_func_array(array($stmt, 'bind_param'), $a_params);
-
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
-        }
-
         /**
          * Get all comics and bind all params passed
          * @param string SQL query to be executed on db
          * @return array associative array with all product that match query
          */
-        public function getAllComicsMatch($varTypes,$varArray,$filter=''){
+        public function getAllComicsMatch($params,$filter=''){
             $query = "SELECT * 
                 FROM Products as P, Comics as C, Publisher as PB 
                 WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
             
-            if($filter != '' && count($varArray)){
+            if($filter != '' && count($params)){
                 $query .= $filter;
-                $result = $this -> bindAndExecuteQuery($varTypes,$varArray,$query);
             }
-            else {
-                $stmt = $this->db->prepare($query);
-                $stmt->execute();
-                $result = $stmt->get_result();
-            }
-            return $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt = $this -> executeQuery($query, $params);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -847,21 +804,17 @@
          * @param string SQL query to be executed on db
          * @return array associative array with all funkos that match query
          */
-        public function getAllFunkosMatch($varTypes,$varArray,$filter=''){
+        public function getAllFunkosMatch($params,$filter=''){
             $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Funkos as F, Products as P
                     WHERE F.ProductId = P.ProductId ";
                 
-                if($filter != '' && count($varArray)){
-                    $query .= $filter;
-                    $result = $this -> bindAndExecuteQuery($varTypes,$varArray,$query);
-                }
-                else {
-                    $stmt = $this->db->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                }
-                return $result->fetch_all(MYSQLI_ASSOC);
+            if($filter != '' && count($params)){
+                $query .= $filter;
+            }
+
+            $stmt = $this -> executeQuery($query, $params);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
         //------------------STATISTIC-PAGE-----------------//
         /**
@@ -905,10 +858,9 @@
 
         public function getYearsWithOrders(){
             $query = "SELECT Year(OrderDate) as 'Year' FROM Orders GROUP by Year(OrderDate)";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            
+            $stmt = $this->executeQuery($query, []);
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
     }
