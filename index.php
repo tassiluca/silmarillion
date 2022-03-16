@@ -1,7 +1,7 @@
 <?php
     require_once 'bootstrap.php';
-    define("DEFAULT_HOME_QUANTITY",20);
-
+    const DEFAULT_HOME_QUANTITY = 20;
+    global $dbh;
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 
     $templateParams["css"] = array("./css/homepage.css","./css/products.css");
