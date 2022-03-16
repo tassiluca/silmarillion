@@ -1,5 +1,6 @@
 <?php
     require_once 'bootstrap.php';
+    global $dbh;
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
     
     $templateParams["css"] = array("./css/article.css");
