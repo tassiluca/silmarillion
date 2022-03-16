@@ -5,18 +5,20 @@ const wishList = 'favs';
 const cartList = 'cart';
 
 $(document).ready(function () {
-    empty = []; //TODO: make it better and keep D.R.Y.
-    if(getCookie("favs") == ""){
-        setCookie("favs", JSON.stringify(empty), 30);
+
+    if(getCookie(wishList) === ""){
+        let emptyWishlist = [];
+        setCookie(wishList, JSON.stringify(emptyWishlist), 30);
     }
-    if(getCookie("cart") == ""){
-        setCookie("cart", JSON.stringify(empty), 30);
+    if(getCookie(cartList) === ""){
+        let emptyCart = new Map();
+        setCookie(cartList, JSON.stringify(Array.from(emptyCart.entries())), 30);
+        console.log(getCookie(cartList));
     }
 
     addEventListenerWishButtons(); //wishlist
     addEventListenerCartButtons(); //cart
 
-    //console.log(getCookie('favs'));
 });
 
 /**
@@ -25,8 +27,8 @@ $(document).ready(function () {
 function addEventListenerWishButtons(){
     $('.wishButton').click(function (e) {
         e.preventDefault();
-        btn = $(this);
-        urlRequest = btn.attr("href");
+        let btn = $(this);
+        let urlRequest = btn.attr("href");
         handleWishlistAction(btn,urlRequest);
     });
 }
@@ -37,8 +39,8 @@ function addEventListenerWishButtons(){
  function addEventListenerCartButtons(){
     $('.cartButton').click(function (e) {
         e.preventDefault();
-        btn = $(this);
-        urlRequest = btn.attr("href");
+        let btn = $(this);
+        let urlRequest = btn.attr("href");
         handleCartAction(btn,urlRequest);
     });
 }
@@ -49,7 +51,7 @@ function addEventListenerWishButtons(){
  * @param {*} elem unique product id
  */
 function updateCookielist(listName,elem){
-    curList =JSON.parse(getCookie(listName));
+    let curList = JSON.parse(getCookie(listName));
 
     if(curList.includes(elem)){//remove element from array if already present
         curList.splice(curList.indexOf(elem),1);
@@ -58,7 +60,7 @@ function updateCookielist(listName,elem){
         curList.push(elem);
     }
 
-    var json_str = JSON.stringify(curList);
+    let json_str = JSON.stringify(curList);
     setCookie(listName, json_str,30); //keep cookie for 30 days then delete them
 }
 
@@ -71,11 +73,11 @@ function updateCookielist(listName,elem){
  */
 function handleWishlistAction(clickedBtn,urlLink){
 
-    var prodId = parseInt(getUrlParameter("id",urlLink));
+    let prodId = parseInt(getUrlParameter("id",urlLink));
     $.get(urlLink, function (data) {
-        jsonData = JSON.parse(data);
-        isLogged = jsonData["isLogged"];
-        correctExec = jsonData["execDone"];
+        let jsonData = JSON.parse(data);
+        let isLogged = jsonData["isLogged"];
+        let correctExec = jsonData["execDone"];
 
         if(!isLogged){ //if customer logged = false --> use cookie
             updateCookielist(wishList,prodId);
@@ -94,7 +96,7 @@ function handleWishlistAction(clickedBtn,urlLink){
 }
 
 function updateWishIconLink(btn){
-    newIcon = $(btn).children("img").attr("src") == wishImageUnselect ? wishImageSelected : wishImageUnselect;
+    let newIcon = $(btn).children("img").attr("src") == wishImageUnselect ? wishImageSelected : wishImageUnselect;
     $(btn).children("img").attr("src",newIcon);
 }
 //-----------------------WISHLIST--------------------------//
@@ -103,22 +105,21 @@ function updateWishIconLink(btn){
 function handleCartAction(clickedBtn,urlLink){
     var prodId = parseInt(getUrlParameter("id",urlLink));
     $.get(urlLink, function (data) {
-
-        jsonData = JSON.parse(data);
-        isLogged = jsonData["isLogged"];
-        correctExec = jsonData["execDone"];
-        countCopies = jsonData["count"];
+        let jsonData = JSON.parse(data);
+        let isLogged = jsonData["isLogged"];
+        let correctExec = jsonData["execDone"];
 
         if(!isLogged){ //if customer logged = false --> use cookie
-            isPresent = isInCookieCart(prodId);
-            console.log(article);
-            if(isPresent){
-
-            }
-            else{ //append new article
-                updateCookielist(cartList,article);
-            }
+            let cart = new Map(JSON.parse((getCookie(cartList))));
             
+            if(cart.has(prodId)){ //if already added update cart quantity of prod
+                let newQuantity = cart.get(prodId)+1;
+                cart.set(prodId,newQuantity);
+            }
+            else{ //add to cart for first time
+                cart.set(prodId,1);
+            }
+            setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
         }
         else{ //user logged = true then check if all goes right on db
             //if something goes wrong with db --> info banner 
@@ -130,21 +131,4 @@ function handleCartAction(clickedBtn,urlLink){
             }
         }
     });
-}
-
-/**
- * Find fisrt occurence of product-obj that 'id' is equal to prodId
- * @param {*} prodId Product id to search
- * @returns Product object
- */
-function isInCookieCart(prodId){
-    cart = JSON.parse(getCookie(cartList));
-    len = cart.length;
-    for(var i=0;i<len;i++){
-        console.log(cart[i]);
-        if(cart[i].id == prodId){
-           return true;
-        }
-    }
-    return false;
 }
