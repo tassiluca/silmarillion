@@ -13,10 +13,10 @@
         $templateParams["main"] = "./templates/statistics-page.php";
     }
     else{
-        echo "You not have permissions";
-        $templateParams["main"] = "./templates/error-page.php";
+        $templateParams["msgError"] = "Non hai il permesso per accedere alla pagina";
+        header('location: ./not-found.php');
     }
-
+    
     require 'templates/base.php';
     
 ?>
