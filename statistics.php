@@ -14,8 +14,8 @@
         $templateParams["main"] = "./templates/statistics-page.php";
     }
     else{
-        echo "You not have permissions";
         $templateParams["main"] = "./templates/error-page.php";
+        $templateParams["msgError"] = "Non hai il permesso a questa pagina!";
     }
 
     require 'templates/base.php';
