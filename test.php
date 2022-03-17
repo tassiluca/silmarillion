@@ -17,11 +17,11 @@
                 </div>
                 <div>
                     <strong><a href="<?php echo "article.php?id=" . $product['ProductId']; ?>">
-                            <?php echo $product['ProductId'] . ' ' . $title; ?></a></strong>
+                            <?php echo $title . ' (cod. ' . $product['ProductId'] . ')'; ?></a></strong>
                 </div>
                 <div>
                     <a href="<?php echo "modify-article.php?action=modify&id=" . $product['ProductId']; ?>">Modifica</a>
-                    <a href="<?php ?>">Elimina</a>
+                    <a href="<?php echo "modify-article.php?action=delete&id=" . $product['ProductId']; ?>">Elimina</a>
                 </div>
             </li>
 <?php
