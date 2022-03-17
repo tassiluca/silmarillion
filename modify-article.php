@@ -23,7 +23,7 @@
     // if the seller is not logged in or get request is not complete as descripted above
     // redirect the user to the login page
     if (!isSellerLoggedIn() || !isset($_GET['action']) ||
-        ($_GET['action'] !== 'insert' && $_GET['action'] !== 'modify') ||
+        ($_GET['action'] !== 'insert' && $_GET['action'] !== 'modify' && $_GET['action'] !== 'delete') ||
         ($_GET['action'] === 'insert' && (!isset($_GET['article']) || 
         ($_GET['article'] !== 'funko' && $_GET['article'] !== 'comic')) ||
         ($_GET['action'] !== 'insert' && !isset($_GET['id'])))) {
@@ -34,7 +34,7 @@
         $templateParams['article'] = $dbh->isFunko($_GET['id']) ? 'funko' : 'comic';
         $productInfo = $dbh->getProduct($_GET['id']);
         if (count($productInfo) == 0) {
-            $templateParams["product"] = null;
+            header("location: not-found.php");
         } else {
             $templateParams["product"] = $productInfo[0];
             $templateParams["product"]["Quantity"] = $dbh->getAvaiableCopiesOfProd($_GET['id']);
