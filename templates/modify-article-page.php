@@ -1,4 +1,5 @@
-<?php 
+<?php
+    /** @var $templateParams */
     $product = $templateParams["product"];
     $actionMsg = match ($_GET['action']) {
         'insert' => 'INSERISCI',
@@ -16,14 +17,14 @@
 <section>
     <header>
         <h2>
-            <?php echo ($_GET['action'] === 'insert' ? 'Inserisci' : 'Modifica'); ?>
+            <?php echo ($templateParams['action'] === 'insert' ? 'Inserisci' : 'Modifica'); ?>
             <?php echo ($templateParams['article'] === 'funko' ? 'Funko' : 'Fumetto'); ?>
         </h2>
     </header>
     <!-- Comic insertion form -->
     <form action="process-article.php" method="POST" enctype="multipart/form-data">
         <ul>
-            <?php if ($_GET['action'] === 'delete') : ?>
+            <?php if ($templateParams['action'] === 'delete') : ?>
                 <li>
                     <p> Sei sicuro di voler eliminare dal database l'articolo <strong>
                             <?php echo $product['Title']; ?></strong> (cod. <?php echo $product['ProductId']; ?>)?
@@ -133,7 +134,7 @@
                     <input type="number" pattern="[0-9]+" placeholder="es. 23" id="quantity" name="quantity" value="<?php echo $product['Quantity']; ?>" min="<?php echo $product['Quantity']; ?>" required />
                 </li>
                 <li>
-                    <?php if ($_GET['action'] == 'insert'): ?>
+                    <?php if ($templateParams['action'] == 'insert'): ?>
                         <label for="coverImg">Immagine Articolo</label>
                         <input type="file" name="coverImg" id="coverImg" required />
                     <?php else: ?>
@@ -144,7 +145,7 @@
             <?php endif; ?>
             <li>
                 <input type="hidden" name="article" value="<?php echo $templateParams['article']; ?>" />
-                <input type="hidden" name="action" value="<?php echo $_GET['action']; ?>" />
+                <input type="hidden" name="action" value="<?php echo $templateParams['action']; ?>" />
                 <input type="hidden" name="productId" value="<?php echo $product['ProductId']; ?>" />
                 <input type="submit" value="<?php echo $actionMsg; ?>" />
             </li>
