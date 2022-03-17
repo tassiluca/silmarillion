@@ -43,14 +43,17 @@ filters = lang, author, price, availability, publisher,category*/
             $isFirst = true;
             foreach($keys as $k){
                 
-                if(isset($data['category']) && in_array('funko',$data['category'])){
+                if(isset($data['category']) && in_array('Funko',$data['category'])){
                     $isFunko = ONLY_FUNKOS;
                 }
-                else{
+                else if(isset($data['category']) && in_array('Comics',$data['category'])){
                     $isFunko = ONLY_COMICS;
                 }
+                else{
+                    $isFunko = ALL_PRODS;
+                }
 
-                if(!strcmp($k,'category') && $isFunko != ONLY_FUNKOS){
+                if(!strcmp($k,'category')){
                     $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varArray);
                 }
                 else if(!strcmp($k,'publisher') && $isFunko != ONLY_FUNKOS){
