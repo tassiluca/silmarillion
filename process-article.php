@@ -214,21 +214,18 @@
     }
 
     $data = getInputData();
-    validate($data);
 
     if ($_POST['action'] === 'delete') {
-        // TODO
-        /*
         if (isFunkoProcessing()) {
             $dbh->deleteFunko($data['productId']);
         } else if (isComicProcessing()) {
             $dbh->deleteComic($data['productId']);
         }
         $dbh->deleteProductCopies($data['productId']);
-        exit(0);
-        */
+        header('location: manage-articles.php');
     }
 
+    validate($data);
     if ($_POST['action'] === 'insert') {
         list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
         redirectOnFailure($msg, !$result);
