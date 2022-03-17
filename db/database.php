@@ -360,10 +360,13 @@
          * @param int $productId the product id to delete
          */
         public function deleteFunko($productId) {
-            $this->deleteProduct($productId);
             $query = "DELETE FROM Funkos
                       WHERE ProductId = ?";
             $this->executeQuery($query, [$productId]);
+            // [NOTE] it's important the deletion of the product is done after
+            // the deletion of the funko due to the foreign key between them.
+            $this->deleteProduct($productId);
+
         }
 
         /**
@@ -371,10 +374,12 @@
          * @param int $productId the product id to delete
          */
         public function deleteComic($productId) {
-            $this->deleteProduct($productId);
             $query = "DELETE FROM Comics
                       WHERE ProductId = ?";
             $this->executeQuery($query, [$productId]);
+            // [NOTE] it's important the deletion of the product is done after
+            // the deletion of the comic due to the foreign key between them.
+            $this->deleteProduct($productId);
         }
 
         /**
@@ -524,12 +529,11 @@
         public function getProducts($offset, $limit) {
             $query = "SELECT P.ProductId, P.CoverImg
                       FROM Products P
+                      WHERE ProductId IN (SELECT ProductId FROM Comics) OR ProductId IN (SELECT ProductId FROM Funkos)
                       LIMIT ?, ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $offset, $limit);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);        
+            return $this->executeQuery($query, [$offset, $limit])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
