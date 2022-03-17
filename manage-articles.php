@@ -6,6 +6,10 @@
     $templateParams["css"] = array("./css/manage-article.css");
     $templateParams["js"] = array("./js/manage-articles.js");
     $templateParams["main"] = "./templates/manage-article-page.php";
+    
+    if (!isCustomerLoggedIn()) {
+        header("location: login.php");
+    }
 
     require 'templates/base.php';
 ?>
