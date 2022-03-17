@@ -95,8 +95,7 @@
      * @param array $data an associative array with all data to validate
      */
     function validateDiscountedPrice($data) {
-        return empty($data['discountedPrice']) || 
-            (!empty($data['discountedPrice']) && $data['discountedPrice'] < $data['price']);
+        return empty($data['discountedPrice']) || $data['discountedPrice'] < $data['price'];
     }
 
     /**
@@ -130,7 +129,7 @@
 
         list($tmp, $msg) = validateInput($rules, $dataDic);
         $tmp = $tmp && validateCategory($data) && 
-            (isFunkoProcessing() ? true : validatePublisher($data)) && 
+            (isFunkoProcessing() || validatePublisher($data)) &&
             validateDiscountedPrice($data);
         redirectOnFailure("Errore inserimento dati. Ricontrolla i campi!", !$tmp);
     }
