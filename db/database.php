@@ -251,13 +251,15 @@
          * @param string $desc the funko description
          * @param string $img the funko image
          * @param string $category the funko category
-         * @return int describing the error occurred or 0 if no error occurred.
+         * @return array in the first position the error code occurred or 0 if no error occurred and
+         * in the second position the inserted id
          */
         public function addFunko($name, $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Funkos(ProductId, Name)
                       VALUES(?, ?)";
-            return $this->executeQuery($query, [$productId, $name])->errno;
+            $stmt = $this->executeQuery($query, [$productId, $name]);
+            return array($stmt->errno, $productId);
         }
 
         /**
@@ -275,14 +277,16 @@
          * @param string $desc the comic description
          * @param string $img the comic image
          * @param string $category the comic category
-         * @return int describing the error occurred or 0 if no error occurred.
+         * @return array in the first position the error code occurred or 0 if no error occurred and
+         * in the second position the inserted id
          */
         public function addComic($title, $author, $lang, $date, $isbn, $publisherId, 
                                  $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Comics(Title, Author, Lang, PublishDate, ISBN, ProductId, PublisherId)
                       VALUES(?, ?, ?, ?, ?, ?, ?)";
-            return $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId])->errno;
+            $stmt = $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId]);
+            return array($stmt->errno, $productId);
         }
 
         /**

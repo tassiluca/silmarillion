@@ -7,7 +7,8 @@
      * @return boolean true if the user is processing a funko, false otherwise.
      */
     function isFunkoProcessing() {
-        return $_POST["article"] === "funko";
+        global $data;
+        return $data["article"] === "funko";
     }
 
     /**
@@ -15,7 +16,8 @@
      * @return boolean true if the user is processing a comic, false otherwise.
      */
     function isComicProcessing() {
-        return $_POST["article"] === "comic";
+        global $data;
+        return $data["article"] === "comic";
     }
 
     /**
@@ -215,7 +217,7 @@
 
     $data = getInputData();
 
-    if ($_POST['action'] === 'delete') {
+    if ($data['action'] === 'delete') {
         if (isFunkoProcessing()) {
             $dbh->deleteFunko($data['productId']);
         } else if (isComicProcessing()) {
@@ -226,7 +228,7 @@
     }
 
     validate($data);
-    if ($_POST['action'] === 'insert') {
+    if ($data['action'] === 'insert') {
         list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
         redirectOnFailure($msg, !$result);
         $coverImg = $msg;
@@ -234,10 +236,18 @@
 
     insertCategory($data);
     if (isFunkoProcessing()) {
-        $res = ($_POST['action'] === 'insert' ? insertFunko($data, $coverImg) : updateFunko($data));
+        if ($data['action'] === 'insert') {
+            list($res, $data['productId']) = insertFunko($data, $coverImg);
+        } else {
+            $res = updateFunko($data);
+        }
     } else if (isComicProcessing()) {
         insertPublisher($data);
-        $res = ($_POST['action'] === 'insert' ? insertComic($data, $coverImg) : updateComic($data));
+        if ($data['action'] === 'insert') {
+            list($res, $data['productId']) = insertComic($data, $coverImg);
+        } else {
+            $res = updateComic($data);
+        }
     }
     checkErrors($res, 'Prodotto');
 
