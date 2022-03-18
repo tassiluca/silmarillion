@@ -85,7 +85,7 @@ function handleWishlistAction(clickedBtn,urlLink){
         }
         else{ //user logged = true then check if all goes right on db
             //if something goes wrong with db --> info banner 
-            if(!correctExec){//if executon of operation on db has error, shows banner 
+            if(correctExec){//if executon of operation on db has error, shows banner 
                 console.log("errore nella esecuzione della operzione");
             }
             else{
@@ -125,11 +125,8 @@ function handleCartAction(clickedBtn,urlLink){
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
-                if(!correctExec){//if executon of operation on db has error, shows banner 
+                if(correctExec){//if executon of operation on db has error, shows banner 
                     console.log("errore nella esecuzione della operzione");
-                }
-                else{
-                    updateCartLink(clickedBtn);
                 }
             }
         }
