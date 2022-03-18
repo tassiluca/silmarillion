@@ -7,7 +7,7 @@
     $templateParams["js"] = array("./js/manage-articles.js");
     $templateParams["main"] = "./templates/manage-article-page.php";
     
-    if (!isCustomerLoggedIn()) {
+    if (!isSellerLoggedIn()) {
         header("location: login.php");
     }
 

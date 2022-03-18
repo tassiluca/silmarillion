@@ -4,6 +4,11 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    /** [NOTE] Configure PHP < 8.1 behavior in all PHP versions
+     * @see more at [https://php.watch/versions/8.1/mysqli-error-mode]
+     */
+    // mysqli_report(MYSQLI_REPORT_ERROR|MYSQLI_REPORT_STRICT);
+
     session_start();
 
     define("UPLOAD_DIR", "./upload");
