@@ -15,6 +15,10 @@ const ONLY_COMICS = 0;
 const ONLY_FUNKOS = 1;
 const ALL_PRODS = 2;
 
+//MACRO_CATEGORY
+const funkoCategory = 'Funko';
+const comicCategory = 'Comics';
+
 $varTypes = ''; //string containing all types of passed var to bind_param()
 $varArray = []; //array of references of all variables to be binded
 
@@ -34,6 +38,25 @@ filters = lang, author, price, availability, publisher,category*/
         
         if(isset($keys) && count($keys)){
             $filtQuery = AND_S.'(';
+
+            if(isset($data['category']) && in_array(funkoCategory,$data['category'])
+                    && !in_array(comicCategory,$data['category'])){
+                    $isFunko = ONLY_FUNKOS;
+                    //remove comicCategory from list of categories for filtering
+                    array_splice($data['category'],array_search(funkoCategory,$data['category']),1);
+            }
+            else if(isset($data['category']) && in_array(comicCategory,$data['category'])
+                    && !in_array(funkoCategory,$data['category'])){
+                $isFunko = ONLY_COMICS;
+                array_splice($data['category'],array_search(comicCategory,$data['category']),1);
+                //TODO:REMOVE OR IGNORE KEY Funko and Comics
+            }
+            else{
+                $isFunko = ALL_PRODS;
+                array_splice($data['category'],array_search(funkoCategory,$data['category']),1);
+                array_splice($data['category'],array_search(comicCategory,$data['category']),1);
+            }
+
         /**
          * is first filter applied ? Used to append or not 'and' keyword in SQLquery
          * If one filter selected not add 'or' statement, if more than one filter is applied
@@ -42,16 +65,6 @@ filters = lang, author, price, availability, publisher,category*/
          */
             $isFirst = true;
             foreach($keys as $k){
-                
-                if(isset($data['category']) && in_array('Funko',$data['category'])){
-                    $isFunko = ONLY_FUNKOS;
-                }
-                else if(isset($data['category']) && in_array('Comics',$data['category'])){
-                    $isFunko = ONLY_COMICS;
-                }
-                else{
-                    $isFunko = ALL_PRODS;
-                }
 
                 if(!strcmp($k,'category')){
                     $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varArray);
@@ -84,8 +97,9 @@ filters = lang, author, price, availability, publisher,category*/
                 }
 
             }
+
             if($isFunko==ONLY_FUNKOS && !in_array('price', $keys)){
-                $filtQuery .= ' 1)';
+                $filtQuery .= ' )'; //tolto l'1 che faceva exception TODO
             }
             else{
                 $filtQuery .= ' )';
@@ -106,9 +120,12 @@ filters = lang, author, price, availability, publisher,category*/
     function appendEqualFilter($arr,$filt,&$queryVars){
         $strQuery ='';
             foreach($arr as $e){
-                $concatMode = getCorrectConcat();
-                $strQuery .= $concatMode.$filt.SPACE.EQ.SPACE.'?';//"'".$e."'";
-                array_push($queryVars,$e);
+                if($e !== comicCategory || $e !== funkoCategory){
+                    $concatMode = getCorrectConcat();
+                    $strQuery .= $concatMode.$filt.SPACE.EQ.SPACE.'?';//"'".$e."'";
+                    array_push($queryVars,$e); 
+                }
+               
             }
         return $strQuery;
     }
@@ -120,7 +137,7 @@ filters = lang, author, price, availability, publisher,category*/
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
      * @return string $strQUery partial query, composed query that filter price ranges
      */
-    function appendBetweenFilterPrice($priceFilters,$filt,$interval){
+    function appendBetweenFilterPrice($priceFilters,$filt,$interval,&$queryVars){
         global $isFirst;
         $strQUery ='';
         

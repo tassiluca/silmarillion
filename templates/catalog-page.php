@@ -1,3 +1,10 @@
+ <?php 
+ //MACRO_CATEGORY
+const funkoCategory = 'Funko';
+const comicCategory = 'Comics';
+
+ ?>
+ 
  <!-- Breadcrumb pagination -->
 <div>
     <ul>
@@ -9,15 +16,15 @@
 <aside>
     <button>Categoria</button>
     <ul>
-        <li><input type="checkbox" class="category" id="funko" name="Funko">
-            <label for="unko">Funko</label></li>
-            <li><input type="checkbox" class="category" id="comics" name="Comics">
-            <label for="comics">Comics</label></li>
+        <li><input type="checkbox" class="category" id="funko" name="<?php echo funkoCategory?>">
+            <label for="funko"><?php echo funkoCategory?></label></li>
+            <li><input type="checkbox" class="category" id="comics" name="<?php echo comicCategory?>">
+            <label for="comics"><?php echo comicCategory?></label></li>
 
         <?php if(isset($templateParams["categories"])):
 
-        foreach($templateParams["categories"] as $category):
-            $idcategory= getIdFromName($category["Name"]);
+            foreach($templateParams["categories"] as $category):
+                $idcategory= getIdFromName($category["Name"]);
         ?>
             <li><input type="checkbox"  class="category" id="<?php echo $idcategory?>" name="<?php echo $category["Name"]?>" />
             <label for="<?php echo $idcategory?>"><?php echo $category["Name"]?></label></li>
