@@ -1,13 +1,5 @@
 <?php
     require_once '../bootstrap.php';
-/*
-    if(isset($_SESSION['url'])){
-         $lastPage = $_SESSION['url']; // holds url for last page visited.
-    }
-    else{
-        $lastPage = "index.php"; 
-    }
-*/
 
     if(isset($_GET["action"]) && isset($_GET["id"])){
         $action = $_GET["action"];
@@ -44,10 +36,9 @@
                 return $dbh -> removeProductToWish($idCustomer,$idprod);
             }
 
-
         }//--VVVVVVVV--NO ROBA MIA----VVVVVVVVVVV
         else if(!strcmp($action,'addtoCart')){
-            $dbh -> addProductToCart($idCustomer,$idprod,1);
+            return $dbh -> addProductToCart($idCustomer,$idprod,1);
         }
         else if(!strcmp($action,'decToCart')){
             //decrement quantity of product in cart
