@@ -650,6 +650,14 @@
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
 
+        public function isAlertActive($usrId,$idprodotto){
+            $query = "SELECT * FROM `Alerts` WHERE `UserId` = ? AND `ProductId` = ?";
+            $resultCount = count($this -> executeQuery($query,[$usrId,$idprodotto])
+                         ->get_result()
+                         ->fetch_all(MYSQLI_ASSOC));
+            return $resultCount > 0;
+        }
+
         //-----------------------------ADD----TO---CART------------------------------//
         /**
          * Add $idprod product to the $usrId personal cart
