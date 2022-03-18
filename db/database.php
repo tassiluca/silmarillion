@@ -530,12 +530,17 @@
             return $result->fetch_all(MYSQLI_ASSOC);        
         }
 
-        public function getProducts($offset, $limit) {
-            $query = "SELECT P.ProductId, P.CoverImg
-                      FROM Products P
-                      WHERE ProductId IN (SELECT ProductId FROM Comics) OR ProductId IN (SELECT ProductId FROM Funkos)
+        public function getProducts($offset, $limit, $expression = '') {
+            $expression .= '%';
+            $query = "SELECT P.ProductId, C.Title as Title, P.CoverImg
+                      FROM Products P JOIN Comics C ON P.ProductId = C.ProductId
+                      WHERE C.Title LIKE ?
+                      UNION 
+                      SELECT P.ProductId, F.Name as Title, P.CoverImg
+                      FROM Products P JOIN Funkos F ON P.ProductId = F.ProductId
+                      WHERE F.Name LIKE ?
                       LIMIT ?, ?";
-            return $this->executeQuery($query, [$offset, $limit])
+            return $this->executeQuery($query, [$expression, $expression ,$offset, $limit])
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
         }

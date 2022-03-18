@@ -1,7 +1,3 @@
-<?php 
-    $totalAmountOfProducts = count(array_merge($dbh->getComics(), $dbh->getFunkos()));
-    $totalPages = ceil($totalAmountOfProducts / PRODUCTS_PER_PAGE);
-?>
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
@@ -17,10 +13,8 @@
         <!-- here are inserted all products -->       
     </ul>
     <footer>
-        <ul>
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <li><a href=""><?php echo $i; ?></a></li>
-            <?php endfor; ?>
+        <ul id="pagination">
+            <!-- here are inserted the pagination list items -->
         </ul>
     </footer>
 </section>
