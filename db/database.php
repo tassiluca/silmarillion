@@ -794,7 +794,7 @@
             if($filter != '' && count($params)){
                 $query .= $filter;
             }
-
+            //print_r($query);
             $stmt = $this -> executeQuery($query, $params);
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
@@ -812,7 +812,7 @@
             if($filter != '' && count($params)){
                 $query .= $filter;
             }
-
+            //print_r($query);
             $stmt = $this -> executeQuery($query, $params);
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
