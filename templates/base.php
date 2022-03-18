@@ -74,7 +74,7 @@
                         </li><li>
                             <a href="catalog.php?category=hero">Supoereroi</a>
                         </li><li>
-                            <a href="catalog.php?category=funko">Funko Pop</a>
+                            <a href="catalog.php?category=Funko">Funko Pop</a>
                         </li><li id="login">
                             <a href="login.php">Login</a>
                         </li><li>
