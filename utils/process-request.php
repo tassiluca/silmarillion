@@ -49,8 +49,7 @@
             $dbh -> deleteProductFromCart($idCustomer,$idprod,1);
         }
         else if(!strcmp($action,'notify')){
-            //echo 'notify me id'. $idprod;
-            $dbh -> addProductAlert($idCustomer,$idprod);
+            return $dbh -> addProductAlert($idCustomer,$idprod);
         }
     }
     
