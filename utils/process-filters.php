@@ -49,7 +49,6 @@ filters = lang, author, price, availability, publisher,category*/
                     && !in_array(funkoCategory,$data['category'])){
                 $isFunko = ONLY_COMICS;
                 array_splice($data['category'],array_search(comicCategory,$data['category']),1);
-                //TODO:REMOVE OR IGNORE KEY Funko and Comics
             }
             else{
                 $isFunko = ALL_PRODS;
