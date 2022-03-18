@@ -624,32 +624,30 @@
          * Add $idprod product to the $usrId personal wish/favourite list
          * @param int $usrId unique id of consumer user
          * @param int $idprod unique id of product
+         * @return boolean false if action failed, true if all done
          */
         public function addProductToWish($usrId,$idprod){
             $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
                         VALUES (?,?)";
-            $params = array($usrId,$idprod);
-            $stmt = $this -> executeQuery($query,$params);
-            //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
-            return $stmt->insert_id;
+            return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
+
+        /**
+         * Remove $idprod product to the $usrId personal wish/favourite list
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         * @return boolean false if action failed, true if all done
+         */
         public function removeProductToWish($usrId,$idprod){
             $query = "DELETE FROM `Favourites` WHERE `UserId` = ? and `ProductId`= ?";
-
-            $params = array($usrId,$idprod);
-            $stmt = $this -> executeQuery($query,$params);
-            //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
-            return $stmt->insert_id;
+            return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
 
         //---------------------ALERT-PRODUCT-------------------//
         public function addProductAlert($usrId,$idprod){
             $query = "INSERT INTO `Alerts`(`UserId`, `ProductId`) 
                         VALUES (?,?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $usrId,$idprod);
-            $stmt->execute();
-            return $stmt->insert_id;
+            return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
 
         //-----------------------------ADD----TO---CART------------------------------//
@@ -657,7 +655,7 @@
          * Add $idprod product to the $usrId personal cart
          * @param int $usrId unique id of consumer user
          * @param int $idprod unique id of product
-         * @return int value returned by db after insertion
+         * @return boolean false if action failed, true if all done
          */
         public function addProductToCart($usrId,$idprod,$quantity){
             $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
