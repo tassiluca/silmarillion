@@ -108,12 +108,13 @@ $(document).ready(function(){
      * @param {int} idxPage index page to be shown
      */
     function updateCatalogView(idxPage){
-        $('main > section > article').remove();
         $('main > section > p').remove();
         $('main > section:last-of-type > footer > ul > li > p').empty();
+
         var maxPages = (numPages * NUM_PROD_PAGE) +1 > prods.length ? numPages : numPages + 1;
         $('main > section:last-of-type > footer > ul > li > p').append(idxPage+1 +'/'+maxPages );
         var prodListHTML ='';
+
         if(prods.length <= 0){
             prodListHTML += '<p>Articoli Non Trovati</p>';
         }
@@ -134,7 +135,7 @@ $(document).ready(function(){
                                 '" class="cartButton"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
         }
-        $('main > section:first-of-type()').append(prodListHTML);
+        $('main > section:first-of-type()').html(prodListHTML);
 
         //add event listener to all wishlist buttons
         addEventListenerWishButtons();
