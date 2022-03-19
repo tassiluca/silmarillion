@@ -7,7 +7,7 @@
 <section>
     <header>
         <h2>Gestisci Articoli</h2>
-        <input type="text" name="search" placeholder="Cerca..." aria-label="Cerca prodotto" />
+        <input type="text" name="search" id="search-articles" placeholder="Cerca..." aria-label="Cerca prodotto" />
     </header>
     <ul id="products">
         <!-- here are inserted all products -->       

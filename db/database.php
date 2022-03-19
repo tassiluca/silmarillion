@@ -530,7 +530,7 @@
             return $result->fetch_all(MYSQLI_ASSOC);        
         }
 
-        public function getProducts($offset, $limit, $expression = '') {
+        public function getProducts($offset = -1, $limit = -1, $expression = '') {
             $expression .= '%';
             $query = "SELECT P.ProductId, C.Title as Title, P.CoverImg
                       FROM Products P JOIN Comics C ON P.ProductId = C.ProductId
@@ -538,9 +538,13 @@
                       UNION 
                       SELECT P.ProductId, F.Name as Title, P.CoverImg
                       FROM Products P JOIN Funkos F ON P.ProductId = F.ProductId
-                      WHERE F.Name LIKE ?
-                      LIMIT ?, ?";
-            return $this->executeQuery($query, [$expression, $expression ,$offset, $limit])
+                      WHERE F.Name LIKE ?";
+            $params = [$expression, $expression];
+            if ($offset !== -1 && $limit !== -1) {
+                $query .= " LIMIT ?, ?";
+                array_push($params, $offset, $limit);
+            }
+            return $this->executeQuery($query, $params)
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
         }
