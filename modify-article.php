@@ -1,5 +1,5 @@
 <?php
-    require_once 'bootstrap.php';
+    require_once __DIR__ . '/bootstrap.php';
 
     /* [NOTE] For more details about select2: [https://select2.org/] */
     $templateParams["css"] = array("./css/modify-article.css", 
@@ -19,11 +19,10 @@
      * In order to modify or delete a product must be get-requested "action=modify&id=?"
      * where ? is the product's id to modify.
      */
-
-    // if the seller is not logged in or get request is not complete as descripted above
+    // if the seller is not logged in or get request is not complete as described above
     // redirect the user to the login page
     if (!isSellerLoggedIn() || !isset($_GET['action']) ||
-        ($_GET['action'] !== 'insert' && $_GET['action'] !== 'modify') ||
+        ($_GET['action'] !== 'insert' && $_GET['action'] !== 'modify' && $_GET['action'] !== 'delete') ||
         ($_GET['action'] === 'insert' && (!isset($_GET['article']) || 
         ($_GET['article'] !== 'funko' && $_GET['article'] !== 'comic')) ||
         ($_GET['action'] !== 'insert' && !isset($_GET['id'])))) {
@@ -33,9 +32,9 @@
     if ($_GET["action"] !== 'insert') {
         $templateParams['article'] = $dbh->isFunko($_GET['id']) ? 'funko' : 'comic';
         $productInfo = $dbh->getProduct($_GET['id']);
-        if (count($productInfo) == 0) {
-            $templateParams["product"] = null;
-        } else {
+        if (count($productInfo) == 0) { // no product found in the database
+            header("location: not-found.php");
+        } else { // product found in the database
             $templateParams["product"] = $productInfo[0];
             $templateParams["product"]["Quantity"] = $dbh->getAvaiableCopiesOfProd($_GET['id']);
         }
@@ -43,8 +42,14 @@
         $templateParams['article'] = $_GET['article'];
         $templateParams['product'] = getEmptyFormData();
     }
+    $templateParams["action"] = $_GET["action"];
 
-    function getEmptyFormData(){
+    /**
+     * Creates an associative array with all fields of the form blank.
+     * @return array with all blank-initialized fields
+     */
+    function getEmptyFormData(): array
+    {
         $fields = array("Name", "Title", "Author", "Lang", "PublishDate", "ISBN", "ProductId", "PublisherId", 
         "Price", "DiscountedPrice", "Description", "CategoryName", "PublisherName", "CoverImg", "Quantity");
         return array_fill_keys($fields, '');

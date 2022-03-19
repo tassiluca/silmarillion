@@ -39,7 +39,7 @@
          * @param string $query the query to be executed
          * @param array $parameters an associative array like [valueType => value].
          * An example: ['i' => 10, 's' => 'Hello World', ...]
-         * @return PDOStatement the statement in order to do other staff like `get_results` and so on...
+         * @return false|mysqli_stmt the statement in order to do other staff like `get_results` and so on...
          */
         private function executeQuery($query, $parameters = []) {
             $stmt = $this->db->prepare($query);
@@ -251,13 +251,15 @@
          * @param string $desc the funko description
          * @param string $img the funko image
          * @param string $category the funko category
-         * @return int describing the error occurred or 0 if no error occurred.
+         * @return array in the first position the error code occurred or 0 if no error occurred and
+         * in the second position the inserted id
          */
         public function addFunko($name, $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Funkos(ProductId, Name)
                       VALUES(?, ?)";
-            return $this->executeQuery($query, [$productId, $name])->errno;
+            $stmt = $this->executeQuery($query, [$productId, $name]);
+            return array($stmt->errno, $productId);
         }
 
         /**
@@ -275,14 +277,16 @@
          * @param string $desc the comic description
          * @param string $img the comic image
          * @param string $category the comic category
-         * @return int describing the error occurred or 0 if no error occurred.
+         * @return array in the first position the error code occurred or 0 if no error occurred and
+         * in the second position the inserted id
          */
         public function addComic($title, $author, $lang, $date, $isbn, $publisherId, 
                                  $price, $discountedPrice, $desc, $img, $category) {
             $productId = $this->addProduct($price, $discountedPrice, $desc, $img, $category);
             $query = "INSERT INTO Comics(Title, Author, Lang, PublishDate, ISBN, ProductId, PublisherId)
                       VALUES(?, ?, ?, ?, ?, ?, ?)";
-            return $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId])->errno;
+            $stmt = $this->executeQuery($query, [$title, $author, $lang, $date, $isbn, $productId, $publisherId]);
+            return array($stmt->errno, $productId);
         }
 
         /**
@@ -360,10 +364,13 @@
          * @param int $productId the product id to delete
          */
         public function deleteFunko($productId) {
-            $this->deleteProduct($productId);
             $query = "DELETE FROM Funkos
                       WHERE ProductId = ?";
             $this->executeQuery($query, [$productId]);
+            // [NOTE] it's important the deletion of the product is done after
+            // the deletion of the funko due to the foreign key between them.
+            $this->deleteProduct($productId);
+
         }
 
         /**
@@ -371,10 +378,12 @@
          * @param int $productId the product id to delete
          */
         public function deleteComic($productId) {
-            $this->deleteProduct($productId);
             $query = "DELETE FROM Comics
                       WHERE ProductId = ?";
             $this->executeQuery($query, [$productId]);
+            // [NOTE] it's important the deletion of the product is done after
+            // the deletion of the comic due to the foreign key between them.
+            $this->deleteProduct($productId);
         }
 
         /**
@@ -519,15 +528,23 @@
             return $result->fetch_all(MYSQLI_ASSOC);        
         }
 
-        public function getProducts($offset, $limit) {
-            $query = "SELECT P.ProductId, P.CoverImg
-                      FROM Products P
-                      LIMIT ?, ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ii', $offset, $limit);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);        
+        public function getProducts($offset = -1, $limit = -1, $expression = '') {
+            $expression .= '%';
+            $query = "SELECT P.ProductId, C.Title as Title, P.CoverImg
+                      FROM Products P JOIN Comics C ON P.ProductId = C.ProductId
+                      WHERE C.Title LIKE ?
+                      UNION 
+                      SELECT P.ProductId, F.Name as Title, P.CoverImg
+                      FROM Products P JOIN Funkos F ON P.ProductId = F.ProductId
+                      WHERE F.Name LIKE ?";
+            $params = [$expression, $expression];
+            if ($offset !== -1 && $limit !== -1) {
+                $query .= " LIMIT ?, ?";
+                array_push($params, $offset, $limit);
+            }
+            return $this->executeQuery($query, $params)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -710,6 +727,19 @@
             $query = "INSERT INTO ProductCopies(ProductId)
                       VALUES(?)";
             return $this->executeQuery($query, [$productId])->errno;
+        }
+
+        /**
+         * Deletes all copies of a given product which are not associated to an existing order.
+         * @param int $productId the id of the product to be deleted
+         * @return void
+         */
+        public function deleteProductCopies($productId) {
+            $query = "DELETE FROM ProductCopies
+                      WHERE ProductId = ?
+                      AND CopyId NOT IN (SELECT CopyId 
+                                         FROM OrderDetails)";
+            $this->executeQuery($query, [$productId]);
         }
 
         /**

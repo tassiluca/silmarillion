@@ -1,8 +1,3 @@
-<?php 
-    define("PRODUCTS_PER_PAGE", 10);
-    $totalAmountOfProducts = count(array_merge($dbh->getComics(), $dbh->getFunkos()));
-    $totalPages = ceil($totalAmountOfProducts / PRODUCTS_PER_PAGE);
-?>
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
@@ -12,16 +7,14 @@
 <section>
     <header>
         <h2>Gestisci Articoli</h2>
-        <input type="text" name="search" placeholder="Cerca..." aria-label="Cerca prodotto" />
+        <input type="text" name="search" id="search-articles" placeholder="Cerca..." aria-label="Cerca prodotto" />
     </header>
     <ul id="products">
         <!-- here are inserted all products -->       
     </ul>
     <footer>
-        <ul>
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <li><a href=""><?php echo $i; ?></a></li>
-            <?php endfor; ?>
+        <ul id="pagination">
+            <!-- here are inserted the pagination list items -->
         </ul>
     </footer>
 </section>
