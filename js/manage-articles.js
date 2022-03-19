@@ -14,8 +14,8 @@ function populateHtml(products) {
                         </strong>
                     </div>
                     <div>
-                        <a href="">Modifica</a>
-                        <a href="">Elimina</a>
+                        <a href="modify-article.php?action=modify&id=` + prods[i]['ProductId'] + `">Modifica</a>
+                        <a href="modify-article.php?action=delete&id=` + prods[i]['ProductId'] + `">Elimina</a>
                     </div>
                 </li>`;
     }
