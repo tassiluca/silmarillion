@@ -28,11 +28,11 @@ function populateHtml(products) {
     $("main > section > footer > ul#pagination > li > a").click(function(e){
         e.preventDefault();
         if ($("#search-articles").val() === '') {
-            $.get("test.php", {page : $(this).text()}, function(data){
+            $.get("process-management-articles.php", {page : $(this).text()}, function(data){
                 populateHtml(data);
             });
         } else {
-            $.get("test.php", {pattern: $("#search-articles").val(), page : $(this).text()}, function(data){
+            $.get("process-management-articles.php", {pattern: $("#search-articles").val(), page : $(this).text()}, function(data){
                 populateHtml(data);
             });
         }
@@ -41,12 +41,12 @@ function populateHtml(products) {
 
 
 $(document).ready(function(){
-    $.get("test.php", {page:1}, function(products) {
+    $.get("process-management-articles.php", {page:1}, function(products) {
         populateHtml(products);
     });
 
     $("main > section > header > input").keyup(function(){
-        $.get("test.php", {pattern : $(this).val(), page: 1}, function(data){
+        $.get("process-management-articles.php", {pattern : $(this).val(), page: 1}, function(data){
             populateHtml(data);
         });
     });
