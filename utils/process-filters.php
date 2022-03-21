@@ -36,8 +36,9 @@ filters = lang, author, price, availability, publisher,category*/
         $keys = array_keys($_POST);
         $data = $_POST;
         
+        $filtQuery = AND_S.'(';
+        
         if(isset($keys) && count($keys)){
-            $filtQuery = AND_S.'(';
 
             if(isset($data['category']) && in_array(funkoCategory,$data['category'])
                     && !in_array(comicCategory,$data['category'])){
@@ -52,8 +53,13 @@ filters = lang, author, price, availability, publisher,category*/
             }
             else{
                 $isFunko = ALL_PRODS;
-                array_splice($data['category'],array_search(funkoCategory,$data['category']),1);
-                array_splice($data['category'],array_search(comicCategory,$data['category']),1);
+
+                if(in_array(comicCategory,$data['category'])){
+                    array_splice($data['category'],array_search(comicCategory,$data['category']),1);
+                }
+                if(in_array(funkoCategory,$data['category'])){
+                    array_splice($data['category'],array_search(funkoCategory,$data['category']),1);
+                }
             }
 
         /**
@@ -63,6 +69,7 @@ filters = lang, author, price, availability, publisher,category*/
          * The change of $isFirst happen in method getCorrectConcat()
          */
             $isFirst = true;
+
             foreach($keys as $k){
 
                 if(!strcmp($k,'category')){
@@ -94,16 +101,10 @@ filters = lang, author, price, availability, publisher,category*/
                 else if(!strcmp($k,'lang') && $isFunko != ONLY_FUNKOS){
                     $filtQuery .= appendEqualFilter($data[$k],'C.Lang',$varArray);
                 }
-
+                
             }
 
-            if($isFunko==ONLY_FUNKOS && !in_array('price', $keys)){
-                $filtQuery .= ' )'; //tolto l'1 che faceva exception TODO
-            }
-            else{
-                $filtQuery .= ' )';
-            }
-            
+            $filtQuery .= ' )';
             sendData($filtQuery,$availabFilter,$dbh,$isFunko,$varArray);
         }
         else{
