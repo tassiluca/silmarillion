@@ -7,7 +7,8 @@
      * @return boolean true if the user is processing a funko, false otherwise.
      */
     function isFunkoProcessing() {
-        return $_POST["article"] === "funko";
+        global $data;
+        return $data["article"] === "funko";
     }
 
     /**
@@ -15,7 +16,8 @@
      * @return boolean true if the user is processing a comic, false otherwise.
      */
     function isComicProcessing() {
-        return $_POST["article"] === "comic";
+        global $data;
+        return $data["article"] === "comic";
     }
 
     /**
@@ -93,8 +95,7 @@
      * @param array $data an associative array with all data to validate
      */
     function validateDiscountedPrice($data) {
-        return empty($data['discountedPrice']) || 
-            (!empty($data['discountedPrice']) && $data['discountedPrice'] < $data['price']);
+        return empty($data['discountedPrice']) || $data['discountedPrice'] < $data['price'];
     }
 
     /**
@@ -128,7 +129,7 @@
 
         list($tmp, $msg) = validateInput($rules, $dataDic);
         $tmp = $tmp && validateCategory($data) && 
-            (isFunkoProcessing() ? true : validatePublisher($data)) && 
+            (isFunkoProcessing() || validatePublisher($data)) &&
             validateDiscountedPrice($data);
         redirectOnFailure("Errore inserimento dati. Ricontrolla i campi!", !$tmp);
     }
@@ -214,13 +215,19 @@
     }
 
     $data = getInputData();
-    validate($data);
 
-    if ($_POST['action'] === 'delete') {
-        // TODO
+    if ($data['action'] === 'delete') {
+        if (isFunkoProcessing()) {
+            $dbh->deleteFunko($data['productId']);
+        } else if (isComicProcessing()) {
+            $dbh->deleteComic($data['productId']);
+        }
+        $dbh->deleteProductCopies($data['productId']);
+        header('location: manage-articles.php');
     }
 
-    if ($_POST['action'] === 'insert') {
+    validate($data);
+    if ($data['action'] === 'insert') {
         list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
         redirectOnFailure($msg, !$result);
         $coverImg = $msg;
@@ -228,10 +235,18 @@
 
     insertCategory($data);
     if (isFunkoProcessing()) {
-        $res = ($_POST['action'] === 'insert' ? insertFunko($data, $coverImg) : updateFunko($data));
+        if ($data['action'] === 'insert') {
+            list($res, $data['productId']) = insertFunko($data, $coverImg);
+        } else {
+            $res = updateFunko($data);
+        }
     } else if (isComicProcessing()) {
         insertPublisher($data);
-        $res = ($_POST['action'] === 'insert' ? insertComic($data, $coverImg) : updateComic($data));
+        if ($data['action'] === 'insert') {
+            list($res, $data['productId']) = insertComic($data, $coverImg);
+        } else {
+            $res = updateComic($data);
+        }
     }
     checkErrors($res, 'Prodotto');
 
