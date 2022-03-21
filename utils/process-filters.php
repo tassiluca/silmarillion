@@ -19,9 +19,6 @@ const ALL_PRODS = 2;
 const funkoCategory = 'Funko';
 const comicCategory = 'Comics';
 
-$varTypes = ''; //string containing all types of passed var to bind_param()
-$varArray = []; //array of references of all variables to be binded
-
 $priceInterval = ["cheap"=> ["from"=>'0',"to"=>'99.99'],
 "medium"=> ["from"=>'100',"to"=>'199.99'],
 "expensive"=>["from"=>'99.99']];
@@ -31,13 +28,17 @@ filters = lang, author, price, availability, publisher,category*/
     
     if(isset($_POST)){  //TODO: make some chek of what server receive in post method
         $availabFilter = ALL_AVAILABILITY;
-        $varTypes = '';
-        $varArray = [];
         $keys = array_keys($_POST);
         $data = $_POST;
         
+        $comicBindParam = [];
+        $funkoBindParam = [];
+        $varArray = [];
+
         $filtQuery = AND_S.'(';
-        
+        $comicFilter = $filtQuery;
+        $funkoFilter = $filtQuery;
+
         if(isset($keys) && count($keys)){
 
             if(isset($data['category']) && in_array(funkoCategory,$data['category'])
@@ -53,13 +54,13 @@ filters = lang, author, price, availability, publisher,category*/
             }
             else{
                 $isFunko = ALL_PRODS;
-
+/*
                 if(in_array(comicCategory,$data['category'])){
                     array_splice($data['category'],array_search(comicCategory,$data['category']),1);
                 }
                 if(in_array(funkoCategory,$data['category'])){
                     array_splice($data['category'],array_search(funkoCategory,$data['category']),1);
-                }
+                }*/
             }
 
         /**
@@ -74,13 +75,17 @@ filters = lang, author, price, availability, publisher,category*/
 
                 if(!strcmp($k,'category')){
                     $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varArray);
+                    $comicFilter = $filtQuery;
+                    $funkoFilter = $filtQuery;
                 }
                 else if(!strcmp($k,'publisher') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'PB.Name',$varArray);
+                    $comicFilter .= appendEqualFilter($data[$k],'PB.Name',$varArray);
                 }
                 else if(!strcmp($k,'availability')){
                     if(count($keys)==1){ //the only key present is avaialbility
                         $filtQuery .= '1'; //sql condition always true to get all comics
+                        $comicFilter = $filtQuery;
+                        $funkoFilter = $filtQuery;
                     }
                     if(!strcmp($data[$k][0],'available')){
                         $availabFilter = AVAILABLE;
@@ -94,22 +99,48 @@ filters = lang, author, price, availability, publisher,category*/
                 }
                 else if(!strcmp($k,'price')){
                     $filtQuery .= appendBetweenFilterPrice($data[$k],'P.Price',$priceInterval,$varArray);
+                    $comicFilter = $filtQuery;
+                    $funkoFilter = $filtQuery;
                 }
                 else if(!strcmp($k,'author') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Author',$varArray);
+                    $comicFilter .= appendEqualFilter($data[$k],'C.Author',$varArray);
                 }
                 else if(!strcmp($k,'lang') && $isFunko != ONLY_FUNKOS){
-                    $filtQuery .= appendEqualFilter($data[$k],'C.Lang',$varArray);
+                    $comicFilter .= appendEqualFilter($data[$k],'C.Lang',$varArray);
                 }
-                
             }
-
             $filtQuery .= ' )';
-            sendData($filtQuery,$availabFilter,$dbh,$isFunko,$varArray);
+            $comicFilter = $filtQuery;
+            $funkoFilter = $filtQuery;
+
+            sendData(['comic'=>$comicFilter,'funko'=>$funkoFilter],$availabFilter,$dbh,$isFunko,$varArray);
         }
         else{
             sendData('',$availabFilter,$dbh,ALL_PRODS,$varArray);
         }
+    }
+
+ /**
+     * Get from db prods that match filters then send json data to client js
+    */
+    function sendData($queryArray,$avail,$dbh,$typeReq,$varArray){
+        print_r($queryArray);
+        print_r($varArray);
+        if($typeReq == ONLY_FUNKOS){
+            $prods = $dbh -> getAllFunkosMatch($varArray,$queryArray['funko']);
+        }
+        else if($typeReq == ONLY_COMICS){
+            $prods = $dbh -> getAllComicsMatch($varArray,$queryArray['comic']); //get all products that match filters
+        }
+        else if($typeReq == ALL_PRODS){
+            $funkos = $dbh -> getAllFunkosMatch($varArray,$queryArray['funko']);
+            $comics = $dbh -> getAllComicsMatch($varArray,$queryArray['comic']);
+            $prods = array_merge($funkos,$comics);
+        }
+        $prods = addIsFavouriteInfo($prods,$dbh);
+        $prods = addAvaiableCopiesInfo($prods,$dbh);
+        $prods = applyFilterAvailable($prods,$avail);
+        echo json_encode($prods); //before send json add numCopies info foreach products
     }
    
     /**
@@ -138,7 +169,6 @@ filters = lang, author, price, availability, publisher,category*/
      * @return string $strQUery partial query, composed query that filter price ranges
      */
     function appendBetweenFilterPrice($priceFilters,$filt,$interval,&$queryVars){
-        global $isFirst;
         $strQUery ='';
         
             foreach($priceFilters as $e){
@@ -192,25 +222,4 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
-    /**
-     * Get from db prods that match filters then send json data to client js
-    */
-    function sendData($query,$avail,$dbh,$typeReq,$varArray){
-        
-        if($typeReq == ONLY_FUNKOS){
-            $prods = $dbh -> getAllFunkosMatch($varArray,$query);
-        }
-        else if($typeReq == ONLY_COMICS){
-            $prods = $dbh -> getAllComicsMatch($varArray,$query); //get all products that match filters
-        }
-        else if($typeReq == ALL_PRODS){
-            $funkos = $dbh -> getAllFunkosMatch($varArray,$query);
-            $comics = $dbh -> getAllComicsMatch($varArray,$query);
-            $prods = array_merge($funkos,$comics);
-        }
-        $prods = addIsFavouriteInfo($prods,$dbh);
-        $prods = addAvaiableCopiesInfo($prods,$dbh);
-        $prods = applyFilterAvailable($prods,$avail);
-        echo json_encode($prods); //before send json add numCopies info foreach products
-    }
 ?>
