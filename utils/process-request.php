@@ -36,7 +36,7 @@
                 return $dbh -> removeProductToWish($idCustomer,$idprod);
             }
 
-        }//--VVVVVVVV--NO ROBA MIA----VVVVVVVVVVV
+        }
         else if(!strcmp($action,'addtoCart')){
             return $dbh -> addProductToCart($idCustomer,$idprod,1);
         }
