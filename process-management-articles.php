@@ -2,6 +2,7 @@
     /** @var DatabaseHelper $dbh */
     require_once __DIR__ . '/bootstrap.php';
 
+    /** Number of products displayed per page. */
     const PRODUCTS_PER_PAGE = 10;
 
     if (isset($_GET['pattern']) || isset($_GET['page'])) {
@@ -9,6 +10,7 @@
         $products = (isset($_GET['pattern']) ?
             $dbh->getProducts($offset, PRODUCTS_PER_PAGE, $_GET['pattern']) :
             $dbh->getProducts($offset, PRODUCTS_PER_PAGE));
+        // In order to send to js the correct path of the cover img concatenate it to the upload folder
         for ($i = 0; $i < count($products); $i++) {
             $products[$i]['CoverImg'] = UPLOAD_DIR_PRODUCTS . $products[$i]['CoverImg'];
         }
