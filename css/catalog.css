@@ -9,12 +9,10 @@ main > aside > button {
     cursor: pointer;
     width: 100%;
     border: none;
-    padding: 10px 0;
     text-align: left;
     border-radius: 10px 10px 10px 10px;
     margin: 5px 0;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
 }
 
 main > aside > button::after {
@@ -45,13 +43,11 @@ main > aside > ul li > input {
 
 main > aside > ul > li > label {
     font-family: "Futura-pt", Arial, Helvetica, sans-serif;
-    padding: 5px 0;
     width: 100%;
     display: inline-block;
     color: black;
     border-radius: 10px 10px 10px 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px 10px;
     /* To include padding and border in the element's total width and height */
     box-sizing: border-box;
 }
