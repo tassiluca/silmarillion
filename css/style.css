@@ -63,7 +63,7 @@ body > header > nav > ul > li > a > img {
 
 body > header > nav > ul > li > button.navActive {
     background-color: #0047A0;
-    border-radius: 10px 10px 0px 0;
+    border-radius: 10px 10px 0 0;
 }
 
 /*********************** Dropdown links ***********************/
@@ -230,7 +230,6 @@ body > header > nav > div#navCart > ul > li > div > div > p:last-of-type {
 }
 
 body > header > nav > div#navCart > ul > li > div > div > p{
-    margin: 0;
     display: inline-block;
     color: #0047A0;
     font-weight: bold;
@@ -290,7 +289,6 @@ body > header > nav > div > form > ul > li > a:last-child {
     -webkit-appearance: none;   /* for Safari */
     font-weight: bold;
     font-size: 17px;
-    font-weight: bold;
     margin-top: 15px;
     padding: 12px;
     color: #0047A0;
