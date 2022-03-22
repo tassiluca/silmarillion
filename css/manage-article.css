@@ -127,6 +127,39 @@ main > section > form > ul > li > div.message.success::before {
     font-family: FontAwesome;
 }
 
+/******************************** Pagination *********************************/
+main > section > footer {
+    text-align: center;
+}
+
+main > section > footer > ul {
+    list-style: none;
+}
+
+main > section > footer > ul > li {
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    background-color: #0047A0;
+    margin: 0 1%;
+    width: 10%;
+}
+
+main > section > footer > ul > li > a {
+    display: block;
+    padding: 10px 3%;
+    color: white;
+    text-decoration: none;
+}
+
+main > section > footer > ul > li > a:hover {
+    background-color: #00D5FF;
+    font-weight: bold;
+    color: black;
+    box-shadow: 6px 6px 6px rgba(196, 196, 196, 0.82);
+    border-radius: 10px;
+}
+
 /***************************** Desktop viewport ******************************/
 @media screen and (min-width: 768px) and (max-width:992px) {
     main {

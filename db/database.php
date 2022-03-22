@@ -529,7 +529,7 @@
         }
 
         public function getProducts($offset = -1, $limit = -1, $expression = '') {
-            $expression .= '%';
+            $expression = '%' . $expression . '%';
             $query = "SELECT P.ProductId, C.Title as Title, P.CoverImg
                       FROM Products P JOIN Comics C ON P.ProductId = C.ProductId
                       WHERE C.Title LIKE ?
@@ -580,7 +580,7 @@
         }
 
         /**
-         * Get all infos about a specific funko by ProductId
+         * GLIet all infos about a specific funko by ProductId
          * @param int $id unique id of product
          * @return array containing a single element, if $id is not present in db
          * array is empty
