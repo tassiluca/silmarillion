@@ -83,15 +83,12 @@ function populateProducts(data, actualPage) {
     $("main > section > footer > ul#pagination > li > a").click(function(e){
         e.preventDefault();
         const actualPage = parseInt($(this).text());
-        if ($("#search-articles").val() === '') {
-            $.get(processPage, {page : actualPage}, function(data){
-                populateProducts(JSON.parse(data), actualPage);
-            });
-        } else {
-            $.get(processPage, {pattern: $("#search-articles").val(), page : actualPage}, function(data){
-                populateProducts(JSON.parse(data), actualPage);
-            });
-        }
+        const dataToSend = $("#search-articles").val() === '' ?
+            {page : actualPage} :
+            {pattern: $("#search-articles").val(), page : actualPage};
+        $.get(processPage, dataToSend, function(data){
+            populateProducts(JSON.parse(data), actualPage);
+        });
     });
 }
 
