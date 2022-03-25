@@ -85,11 +85,11 @@ function populateProducts(data, actualPage) {
         const actualPage = parseInt($(this).text());
         if ($("#search-articles").val() === '') {
             $.get(processPage, {page : actualPage}, function(data){
-                populateProducts(data, actualPage);
+                populateProducts(JSON.parse(data), actualPage);
             });
         } else {
             $.get(processPage, {pattern: $("#search-articles").val(), page : actualPage}, function(data){
-                populateProducts(data, actualPage);
+                populateProducts(JSON.parse(data), actualPage);
             });
         }
     });
