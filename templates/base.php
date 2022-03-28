@@ -62,7 +62,8 @@
                     </li><li>
                         <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
-                        </button>
+                            <div id="cart_count_dot">1</div>
+                        </button>  
                     </li>
                 </ul>
                 <div id="navMenu">
