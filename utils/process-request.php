@@ -5,14 +5,14 @@
         $action = $_GET["action"];
         $idprod = $_GET["id"];
         $countCopies = $dbh->getAvaiableCopiesOfProd($idprod);
-        $response = array("isLogged" => false,"execDone" => false, "count" => $countCopies);
+        $response = array("isLogged" => false,"action" =>"null","execDone" => false, "count" => $countCopies);
         
         if(isCustomerLoggedIn()){
-            $result = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$idprod);
-            $result = $result == 0 ? false : true; 
+            $resultQuery = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$idprod);
 
             $response["isLogged"] = true;
-            $response["execDone"] = $result;
+            $response["action"] = $resultQuery[0];
+            $response["execDone"] = $resultQuery[1] == 0 ? false : true; 
         }
         echo json_encode($response);
     }
@@ -30,15 +30,15 @@
             $isFav = $dbh -> isFavourite($idCustomer,$idprod);
             
             if(!$isFav){
-                return $dbh -> addProductToWish($idCustomer,$idprod);
+                return ["addFav",$dbh -> addProductToWish($idCustomer,$idprod)];
             }
             else{
-                return $dbh -> removeProductToWish($idCustomer,$idprod);
+                return ["removeFav",$dbh -> removeProductToWish($idCustomer,$idprod)];
             }
 
         }
         else if(!strcmp($action,'addtoCart')){
-            return $dbh -> addProductToCart($idCustomer,$idprod,1);
+            return ["addcart",$dbh -> addProductToCart($idCustomer,$idprod,1)];
         }
         else if(!strcmp($action,'decToCart')){
             //decrement quantity of product in cart
@@ -51,10 +51,10 @@
         else if(!strcmp($action,'notify')){
             $isAlertOnProd = $dbh -> isAlertActive($idCustomer,$idprod);
             if($isAlertOnProd){
-                return $dbh -> removeAlertOnProd($idCustomer,$idprod);
+                return ["removeAlert",$dbh -> removeAlertOnProd($idCustomer,$idprod)];
             }
             else{
-                return $dbh -> addProductAlert($idCustomer,$idprod);
+                return ["addAlert",$dbh -> addProductAlert($idCustomer,$idprod)];
             }
         }
     }
