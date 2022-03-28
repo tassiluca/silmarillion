@@ -19,28 +19,25 @@ const ALL_PRODS = 2;
 const funkoCategory = 'Funko';
 const comicCategory = 'Comics';
 
-$priceInterval = ["cheap"=> ["from"=>'0',"to"=>'99.99'],
-"medium"=> ["from"=>'100',"to"=>'199.99'],
-"expensive"=>["from"=>'99.99']];
+$priceInterval = ["cheap"=> ["from"=>0,"to"=>99.99],
+"medium"=> ["from"=>100,"to"=>199.99],
+"expensive"=>["from"=>99.99]];
+const defaultMaxPrice = 99999.99;
+const defaultMinPrice = 0;
+$comicBindParam = array();
+$funkoBindParam = array();
+
 /*
 filters = lang, author, price, availability, publisher,category*/
     require_once '../bootstrap.php';
     
     if(isset($_POST)){  //TODO: make some chek of what server receive in post method
         $availabFilter = ALL_AVAILABILITY;
+        $priceFiltersSelected = null; 
         $keys = array_keys($_POST);
         $data = $_POST;
-        
-        $comicBindParam = [];
-        $funkoBindParam = [];
-        $varArray = [];
 
-        $filtQuery = AND_S.'(';
-        $comicFilter = $filtQuery;
-        $funkoFilter = $filtQuery;
-
-        if(isset($keys) && count($keys)){
-
+        if(isset($keys) && count($keys) > 0){
             if(isset($data['category']) && in_array(funkoCategory,$data['category'])
                     && !in_array(comicCategory,$data['category'])){
                     $isFunko = ONLY_FUNKOS;
@@ -54,38 +51,39 @@ filters = lang, author, price, availability, publisher,category*/
             }
             else{
                 $isFunko = ALL_PRODS;
-/*
-                if(in_array(comicCategory,$data['category'])){
+
+                if(isset($data['category']) && in_array(comicCategory,$data['category'])){
                     array_splice($data['category'],array_search(comicCategory,$data['category']),1);
                 }
-                if(in_array(funkoCategory,$data['category'])){
+                if(isset($data['category']) && in_array(funkoCategory,$data['category'])){
                     array_splice($data['category'],array_search(funkoCategory,$data['category']),1);
-                }*/
+                }
             }
 
-        /**
-         * is first filter applied ? Used to append or not 'and' keyword in SQLquery
-         * If one filter selected not add 'or' statement, if more than one filter is applied
-         * add 'or statement in sql query'
-         * The change of $isFirst happen in method getCorrectConcat()
-         */
-            $isFirst = true;
+            if(isset($data['category']) && count($data['category']) <= 0 && in_array('category',$data)){
+                array_splice($data,array_search('category',$data),1);
+            }
+            $keys = array_keys($data);
+
+            $filtQuery = '';
+            $comicFilter = $filtQuery;
+            $funkoFilter = $filtQuery;
 
             foreach($keys as $k){
 
                 if(!strcmp($k,'category')){
-                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',$varArray);
-                    $comicFilter = $filtQuery;
-                    $funkoFilter = $filtQuery;
+                    $filtQuery .= appendEqualFilter($data[$k],'P.CategoryName',ALL_PRODS);
+                    $comicFilter .= $filtQuery;
+                    $funkoFilter .= $filtQuery;
                 }
                 else if(!strcmp($k,'publisher') && $isFunko != ONLY_FUNKOS){
-                    $comicFilter .= appendEqualFilter($data[$k],'PB.Name',$varArray);
+                    $comicFilter .= appendEqualFilter($data[$k],'PB.Name',ONLY_COMICS);
                 }
                 else if(!strcmp($k,'availability')){
                     if(count($keys)==1){ //the only key present is avaialbility
                         $filtQuery .= '1'; //sql condition always true to get all comics
-                        $comicFilter = $filtQuery;
-                        $funkoFilter = $filtQuery;
+                        $comicFilter .= $filtQuery;
+                        $funkoFilter .= $filtQuery;
                     }
                     if(!strcmp($data[$k][0],'available')){
                         $availabFilter = AVAILABLE;
@@ -98,67 +96,113 @@ filters = lang, author, price, availability, publisher,category*/
                     }
                 }
                 else if(!strcmp($k,'price')){
-                    $filtQuery .= appendBetweenFilterPrice($data[$k],'P.Price',$priceInterval,$varArray);
-                    $comicFilter = $filtQuery;
-                    $funkoFilter = $filtQuery;
+                    $priceFiltersSelected = $data[$k];
                 }
-                else if(!strcmp($k,'author') && $isFunko != ONLY_FUNKOS){
-                    $comicFilter .= appendEqualFilter($data[$k],'C.Author',$varArray);
+                else if(!strcmp($k,'author') ){
+                    $comicFilter .= appendEqualFilter($data[$k],'C.Author',ONLY_COMICS);
                 }
                 else if(!strcmp($k,'lang') && $isFunko != ONLY_FUNKOS){
-                    $comicFilter .= appendEqualFilter($data[$k],'C.Lang',$varArray);
+                    $comicFilter .= appendEqualFilter($data[$k],'C.Lang',ONLY_COMICS);
                 }
             }
-            $filtQuery .= ' )';
-            $comicFilter = $filtQuery;
-            $funkoFilter = $filtQuery;
 
-            sendData(['comic'=>$comicFilter,'funko'=>$funkoFilter],$availabFilter,$dbh,$isFunko,$varArray);
+
+            $queryParams = ['comic'=> $comicBindParam,'funko'=>$funkoBindParam];
+            //print_r($comicFilter);
+            sendData(['comic'=>$comicFilter,'funko'=>$funkoFilter],$availabFilter,$dbh,$isFunko,
+                        $queryParams,$priceFiltersSelected,$priceInterval);
         }
         else{
-            sendData('',$availabFilter,$dbh,ALL_PRODS,$varArray);
+            $queryParams = ['comic'=> $comicBindParam,'funko'=>$funkoBindParam];
+            sendData('',$availabFilter,$dbh,ALL_PRODS,$queryParams,$priceFiltersSelected,$priceInterval);
         }
     }
 
  /**
      * Get from db prods that match filters then send json data to client js
     */
-    function sendData($queryArray,$avail,$dbh,$typeReq,$varArray){
-        print_r($queryArray);
-        print_r($varArray);
+    function sendData($queryArray,$avail,$dbh,$typeReq,$queryParams,$priceFiltersSelected,$pricesInterval){
+
         if($typeReq == ONLY_FUNKOS){
-            $prods = $dbh -> getAllFunkosMatch($varArray,$queryArray['funko']);
+            $prods = $dbh -> getAllFunkosMatch($queryParams['funko'],$queryArray['funko']);
         }
         else if($typeReq == ONLY_COMICS){
-            $prods = $dbh -> getAllComicsMatch($varArray,$queryArray['comic']); //get all products that match filters
+            $prods = $dbh -> getAllComicsMatch($queryParams['comic'],$queryArray['comic']); //get all products that match filters
         }
         else if($typeReq == ALL_PRODS){
-            $funkos = $dbh -> getAllFunkosMatch($varArray,$queryArray['funko']);
-            $comics = $dbh -> getAllComicsMatch($varArray,$queryArray['comic']);
+            $funkos = $dbh -> getAllFunkosMatch($queryParams['funko'],$queryArray['funko']);
+            $comics = $dbh -> getAllComicsMatch($queryParams['comic'],$queryArray['comic']);
             $prods = array_merge($funkos,$comics);
         }
         $prods = addIsFavouriteInfo($prods,$dbh);
         $prods = addAvaiableCopiesInfo($prods,$dbh);
         $prods = applyFilterAvailable($prods,$avail);
+        if(isset($priceFiltersSelected)){
+            $prods = filterProdsByPrice($prods,$priceFiltersSelected,$pricesInterval);
+        }
         echo json_encode($prods); //before send json add numCopies info foreach products
+    }
+
+    /**
+     * Update correctly array params used for binding values in query
+     * funko has less attributes so less params to be binded
+     * @param int $prodType type of product -> FUNKO, COMIC, ALL_PRODS
+     * @param array $queryparams reference to array values for binding
+     * @param mixed $filterVal Value to add to $queryparams
+     */
+    function addQueryParams($prodType,$filterVal){
+        global $comicBindParam,$funkoBindParam;
+
+        if($prodType == ONLY_COMICS){
+            array_push($comicBindParam,$filterVal);
+        }
+        else{
+            array_push($comicBindParam,$filterVal);
+            array_push($funkoBindParam,$filterVal);
+        }
     }
    
     /**
      * @param array $arr array of value of same filter to be applied
      * @param string $filt sql attribute to be compared with values
+     * @param int $prodType type of product -> FUNKO, COMIC, ALL_PRODS
      * @param array &$queryVars array of var used in bind_param
      */
-    function appendEqualFilter($arr,$filt,&$queryVars){
+    function appendEqualFilter($arr,$filt,$prodType){
         $strQuery ='';
             foreach($arr as $e){
                 if($e !== comicCategory || $e !== funkoCategory){
-                    $concatMode = getCorrectConcat();
-                    $strQuery .= $concatMode.$filt.SPACE.EQ.SPACE.'?';//"'".$e."'";
-                    array_push($queryVars,$e); 
+
+                    $strQuery .= AND_S.$filt.SPACE.EQ.SPACE.'?';//"'".$e."'";
+                    //array_push($queryVars,$e);
+                    addQueryParams($prodType,$e);
                 }
-               
             }
         return $strQuery;
+    }
+
+    /**
+     * @param array $priceFiltersSelected array of all price-range filters selected by customer
+     * @param array $pricesInterval must be structured as $intervalDef = ["rangeTag"=> ["from"=>value,"to"=>value],
+     * "rangeTag-1"=> ["from"=>value,"to"=>value],...];
+     */
+    function filterProdsByPrice($prods,$priceFiltersSelected,$pricesInterval){
+        $allProd = [];
+        foreach($priceFiltersSelected as $filtPrice){
+            for($i=0; $i < count($prods);$i++){
+                $elem = $prods[$i];
+                $from = isset($pricesInterval[$filtPrice]["from"]) ? $pricesInterval[$filtPrice]["from"] : defaultMinPrice;
+                $to = isset($pricesInterval[$filtPrice]["to"]) ? $pricesInterval[$filtPrice]["to"] : defaultMaxPrice;
+
+                $prodPrice = isset($elem['DiscountedPrice']) ? $elem['DiscountedPrice'] : $elem['Price'];
+                
+                if($from <= $prodPrice && $prodPrice <= $to){
+                    array_push($allProd,$elem);
+                }
+                
+            }
+        }
+        return $allProd;
     }
 
     /**
@@ -168,39 +212,40 @@ filters = lang, author, price, availability, publisher,category*/
      * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
      * @return string $strQUery partial query, composed query that filter price ranges
      */
-    function appendBetweenFilterPrice($priceFilters,$filt,$interval,&$queryVars){
+    /*
+    function appendBetweenFilterPrice($priceFilters,$filt,$interval,$prodType){
         $strQUery ='';
         
             foreach($priceFilters as $e){
-                $concatMode = getCorrectConcat();
+                
                 if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
 
-                    $strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE.'?'.AND_S.'?';
-                    array_push($queryVars,floatval($interval[$e]["from"]));
-                    array_push($queryVars,floatval($interval[$e]["to"]));
+                    $strQUery .= AND_S.$filt.SPACE.'BETWEEN'.SPACE.'?'.AND_S.'?';
+                    addQueryParams($prodType,floatval($interval[$e]["from"]));
+                    addQueryParams($prodType,floatval($interval[$e]["to"]));
+                    //array_push($queryVars,floatval($interval[$e]["from"]));
+                    //array_push($queryVars,floatval($interval[$e]["to"]));
+
                     //$strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
                 }
                 else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
 
-                    $strQUery .= $concatMode.$filt.SPACE.'>='.SPACE.'?';
-                    array_push($queryVars,floatval($interval[$e]["from"]));
+                    $strQUery .= AND_S.$filt.SPACE.'>='.SPACE.'?';
+                    //array_push($queryVars,floatval($interval[$e]["from"]));
+                    addQueryParams($prodType,floatval($interval[$e]["from"]));
                     //$strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
                 }
                 else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
 
-                    $strQUery .= $concatMode.$filt.SPACE.'<='.SPACE.'?';
-                    array_push($queryVars,floatval($interval[$e]["to"]));
+                    $strQUery .= AND_S.$filt.SPACE.'<='.SPACE.'?';
+                    addQueryParams($prodType,floatval($interval[$e]["to"]));
+                    //array_push($queryVars,floatval($interval[$e]["to"]));
                     //$strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
                 }
         }
         return $strQUery;
     }
-    function getCorrectConcat(){
-        global $isFirst;
-        $concatKeyword = $isFirst ? SPACE : AND_S;
-        $isFirst = false;
-        return $concatKeyword;
-    }
+    */
 
     function addAvaiableCopiesInfo($prods,$dbh){
         $allProd = $prods;
