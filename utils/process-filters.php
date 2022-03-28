@@ -182,9 +182,12 @@ filters = lang, author, price, availability, publisher,category*/
     }
 
     /**
+     * @param array $prods Array of products to be filtered on price
      * @param array $priceFiltersSelected array of all price-range filters selected by customer
      * @param array $pricesInterval must be structured as $intervalDef = ["rangeTag"=> ["from"=>value,"to"=>value],
      * "rangeTag-1"=> ["from"=>value,"to"=>value],...];
+     * @return array $allProd array containing all products match any range of prices selected, there could be prods that
+     * match only one of the price ranges
      */
     function filterProdsByPrice($prods,$priceFiltersSelected,$pricesInterval){
         $allProd = [];
@@ -204,48 +207,6 @@ filters = lang, author, price, availability, publisher,category*/
         }
         return $allProd;
     }
-
-    /**
-     * @param array $priceFilters array of all price-range filters selected
-     * @param string $filt Attribute to check in db for compare
-     * @param array $interval must be structured as $intervalDef = ["rangeTag"=> ["from"=>'value',"to"=>'value'],
-     * "rangeTag-1"=> ["from"=>'value',"to"=>'value'],...];
-     * @return string $strQUery partial query, composed query that filter price ranges
-     */
-    /*
-    function appendBetweenFilterPrice($priceFilters,$filt,$interval,$prodType){
-        $strQUery ='';
-        
-            foreach($priceFilters as $e){
-                
-                if(isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-
-                    $strQUery .= AND_S.$filt.SPACE.'BETWEEN'.SPACE.'?'.AND_S.'?';
-                    addQueryParams($prodType,floatval($interval[$e]["from"]));
-                    addQueryParams($prodType,floatval($interval[$e]["to"]));
-                    //array_push($queryVars,floatval($interval[$e]["from"]));
-                    //array_push($queryVars,floatval($interval[$e]["to"]));
-
-                    //$strQUery .= $concatMode.$filt.SPACE.'BETWEEN'.SPACE."'".$interval[$e]["from"]."'".AND_S."'".$interval[$e]["to"]."'";
-                }
-                else if(!isset($interval[$e]["to"]) && isset($interval[$e]["from"])){
-
-                    $strQUery .= AND_S.$filt.SPACE.'>='.SPACE.'?';
-                    //array_push($queryVars,floatval($interval[$e]["from"]));
-                    addQueryParams($prodType,floatval($interval[$e]["from"]));
-                    //$strQUery .= $concatMode.$filt.SPACE.'>='.SPACE."'".$interval[$e]["from"]."'";
-                }
-                else if(isset($interval[$e]["to"]) && !isset($interval[$e]["from"])){
-
-                    $strQUery .= AND_S.$filt.SPACE.'<='.SPACE.'?';
-                    addQueryParams($prodType,floatval($interval[$e]["to"]));
-                    //array_push($queryVars,floatval($interval[$e]["to"]));
-                    //$strQUery .= $concatMode.$filt.SPACE.'<='.SPACE."'".$interval[$e]["to"]."'";
-                }
-        }
-        return $strQUery;
-    }
-    */
 
     function addAvaiableCopiesInfo($prods,$dbh){
         $allProd = $prods;
