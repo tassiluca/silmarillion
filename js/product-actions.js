@@ -90,6 +90,7 @@ function handleWishlistAction(clickedBtn,urlLink){
     $.get(urlLink, function (data) {
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
+        let action = jsonData["action"];
         let correctExec = jsonData["execDone"];
 
         if(!isLogged){ //if customer logged = false --> use cookie
@@ -99,7 +100,7 @@ function handleWishlistAction(clickedBtn,urlLink){
         else{ //user logged = true then check if all goes right on db
             //if something goes wrong with db --> info banner 
             if(!correctExec){//if executon of operation on db has error, shows banner 
-                console.log("errore nella esecuzione della operzione");
+                console.log("errore nella esecuzione della operzione: "+action);
             }
             else{
                 updateWishIconLink(clickedBtn);
@@ -121,6 +122,7 @@ function handleCartAction(clickedBtn,urlLink){
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
+        let action = jsonData["action"];
         let countCopies = jsonData["count"];
         
         if(countCopies-1 > 0){ 
@@ -139,7 +141,7 @@ function handleCartAction(clickedBtn,urlLink){
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
                 if(!correctExec){//if executon of operation on db has error, shows banner 
-                    console.log("errore nella esecuzione della operzione");
+                    console.log("errore nella esecuzione della operzione: "+action);
                 }
             }
         }
@@ -156,9 +158,19 @@ function handleAddAlertProd(clickedBtn,urlLink){
     $.get(urlLink, function (data) {
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
+        let action = jsonData["action"];
+        let correctExec = jsonData["execDone"];
+
         if(!isLogged){
             console.log("NOT LOGGED TO DO THAT ACTION");
             $("#productInfo > li:nth-child(3) > div ").show();
+        }
+
+        if(isLogged && correctExec && action == 'removeAlert' ){
+            console.log("ALERT Rimosso correttamenet");
+        }
+        else if(isLogged && correctExec && action == 'addAlert'){
+            console.log("ALERT Aggiunto correttamenet");
         }
     });
 }
