@@ -675,6 +675,11 @@
             return $resultCount > 0;
         }
 
+        public function removeAlertOnProd($usrId,$idprod){
+            $query = "DELETE FROM `Alerts` WHERE `UserId` = ? and `ProductId` = ?";
+            return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
+        }
+
         //-----------------------------ADD----TO---CART------------------------------//
         /**
          * Add $idprod product to the $usrId personal cart
