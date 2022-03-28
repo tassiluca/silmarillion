@@ -680,7 +680,15 @@
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
 
-        //-----------------------------ADD----TO---CART------------------------------//
+        //-----------------------------CART------------------------------//
+
+        public function getUserCart($customerId){
+            $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` WHERE `UserId` = ?";
+            return $this -> executeQuery($query,[$customerId])
+                         ->get_result()
+                         ->fetch_all(MYSQLI_ASSOC);
+        }
+
         /**
          * Add $idprod product to the $usrId personal cart
          * @param int $usrId unique id of consumer user

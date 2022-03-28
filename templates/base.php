@@ -62,7 +62,12 @@
                     </li><li>
                         <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
-                            <div id="cart_count_dot">1</div>
+                            <?php 
+                                if(isUserLoggedIn()){
+                                    echo '<div id="cart_count_dot">'.count($dbh->getUserCart($_SESSION['userId'])).'</div>';
+                                }
+                            ?>
+                            
                         </button>  
                     </li>
                 </ul>
