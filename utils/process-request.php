@@ -27,7 +27,7 @@
     */
     function handleLoggedCustomerRequest($dbh,$action,$idCustomer,$idprod){
         if(!strcmp($action,'wish')){
-            $isFav = $dbh -> isFavourite($_SESSION['userId'],$idprod);
+            $isFav = $dbh -> isFavourite($idCustomer,$idprod);
             
             if(!$isFav){
                 return $dbh -> addProductToWish($idCustomer,$idprod);
@@ -49,7 +49,13 @@
             $dbh -> deleteProductFromCart($idCustomer,$idprod,1);
         }
         else if(!strcmp($action,'notify')){
-            return $dbh -> addProductAlert($idCustomer,$idprod);
+            $isAlertOnProd = $dbh -> isAlertActive($idCustomer,$idprod);
+            if($isAlertOnProd){
+                return $dbh -> removeAlertOnProd($idCustomer,$idprod);
+            }
+            else{
+                return $dbh -> addProductAlert($idCustomer,$idprod);
+            }
         }
     }
     
