@@ -95,7 +95,8 @@ function handleWishlistAction(clickedBtn,urlLink){
 
         if(!isLogged){ //if customer logged = false --> use cookie
             updateCookielist(wishList,prodId);
-            updateWishIconLink(clickedBtn);
+            let newIcon = $(clickedBtn).children("img").attr("src") == wishImageUnselect ? wishImageSelected : wishImageUnselect;
+            $(clickedBtn).children("img").attr("src",newIcon);
         }
         else{ //user logged = true then check if all goes right on db
             //if something goes wrong with db --> info banner 
@@ -103,16 +104,17 @@ function handleWishlistAction(clickedBtn,urlLink){
                 console.log("errore nella esecuzione della operzione: "+action);
             }
             else{
-                updateWishIconLink(clickedBtn);
+                if(action == 'addFav'){
+                    $(clickedBtn).children("img").attr("src",wishImageSelected);
+                }
+                else if(action == 'removeFav'){
+                    $(clickedBtn).children("img").attr("src",wishImageUnselect);
+                }
             }
         }
     });
 }
 
-function updateWishIconLink(btn){
-    let newIcon = $(btn).children("img").attr("src") == wishImageUnselect ? wishImageSelected : wishImageUnselect;
-    $(btn).children("img").attr("src",newIcon);
-}
 //-----------------------WISHLIST--------------------------//
 
 //--------------------------CART--------------------------//
@@ -167,10 +169,10 @@ function handleAddAlertProd(clickedBtn,urlLink){
         }
 
         if(isLogged && correctExec && action == 'removeAlert' ){
-            console.log("ALERT Rimosso correttamenet");
+            $("#productInfo > li:nth-child(3) > a ").text("Avvisami quando questo prodotto sarà disponibile");
         }
         else if(isLogged && correctExec && action == 'addAlert'){
-            console.log("ALERT Aggiunto correttamenet");
+            $("#productInfo > li:nth-child(3) > a ").text("Rimuovi notifica");
         }
     });
 }
