@@ -28,7 +28,7 @@
                             </a>
                         </li><li>
                             <a href="/utils/process-request.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>" 
-                                <?php if($templateParams["logged"] && $templateParams["isAlertActive"]){ echo 'class="disabled"';}?>>Avvisami quando questo prodotto sarà disponibile
+                            >Avvisami quando questo prodotto sarà disponibile
                             </a>
                             <div style="display:none"><p>Per effettuare questa operazione devi aver fatto Login. <br><a href="login.php">Pagina di login</a></p></div>
                         </li>
