@@ -114,7 +114,7 @@ filters = lang, author, price, availability, publisher,category*/
         }
         else{
             $queryParams = ['comic'=> $comicBindParam,'funko'=>$funkoBindParam];
-            sendData('',$availabFilter,$dbh,ALL_PRODS,$queryParams,$priceFiltersSelected,$priceInterval);
+            sendData(['comic'=>'','funko'=>''],$availabFilter,$dbh,ALL_PRODS,$queryParams,$priceFiltersSelected,$priceInterval);
         }
     }
 
