@@ -66,6 +66,22 @@ body > header > nav > ul > li > button.navActive {
     border-radius: 10px 10px 0px 0;
 }
 
+/********************** Cart counter **************************/
+#cart_count_dot {
+    border-radius: 100%;
+    background-color: #f60000;
+    text-align: center;
+    z-index: 0; 
+    height: 18px;
+    width: 18px;
+    color: white;
+    font-weight: bold;
+    font-size: 11pt;
+    position: relative;
+    bottom: 40px;
+    left:28px;
+}
+
 /*********************** Dropdown links ***********************/
 body > header > nav > div {
     background-color: #CAF0F8;
