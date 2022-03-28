@@ -18,8 +18,21 @@ $(document).ready(function () {
 
     addEventListenerWishButtons(); //wishlist
     addEventListenerCartButtons(); //cart
+    addEventListenerAlertButton(); //alert
 
 });
+
+/**
+ * Add event listener on Add alert on product link
+ */
+function addEventListenerAlertButton(){
+    $('#productInfo > li:nth-child(3) > a').click(function (e) {
+        e.preventDefault();
+        let btn = $(this);
+        let urlRequest = btn.attr("href");
+        handleAddAlertProd(btn,urlRequest);
+    });
+}
 
 /**
  * Add event listener to all wishlist buttons
@@ -134,5 +147,18 @@ function handleCartAction(clickedBtn,urlLink){
             clickedBtn.addClass("disabled");
         }
 
+    });
+}
+
+//------------------------ALERT---------------------------//
+
+function handleAddAlertProd(clickedBtn,urlLink){
+    $.get(urlLink, function (data) {
+        let jsonData = JSON.parse(data);
+        let isLogged = jsonData["isLogged"];
+        if(!isLogged){
+            console.log("NOT LOGGED TO DO THAT ACTION");
+            $("#productInfo > li:nth-child(3) > div ").show();
+        }
     });
 }
