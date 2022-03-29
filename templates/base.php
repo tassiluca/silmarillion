@@ -59,17 +59,15 @@
                         <?php else: ?>
                             <button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button>
                         <?php endif; ?>
-                    </li><li>
-                        <button type="button">
+                    </li><li><button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
-                            <?php 
-                                if(isUserLoggedIn()){
-                                    echo '<div id="cart_count_dot">'.count($dbh->getUserCart($_SESSION['userId'])).'</div>';
-                                }
-                            ?>
-                            
-                        </button>  
-                    </li>
+                        </button>
+                        <div id="cart_badge" <?php if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))<=0){echo 'class="hidden"';} ?>>
+                        <?php 
+                            if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))>0){
+                                echo count($dbh->getUserCart($_SESSION['userId']));
+                            } 
+                        ?></div></li>
                 </ul>
                 <div id="navMenu">
                     <ul>
