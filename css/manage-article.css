@@ -14,6 +14,27 @@ main > section > header > h2 {
     margin: 10px 0;
 }
 
+/************************** Buttons for insert products **********************/
+main > section > header > div {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+main > section > header > div > a {
+    padding: 10px;
+    text-decoration: none;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    background-color: #0047A0;
+    border-radius: 10px;
+    color: white;
+}
+
+main > section > header > div > a:hover {
+    background-color: #00D5FF;
+    color: black;
+    box-shadow: 6px 6px 6px rgba(196, 196, 196, 0.82);
+}
+
 /******************************** Search bar *********************************/
 main > section > header > input {
     width: 50%;

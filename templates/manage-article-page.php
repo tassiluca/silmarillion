@@ -7,6 +7,10 @@
 <section>
     <header>
         <h2>Gestisci Articoli</h2>
+        <div>
+            <a href="modify-article.php?action=insert&article=comic">Aggiungi fumetto</a>
+            <a href="modify-article.php?action=insert&article=funko">Aggiungi funko</a>
+        </div>
         <input type="text" name="search" id="search-articles" placeholder="Cerca..." aria-label="Cerca prodotto" />
     </header>
     <ul id="products">
