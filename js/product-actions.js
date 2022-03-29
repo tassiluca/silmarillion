@@ -142,8 +142,11 @@ function handleCartAction(clickedBtn,urlLink){
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
-                if(!correctExec){//if executon of operation on db has error, shows banner 
+                if(correctExec){//if executon of operation on db has error, shows banner 
                     console.log("errore nella esecuzione della operzione: "+action);
+                }
+                else{
+                    incrementCartBadge();
                 }
             }
         }
@@ -152,6 +155,19 @@ function handleCartAction(clickedBtn,urlLink){
         }
 
     });
+}
+
+function incrementCartBadge(){
+    if($('#cart_badge').is(":visible") ){
+        let oldText = parseInt($('#cart_badge').text());
+        $('#cart_badge').empty();
+        $('#cart_badge').text(oldText+1);
+    }
+    else{
+        $('#cart_badge').show();
+        $('#cart_badge').text(1);
+    }
+    
 }
 
 //------------------------ALERT---------------------------//
