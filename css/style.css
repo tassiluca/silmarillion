@@ -431,7 +431,7 @@ body > header > nav > div#navSearch > form > ul {
     body > header > h1.hide {
         text-align: center;
         height: 180px;
-        background-image: url(../img/commons/big-log.svg);
+        background-image: url(../img/commons/big-logo.svg);
         background-position: center;
         background-repeat: no-repeat;
     }
@@ -520,7 +520,7 @@ body > header > nav > div#navSearch > form > ul {
     body > header > h1.hide {
         text-align: center;
         height: 180px;
-        background-image: url(../img/commons/big-log.svg);
+        background-image: url(../img/commons/big-logo.svg);
         background-position: center;
         background-repeat: no-repeat;
     }
