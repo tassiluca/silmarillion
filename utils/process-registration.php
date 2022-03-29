@@ -1,9 +1,10 @@
 <?php
     require_once '../bootstrap.php';
+    /** @var DatabaseHelper $dbh */
 
-    define("ERROR_USERNAME", "Username/Mail già presente nel sistema!");
-    define("ERROR_DB", "Errore nel sistema! Riprova...");
-    define("SUCCESS", "Registrazione avvenuta con successo!");
+    const ERROR_USERNAME = "Username/Mail già presente nel sistema!";
+    const ERROR_DB = "Errore nel sistema! Riprova...";
+    const SUCCESS = "Registrazione avvenuta con successo!";
 
     if (isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["birthday"]) 
     && isset($_POST["usr"]) && isset($_POST["email"]) && isset($_POST["pwd"])) {

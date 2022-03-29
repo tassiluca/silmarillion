@@ -82,7 +82,7 @@
      * [NOTE] Please, remember `$path` MUST have all permissions.
      * @param string $path the folder in which move the image
      * @param string $image the image to move
-     * @return int 1 if ok, 0 otherwise
+     * @return array in the first pos 1 if ok, 0 otherwise, in the second the error msg if any
      */
     function uploadImage($path, $image){
         $imageName = basename($image["name"]);
@@ -137,7 +137,7 @@
      * if customer is not logged are used cookiess
      * @param $prods associative array where add to each element favourite flag
      * @param $dbh Database hepler, in order to call mehtod that check each product
-     * @return array Associative array like the input one $prods but each element has boolean value 
+     * @return associative Associative array like the input one $prods but each element has boolean value
      * to know if is a favourite product
      */
     function addIsFavouriteInfo($prods,$dbh){
