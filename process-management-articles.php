@@ -1,6 +1,6 @@
 <?php
-    /** @var DatabaseHelper $dbh */
     require_once __DIR__ . '/bootstrap.php';
+    /** @var DatabaseHelper $dbh */
 
     /** Number of products displayed per page. */
     const PRODUCTS_PER_PAGE = 10;

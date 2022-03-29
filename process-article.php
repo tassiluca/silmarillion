@@ -1,5 +1,6 @@
 <?php 
     require_once './bootstrap.php';
+    /** @var DatabaseHelper $dbh */
     use Respect\Validation\Validator as v;
 
     /**
@@ -120,7 +121,7 @@
         );
 
         if (isFunkoProcessing()) {
-            array_push($dataDic['compulsory'], $data['funkoName']);
+            $dataDic['compulsory'][] = $data['funkoName'];
         } else if (isComicProcessing()) {
             array_push($dataDic['compulsory'], $data['title'], $data['author'], $data['language']);
             $dataDic['date'] = [$data['publishDate']];
@@ -233,7 +234,7 @@
         $coverImg = $msg;
     } 
 
-    insertCategory($data);
+    insertCategory();
     if (isFunkoProcessing()) {
         if ($data['action'] === 'insert') {
             list($res, $data['productId']) = insertFunko($data, $coverImg);
