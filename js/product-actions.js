@@ -20,7 +20,16 @@ $(document).ready(function () {
     addEventListenerCartButtons(); //cart
     addEventListenerAlertButton(); //alert
 
+    if(getLenCookie(cartList) > 0){
+        refreshCartBadge();
+        $('#cart_badge').show();
+    }
+    else{
+        $('#cart_badge').hide();
+    }
 });
+
+
 
 /**
  * Add event listener on Add alert on product link
@@ -139,6 +148,8 @@ function handleCartAction(clickedBtn,urlLink){
                     cart.set(prodId,1);
                 }
                 setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
+                refreshCartBadge(getLenCookie(cartList));
+                $('#cart_badge').show();
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
@@ -146,7 +157,8 @@ function handleCartAction(clickedBtn,urlLink){
                     console.log("errore nella esecuzione della operzione: "+action);
                 }
                 else{
-                    incrementCartBadge();
+                    refreshCartBadge();
+                    $('#cart_badge').show();
                 }
             }
         }
@@ -157,17 +169,8 @@ function handleCartAction(clickedBtn,urlLink){
     });
 }
 
-function incrementCartBadge(){
-    if($('#cart_badge').is(":visible") ){
-        let oldText = parseInt($('#cart_badge').text());
-        $('#cart_badge').empty();
-        $('#cart_badge').text(oldText+1);
-    }
-    else{
-        $('#cart_badge').show();
-        $('#cart_badge').text(1);
-    }
-    
+function refreshCartBadge(currentCount){
+    $('#cart_badge').text(currentCount+1);
 }
 
 //------------------------ALERT---------------------------//
