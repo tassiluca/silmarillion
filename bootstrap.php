@@ -21,6 +21,9 @@
     /** The directory where store the news. */
     define("UPLOAD_DIR_NEWS", UPLOAD_DIR."/news/");
 
+    const CART_COOKIE_NAME = 'cart';
+    const FAVOURITE_COOKIE_NAME = 'favs';
+
     require_once __DIR__ . '/vendor/autoload.php';
     require_once 'db/database.php';
     require_once 'utils/functions.php';
