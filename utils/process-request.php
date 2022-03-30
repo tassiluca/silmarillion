@@ -1,18 +1,19 @@
 <?php
     require_once '../bootstrap.php';
 
-    if(isset($_GET["action"]) && isset($_GET["id"])){
+    if(isset($_GET["action"])){
         $action = $_GET["action"];
-        $idprod = $_GET["id"];
-        $countCopies = $dbh->getAvaiableCopiesOfProd($idprod);
-        $response = array("isLogged" => false,"action" =>"null","execDone" => false, "count" => $countCopies);
+        $response = array("isLogged" => false,"action" =>"noAction","execDone" => false, "count" => 99,"cartCount"=>0);
         
         if(isCustomerLoggedIn()){
-            $resultQuery = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$idprod);
-
+            if(isset($_GET["id"])){
+                $resultQuery = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$_GET["id"]);
+                $response["action"] = $resultQuery[0];
+                $response["execDone"] = $resultQuery[1] == 0 ? false : true;
+                $countCopies = $dbh->getAvaiableCopiesOfProd($_GET["id"]);
+            }
             $response["isLogged"] = true;
-            $response["action"] = $resultQuery[0];
-            $response["execDone"] = $resultQuery[1] == 0 ? false : true; 
+            $response["cartCount"] = count($dbh->getUserCart($_SESSION['userId']));
         }
         echo json_encode($response);
     }

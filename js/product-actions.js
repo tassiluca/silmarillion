@@ -20,15 +20,8 @@ $(document).ready(function () {
     addEventListenerCartButtons(); //cart
     addEventListenerAlertButton(); //alert
 
-    if(getLenCookie(cartList) > 0){
-        refreshCartBadge();
-        $('#cart_badge').show();
-    }
-    else{
-        $('#cart_badge').hide();
-    }
+    handleCartAction(null,'utils/process-request.php?action=getInfo');
 });
-
 
 
 /**
@@ -135,9 +128,10 @@ function handleCartAction(clickedBtn,urlLink){
         let correctExec = jsonData["execDone"];
         let action = jsonData["action"];
         let countCopies = jsonData["count"];
-        
+        let actualcartCount = jsonData["cartCount"];
+
         if(countCopies-1 > 0){ 
-            if(!isLogged){ //if customer logged = false --> use cookie
+            if(!isLogged && !isNaN(prodId)){ //if customer logged = false --> use cookie
                 let cart = new Map(JSON.parse((getCookie(cartList))));
 
                 if(cart.has(prodId)){ //if already added update cart quantity of prod
@@ -149,7 +143,6 @@ function handleCartAction(clickedBtn,urlLink){
                 }
                 setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
                 refreshCartBadge(getLenCookie(cartList));
-                $('#cart_badge').show();
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
@@ -157,12 +150,12 @@ function handleCartAction(clickedBtn,urlLink){
                     console.log("errore nella esecuzione della operzione: "+action);
                 }
                 else{
-                    refreshCartBadge();
-                    $('#cart_badge').show();
+                    //if everythings goes right the actualCartCount is already updated to the correct count
+                    refreshCartBadge(actualcartCount);
                 }
             }
         }
-        else{//if in a while someone bought the product and becomes un-available, disable add to cart button
+        else if(clickedBtn !==null){//if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
         }
 
@@ -170,7 +163,14 @@ function handleCartAction(clickedBtn,urlLink){
 }
 
 function refreshCartBadge(currentCount){
-    $('#cart_badge').text(currentCount+1);
+    if(currentCount <= 0){
+        $('#cart_badge').hide();
+    }
+    else{
+        $('#cart_badge').text(currentCount);
+        $('#cart_badge').show();
+    }
+    
 }
 
 //------------------------ALERT---------------------------//
