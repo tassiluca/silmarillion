@@ -62,7 +62,10 @@
                     </li><li><button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
                         </button>
-                        <div id="cart_badge" <?php if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))<=0){echo 'class="hidden"';} ?>>
+                        <!--TODO, LOAD COUNTER ALSO OF COOKIES, SO REFACOTR THAT LINE-->
+                        <div id="cart_badge" <?php 
+                            if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))<=0){
+                                echo 'class="hidden"';} ?>>
                         <?php 
                             if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))>0){
                                 echo count($dbh->getUserCart($_SESSION['userId']));

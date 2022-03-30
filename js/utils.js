@@ -40,4 +40,8 @@ function getCookie(cname) {
     }
     return "";
   }
-  
+
+function getLenCookie(cookieName){
+  let cartLen = JSON.parse((getCookie(cookieName)));
+  return cartLen.length;
+  }
