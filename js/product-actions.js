@@ -131,14 +131,14 @@ function handleCartAction(clickedBtn,urlLink){
         let actualcartCount = jsonData["cartCount"];
 
         if(countCopies-1 > 0){ 
-            if(!isLogged && !isNaN(prodId)){ //if customer logged = false --> use cookie
+            if(!isLogged){ //if customer logged = false --> use cookie
                 let cart = new Map(JSON.parse((getCookie(cartList))));
 
-                if(cart.has(prodId)){ //if already added update cart quantity of prod
+                if(cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
                     let newQuantity = cart.get(prodId)+1;
                     cart.set(prodId,newQuantity);
                 }
-                else{ //add to cart for first time
+                else if(!isNaN(prodId)){ //add to cart for first time
                     cart.set(prodId,1);
                 }
                 setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
