@@ -18,19 +18,16 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+<!--[![MIT License][license-shield]][license-url]-->
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/tassiLuca/silmarillion">
-    <img src="img/commons/big-logo.svg" alt="Logo" width="80" height="80">
+    <img src="img/commons/big-logo.jpg" alt="Logo" width="100%" height="auto">
   </a>
 
 <h3 align="center">Silmarillion</h3>
-
   <p align="center">
     Project for 'Tecnologie Web' course @ UniBO
     <br />
@@ -72,7 +69,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Silmarillion is an online comics store.  
+Silmarillion is an online comics store.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -88,27 +85,28 @@ Silmarillion is an online comics store.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+* PHP 7.3 or above
+* [Composer](https://github.com/composer/composer): 
   ```sh
-  npm install npm@latest -g
+  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+  php composer-setup.php
+  php -r "unlink('composer-setup.php');"
+  sudo mv composer.phar /usr/local/bin/composer
+  ```
+  For more details, please refer to the instructions at [Composer website](https://getcomposer.org/download/).
+* [Respect/Validation](https://github.com/Respect/Validation):
+  ```sh
+  composer require respect/validation
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/tassiLuca/silmarillion.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+2. Ensures ...
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -152,20 +150,25 @@ Don't forget to give the project a star! Thanks again!
 
 
 <!-- LICENSE -->
+<!--
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
+-->
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Luca Tassinari - [Linkedin]() - luca.tassinari.2000@gmail.com 
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Matteo Violani - matteo.violani@gmail.com
+
+Luana Mennuti - @gmail.com
+
+Project Link: [https://github.com/tassiLuca/silmarillion](https://github.com/tassiLuca/silmarillion)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -177,9 +180,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [forks-url]: https://github.com/tassiLuca/silmarillion/network/members
 [stars-shield]: https://img.shields.io/github/stars/tassiLuca/silmarillion?style=flat-square
 [stars-url]: https://github.com/tassiLuca/silmarillion/stargazers
-[issues-shield]: https://img.shields.io/codeclimate/issues/tassiLuca/silmarillion?style=flat-square
-[issues-url]: https://github.com/tassiLuca/silmarillion/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/tassiLuca/repo_name.svg?style=for-the-badge
 [license-url]: https://github.com/tassiLuca/silmarillion/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
