@@ -59,14 +59,15 @@
                         <?php else: ?>
                             <button type="button"><img src="./img/commons/menu-login.svg" alt="Login"/></button>
                         <?php endif; ?>
-                    </li><li><button type="button">
+                    </li><li>
+                        <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
-                        </button>
-                        <!--TODO, LOAD COUNTER ALSO OF COOKIES, SO REFACOTR THAT LINE-->
-                        <div id="cart_badge" <?php 
+                            <span id="cart_badge" <?php 
                             if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))<=0){
                                 echo 'class="hidden"';} ?>>
-                        </div></li>
+                            </span>
+                        </button>
+                    </li>       
                 </ul>
                 <div id="navMenu">
                     <ul>
