@@ -53,6 +53,10 @@ body > header > nav > ul > li > button {
     padding: 10px 10% 0 10%;
 }
 
+body > header > nav > ul > li:last-child > button {
+    padding-right: 0;
+}
+
 body > header > nav > ul > li > a {
     display: inline-block;
 }
@@ -79,9 +83,10 @@ body > header > nav > ul > li > button.navActive {
     color: white;
     font-weight: bold;
     font-size: 11pt;
+    display: inline-block;
     position: relative;
-    bottom: 40px;
-    left:28px;
+    bottom: 26px;
+    right: 16px;
 }
 
 /*********************** Dropdown links ***********************/
@@ -497,8 +502,8 @@ body > header > nav > div#navSearch > form > ul {
 
     /* buttons links */
     body > header > nav > ul {
-        margin-right: 2%;
-        width: 17%;
+        margin-right: 0%;
+        width: 19%;
         padding-left: 1%;
         vertical-align: middle;
     }
@@ -506,7 +511,11 @@ body > header > nav > div#navSearch > form > ul {
     body > header > nav > ul > li {
         list-style: none;
         display: inline-block;
-        width: 25%;
+        width: 20%;
+    }
+
+    body > header > nav > ul > li:last-child{
+        width: 69px;
     }
 
     body > header > nav > ul > li > button,
@@ -595,7 +604,12 @@ body > header > nav > div#navSearch > form > ul {
     body > header > nav > ul > li {
         list-style: none;
         display: inline-block;
-        width: 25%;
+        width: 20%;
+    }
+
+
+    body > header > nav > ul > li:last-child{
+        width: 69px;
     }
 
     body > header > nav > ul > li > button,
