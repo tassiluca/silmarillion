@@ -59,6 +59,8 @@ body > header > nav > ul > li:last-child > button {
 
 body > header > nav > ul > li:last-child{
     margin: 0;
+    width: 68.6px;
+
 }
 
 body > header > nav > ul > li > a {
@@ -518,10 +520,6 @@ body > header > nav > div#navSearch > form > ul {
         width: 22%;
     }
 
-    body > header > nav > ul > li:last-child{
-        width: 68.6px;
-    }
-
     body > header > nav > ul > li > button,
     body > header > nav > ul > li > a {
         padding-top: 5px;
@@ -609,11 +607,6 @@ body > header > nav > div#navSearch > form > ul {
         list-style: none;
         display: inline-block;
         width: 22%;
-    }
-
-
-    body > header > nav > ul > li:last-child{
-        width: 68.6px;
     }
 
     body > header > nav > ul > li > button,
