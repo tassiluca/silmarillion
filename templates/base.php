@@ -48,7 +48,7 @@
                         </button>
                     </li><li>
                         <button type="button">
-                            <img src="./img/commons/menu-search.svg" alt="Cerca"/>
+                            <img src="./img/commons/search.svg" alt="Cerca"/>
                         </button>
                     </li><li>
                         <!-- TODO: modify pages name -->
@@ -118,7 +118,7 @@
                         <ul>
                             <li>
                                 <label for="search">Cerca</label>
-                                <input type="text" placeholder="Cerca..." id="search" name="search" required /><button type="submit"><img src="./img/commons/search-icon.svg" alt="Vai!"/></button>
+                                <input type="text" placeholder="Cerca..." id="search" name="search" required /><button type="submit"><img src="./img/commons/filter.svg" alt="Vai!"/></button>
                             </li>
                         </ul>
                     </form>

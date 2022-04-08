@@ -41,7 +41,7 @@ main > section > header > input {
     color: #0047A0;
     font-weight: bold;
     font-size: 1em;
-    background-image: url(../img/commons/search-icon-magnifier.svg);
+    background-image: url(../img/commons/search.svg);
     background-repeat: no-repeat;
     background-position: center left;
     border-radius: 10px;
