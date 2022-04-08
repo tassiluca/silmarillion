@@ -20,7 +20,7 @@ $(document).ready(function () {
     addEventListenerCartButtons(); //cart
     addEventListenerAlertButton(); //alert
 
-    handleCartAction(null,'utils/process-request.php?action=getInfo');
+    handleCartAction(null,'./engines/process-request.php?action=getInfo');
 });
 
 
