@@ -31,7 +31,7 @@ function registrationAttempt(form, formData){
 
     $.ajax({
         type: "POST",
-        url: "utils/process-registration.php",
+        url: "./engines/process-registration.php",
         data: formData,
         dataType: "json",
         encode: true

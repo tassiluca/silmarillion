@@ -11,7 +11,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="login.php">Area personale</a></li><li>Modifica Articolo</li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li><a href="login.php">Area personale</a></li><li>Modifica Articolo</li>
     </ul>
 </div>
 <section>
@@ -22,7 +22,7 @@
         </h2>
     </header>
     <!-- Comic insertion form -->
-    <form action="process-article.php" method="POST" enctype="multipart/form-data">
+    <form action="./engines/process-article.php" method="POST" enctype="multipart/form-data">
         <ul>
             <?php if ($templateParams['action'] === 'delete') : ?>
                 <li>

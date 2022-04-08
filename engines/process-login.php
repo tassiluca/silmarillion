@@ -1,8 +1,9 @@
 <?php
     require_once '../bootstrap.php';
+    /** @var DatabaseHelper $dbh */
 
-    define("FORCING_MSG", "Negli ultimi 5 minuti hai effettuato 5 tentativi a vuoto. Aspetta!");
-    define("ERROR_MSG", "Login fallito: ricontrolla i campi!");
+    const FORCING_MSG = "Negli ultimi 5 minuti hai effettuato 5 tentativi a vuoto. Aspetta!";
+    const ERROR_MSG = "Login fallito: ricontrolla i campi!";
 
     /**
      * Prevents brute force attacks.

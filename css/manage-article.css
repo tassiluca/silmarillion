@@ -1,3 +1,6 @@
+/****************************************************************************
+ * Style sheet linked to manage-articles page
+ ****************************************************************************/
 main > section {
     margin: 0 4% 50px;
 }
@@ -11,12 +14,34 @@ main > section > header > h2 {
     margin: 10px 0;
 }
 
+/************************** Buttons for insert products **********************/
+main > section > header > div {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+main > section > header > div > a {
+    padding: 10px;
+    text-decoration: none;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    background-color: #0047A0;
+    border-radius: 10px;
+    color: white;
+}
+
+main > section > header > div > a:hover {
+    background-color: #00D5FF;
+    color: black;
+    box-shadow: 6px 6px 6px rgba(196, 196, 196, 0.82);
+}
+
+/******************************** Search bar *********************************/
 main > section > header > input {
     width: 50%;
     color: #0047A0;
     font-weight: bold;
     font-size: 1em;
-    background-image: url(../img/commons/search-icon-magnifier.svg);
+    background-image: url(../img/commons/search.svg);
     background-repeat: no-repeat;
     background-position: center left;
     border-radius: 10px;
@@ -32,6 +57,7 @@ main > section > header > input:focus {
     width: 100%;
 }
 
+/****************************** Products list ********************************/
 main > section > ul > li {
     border-radius: 10px;
     height: 100px;

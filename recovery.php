@@ -1,5 +1,6 @@
 <?php
-    require_once 'bootstrap.php';
+    require_once __DIR__ . '/bootstrap.php';
+    /** @var DatabaseHelper $dbh */
 
     $templateParams["css"] = array("./css/login-forms.css", "./css/registration.css");
     $templateParams["main"] = "./templates/recovery-page.php";

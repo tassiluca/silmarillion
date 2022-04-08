@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/bootstrap.php';
+    /** @var DatabaseHelper $dbh */
 
     /* [NOTE] For more details about select2: [https://select2.org/] */
     $templateParams["css"] = array("./css/modify-article.css", 

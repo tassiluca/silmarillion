@@ -1,7 +1,7 @@
  <!-- Breadcrumb pagination -->
  <div>
     <ul>
-        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
         <li>Pagina errore</li>
     </ul>
 </div>

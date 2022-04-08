@@ -11,7 +11,7 @@ function loginAttempt(form, formData, target) {
 
     $.ajax({
         type: "POST",
-        url: "utils/process-login.php",
+        url: "./engines/process-login.php",
         data: formData,
         dataType: "json",
         encode: true

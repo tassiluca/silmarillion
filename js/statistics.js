@@ -81,7 +81,7 @@ $(document).ready(function () {
         var titleOrder = '';
         var titleCash = '';
 
-        $.post("utils/manage-statistics.php", data, 
+        $.post("./engines/manage-statistics.php", data,
             function (data,status) {
                 var dataChart = JSON.parse(data);
                 

@@ -1,5 +1,5 @@
 <?php
-    require_once 'bootstrap.php';
+    require_once __DIR__ . '/bootstrap.php';
     const DEFAULT_HOME_QUANTITY = 20;
     global $dbh;
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 

@@ -8,23 +8,23 @@
     <?php endforeach;
         endif;?>
     <!--end of element of banner-->
-    <input type="image" src="img/Back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="notizia precedente" />
-    <input type="image" src="img/Forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="notizia successivo" />
+    <input type="image" src="img/commons/back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="notizia precedente" />
+    <input type="image" src="img/commons/forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="notizia successivo" />
 
    </section>
 <aside>   
     <div>
         <!--insert div to add banner-->
         <div class="infoBanner">
-            <div><img src="img/Gift.png" alt=""></div>
+            <div><img src="img/commons/gift.png" alt=""></div>
             <p>Spedizione gratuita sopra i 50 €</p>
         </div>
         <div class="infoBanner">
-            <div><img src="img/bankCards.svg" alt=""></div>
+            <div><img src="img/commons/bankCards.svg" alt=""></div>
             <p>Pagamenti online o in contanti</p>
         </div>
         <div class="infoBanner">
-            <div><img src="img/onlineSupport.svg" alt=""></div>
+            <div><img src="img/commons/onlineSupport.svg" alt=""></div>
             <p>Qualche dubbio ? Scrivici!</p>
         </div>
         <!--end of aside banner-->
@@ -49,25 +49,25 @@
                         <article class="fade">
                             <?php 
                                 $countC = $dbh -> getAvaiableCopiesOfProd($product['ProductId']);
-                                $favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";
+                                $favImg = isProdFavourite($dbh,$product['ProductId']) ? "./img/products/favourite.svg" : "./img/products/un-favourite.svg";
                             ?>
 
                             <div> <a href="article.php?id=<?php echo $product['ProductId']?>"><img src="<?php echo UPLOAD_DIR_PRODUCTS.$product["CoverImg"]?>" alt="copertina <?php echo $product["CoverImg"]?>"></a></div>
                             <header><a href="article.php?id=<?php echo $product['ProductId']?>"><h3><?php echo $product["Title"]?></h3></a></header>
                             <footer>
                                 <div>
-                                    <a href="utils/process-request.php?action=wish&id=<?php echo $product['ProductId']?>" class="wishButton"><img src="<?php echo $favImg?>" alt="Aggiungi ai preferiti"/></a>
+                                    <a href="./engines/process-request.php?action=wish&id=<?php echo $product['ProductId']?>" class="wishButton"><img src="<?php echo $favImg?>" alt="Aggiungi ai preferiti"/></a>
                                 </div>
                                 <div>
-                                    <a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="utils/process-request.php?action=addtoCart&id=<?php echo $product['ProductId']?>" class="cartButton"><img src="./img/add.svg" alt="aggiungi al carrello"/></a>
+                                    <a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="./engines/process-request.php?action=addtoCart&id=<?php echo $product['ProductId']?>" class="cartButton"><img src="./img/products/add.svg" alt="aggiungi al carrello"/></a>
                                 </div>
                                 <div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
                             </footer>
                         </article>
         <?php endforeach;?>
                 <!--end group of article-->
-                    <input type="image" src="img/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
-                    <input type="image" src="img/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
+                    <input type="image" src="img/commons/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
+                    <input type="image" src="img/commons/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
                 </div>
             </section>
         <?php endif ?>
@@ -97,8 +97,8 @@
         </article>
     <?php endforeach; endif;?>
     <!--end group of article-->
-    <input type="image" src="img/Back.svg" onclick="updateReview(-1)" onkeypress="updateReview(-1)" alt="recensione precedente" >
-    <input type="image" src="img/Forward.svg" onclick="updateReview(1)" onkeypress="updateReview(1)" alt="recensione precedente" >
+    <input type="image" src="img/commons/back.svg" onclick="updateReview(-1)" onkeypress="updateReview(-1)" alt="recensione precedente" >
+    <input type="image" src="img/commons/forward.svg" onclick="updateReview(1)" onkeypress="updateReview(1)" alt="recensione precedente" >
      </div>
 </section>
 <section id="partners">
@@ -118,6 +118,6 @@
         </div> 
     </div>
     <!--end of element of banner-->
-    <input type="image" src="img/Back.svg" onclick="updatePartner(-1)" onkeypress="updatePartner(-1)" alt="pagina editori indietro" >
-    <input type="image" src="img/Forward.svg" onclick="updatePartner(1)" onkeypress="updatePartner(1)" alt="pagina editori avanti" >
+    <input type="image" src="img/commons/back.svg" onclick="updatePartner(-1)" onkeypress="updatePartner(-1)" alt="pagina editori indietro" >
+    <input type="image" src="img/commons/forward.svg" onclick="updatePartner(1)" onkeypress="updatePartner(1)" alt="pagina editori avanti" >
 </section>
