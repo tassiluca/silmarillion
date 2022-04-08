@@ -1,7 +1,7 @@
             
             <?php if(isset($templateParams["product"])):?>
                 <div><ul>
-                    <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li><a href="catalog.php">Catalogo</a></li><li><?php echo $templateParams["product"]["Title"]?></li>
+                    <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li><a href="catalog.php">Catalogo</a></li><li><?php echo $templateParams["product"]["Title"]?></li>
                 </ul>
             </div>
             <h2><?php echo $templateParams["product"]["Title"]?></h2>
@@ -12,7 +12,7 @@
             </aside><section>
                 <header>
                     <ul id="productInfo">
-                        <?php $favImg = isProdFavourite($dbh,$templateParams["product"]['ProductId']) ? "./img/favourite.svg" : "./img/un-favourite.svg";?>
+                        <?php $favImg = isProdFavourite($dbh,$templateParams["product"]['ProductId']) ? "./img/products/favourite.svg" : "./img/products/un-favourite.svg";?>
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>">
                             <?php 
@@ -53,7 +53,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="/utils/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>" class="cartButton"><span>Aggiungi al carrello</span><img src="./img/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="/utils/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>" class="cartButton"><span>Aggiungi al carrello</span><img src="./img/products/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>

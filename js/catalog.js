@@ -125,14 +125,14 @@ $(document).ready(function(){
             for(let i=start; i < end && i < prods.length;i++){
                 var disabled = prods[i].copies<= 0 ? 'class="disabled"' : '';
                 var price = prods[i].DiscountedPrice === null? prods[i].Price : prods[i].DiscountedPrice;
-                var favImg = prods[i].isFavourite ? "./img/favourite.svg" : "./img/un-favourite.svg";
+                var favImg = prods[i].isFavourite ? "./img/products/favourite.svg" : "./img/products/un-favourite.svg";
                 
                 prodListHTML += '<article><div><a href="article.php?id='+prods[i].ProductId+'"><img src="'+prodsDir+prods[i].CoverImg+
                                 '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?id='+ prods[i].ProductId +
                                 '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="utils/process-request.php?action=wish&id='+
                                 prods[i].ProductId+'" class="wishButton"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
                                 '<div><a '+ disabled + ' href="utils/process-request.php?action=addtoCart&id='+prods[i].ProductId+
-                                '" class="cartButton"><img src="./img/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
+                                '" class="cartButton"><img src="./img/products/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
         }
         $('main > section:first-of-type()').html(prodListHTML);

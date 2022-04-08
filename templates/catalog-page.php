@@ -8,7 +8,7 @@ const comicCategory = 'Comics';
  <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.php"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Catalogo</li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li>Catalogo</li>
     </ul>
 </div>
 <h2>Catalogo</h2>

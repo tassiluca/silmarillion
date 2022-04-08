@@ -1,5 +1,5 @@
-const wishImageSelected = "./img/favourite.svg";
-const wishImageUnselect = "./img/un-favourite.svg";
+const wishImageSelected = "./img/products/favourite.svg";
+const wishImageUnselect = "./img/products/un-favourite.svg";
 
 const wishList = 'favs';
 const cartList = 'cart';
