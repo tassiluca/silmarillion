@@ -184,4 +184,4 @@ Project Link: [https://github.com/tassiLuca/silmarillion](https://github.com/tas
 [license-url]: https://github.com/tassiLuca/silmarillion/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: img/commons/screenshot-homepage.png
