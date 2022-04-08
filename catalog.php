@@ -1,5 +1,5 @@
 <?php
-    require_once 'bootstrap.php';
+    require_once __DIR__ . '/bootstrap.php';
     $_SESSION['url'] = $_SERVER['REQUEST_URI'];
     global $dbh;
     const CATALOG_PROD_QUANTITY = 25;

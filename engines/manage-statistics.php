@@ -1,6 +1,7 @@
 <?php
     require_once '../bootstrap.php';
-    require_once 'functions.php';
+    require_once '../utils/functions.php';
+
     define("UPDATE",0);
     define("DAY",0);
     define("MONTH",1);

@@ -23,11 +23,11 @@
                                 }
                             ?>
                         </li><li>
-                            <a href="/utils/process-request.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" class="wishButton">
+                            <a href="./engines/process-request.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" class="wishButton">
                                 <img src="<?php echo $favImg?>" alt="Preferito" />
                             </a>
                         </li><li>
-                            <a href="/utils/process-request.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>" 
+                            <a href="./engines/process-request.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>"
                                 <?php if($templateParams["logged"] && $templateParams["isAlertActive"]){ echo 'class="disabled"';}?>>Avvisami quando questo prodotto sarà disponibile
                             </a>
                         </li>
@@ -53,7 +53,7 @@
                                     <?php echo $templateParams["product"]["Price"]?>€
                                 <?php endif?>
                             </li>
-                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="/utils/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>" class="cartButton"><span>Aggiungi al carrello</span><img src="./img/products/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
+                        <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="./engines/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>" class="cartButton"><span>Aggiungi al carrello</span><img src="./img/products/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>
                     </ul>
                 </footer>
             </section>

@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . '/bootstrap.php';
+    require_once '../bootstrap.php';
     /** @var DatabaseHelper $dbh */
 
     /** Number of products displayed per page. */

@@ -2,7 +2,7 @@
  * A string containing the URL to which the ajax requests are sent.
  * @type {string}
  */
-const processPage = 'process-management-articles.php';
+const processPage = './engines/process-management-articles.php';
 /**
  * The number of page items to display into the pagination.
  * @type {number}

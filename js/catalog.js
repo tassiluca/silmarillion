@@ -79,9 +79,8 @@ $(document).ready(function(){
      * then refresh showed prods
      * @param {*} allFilter filters of priducts to be applied
      */
-    function submitFilters(allFilter){
-
-        $.post("utils/process-filters.php", allFilter,
+    function submitFilters(allFilter) {
+        $.post("./engines/process-filters.php", allFilter,
             function (data,status) {
                 console.log(data);
                 prods = JSON.parse(data);
@@ -129,9 +128,9 @@ $(document).ready(function(){
                 
                 prodListHTML += '<article><div><a href="article.php?id='+prods[i].ProductId+'"><img src="'+prodsDir+prods[i].CoverImg+
                                 '" alt='+prods[i].CoverImg+'></a></div><header><a href="article.php?id='+ prods[i].ProductId +
-                                '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="utils/process-request.php?action=wish&id='+
+                                '"><h3>'+prods[i].Title+'</h3></a></header><footer><div><a href="./engines/process-request.php?action=wish&id='+
                                 prods[i].ProductId+'" class="wishButton"><img src="'+favImg+'" alt="Aggiungi ai preferiti"/></a></div>'+
-                                '<div><a '+ disabled + ' href="utils/process-request.php?action=addtoCart&id='+prods[i].ProductId+
+                                '<div><a '+ disabled + ' href="./engines/process-request.php?action=addtoCart&id='+prods[i].ProductId+
                                 '" class="cartButton"><img src="./img/products/add.svg" alt="Aggiungi al carrello"/></a></div><div><p>'+price+'</p></div></footer></article>';
             };
         }

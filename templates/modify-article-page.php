@@ -22,7 +22,7 @@
         </h2>
     </header>
     <!-- Comic insertion form -->
-    <form action="process-article.php" method="POST" enctype="multipart/form-data">
+    <form action="./engines/process-article.php" method="POST" enctype="multipart/form-data">
         <ul>
             <?php if ($templateParams['action'] === 'delete') : ?>
                 <li>
