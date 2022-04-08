@@ -17,7 +17,7 @@
          */
         function getSqlStringType($parameters){
             $sequenceTypes = '';
-            foreach(array_values($parameters) as $param) {
+            foreach($parameters as $param) {
                 if(is_int($param)){
                     $sequenceTypes .= 'i';
                 }
