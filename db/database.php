@@ -54,9 +54,9 @@
             return $stmt;
         }
 
-        /**********************************************************************************
+        /***************************************************************************************************************
          * Users management functions
-         **********************************************************************************/
+         **************************************************************************************************************/
         /**
          * Get customer infos.
          * @param string $username the username string
@@ -207,9 +207,9 @@
                 ->num_rows > 0;
         }
 
-        /**********************************************************************************
+        /***************************************************************************************************************
          * Products management functions
-         **********************************************************************************/
+         **************************************************************************************************************/
 
         /**
          * Get product info, regardless if the product is a funko or comic.
@@ -370,7 +370,6 @@
             // [NOTE] it's important the deletion of the product is done after
             // the deletion of the funko due to the foreign key between them.
             $this->deleteProduct($productId);
-
         }
 
         /**
@@ -436,54 +435,39 @@
             return $this->executeQuery($query, [$name, $description])->errno;
         }
 
-        public function getHomeBanner(){
-            $query = "SELECT NewsId, Title, Description, Img, UserId
-                    FROM News";
-            $stmt = $this->db->prepare($query);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
-        }
-
         /**
          * Get newest products added to website
          * @param int $n amount of product to be loaded, default value is 15
          * @return array associative array containing new added products
          */
         public function getNewArrival($n=15){
-            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
+            $query = "SELECT C.Title, C.Author, C.Lang, C.PublishDate, C.ISBN, C.ProductId, C.PublisherId, 
+                             P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                     FROM Comics as C, Products as P
                     WHERE C.ProductId = P.ProductId
                     ORDER BY C.PublishDate DESC
                     LIMIT ?";
-
-            $stmt = $this -> executeQuery($query,[$n]);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query,[$n])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
+
         /**
-         * Get all products of a specific category
-         * @param string $category
-         * @param int $quantity, max number of prods returned, default value is infinite (-1)
-         * @return array associative array containing all prods of a category
+         * Determines if a given product is a funko or not.
+         * @param int $id the product id
+         * @return bool true if it is a funko, false otherwise.
          */
-        public function getComicsOfCategory($category,$quantity=-1){
-            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName
-                    FROM Comics as C, Products as P
-                    WHERE C.ProductId = P.ProductId
-                    AND P.CategoryName = ? ";
-
-            $params = array();
-            if($quantity > 0){
-                $query .= " LIMIT ?";
-                $params = array($category,$quantity);
-            }
-            $stmt = $this -> executeQuery($query,$params);
-
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        public function isFunko($id) {
+            $query = "SELECT P.ProductId
+                      FROM Products as P, Funkos as F
+                      WHERE P.ProductId = F.ProductId
+                      AND P.ProductId = ?";
+            return $this->executeQuery($query, [$id])
+                ->get_result()->num_rows > 0;
         }
 
         /**
-         * Get `quantity` funkos
+         * Get `quantity` funkos.
          * @param int $quantity, max number of prods returned, default value is infinite (-1)
          * @return array associative array containing all funkos
          */
@@ -492,21 +476,49 @@
                              P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                       FROM  Funkos as F, Products as P
                       WHERE F.ProductId = P.ProductId";
-
             $params = array();
-            if($quantity > 0){
+            if ($quantity > 0){
                 $query .= " LIMIT ?";
                 $params = array($quantity);
             }
-            $stmt = $this -> executeQuery($query,$params);
-            
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query,$params)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
-         * Get `quantity` comics data.
-         *
+         * GLIet all infos about a specific funko by ProductId
+         * @param int $id unique id of product
+         * @return array containing a single element, if $id is not present in db
+         * array is empty
+         */
+        public function getFunkoById($id){
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, 
+                             P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                      FROM Funkos as F, Products as P
+                      WHERE F.ProductId = P.ProductId
+                      AND P.ProductId = ?";
+            return $this->executeQuery($query,[$id])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Determines if a given product is a comic or not.
+         * @param int $id the product id
+         * @return bool true if it is a comic, false otherwise.
+         */
+        public function isComic($id) {
+            $query = "SELECT P.ProductId
+                      FROM Products as P, Comics as C
+                      WHERE P.ProductId = C.ProductId
+                      AND P.ProductId = ?";
+            return $this->executeQuery($query, [$id])
+                ->get_result()->num_rows > 0;
+        }
+
+        /**
+         * Get `quantity` comics.
          * @param integer $quantity the number of comics to get. If not specified are returned all comics.
          * @return array associative array containing the comics data
          */
@@ -515,19 +527,66 @@
                              P.ProductId, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                       FROM  Comics C, Products P
                       WHERE C.ProductId = P.ProductId";
-            
+            $params = [];
             if ($quantity > 0) {
                 $query .= " LIMIT ?";
-            }            
-            $stmt = $this->db->prepare($query);
-            if ($quantity > 0){
-                $stmt->bind_param('i', $quantity);
+                $params[] = $quantity;
             }
-            $stmt->execute();
-            $result = $stmt->get_result();
-            return $result->fetch_all(MYSQLI_ASSOC);        
+            return $this->executeQuery($query, $params)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         * Get all products of a specific category
+         * @param string $category
+         * @param int $quantity, max number of prods returned, default value is infinite (-1)
+         * @return array associative array containing all prods of a category
+         */
+        public function getComicsOfCategory($category,$quantity=-1){
+            $query = "SELECT C.Title, C.Author, C.Lang, C.PublishDate, C.ISBN, C.ProductId, C.PublisherId,
+                             P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                      FROM Comics as C, Products as P
+                      WHERE C.ProductId = P.ProductId
+                      AND P.CategoryName = ? ";
+            $params = array();
+            if ($quantity > 0){
+                $query .= " LIMIT ?";
+                $params = array($category,$quantity);
+            }
+            return $this->executeQuery($query,$params)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Get all infos about a specific COMIC by productId
+         * @param int $id unique id of product
+         * @return array containig a single element, if $id is not present in db
+         * array is empty
+         */
+        public function getComicById($id){
+            $query = "SELECT C.Title, C.Author, C.Lang, C.PublishDate, C.ISBN, C.ProductId, C.PublisherId,
+                             P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName, PB.Name as PublisherName
+                      FROM Comics as C, Products as P, Publisher as PB
+                      WHERE C.ProductId = P.ProductId
+                      AND PB.PublisherId = C.PublisherId
+                      AND P.ProductId = ?";
+            return $this->executeQuery($query,[$id])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
+        }
+
+        /**
+         * Gets a list of `limit` products starting counting from `offset` and matching an `expression`.
+         * [NOTE] `offset` and `limit` bust be both present or not.
+         * If no `offset`, `limit` (or one of them) and `matching` are **NOT** given in input,
+         * are retrieved all the products.
+         * @param int $offset the number of rows skipped before beginning to return them
+         * @param int $limit the number of products to obtain
+         * @param string $expression a string representing the string to match
+         * @return array|mixed the array of products.
+         */
         public function getProducts($offset = -1, $limit = -1, $expression = '') {
             $expression = '%' . $expression . '%';
             $query = "SELECT P.ProductId, C.Title as Title, P.CoverImg
@@ -553,77 +612,27 @@
          */
         public function getReviews(){
             $query = "SELECT ReviewId,Vote,Description, R.UserId,U.Username
-                    FROM Reviews as R, Users as U
-                    WHERE R.UserId = U.UserId";
-            
-            $stmt = $this -> executeQuery($query,[]);
-            return $stmt->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
+                      FROM Reviews as R, Users as U
+                      WHERE R.UserId = U.UserId";
+            return $this->executeQuery($query,[])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
-        /**
-         * Get all infos about a specific COMIC by productId
-         * @param int $id unique id of product
-         * @return array containig a single element, if $id is not present in db
-         * array is empty
-         */
-        public function getComicById($id){
-            $query = "SELECT C.Title,C.Author,C.Lang,C.PublishDate,C.ISBN,C.ProductId,C.PublisherId,P.Price,P.DiscountedPrice,P.Description,P.CoverImg,P.CategoryName,PB.Name as PublisherName
-                    FROM Comics as C, Products as P, Publisher as PB
-                    WHERE C.ProductId = P.ProductId
-                    AND PB.PublisherId = C.PublisherId
-                    AND P.ProductId = ?";
-
-            $stmt = $this -> executeQuery($query,[$id]);
-            return $stmt->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
+        /***************************************************************************************************************
+         * Home Banner functions.
+         **************************************************************************************************************/
+        public function getHomeBanner(){
+            $query = "SELECT NewsId, Title, Description, Img, UserId
+                      FROM News";
+            return $this->executeQuery($query)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
-        /**
-         * GLIet all infos about a specific funko by ProductId
-         * @param int $id unique id of product
-         * @return array containing a single element, if $id is not present in db
-         * array is empty
-         */
-        public function getFunkoById($id){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
-                    FROM Funkos as F, Products as P
-                    WHERE F.ProductId = P.ProductId
-                    AND P.ProductId = ?";
-
-            $stmt = $this -> executeQuery($query,[$id]);
-            return $stmt->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
-        }
-
-        /**
-         * TODO: to document -- added by Luca
-         */
-        public function isFunko($id) {
-            $query = "SELECT P.ProductId
-                      FROM Products as P, Funkos as F
-                      WHERE P.ProductId = F.ProductId
-                      AND P.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            return $stmt->get_result()->num_rows > 0;
-        }
-
-        /**
-         * TODO: to document -- added by Luca
-         */
-        public function isComic($id) {
-            $query = "SELECT P.ProductId
-                      FROM Products as P, Comics as C
-                      WHERE P.ProductId = C.ProductId
-                      AND P.ProductId = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            return $stmt->get_result()->num_rows > 0;
-        }
-        //------------------------FAVOURITE/WISHLIST---------------------//
+        /***************************************************************************************************************
+         * Favourites and wishlist function
+         **************************************************************************************************************/
         /**
          * Get all customer's favourite products
          * @param int $usrId unique id of consumer user
@@ -631,12 +640,11 @@
          */
         public function getCustomerWishlist($usrId){
             $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
-            $stmt = $this->db->prepare($query);
-
-            $stmt = $this -> executeQuery($query,[$usrId]);
-            return $stmt->get_result()
-                        ->fetch_all(MYSQLI_ASSOC);
+            return $this -> executeQuery($query,[$usrId])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
+
         /**
          * Add $idprod product to the $usrId personal wish/favourite list
          * @param int $usrId unique id of consumer user
@@ -645,7 +653,7 @@
          */
         public function addProductToWish($usrId,$idprod){
             $query = "INSERT INTO `Favourites`(`UserId`, `ProductId`) 
-                        VALUES (?,?)";
+                      VALUES (?,?)";
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
 
@@ -660,22 +668,38 @@
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
         }
 
-        //---------------------ALERT-PRODUCT-------------------//
-        public function addProductAlert($usrId,$idprod){
+        /***************************************************************************************************************
+         * Products alerts functions
+         **************************************************************************************************************/
+        /**
+         * Add a new alert for the given couples of product and user.
+         * @param int $usrId the user id
+         * @param int $idprod the product id
+         * @return bool the result of query execution
+         */
+        public function addProductAlert($usrId, $idprod){
             $query = "INSERT INTO `Alerts`(`UserId`, `ProductId`) 
-                        VALUES (?,?)";
-            return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
+                      VALUES (?,?)";
+            return !$this->executeQuery($query,[$usrId,$idprod])->errno;
         }
 
-        public function isAlertActive($usrId,$idprodotto){
+        /**
+         * Returns if an alert is active for the given couple (userId, productId).
+         * @param int $usrId the user id
+         * @param int $productId the product id
+         * @return bool true if an alert is present, false otherwise
+         */
+        public function isAlertActive($usrId, $productId){
             $query = "SELECT * FROM `Alerts` WHERE `UserId` = ? AND `ProductId` = ?";
-            $resultCount = count($this -> executeQuery($query,[$usrId,$idprodotto])
+            $resultCount = count($this->executeQuery($query, [$usrId, $productId])
                          ->get_result()
                          ->fetch_all(MYSQLI_ASSOC));
             return $resultCount > 0;
         }
 
-        //-----------------------------ADD----TO---CART------------------------------//
+        /***************************************************************************************************************
+         * Cart management functions
+         **************************************************************************************************************/
         /**
          * Add $idprod product to the $usrId personal cart
          * @param int $usrId unique id of consumer user
@@ -685,24 +709,19 @@
         public function addProductToCart($usrId,$idprod,$quantity){
             $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
             $avaiableCopies = $this -> getAvaiableCopiesOfProd($idprod); //to check if article can be added to cart
-
-            if($avaiableCopies > 0){
-                if(count($matchInCart) <= 0){ //if first time to be added in cart
+            if ($avaiableCopies > 0) {
+                if (count($matchInCart) <= 0) { //if first time to be added in cart
                     $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
-                        VALUES (?,?,?)";
-
-                    $stmt = $this -> executeQuery($query,array($idprod,$usrId,$quantity));
-                    //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
-                    return $stmt->insert_id;
+                              VALUES (?,?,?)";
+                    // TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
                 }
-                else{ //in case of update quantity prod in cart 
+                else { //in case of update quantity prod in cart
                     $quantity += $matchInCart[0]['Quantity'];
                     $query = "UPDATE Carts SET ProductId=?,UserId=?,Quantity=?";
-
-                    $stmt = $this -> executeQuery($query,array($idprod,$usrId,$quantity));
-                    //TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
-                    return $stmt->insert_id;
+                    // TODO FARE IL CONTROLLO SE PRESENTE UN ERRORE
                 }
+                $stmt = $this->executeQuery($query,array($idprod, $usrId, $quantity));
+                return $stmt->insert_id;
             }
         }
         /**
@@ -711,12 +730,12 @@
          * @param int $usrId unique id of user-costumer
          * @return array associative array containing quantity of product in user's cart 
          */
-        private function alreadyInCart($idProd,$usrId){ //return quantity of the idProd if present in user cart
+        private function alreadyInCart($idProd, $usrId) {
             $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` 
-                        WHERE ProductId = ? AND UserId = ?";
-            
-            $stmt = $this -> executeQuery($query,array($idProd,$usrId));
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+                      WHERE ProductId = ? AND UserId = ?";
+            return $this->executeQuery($query, [$idProd, $usrId])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -760,8 +779,9 @@
          */
         private function getCopiesInStock($idProd){
             $query = "SELECT `CopyId`, `ProductId` FROM `ProductCopies` WHERE ProductId = ?";
-            $stmt = $this->executeQuery($query, [$idProd]);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [$idProd])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
         /**
          * Get all copies not available to be bought, all copies in users carts
@@ -773,17 +793,26 @@
                         FROM `ProductCopies` as Pc, `OrderDetails` as Od
                         where Pc.CopyId = Od.CopyId
                         and Pc.ProductId = ?";
-            $stmt = $this->executeQuery($query, [$idProd]);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [$idProd])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
-        //-----------------------CATALOG-----------------------------//
+        /***************************************************************************************************************
+         * Catalog management functions
+         **************************************************************************************************************/
+        /**
+         * @return array with all the languages
+         */
         public function getLanguages(){
-            return $this -> getListOfFromComics('Lang');
+            return $this->getListOfFromComics('Lang');
         }
 
+        /**
+         * @return array with all the authors
+         */
         public function getAllAuthors(){
-            return $this -> getListOfFromComics('Author');
+            return $this->getListOfFromComics('Author');
         }
         /**
          * NOTE: be sure the param is an attributo of Comics
@@ -792,8 +821,9 @@
          */
         private function getListOfFromComics($attribute){
             $query = "SELECT ".$attribute." FROM Comics Group by ". $attribute;
-            $stmt = $this->executeQuery($query, []);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
         /**
          * Get all categories available and saved in db
@@ -801,22 +831,28 @@
          */
         public function getAllCategories(){
             $query = "SELECT * FROM `Categories`";
-            $stmt = $this->executeQuery($query, []);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, [])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
+        /**
+         *
+         * @param $usrId
+         * @param $prodId
+         * @return bool
+         */
         public function isFavourite($usrId,$prodId){
             $query = "SELECT count(*) as 'Count' 
-            FROM `Favourites` WHERE `UserId` = ? and `ProductId` = ?";
-
-            $stmt = $this->executeQuery($query, [$usrId,$prodId]);
-            $result = $stmt->get_result();
-            $isFav = $result->fetch_assoc()['Count'] > 0 ? true : false;
-            return $isFav;
+                      FROM `Favourites` WHERE `UserId` = ? and `ProductId` = ?";
+            $result = $this->executeQuery($query, [$usrId,$prodId])
+                ->get_result();
+            return $result->fetch_assoc()['Count'] > 0;
         }
 
-        //------------------APPLY FILTERS CATALOG---------------------------------/
-
+        /***************************************************************************************************************
+         * Filters management fuctions.
+         **************************************************************************************************************/
         /**
          * Get all comics and bind all params passed
          * @param string SQL query to be executed on db
@@ -824,15 +860,15 @@
          */
         public function getAllComicsMatch($params,$filter=''){
             $query = "SELECT * 
-                FROM Products as P, Comics as C, Publisher as PB 
-                WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
-            
-            if($filter != '' && count($params)){
+                      FROM Products as P, Comics as C, Publisher as PB 
+                      WHERE C.ProductId = P.ProductId and PB.PublisherId = C.PublisherId";
+            if ($filter != '' && count($params)){
                 $query .= $filter;
             }
             //print_r($query);
-            $stmt = $this -> executeQuery($query, $params);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, $params)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /**
@@ -841,18 +877,22 @@
          * @return array associative array with all funkos that match query
          */
         public function getAllFunkosMatch($params,$filter=''){
-            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
-                    FROM Funkos as F, Products as P
-                    WHERE F.ProductId = P.ProductId ";
-                
-            if($filter != '' && count($params)){
+            $query = "SELECT F.FunkoId, F.ProductId, F.Name as Title, 
+                             P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                      FROM Funkos as F, Products as P
+                      WHERE F.ProductId = P.ProductId ";
+            if ($filter != '' && count($params)){
                 $query .= $filter;
             }
             //print_r($query);
-            $stmt = $this -> executeQuery($query, $params);
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $this->executeQuery($query, $params)
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
-        //------------------STATISTIC-PAGE-----------------//
+
+        /***************************************************************************************************************
+         * Stats functions.
+         **************************************************************************************************************/
         /**
          * Get correct string of Period by integer
          * @param int $period
@@ -872,20 +912,20 @@
                 return "Month";
             }
         }
+
+        // TODO: to document
         //OrderId	Address	OrderDate	Price	UserId
         public function getStatsPerPeriod($period, $year){
             $p = $this -> getStringPeriod($period);
             $funct = $p ."(O.OrderDate)";
             $query = "SELECT ". $funct ." AS ".$p.", count(*) as 'Count', sum(Price) as 'Total'
                     FROM Orders as O ";
-            
-            $params =[];
-            if($period != YEAR){
+            $params = [];
+            if ($period != YEAR){
                 $query .= " WHERE Year(O.OrderDate) = ? ";
                 $params = array($year);
             }
             $query .= " group by ".$p." order by ".$p." Asc";
-            
             //var_dump($query);
             /*
             $stmt = $this->db->prepare($query);
@@ -893,14 +933,13 @@
                 $stmt->bind_param('i', $year);
             }
             $stmt->execute();*/
-
             $stmt = $this->executeQuery($query, $params);
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
+        // TODO: to document
         public function getYearsWithOrders(){
             $query = "SELECT Year(OrderDate) as 'Year' FROM Orders GROUP by Year(OrderDate)";
-            
             $stmt = $this->executeQuery($query, []);
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
