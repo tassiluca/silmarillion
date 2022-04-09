@@ -2,7 +2,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.html"><img src="./img/home-icon.svg" alt="Home"></a></li><li>Carrello</li>
+        <li><a href="index.html"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li>Carrello</li>
     </ul>
 </div>
 <section>
