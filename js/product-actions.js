@@ -17,8 +17,10 @@ $(document).ready(function () {
     }
 
     addEventListenerButton('.wishButton',handleWishlistAction);
+    addEventListenerButton('.removeCart',handleRemoveCartAction);
     addEventListenerButton('.cartButton',handleCartAction);
     addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);
+    
 
     handleCartAction(null,'./engines/process-request.php?action=getInfo');
 });
@@ -133,6 +135,11 @@ function handleCartAction(clickedBtn,urlLink){
         }
 
     });
+}
+
+function handleRemoveCartAction(clickedBtn,urlLink){
+    var prodId = parseInt(getUrlParameter("id",urlLink));
+    location.reload(); 
 }
 
 function refreshCartBadge(currentCount){
