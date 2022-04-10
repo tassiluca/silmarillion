@@ -28,7 +28,10 @@
                             </a>
                         </li><li>
                             <a href="./engines/process-request.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">
-                                Avvisami quando questo prodotto sarà disponibile
+                                <?php if($templateParams["isAlertActive"]){
+                                        echo 'Avvisami quando questo prodotto sarà disponibile';}
+                                    else{ echo 'Rimuovi notifica';}
+                                    ?>
                             </a>
                             <div style="display:none"><p>Per effettuare questa operazione devi aver fatto Login. <br><a href="login.php">Pagina di login</a></p></div>
                         </li>
