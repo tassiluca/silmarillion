@@ -137,8 +137,9 @@ $(document).ready(function(){
         $('main > section:first-of-type()').html(prodListHTML);
 
         //add event listener to all wishlist buttons
-        addEventListenerWishButtons();
-        addEventListenerCartButtons();
+        addEventListenerButton('.wishButton',handleWishlistAction);
+        addEventListenerButton('.cartButton',handleCartAction);
+
     }
 
 });

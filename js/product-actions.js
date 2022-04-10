@@ -19,9 +19,6 @@ $(document).ready(function () {
     addEventListenerButton('.wishButton',handleWishlistAction);
     addEventListenerButton('.cartButton',handleCartAction);
     addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);
-    //addEventListenerCartButtons();
-    //addEventListenerAlertButton();
-    //addEventListenerWishButtons();
 
     handleCartAction(null,'./engines/process-request.php?action=getInfo');
 });
