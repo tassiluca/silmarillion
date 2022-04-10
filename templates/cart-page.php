@@ -36,7 +36,7 @@
                         <div><p><?php echo $prod['Quantity']?></p></div>
                         <div><a href="#"><img src="img/cart/plus_math.svg" alt="aumenta quantità"></a></div>
                     </div>
-                    <div><a href="./engines/process-request.php?action=delFromCart&id=<?php echo $prod['ProductId']?>">Rimuovi</a></div>
+                    <div><a class="removeCart" href="./engines/process-request.php?action=delFromCart&id=<?php echo $prod['ProductId']?>">Rimuovi</a></div>
                 </div>
             </article>
             <?php 
