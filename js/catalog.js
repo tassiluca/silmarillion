@@ -82,7 +82,7 @@ $(document).ready(function(){
     function submitFilters(allFilter) {
         $.post("./engines/process-filters.php", allFilter,
             function (data,status) {
-                console.log(data);
+                //console.log(data);
                 prods = JSON.parse(data);
                 numPages = Math.floor(prods.length / NUM_PROD_PAGE);
                 updateCatalogView(0);//show all products of page 0
