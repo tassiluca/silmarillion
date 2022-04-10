@@ -92,16 +92,7 @@
                 </div>
                 <div id="navCart">
                     <ul>
-                        <li>
-                            <img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
-                            <div>
-                                <p>Deadpool_Cake_POP_GLAM</p>
-                                <div>
-                                    <p>15,99€</p>
-                                    <p>x2</p>
-                                </div>
-                            </div>
-                        </li>
+                        <?php ?>
                         <li>
                             <img src="img/cart/Deadpool_Cake_POP_GLAM-1-WEB_700x 1.svg" alt="">
                             <div>
@@ -113,7 +104,7 @@
                             </div>
                         </li>
                     </ul>
-                    <a href="cart.html">Visualizza carrello</a>
+                    <a href="cart.php">Visualizza carrello</a>
                 </div>
                 <!-- search dropdown menu -->
                 <div id="navSearch">
