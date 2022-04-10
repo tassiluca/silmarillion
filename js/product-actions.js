@@ -36,41 +36,6 @@ function addEventListenerButton(jQuerySelector,methodToRun){
 }
 
 /**
- * Add event listener on Add alert on product link
- */
-function addEventListenerAlertButton(){
-    $('#productInfo > li:nth-child(3) > a').click(function (e) {
-        e.preventDefault();
-        let btn = $(this);
-        let urlRequest = btn.attr("href");
-        handleAddAlertProd(btn,urlRequest);
-    });
-}
-
-/**
- * Add event listener to all wishlist buttons
- */
-function addEventListenerWishButtons(){
-    $('.wishButton').click(function (e) {
-        e.preventDefault();
-        let btn = $(this);
-        let urlRequest = btn.attr("href");
-        handleWishlistAction(btn,urlRequest);
-    });
-}
-
-/**
- * Add event listener to all cart buttons
- */
- function addEventListenerCartButtons(){
-    $('.cartButton').click(function (e) {
-        e.preventDefault();
-        let btn = $(this);
-        let urlRequest = btn.attr("href");
-        handleCartAction(btn,urlRequest);
-    });
-}
-/**
  * Update cookie list adding or removing the idProd param from list saved in cookie of name listName
  * If elem is and object the check if already present become always true, make check before passing
  * @param {string} listName name of cookie-list where add/remove idProd
