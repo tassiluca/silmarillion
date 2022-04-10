@@ -218,9 +218,9 @@
          */
         public function getProduct(int $productId) {
             if ($this->isFunko($productId)) {
-                return $this->getFunkoById($productId);
+                return $this->getFunkoById($productId)[0];
             } else {
-                return $this->getComicById($productId);
+                return $this->getComicById($productId)[0];
             }
         }
 
@@ -731,7 +731,11 @@
             }
         }
 
-        // TODO to document
+        /**
+         * Return all prods in cusotmer's cart
+         * @param int $customerId Cusotmer id
+         * @return array Associative array containing all products
+         */
         public function getUserCart($customerId){
             $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` WHERE `UserId` = ?";
             return $this -> executeQuery($query,[$customerId])
