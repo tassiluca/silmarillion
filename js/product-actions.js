@@ -16,13 +16,24 @@ $(document).ready(function () {
         console.log(getCookie(cartList));
     }
 
-    addEventListenerWishButtons(); //wishlist
-    addEventListenerCartButtons(); //cart
-    addEventListenerAlertButton(); //alert
+    addEventListenerButton('.wishButton',handleWishlistAction);
+    addEventListenerButton('.cartButton',handleCartAction);
+    addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);
+    //addEventListenerCartButtons();
+    //addEventListenerAlertButton();
+    //addEventListenerWishButtons();
 
     handleCartAction(null,'./engines/process-request.php?action=getInfo');
 });
 
+function addEventListenerButton(jQuerySelector,methodToRun){
+    $(jQuerySelector).click(function (e) {
+        e.preventDefault();
+        let btn = $(this);
+        let urlRequest = btn.attr("href");
+        methodToRun(btn,urlRequest);
+    });
+}
 
 /**
  * Add event listener on Add alert on product link
