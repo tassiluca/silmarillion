@@ -6,17 +6,23 @@ use LDAP\Result;
 
     if(isset($_GET["action"])){
         $action = $_GET["action"];
-        $response = array("isLogged" => false,"action" =>"noAction","execDone" => false, "count" => 99,"cartCount"=>0);
+        $response = array("isLogged" => false,
+                        "action" =>"noAction",
+                        "execDone" => false,
+                        "countCopies" => 99,
+                        "cartCount"=>0);
         
         if(isCustomerLoggedIn()){
             if(isset($_GET["id"])){
                 $resultQuery = handleLoggedCustomerRequest($dbh,$action,$_SESSION['userId'],$_GET["id"]);
                 $response["action"] = $resultQuery[0];
                 $response["execDone"] = $resultQuery[1] == 0 ? false : true;
-                $countCopies = $dbh->getAvaiableCopiesOfProd($_GET["id"]);
             }
             $response["isLogged"] = true;
             $response["cartCount"] = count($dbh->getUserCart($_SESSION['userId']));
+        }
+        if(isset($_GET["id"])){
+            $response["countCopies"] = $dbh->getAvaiableCopiesOfProd($_GET["id"]);
         }
         echo json_encode($response);
     }
