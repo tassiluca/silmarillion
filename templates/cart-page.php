@@ -32,9 +32,9 @@
                 <div>
                     <div>
                         <!--here we call php page to add or edit quantity of an article sending a query to specify which product and the action to do-->
-                        <div><a href="#"><img src="img/cart/subtract.svg" alt="riduci quantità"></a></div>
+                        <div><a class="cartButtonDec" href="./engines/process-request.php?action=decToCart&id=<?php echo $prod['ProductId']?>"><img src="img/cart/subtract.svg" alt="riduci quantità"></a></div>
                         <div><p><?php echo $prod['Quantity']?></p></div>
-                        <div><a href="#"><img src="img/cart/plus_math.svg" alt="aumenta quantità"></a></div>
+                        <div><a class="cartButton" href="./engines/process-request.php?action=addtoCart&id=<?php echo $prod['ProductId']?>"><img src="img/cart/plus_math.svg" alt="aumenta quantità"></a></div>
                     </div>
                     <div><a class="removeCart" href="./engines/process-request.php?action=delFromCart&id=<?php echo $prod['ProductId']?>">Rimuovi</a></div>
                 </div>

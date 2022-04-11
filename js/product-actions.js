@@ -16,11 +16,11 @@ $(document).ready(function () {
         console.log(getCookie(cartList));
     }
 
-    addEventListenerButton('.wishButton',handleWishlistAction);
-    addEventListenerButton('.removeCart',handleRemoveCartAction);
-    addEventListenerButton('.cartButton',handleCartAction);
-    addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);
-    
+    addEventListenerButton('.wishButton',handleWishlistAction);//add-remove prod from wishlist
+    addEventListenerButton('.removeCart',handleRemoveCartAction);//remove prod from cart
+    addEventListenerButton('.cartButtonDec',handleCartAction);//decrement quantity prod cart
+    addEventListenerButton('.cartButton',handleCartAction);//increment quantity prod cart
+    addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);//add-remove alert on product avaialability
 
     handleCartAction(null,'./engines/process-request.php?action=getInfo');
 });
@@ -98,6 +98,7 @@ function handleWishlistAction(clickedBtn,urlLink){
 function handleCartAction(clickedBtn,urlLink){
     var prodId = parseInt(getUrlParameter("id",urlLink));
     $.get(urlLink, function (data) {
+        console.log(data);
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
@@ -142,14 +143,14 @@ function handleRemoveCartAction(clickedBtn,urlLink){
     var currentAction = getUrlParameter("action",urlLink);
 
     $.get(urlLink, function (data) {
-        console.log(data);
+        console.log(data); //TODO --> comment this
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
         let action = jsonData["action"];
 
         if(isLogged){
-            if(correctExec && action === currentAction){
+            if(correctExec){
                 console.log("Prodotto rimosso correttamente");
             }
             else{

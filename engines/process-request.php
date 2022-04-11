@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
     require_once '../bootstrap.php';
 
     if(isset($_GET["action"])){
@@ -39,15 +42,15 @@
 
         }
         else if(!strcmp($action,'addtoCart')){
-            return ["addcart",$dbh -> addProductToCart($idCustomer,$idprod,1)];
+            return ["addcart",$dbh -> incQuantityProdCart($idCustomer,$idprod)];
         }
         else if(!strcmp($action,'decToCart')){
-            //decrement quantity of product in cart
-            $dbh -> decrementProductToCart($idCustomer,$idprod,1);
+            //decrement quantity of product in cart, is same as adding to cart but quantity is negative
+            return ["decToCart",$dbh -> decQuantityProdCart($idCustomer,$idprod)];
         }
         else if(!strcmp($action,'delFromCart')){
             //completely remove product from cart in db
-            $dbh -> deleteProductFromCart($idCustomer,$idprod);
+            return ["delFromCart",$dbh -> deleteProductFromCart($idCustomer,$idprod)];
         }
         else if(!strcmp($action,'notify')){
             $isAlertOnProd = $dbh -> isAlertActive($idCustomer,$idprod);
