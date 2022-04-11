@@ -139,7 +139,31 @@ function handleCartAction(clickedBtn,urlLink){
 
 function handleRemoveCartAction(clickedBtn,urlLink){
     var prodId = parseInt(getUrlParameter("id",urlLink));
-    location.reload(); 
+    var currentAction = getUrlParameter("action",urlLink);
+
+    $.get(urlLink, function (data) {
+        console.log(data);
+        let jsonData = JSON.parse(data);
+        let isLogged = jsonData["isLogged"];
+        let correctExec = jsonData["execDone"];
+        let action = jsonData["action"];
+
+        if(isLogged){
+            if(correctExec && action === currentAction){
+                console.log("Prodotto rimosso correttamente");
+            }
+            else{
+                console.log("Problema: prodotto non rimosso");
+            }
+        }
+        else{
+            let cart = new Map(JSON.parse((getCookie(cartList))));
+            cart.delete(prodId);
+            setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
+            refreshCartBadge(getLenCookie(cartList));
+        }
+        location.reload();
+    });
 }
 
 function refreshCartBadge(currentCount){
@@ -150,7 +174,6 @@ function refreshCartBadge(currentCount){
         $('#cart_badge').text(currentCount);
         $('#cart_badge').show();
     }
-    
 }
 
 //------------------------ALERT---------------------------//
