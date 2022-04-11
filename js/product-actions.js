@@ -121,7 +121,7 @@ function handleCartAction(clickedBtn,urlLink){
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
         let action = jsonData["action"];
-        let countCopies = jsonData["count"];
+        let countCopies = jsonData["countCopies"];
         let cartCount = jsonData["cartCount"];
 
         if(countCopies-1 > 0){
