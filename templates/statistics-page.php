@@ -1,6 +1,6 @@
 <div>
     <ul>
-        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li>Statistiche</li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li><a href="login.php">Area personale</a></li><li>Statistiche</li>
     </ul>
 </div>
 <div>
