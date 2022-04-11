@@ -1,9 +1,10 @@
 function getUrlParameter(sParam,url) {
 
     var sPageURL = window.location.search.substring(1);
-    if(url !== undefined){
-        sPageURL = url;
+    if(url !== undefined && url.includes('?')){
+        sPageURL = url.split('?')[1];
     }
+
     var sURLVariables = sPageURL.split('&'),
         sParameterName,
         i;
