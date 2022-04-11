@@ -15,7 +15,7 @@
                 if(isset($templateParams["cart"]) && count($templateParams["cart"]) > 0){
                     foreach($templateParams["cart"] as $prod):
             ?>
-            <article>
+            <article id="<?php echo $prod['ProductId']?>">
                 <div><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg']?>" alt="copertina fumetto"></div>
                 <div>
                     <header><h3><?php echo $prod['Title']?></h3></header>
