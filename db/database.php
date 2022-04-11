@@ -713,33 +713,34 @@
          * @return boolean false if action failed, true if all done
          */
         private function updateProdQuantityCart($usrId,$idprod,$quantity){
-            $matchInCart = $this->alreadyInCart($idprod,$usrId); //to understand if update or insert quantity in cart
+            $prodInCart = $this->getProdInCart($idprod,$usrId); //to understand if update or insert quantity in cart
             $avaiableCopies = $this -> getAvaiableCopiesOfProd($idprod); //to check if article can be added to cart
+
             if ($avaiableCopies > 0) {
-                if (count($matchInCart) <= 0) { //if first time to be added in cart
-                    $query = "INSERT INTO `Carts`(`ProductId`, `UserId`, `Quantity`)
+                if (count($prodInCart) <= 0) { //if first time to be added in cart
+                    $query = "INSERT INTO `Carts`(`Quantity`,`ProductId`, `UserId`)
                               VALUES (?,?,?)";
                 }
                 else { //in case of update quantity prod in cart
                     if($quantity > 0){ //increase quantity
-                        $quantity += $matchInCart[0]['Quantity'];
+                        $quantity += $prodInCart[0]['Quantity'];
                     }
-                    else if($quantity < 0 && $matchInCart[0]['Quantity'] + $quantity > 0){//decrease quantity
-                        $quantity += $matchInCart[0]['Quantity'];
+                    else if($quantity < 0 && $prodInCart[0]['Quantity'] + $quantity > 0){//decrease quantity
+                        $quantity += $prodInCart[0]['Quantity'];
                     }
-                    
-                    $query = "UPDATE Carts SET ProductId=?,UserId=?,Quantity=?";
+                    $query = "UPDATE Carts SET Quantity=? where ProductId=? and UserId=?";
                 }
-                return !$this->executeQuery($query,array($idprod, $usrId, $quantity))->errno;
+
+                return !$this->executeQuery($query,array($quantity,$idprod, $usrId));
             }
         }
 
         public function incQuantityProdCart($usrId,$idprod){
-            $this->updateProdQuantityCart($usrId,$idprod,1);
+            return $this->updateProdQuantityCart($usrId,$idprod,1);
         }
 
         public function decQuantityProdCart($usrId,$idprod){
-            $this->updateProdQuantityCart($usrId,$idprod,-1);
+            return $this->updateProdQuantityCart($usrId,$idprod,-1);
         }
 
         public function deleteProductFromCart($idCustomer,$idProd){
@@ -765,7 +766,7 @@
          * @param int $usrId unique id of user-costumer
          * @return array associative array containing quantity of product in user's cart 
          */
-        private function alreadyInCart($idProd, $usrId) {
+        private function getProdInCart($idProd, $usrId) {
             $query = "SELECT `ProductId`, `UserId`, `Quantity` FROM `Carts` 
                       WHERE ProductId = ? AND UserId = ?";
             return $this->executeQuery($query, [$idProd, $usrId])
