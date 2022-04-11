@@ -724,13 +724,19 @@
                 else { //in case of update quantity prod in cart
                     if($quantity > 0){ //increase quantity
                         $quantity += $prodInCart[0]['Quantity'];
+                        print_r("Aggiungi ".$quantity);
                     }
-                    else if($quantity < 0 && $prodInCart[0]['Quantity'] + $quantity > 0){//decrease quantity
-                        $quantity += $prodInCart[0]['Quantity'];
+                    else if($quantity < 0){//decrease quantity
+                        if($prodInCart[0]['Quantity'] + $quantity > 0){
+                            $quantity += $prodInCart[0]['Quantity'];
+                        }
+                        else{
+                            $quantity = $prodInCart[0]['Quantity'];
+                        }
                     }
                     $query = "UPDATE Carts SET Quantity=? where ProductId=? and UserId=?";
                 }
-
+                
                 return !$this->executeQuery($query,array($quantity,$idprod, $usrId));
             }
         }
