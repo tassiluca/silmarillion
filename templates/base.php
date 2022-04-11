@@ -51,9 +51,9 @@
                             <img src="./img/commons/search.svg" alt="Cerca"/>
                         </button>
                     </li><li>
-                        <!-- TODO: modify pages name -->
+                        <!-- TODO @NalNemesi: modify pages name -->
                         <?php if (isUserLoggedIn()): ?>
-                            <a href="<?php echo (isCustomerLoggedIn() ? 'userArea.php' : 'sellerArea.php'); ?>">
+                            <a href="<?php echo (isCustomerLoggedIn() ? 'user-area.php' : 'seller-area.php'); ?>">
                                 <img src="./img/commons/menu-login-checked.svg" alt="Login"/>
                             </a>
                         <?php else: ?>
