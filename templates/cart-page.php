@@ -26,7 +26,7 @@
                             }
                             else{
                                 echo $prod['Price'];
-                                $totalOrderPrice += $prod['Price'];
+                                $totalOrderPrice += $prod['Price']*$prod['Quantity'];
                             }?> €</p>
                 </div>
                 <div>
