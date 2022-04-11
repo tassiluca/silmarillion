@@ -22,7 +22,7 @@ $(document).ready(function () {
     addEventListenerButton('.cartButton',handleCartAction);//increment quantity prod cart
     addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);//add-remove alert on product avaialability
 
-    handleCartAction(null,'./engines/process-request.php?action=getInfo');
+    getCartInfoCounter();
 });
 
 function addEventListenerButton(jQuerySelector,methodToRun){
@@ -95,6 +95,22 @@ function handleWishlistAction(clickedBtn,urlLink){
 //-----------------------WISHLIST--------------------------//
 
 //--------------------------CART--------------------------//
+
+function getCartInfoCounter(){
+    $.get('./engines/process-request.php?action=getInfo', function (data) {
+        console.log("Update cart badge");
+        let jsonData = JSON.parse(data);
+        let isLogged = jsonData["isLogged"];
+        let actualcartCount = jsonData["cartCount"];
+        if(isLogged){
+            refreshCartBadge(actualcartCount);
+        }
+        else{
+            refreshCartBadge(getLenCookie(cartList));
+        }
+    });
+}
+
 function handleCartAction(clickedBtn,urlLink){
     var prodId = parseInt(getUrlParameter("id",urlLink));
     $.get(urlLink, function (data) {
@@ -104,7 +120,6 @@ function handleCartAction(clickedBtn,urlLink){
         let correctExec = jsonData["execDone"];
         let action = jsonData["action"];
         let countCopies = jsonData["count"];
-        let actualcartCount = jsonData["cartCount"];
 
         if(countCopies-1 > 0){ 
             if(!isLogged){ //if customer logged = false --> use cookie
@@ -118,18 +133,14 @@ function handleCartAction(clickedBtn,urlLink){
                     cart.set(prodId,1);
                 }
                 setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
-                refreshCartBadge(getLenCookie(cartList));
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
                 if(correctExec){//if executon of operation on db has error, shows banner 
                     console.log("errore nella esecuzione della operzione: "+action);
                 }
-                else{
-                    //if everythings goes right the actualCartCount is already updated to the correct count
-                    refreshCartBadge(actualcartCount);
-                }
             }
+            location.reload();
         }
         else if(clickedBtn !==null){//if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
