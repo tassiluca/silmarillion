@@ -29,8 +29,8 @@ $(document).ready(function(){
             customerUsr: $("#customerUsr").val(),
             customerPwd: hex_sha512($("#customerPwd").val())
         };
-        /* TODO: modify the target page*/
-        loginAttempt($(this), formData, 'userArea.php');
+        /* TODO @NalNemesi: modify the target page*/
+        loginAttempt($(this), formData, 'user-area.php');
         event.preventDefault();
     });
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
             sellerPwd: hex_sha512($("#sellerPwd").val())
         };
         /* TODO: modify the target page*/
-        loginAttempt($(this), formData, 'sellerArea.php');
+        loginAttempt($(this), formData, 'seller-area.php');
         event.preventDefault();
     });
 })

@@ -5,11 +5,12 @@
     $templateParams["js"] = array("./js/login.js");
     $templateParams["main"] = "./templates/login-page.php";
 
+    // TODO @NalNemesi replace names of user and seller pages
     /* if the user is already logged, redirect him into his personal area */
     if (isCustomerLoggedIn()) {
-        header('location: ./userArea.php');
+        header('location: ./user-area.php');
     } else if (isSellerLoggedIn()) {
-        header('location: ./sellerArea.php');
+        header('location: ./seller-area.php');
     }
 
     require 'templates/base.php';

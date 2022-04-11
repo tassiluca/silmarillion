@@ -41,8 +41,8 @@ $(document).ready(function() {
             customerUsr: $("#usernameNav").val(),
             customerPwd: hex_sha512($("#userpasswordNav").val())
         };
-        /* TODO: modify the target */
-        loginAttempt($(this), formData, 'userArea.php');
+        /* TODO @NalNemesi: modify the target */
+        loginAttempt($(this), formData, 'user-area.php');
         event.preventDefault();
     });
 });
