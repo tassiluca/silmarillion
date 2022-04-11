@@ -152,7 +152,7 @@ function handleCartAction(clickedBtn,urlLink){
                 }
                 else{
                     let actualCount = parseInt($("article#"+prodId+" > div > div > div > p").text());
-                    let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 1)? -1 : 0;
+                    let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 0)? -1 : 0;
                     $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
                     badgeCount = cartCount;
                 }
