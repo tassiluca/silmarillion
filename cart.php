@@ -2,8 +2,6 @@
     require_once __DIR__ . '/bootstrap.php';
     require_once 'utils/functions.php';
     global $dbh;
-    const cookie = 0;
-    const db_customer = 1;
 
     $_SESSION['url'] = $_SERVER['REQUEST_URI']; 
     
@@ -14,32 +12,14 @@
     $prodsInCart = array();
 
     if(isCustomerLoggedIn()){
-        $prodsInCart = getInfoProdsInCart($dbh->getUserCart($_SESSION['userId']),db_customer);
+        $prodsInCart = getInfoProdsInCart($dbh->getUserCart($_SESSION['userId']),DB_SOURCE);
     }
     else if(isset($_COOKIE['cart'])){
-        $prodsInCart = getInfoProdsInCart(json_decode($_COOKIE['cart']),cookie);
+        $prodsInCart = getInfoProdsInCart(json_decode($_COOKIE['cart']),COOKIE_SOURCE);
     }
 
     $templateParams["cart"] = $prodsInCart;
     
-    function getInfoProdsInCart($prodsIdCart,$dataSource){
-        global $dbh;
-        $prods = array();
-        foreach($prodsIdCart as $prod){
-            if($dataSource == cookie){
-                $elem = $dbh -> getProduct($prod[0]);
-                $elem["Quantity"] = $prod[1];
-                array_push($prods,$elem);
-            }
-            else if($dataSource == db_customer){
-                $elem = $dbh -> getProduct($prod['ProductId']);
-                $elem['Quantity'] = $prod['Quantity'];
-                array_push($prods,$elem);
-            }
-        }
-        return $prods;
-    }
-
     require 'templates/base.php';
 
 /* COOKIE

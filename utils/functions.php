@@ -5,6 +5,9 @@
     define("MYSQLI_CODE_DUPLICATE_KEY", 1062);
     define("MAX_LOGIN_ATTEMPTS", 5);
 
+    const COOKIE_SOURCE = 0;
+    const DB_SOURCE = 1;
+
     /**
      * Implements a secure session_start() function.
      * @return void
@@ -165,4 +168,28 @@
         }
         else return false;
     }
+
+    /**
+     * Append quantity info to $prodsIdcart cart saved in cookie or db
+     * @param array $prodsIdCart associative array with all prods id in customer's cart
+     * @param int $dataTypeSource datatype of source where are from $prodsIdcart datas
+     */
+    function getInfoProdsInCart($prodsIdCart,$dataTypeSource){
+        global $dbh;
+        $prods = array();
+        foreach($prodsIdCart as $prod){
+            if($dataTypeSource == COOKIE_SOURCE){
+                $elem = $dbh -> getProduct($prod[0]);
+                $elem["Quantity"] = $prod[1];
+                array_push($prods,$elem);
+            }
+            else if($dataTypeSource == DB_SOURCE){
+                $elem = $dbh -> getProduct($prod['ProductId']);
+                $elem['Quantity'] = $prod['Quantity'];
+                array_push($prods,$elem);
+            }
+        }
+        return $prods;
+    }
+
 ?>
