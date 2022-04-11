@@ -112,7 +112,9 @@ function getCartInfoCounter(){
 }
 
 function handleCartAction(clickedBtn,urlLink){
-    var prodId = parseInt(getUrlParameter("id",urlLink));
+    let prodId = parseInt(getUrlParameter("id",urlLink));
+    var currentAction = getUrlParameter("action",urlLink);
+
     $.get(urlLink, function (data) {
         console.log(data);
         let jsonData = JSON.parse(data);
@@ -120,27 +122,42 @@ function handleCartAction(clickedBtn,urlLink){
         let correctExec = jsonData["execDone"];
         let action = jsonData["action"];
         let countCopies = jsonData["count"];
+        let cartCount = jsonData["cartCount"];
 
-        if(countCopies-1 > 0){ 
+        if(countCopies-1 > 0){
+            let badgeCount = 0;
             if(!isLogged){ //if customer logged = false --> use cookie
                 let cart = new Map(JSON.parse((getCookie(cartList))));
+                let newQuantity = 1;
 
-                if(cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
-                    let newQuantity = cart.get(prodId)+1;
+                if(currentAction === "addtoCart" && cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
+                    newQuantity = cart.get(prodId)+1;
+                    cart.set(prodId,newQuantity);
+                }else if(currentAction === "decToCart" && cart.has(prodId) && !isNaN(prodId)){
+                    newQuantity = cart.get(prodId)-1 > 0 ?cart.get(prodId)-1 : cart.get(prodId);
                     cart.set(prodId,newQuantity);
                 }
                 else if(!isNaN(prodId)){ //add to cart for first time
-                    cart.set(prodId,1);
+                    newQuantity = 1;
                 }
+                cart.set(prodId,newQuantity);
                 setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
+                badgeCount = getLenCookie(cartList);
+                $("article#"+prodId+" > div > div > div > p").text(newQuantity);
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
                 if(correctExec){//if executon of operation on db has error, shows banner 
                     console.log("errore nella esecuzione della operzione: "+action);
                 }
+                else{
+                    let actualCount = parseInt($("article#"+prodId+" > div > div > div > p").text());
+                    let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 1)? -1 : 0;
+                    $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
+                    badgeCount = cartCount;
+                }
             }
-            location.reload();
+            refreshCartBadge(badgeCount);
         }
         else if(clickedBtn !==null){//if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
@@ -151,14 +168,12 @@ function handleCartAction(clickedBtn,urlLink){
 
 function handleRemoveCartAction(clickedBtn,urlLink){
     var prodId = parseInt(getUrlParameter("id",urlLink));
-    var currentAction = getUrlParameter("action",urlLink);
 
     $.get(urlLink, function (data) {
-        console.log(data); //TODO --> comment this
+        //console.log(data);
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
-        let action = jsonData["action"];
 
         if(isLogged){
             if(correctExec){
