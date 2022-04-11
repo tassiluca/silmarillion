@@ -47,7 +47,7 @@
         }
         else if(!strcmp($action,'delFromCart')){
             //completely remove product from cart in db
-            $dbh -> deleteProductFromCart($idCustomer,$idprod,1);
+            $dbh -> deleteProductFromCart($idCustomer,$idprod);
         }
         else if(!strcmp($action,'notify')){
             $isAlertOnProd = $dbh -> isAlertActive($idCustomer,$idprod);
