@@ -29,7 +29,7 @@ $(document).ready(function(){
         //$("main").css("opacity", "1.0");
     });
 
-    refreshCart();
+    refreshCartNavbar();
 
 });
 
@@ -63,23 +63,31 @@ function toggleNavbar(btnPressed, elementToSlide){
     }
 }
 
-function refreshCart(){
-
-    
-
+function refreshCartNavbar(){
     let htmlNavBarCart = "";
-    cart.forEach(prod => {
-    price = $prod['DiscountedPrice'] !=null ? prod['DiscountedPrice'] : prod['Price'];
-    htmlNavBarCart += `
-        <li>
-            <img src="`+UPLOAD_DIR_PRODUCTS+prod['CoverImg']+`" alt="">
-            <div>
-                <p>`+prod['Title']+`</p>
-                <div>
-                    <p>`+price+` €</p>
-                    <p>x`+prod["Quantity"]+`</p>
-                </div>
-            </div>
-        </li>`;
+    $("#navCart > ul > li").remove();
+
+    $.post("./engines/process-cart.php?request=navBar", function (data) {
+        console.log(data);
+        cart = JSON.parse(data);
+        
+        cart.forEach(prod => {
+            price = prod['DiscountedPrice'] !=null ? prod['DiscountedPrice'] : prod['Price'];
+            htmlNavBarCart += `
+                <li>
+                    <img src="`+UPLOAD_DIR_PRODUCTS+prod['CoverImg']+`" alt="">
+                    <div>
+                        <p>`+prod['Title']+`</p>
+                        <div>
+                            <p>`+price+` €</p>
+                            <p>x`+prod["Quantity"]+`</p>
+                        </div>
+                    </div>
+                </li>`;
+        });
+        $("#navCart > ul").append(htmlNavBarCart);
     });
+
+   
+    
 }
