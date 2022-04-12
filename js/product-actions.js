@@ -188,7 +188,7 @@ function handleRemoveCartAction(clickedBtn,urlLink){
         }
         if(correctExec === true){
             $("article#"+prodId).remove();
-            refreshCartBadge(getLenCookie(cartList));
+            refreshCartBadge(actualcartCount);
             refreshCartNavbar();
             refreshTotalPrice();
             checkIfEmptyRefreshCart(actualcartCount);
