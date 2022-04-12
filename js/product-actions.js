@@ -154,12 +154,13 @@ function handleCartAction(clickedBtn,urlLink){
                 else{
                     let actualCount = parseInt($("article#"+prodId+" > div > div > div > p").text());
                     let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 0)? -1 : 0;
-                    $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
                     badgeCount = cartCount;
+                    $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
                 }
             }
             refreshCartBadge(badgeCount);
             refreshCartNavbar();
+            refreshTotalPrice();
         }
         else if(clickedBtn !==null){//if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
@@ -176,17 +177,21 @@ function handleRemoveCartAction(clickedBtn,urlLink){
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
+        let actualcartCount = jsonData["cartCount"];
 
         if(!isLogged){
             let cart = new Map(JSON.parse((getCookie(cartList))));
             cart.delete(prodId);
             setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
+            correctExec = true;
+            actualcartCount = getLenCookie(cartList);;
+        }
+        if(correctExec === true){
+            $("article#"+prodId).remove();
             refreshCartBadge(getLenCookie(cartList));
             refreshCartNavbar();
-            correctExec = true;
-        }
-        if(correctExec){
-            location.reload();
+            refreshTotalPrice();
+            checkIfEmptyRefreshCart(actualcartCount);
         }
     });
 }
