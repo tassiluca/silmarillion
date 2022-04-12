@@ -1,3 +1,5 @@
+const UPLOAD_DIR_PRODUCTS = "./upload/products/";
+
 $(document).ready(function(){
 
     var pressedBtn = false;
@@ -26,6 +28,8 @@ $(document).ready(function(){
         closePopupOpen();
         //$("main").css("opacity", "1.0");
     });
+
+    refreshCart();
 
 });
 
@@ -57,4 +61,25 @@ function toggleNavbar(btnPressed, elementToSlide){
         /* restore the opacity of the main page */
         $("main").css("opacity", "1.0");
     }
+}
+
+function refreshCart(){
+
+    
+
+    let htmlNavBarCart = "";
+    cart.forEach(prod => {
+    price = $prod['DiscountedPrice'] !=null ? prod['DiscountedPrice'] : prod['Price'];
+    htmlNavBarCart += `
+        <li>
+            <img src="`+UPLOAD_DIR_PRODUCTS+prod['CoverImg']+`" alt="">
+            <div>
+                <p>`+prod['Title']+`</p>
+                <div>
+                    <p>`+price+` €</p>
+                    <p>x`+prod["Quantity"]+`</p>
+                </div>
+            </div>
+        </li>`;
+    });
 }
