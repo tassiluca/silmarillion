@@ -9,16 +9,7 @@
     $templateParams["main"] = "./templates/cart-page.php";
     $templateParams["js"] = array("./js/utils.js","./js/product-actions.js");
 
-    $prodsInCart = array();
-
-    if(isCustomerLoggedIn()){
-        $prodsInCart = getInfoProdsInCart($dbh->getUserCart($_SESSION['userId']),DB_SOURCE);
-    }
-    else if(isset($_COOKIE['cart'])){
-        $prodsInCart = getInfoProdsInCart(json_decode($_COOKIE['cart']),COOKIE_SOURCE);
-    }
-
-    $templateParams["cart"] = $prodsInCart;
+    $templateParams["cart"] =  getCart();
     
     require 'templates/base.php';
 

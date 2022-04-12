@@ -1,6 +1,7 @@
 <?php
 
     use Respect\Validation\Exceptions\NestedValidationException;
+    global $dbh;
 
     define("MYSQLI_CODE_DUPLICATE_KEY", 1062);
     define("MAX_LOGIN_ATTEMPTS", 5);
@@ -190,6 +191,21 @@
             }
         }
         return $prods;
+    }
+
+    /**
+     * return products in customer's cart if logged-in else return cookie-cart
+     * @param int $limit if is need not all cart list
+     * @return array associative array containing products ()
+     */
+    function getCart(){
+        global $dbh;
+        if(isCustomerLoggedIn()){
+            return getInfoProdsInCart($dbh->getUserCart($_SESSION['userId']),DB_SOURCE);
+        }
+        else if(isset($_COOKIE['cart'])){
+            return getInfoProdsInCart(json_decode($_COOKIE['cart']),COOKIE_SOURCE);
+        }
     }
 
 ?>
