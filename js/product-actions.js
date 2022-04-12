@@ -175,21 +175,16 @@ function handleRemoveCartAction(clickedBtn,urlLink){
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
 
-        if(isLogged){
-            if(correctExec){
-                console.log("Prodotto rimosso correttamente");
-            }
-            else{
-                console.log("Problema: prodotto non rimosso");
-            }
-        }
-        else{
+        if(!isLogged){
             let cart = new Map(JSON.parse((getCookie(cartList))));
             cart.delete(prodId);
             setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
             refreshCartBadge(getLenCookie(cartList));
+            correctExec = true;
         }
-        location.reload();
+        if(correctExec){
+            location.reload();
+        }
     });
 }
 
