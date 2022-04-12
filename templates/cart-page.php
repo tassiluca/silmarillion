@@ -14,7 +14,7 @@
             <!-- end of article list-->
         </div>
         <div>
-            <p>Totale:</p><p> €</p>
+            <p>Totale:</p><p id="totalPrice"></p>
         </div>
     <div><a <?php 
                     if(isset($templateParams["cart"]) && count($templateParams["cart"]) <= 0){echo "class=disabled";}
