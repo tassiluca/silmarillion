@@ -76,7 +76,7 @@ function refreshCartNavbar(){
         if(cart.length > 0){
             for(let i = cart.length-1; i >= 0 && i > cart.length-amountProds-1;i--){
                 let prod = cart[i];
-                console.log(prod);
+
                 price = prod['DiscountedPrice'] !==null ? prod['DiscountedPrice'] : prod['Price'];
                 htmlNavBarCart += `
                     <li>

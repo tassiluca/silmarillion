@@ -12,15 +12,4 @@
     $templateParams["cart"] =  getCart();
     
     require 'templates/base.php';
-
-/* COOKIE
-    array(2) { 
-        [0]=> array(2) { [0]=> int(18) [1]=> int(2) }
-        [1]=> array(2) { [0]=> int(12) [1]=> int(1) } 
-    } 
-
-    array(3) { [0]=> array(3) { ["ProductId"]=> int(2) ["UserId"]=> int(7) ["Quantity"]=> int(1) }
-               [1]=> array(3) { ["ProductId"]=> int(12) ["UserId"]=> int(7) ["Quantity"]=> int(1) }
-               [2]=> array(3) { ["ProductId"]=> int(18) ["UserId"]=> int(7) ["Quantity"]=> int(1) } } 
-*/
- 
+?>
