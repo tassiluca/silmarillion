@@ -98,7 +98,7 @@ function handleWishlistAction(clickedBtn,urlLink){
 
 function getCartInfoCounter(){
     $.get('./engines/process-request.php?action=getInfo', function (data) {
-        console.log("Update cart badge");
+        //console.log("Update cart badge");
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let actualcartCount = jsonData["cartCount"];
