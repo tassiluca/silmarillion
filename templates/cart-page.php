@@ -22,7 +22,7 @@
                     <p><?php 
                             if(isset($prod['DiscountedPrice'])){
                                 echo $prod['DiscountedPrice'];
-                                $totalOrderPrice += $prod['DiscountedPrice'];
+                                $totalOrderPrice += $prod['DiscountedPrice']*$prod['Quantity'];
                             }
                             else{
                                 echo $prod['Price'];
