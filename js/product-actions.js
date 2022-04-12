@@ -108,6 +108,7 @@ function getCartInfoCounter(){
         else{
             refreshCartBadge(getLenCookie(cartList));
         }
+        refreshCartNavbar();
     });
 }
 
@@ -158,6 +159,7 @@ function handleCartAction(clickedBtn,urlLink){
                 }
             }
             refreshCartBadge(badgeCount);
+            refreshCartNavbar();
         }
         else if(clickedBtn !==null){//if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
@@ -180,6 +182,7 @@ function handleRemoveCartAction(clickedBtn,urlLink){
             cart.delete(prodId);
             setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
             refreshCartBadge(getLenCookie(cartList));
+            refreshCartNavbar();
             correctExec = true;
         }
         if(correctExec){
