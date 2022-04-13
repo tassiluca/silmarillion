@@ -4,8 +4,8 @@
     <?php if(isset($templateParams["newsBanner"])):
             foreach($templateParams["newsBanner"] as $banner):
         ?>
-        <div>
-            <img src="<?php echo UPLOAD_DIR_NEWS . $banner["Img"] ?>" class="banner fade"  alt="<?php echo $banner["Description"]?>"/>
+        <div class="banner fade">
+            <img src="<?php echo UPLOAD_DIR_NEWS . $banner["Img"] ?>"  alt="<?php echo $banner["Description"]?>"/>
             <p><?php echo $banner["Title"] ?></p>
         </div>
         
