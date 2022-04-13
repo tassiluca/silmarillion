@@ -127,10 +127,10 @@ function handleCartAction(clickedBtn,urlLink){
         if(countCopies-1 > 0){
             if(!isLogged){
                 //if customer not logged add/edit quantity of prod in cookie cart
-                editProductQuantityCookie(prodId,currentAction);
+                editProductQuantityCookie(prodId,countCopies,currentAction);
             }
             else{ //user logged then check if all goes right on db
-                editProdQuantityDatabase(prodId,cartCount,currentAction,correctExec);
+                editProdQuantityDatabase(prodId,countCopies,cartCount,currentAction,correctExec);
             }
 
             refreshCartNavbar();
@@ -148,25 +148,26 @@ function handleCartAction(clickedBtn,urlLink){
     });
 }
 
-function editProdQuantityDatabase(prodId,cartCount,currentAction,correctExec){
+function editProdQuantityDatabase(prodId,countCopies,cartCount,currentAction,correctExec){
     if(correctExec){//if executon of operation on db has error, shows banner 
         console.log("errore nella esecuzione della operazione");
     }
     else{
-        let actualCount = parseInt($("article#"+prodId+" > div > div > div > p").text());
-        let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 0)? -1 : 0;
-        $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
+        let prodQuantity = parseInt($("article#"+prodId+" > div > div > div > p").text());
+        let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && prodQuantity-1 > 0)? -1 : 0;
+        prodQuantity = prodQuantity+amount > countCopies ? countCopies : prodQuantity+amount;
+        $("article#"+prodId+" > div > div > div > p").text(prodQuantity);
         refreshCartBadge(cartCount);
     }
 }
 
-function editProductQuantityCookie(prodId,currentAction){
+function editProductQuantityCookie(prodId,countCopies,currentAction){
 
     let cart = new Map(JSON.parse((getCookie(cartList))));
     let newQuantity = 1;
 
     if(currentAction === "addtoCart" && cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
-        newQuantity = cart.get(prodId)+1;
+        newQuantity = cart.get(prodId)+1 > countCopies ? countCopies : cart.get(prodId)+1;
     }else if(currentAction === "decToCart" && cart.has(prodId) && !isNaN(prodId)){
         newQuantity = cart.get(prodId)-1 > 0 ?cart.get(prodId)-1 : cart.get(prodId);
     }
