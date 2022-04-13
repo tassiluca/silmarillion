@@ -1,5 +1,3 @@
-
-
 main > section {
     margin: 22px 0 22px 0;
     width: 100%;
@@ -9,15 +7,36 @@ main > section {
 main > section:first-child {
     text-align: center;
 }
-main > section > img {
+
+main > section:first-child > div,
+main > section:first-child > div > p{
+    margin: 0;
+}
+
+main > section:first-child > div{
+    height: 145px;
     width: 76%;
-    object-fit: fill;
-    height: 180px;
+    display: inline-block;
+}
+
+main > section:first-child > div > p{
+    position: relative;
+    bottom: 100px;
+    font-weight: bold;
+    font-size: 14pt;
+}
+main > section:first-child > div > img{
+    width: 100%;
+    object-fit: cover;
+    height: 145px;
     border-radius: 10px;
 }
 
+main > section:first-child > input {
+    height: 145px;
+}
+
 main > section > input {
-    height: 180px;
     width: 10%;
     max-width: 28px;
     padding: 0 1% 0 1%;
@@ -27,7 +46,7 @@ main > section > input:first-of-type{
     float: left;
 }
 
-main > section > input:last-of-type{
+main > section> input:last-of-type{
     float: right;
 }
 
@@ -220,8 +239,14 @@ main > aside > div:last-child > div.current {
     }
 
     main > section:first-child, 
-    main > section > img, main > section > input{
+    main > section:first-child > div > img,
+    main > section:first-child > input,
+    main > section:first-child >div{
         height: 276px;
+    }
+
+    main > section:first-child >div > p{
+        bottom: 170px;
     }
 
     main > aside {
