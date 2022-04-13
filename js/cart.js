@@ -1,6 +1,11 @@
 
 $(document).ready(function () {
     refreshTotalPrice();
+    
+    $("main > section > div > div:last-child() > a").click(function (e) { 
+        e.preventDefault();
+        console.log("Procedi all'ordine");
+    });
 });
 
 function refreshTotalPrice(){
