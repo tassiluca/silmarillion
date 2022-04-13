@@ -1,6 +1,12 @@
-.notAvialable {
+.notAvaialable, .notAvaialable > div:last-child > div:first-child,
+.notAvaialable > div:last-child > div > div:nth-child(2){
     border-color: red;
     background: #FFCBCB;
+}
+
+.notAvaialable > div:nth-child(2),
+.notAvaialable > div:last-child > div > div:nth-child(2) > p {
+    color: #A00000;
 }
 
 main > section > div > div > article {
