@@ -5,7 +5,7 @@ $(document).ready(function () {
     $("main > section > div > div:last-child() > a").click(function (e) { 
         e.preventDefault();
         console.log("Procedi all'ordine");
-        checkAvaialabilityOfCart();
+        checkAvaialabilityOfCart(); //TODO 
     });
 });
 
@@ -30,10 +30,4 @@ function checkIfEmptyRefreshCart(actualcartCount){
     if(actualcartCount <= 0){
         $("section > div > div:first-child()").append("<p>Carrello vuoto</p>");
     }
-}
-
-function checkAvaialabilityOfCart(){
-    $.post("./engines/process-cart.php?request=getCart", function (data) {
-        
-    });
 }
