@@ -723,7 +723,13 @@
                 }
                 else { //in case of update quantity prod in cart
                     if($quantity > 0){ //increase quantity
-                        $quantity += $prodInCart[0]['Quantity'];
+                        if($quantity+$prodInCart[0]['Quantity'] <= $avaiableCopies){
+                            $quantity += $prodInCart[0]['Quantity'];
+                        }
+                        else{
+                            $quantity = $prodInCart[0]['Quantity'];
+                        }
+                         $avaiableCopies;
                     }
                     else if($quantity < 0){//decrease quantity
                         if($prodInCart[0]['Quantity'] + $quantity > 0){
