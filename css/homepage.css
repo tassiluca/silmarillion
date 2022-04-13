@@ -21,7 +21,9 @@ main > section:first-child > div{
 
 main > section:first-child > div > p{
     position: relative;
-    bottom: 90px;
+    bottom: 100px;
+    font-weight: bold;
+    font-size: 14pt;
 }
 main > section:first-child > div > img{
     width: 100%;
@@ -244,7 +246,7 @@ main > aside > div:last-child > div.current {
     }
 
     main > section:first-child >div > p{
-        bottom: 150px;
+        bottom: 170px;
     }
 
     main > aside {
