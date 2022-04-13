@@ -20,7 +20,7 @@
             <article <?php
                     $av = $dbh -> getAvaiableCopiesOfProd($prod['ProductId']);
                     if($prod['Quantity'] > $av){
-                        echo 'class="notAvialable" ';
+                        echo 'class="notAvaialable" ';
                     }
                     ?>id="<?php echo $prod['ProductId']?>">
                 <div><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg']?>" alt="copertina fumetto"></div>
