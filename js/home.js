@@ -1,9 +1,9 @@
 /* jquery che nasconde tutti i banner  tranne il primo*/
 
 $(document).ready(function () {
-    $("main > section:first-child > div.banner").hide();
+   /*  $("main > section:first-child > div.banner").hide();
     $("main > section:first-child > div.banner:first-child").show();
-
+ */
     updateAll(0);
     showSlide(infoidx);
     
@@ -69,13 +69,13 @@ function showDivs(n,slider,slideToShow) {
     }
     
     x.hide();
+    
     var start=(slideIndex*slideToShow)-slideToShow;
     if(start < 0){
         start=0;
     }
     for(k=start;k<x.length && k < slideIndex*slideToShow ; k++){
-        //console.log("slide num: "+ k);
-        x[k].style.display = "inline-block";
+        x[Math.round(k)].style.display = "inline-block";
     }
 }
 
