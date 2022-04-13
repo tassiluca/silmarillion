@@ -15,8 +15,14 @@
                 $totalOrderPrice = 0.0;
                 if(isset($templateParams["cart"]) && count($templateParams["cart"]) > 0){
                     foreach($templateParams["cart"] as $prod):
+                        
             ?>
-            <article id="<?php echo $prod['ProductId']?>">
+            <article <?php
+                    $av = $dbh -> getAvaiableCopiesOfProd($prod['ProductId']);
+                    if($prod['Quantity'] > $av){
+                        echo 'class="notAvialable" ';
+                    }
+                    ?>id="<?php echo $prod['ProductId']?>">
                 <div><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg']?>" alt="copertina fumetto"></div>
                 <div>
                     <header><h3><?php echo $prod['Title']?></h3></header>
