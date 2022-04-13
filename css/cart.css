@@ -9,6 +9,12 @@
     color: #A00000;
 }
 
+#cartInfoBanner{
+    color: #A00000;
+    font-size: large;
+    font-weight: bold;
+}
+
 main > section > div > div > article {
     background: #CBF6FF;
     border: 1px solid #0047A0;
