@@ -121,28 +121,18 @@ function handleCartAction(clickedBtn,urlLink){
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
-        let action = jsonData["action"];
         let countCopies = jsonData["countCopies"];
         let cartCount = jsonData["cartCount"];
 
         if(countCopies-1 > 0){
-            let badgeCount = 0;
-            if(!isLogged){ //if customer logged = false --> use cookie
+            if(!isLogged){ //if customer not logged add/edit quantity of prod in cookie cart
                 editProductQuantityCookie(prodId,currentAction);
             }
-            else{ //user logged = true then check if all goes right on db
+            else{ //user logged then check if all goes right on db
                 //if something goes wrong with db --> info banner 
-                if(correctExec){//if executon of operation on db has error, shows banner 
-                    console.log("errore nella esecuzione della operzione: "+action);
-                }
-                else{
-                    let actualCount = parseInt($("article#"+prodId+" > div > div > div > p").text());
-                    let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 0)? -1 : 0;
-                    badgeCount = cartCount;
-                    $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
-                }
+                editProdQuantityDatabase(prodId,cartCount,currentAction,correctExec);
             }
-            
+
             refreshCartNavbar();
             refreshTotalPrice();
         }
@@ -151,6 +141,18 @@ function handleCartAction(clickedBtn,urlLink){
         }
 
     });
+}
+
+function editProdQuantityDatabase(prodId,cartCount,currentAction,correctExec){
+    if(correctExec){//if executon of operation on db has error, shows banner 
+        console.log("errore nella esecuzione della operazione");
+    }
+    else{
+        let actualCount = parseInt($("article#"+prodId+" > div > div > div > p").text());
+        let amount = (currentAction === "addtoCart") ? 1 : (currentAction === "decToCart" && actualCount-1 > 0)? -1 : 0;
+        $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
+        refreshCartBadge(cartCount);
+    }
 }
 
 function editProductQuantityCookie(prodId,currentAction){
@@ -176,7 +178,6 @@ function handleRemoveCartAction(clickedBtn,urlLink){
     var prodId = parseInt(getUrlParameter("id",urlLink));
 
     $.get(urlLink, function (data) {
-        //console.log(data);
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
@@ -189,6 +190,7 @@ function handleRemoveCartAction(clickedBtn,urlLink){
             correctExec = true;
             actualcartCount = getLenCookie(cartList);;
         }
+
         if(correctExec === true){
             $("article#"+prodId).remove();
             refreshCartBadge(actualcartCount);
