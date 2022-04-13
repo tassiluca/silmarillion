@@ -24,7 +24,7 @@ main > section:first-child > div > p{
     bottom: 90px;
 }
 main > section:first-child > div > img{
-    width: 76%;
+    width: 100%;
     object-fit: cover;
     height: 145px;
     border-radius: 10px;
@@ -237,9 +237,14 @@ main > aside > div:last-child > div.current {
     }
 
     main > section:first-child, 
-    main > section:first-child > div > img, main > section > input,
+    main > section:first-child > div > img,
+    main > section:first-child > input,
     main > section:first-child >div{
         height: 276px;
+    }
+
+    main > section:first-child >div > p{
+        bottom: 150px;
     }
 
     main > aside {
