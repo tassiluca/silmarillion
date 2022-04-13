@@ -1,9 +1,9 @@
 /* jquery che nasconde tutti i banner  tranne il primo*/
 
 $(document).ready(function () {
-   /*  $("main > section:first-child > div.banner").hide();
+    $("main > section:first-child > div.banner").hide();
     $("main > section:first-child > div.banner:first-child").show();
- */
+
     updateAll(0);
     showSlide(infoidx);
     
