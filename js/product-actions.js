@@ -128,23 +128,7 @@ function handleCartAction(clickedBtn,urlLink){
         if(countCopies-1 > 0){
             let badgeCount = 0;
             if(!isLogged){ //if customer logged = false --> use cookie
-                let cart = new Map(JSON.parse((getCookie(cartList))));
-                let newQuantity = 1;
-
-                if(currentAction === "addtoCart" && cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
-                    newQuantity = cart.get(prodId)+1;
-                    cart.set(prodId,newQuantity);
-                }else if(currentAction === "decToCart" && cart.has(prodId) && !isNaN(prodId)){
-                    newQuantity = cart.get(prodId)-1 > 0 ?cart.get(prodId)-1 : cart.get(prodId);
-                    cart.set(prodId,newQuantity);
-                }
-                else if(!isNaN(prodId)){ //add to cart for first time
-                    newQuantity = 1;
-                }
-                cart.set(prodId,newQuantity);
-                setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
-                badgeCount = getLenCookie(cartList);
-                $("article#"+prodId+" > div > div > div > p").text(newQuantity);
+                editProductQuantityCookie(prodId,currentAction);
             }
             else{ //user logged = true then check if all goes right on db
                 //if something goes wrong with db --> info banner 
@@ -158,7 +142,7 @@ function handleCartAction(clickedBtn,urlLink){
                     $("article#"+prodId+" > div > div > div > p").text(actualCount+amount);
                 }
             }
-            refreshCartBadge(badgeCount);
+            
             refreshCartNavbar();
             refreshTotalPrice();
         }
@@ -167,6 +151,25 @@ function handleCartAction(clickedBtn,urlLink){
         }
 
     });
+}
+
+function editProductQuantityCookie(prodId,currentAction){
+
+    let cart = new Map(JSON.parse((getCookie(cartList))));
+    let newQuantity = 1;
+
+    if(currentAction === "addtoCart" && cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
+        newQuantity = cart.get(prodId)+1;
+    }else if(currentAction === "decToCart" && cart.has(prodId) && !isNaN(prodId)){
+        newQuantity = cart.get(prodId)-1 > 0 ?cart.get(prodId)-1 : cart.get(prodId);
+    }
+    else if(!isNaN(prodId)){ //add to cart for first time
+        newQuantity = 1;
+    }
+    cart.set(prodId,newQuantity);
+    setCookie(cartList, JSON.stringify(Array.from(cart.entries())), 30);
+    $("article#"+prodId+" > div > div > div > p").text(newQuantity);
+    refreshCartBadge(getLenCookie(cartList));
 }
 
 function handleRemoveCartAction(clickedBtn,urlLink){
