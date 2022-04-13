@@ -9,25 +9,34 @@ main > section {
 main > section:first-child {
     text-align: center;
 }
-main > section > img {
+
+main > section:first-child > div,
+main > section:first-child > div > p{
+    margin: 0;
+}
+main > section:first-child > div > p{
+    position: relative;
+    bottom: 90px;
+}
+main > section:first-child > div > img{
     width: 76%;
     object-fit: cover;
     height: 145px;
     border-radius: 10px;
 }
 
-main > section > input {
+main > section:first-child > input {
     height: 145px;
     width: 10%;
     max-width: 28px;
     padding: 0 1% 0 1%;
 }
 
-main > section > input:first-of-type{
+main > section:first-child > input:first-of-type{
     float: left;
 }
 
-main > section > input:last-of-type{
+main > section:first-child > input:last-of-type{
     float: right;
 }
 
