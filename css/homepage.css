@@ -11,13 +11,13 @@ main > section:first-child {
 }
 main > section > img {
     width: 76%;
-    object-fit: cover;
-    height: 145px;
+    object-fit: fill;
+    height: 180px;
     border-radius: 10px;
 }
 
 main > section > input {
-    height: 145px;
+    height: 180px;
     width: 10%;
     max-width: 28px;
     padding: 0 1% 0 1%;
