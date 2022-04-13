@@ -46,3 +46,7 @@ function getLenCookie(cookieName){
   let cartLen = JSON.parse((getCookie(cookieName)));
   return cartLen.length;
   }
+
+  function isCartPage(){
+    return window.location.href === location.origin+"/cart.php";
+}
