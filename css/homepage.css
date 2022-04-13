@@ -103,7 +103,7 @@ main > section:last-child > div{
 }
 
 main > section:last-child > input{
-    height: 70px;
+    height: 100px;
 }
 main > section:last-child > div > div {
     display: inline-block;
@@ -112,13 +112,10 @@ main > section:last-child > div > div {
 }
 main > section:last-child > div > div > a > img {
     height: 70px;
-    max-width: 100px;
-    margin: 5px;
 }
 
 main > section:last-child > div > div > a{
     margin: 0 2% 0 2%;
-    width: 32%;
 }
 
 /*Header of container group*/
