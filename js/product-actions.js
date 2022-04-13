@@ -107,6 +107,10 @@ function getCartInfoCounter(){
         }
         else{
             refreshCartBadge(getLenCookie(cartList));
+            if(isCartPage()){
+                $("main > section > div > div:last-child() > a").addClass("disabled");
+                
+            }
         }
         refreshCartNavbar();
     });
@@ -135,7 +139,7 @@ function handleCartAction(clickedBtn,urlLink){
 
             refreshCartNavbar();
 
-            if( window.location.href === location.origin+"/cart.php"){
+            if(isCartPage()){
                 refreshTotalPrice();
             }
             
