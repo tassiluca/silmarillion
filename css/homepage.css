@@ -237,7 +237,8 @@ main > aside > div:last-child > div.current {
     }
 
     main > section:first-child, 
-    main > section > img, main > section > input{
+    main > section:first-child > div > img, main > section > input,
+    main > section:first-child >div{
         height: 276px;
     }
 
