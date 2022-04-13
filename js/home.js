@@ -1,8 +1,8 @@
 /* jquery che nasconde tutti i banner  tranne il primo*/
 
 $(document).ready(function () {
-    $("main > section:first-child > img.banner").hide();
-    $("main > section:first-child > img.banner:first-child").show();
+    $("main > section:first-child > div.banner").hide();
+    $("main > section:first-child > div.banner:first-child").show();
 
     updateAll(0);
     showSlide(infoidx);
@@ -36,7 +36,7 @@ function updateAll(n){
 var slideIndex = 1;
 
 function updateBanner(n) {
-  showDivs(slideIndex += n,"main > section:first-child > img",1);
+  showDivs(slideIndex += n,"main > section:first-child > div",1);
 }
 
 function updatePartner(n) {
