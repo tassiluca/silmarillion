@@ -1,3 +1,8 @@
+.notAvialable {
+    border-color: red;
+    background: #FFCBCB;
+}
+
 main > section > div > div > article {
     background: #CBF6FF;
     border: 1px solid #0047A0;
