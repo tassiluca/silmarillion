@@ -125,18 +125,23 @@ function handleCartAction(clickedBtn,urlLink){
         let cartCount = jsonData["cartCount"];
 
         if(countCopies-1 > 0){
-            if(!isLogged){ //if customer not logged add/edit quantity of prod in cookie cart
+            if(!isLogged){
+                //if customer not logged add/edit quantity of prod in cookie cart
                 editProductQuantityCookie(prodId,currentAction);
             }
             else{ //user logged then check if all goes right on db
-                //if something goes wrong with db --> info banner 
                 editProdQuantityDatabase(prodId,cartCount,currentAction,correctExec);
             }
 
             refreshCartNavbar();
-            refreshTotalPrice();
+
+            if( window.location.href === location.origin+"/cart.php"){
+                refreshTotalPrice();
+            }
+            
         }
-        else if(clickedBtn !==null){//if in a while someone bought the product and becomes un-available, disable add to cart button
+        else if(clickedBtn !==null){
+            //if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
         }
 
