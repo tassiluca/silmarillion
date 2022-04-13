@@ -1,10 +1,11 @@
 
 $(document).ready(function () {
     refreshTotalPrice();
-    
+
     $("main > section > div > div:last-child() > a").click(function (e) { 
         e.preventDefault();
         console.log("Procedi all'ordine");
+        checkAvaialabilityOfCart();
     });
 });
 
@@ -16,7 +17,10 @@ function refreshTotalPrice(){
         for(let i=0 ;i< cart.length;i++){
             let prod = cart[i];
             price = prod['DiscountedPrice'] !==null ? prod['DiscountedPrice'] : prod['Price'];
-            totalPrice += (price*prod['Quantity']);
+
+            if(!$("article#"+prod['ProductId']).hasClass("notAvaialable")){
+                totalPrice += (price*prod['Quantity']);
+            }
         }
         $("#totalPrice").text(totalPrice+" €");
     });
@@ -26,4 +30,10 @@ function checkIfEmptyRefreshCart(actualcartCount){
     if(actualcartCount <= 0){
         $("section > div > div:first-child()").append("<p>Carrello vuoto</p>");
     }
+}
+
+function checkAvaialabilityOfCart(){
+    $.post("./engines/process-cart.php?request=getCart", function (data) {
+        
+    });
 }
