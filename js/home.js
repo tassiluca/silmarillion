@@ -36,7 +36,7 @@ function updateAll(n){
 var slideIndex = 1;
 
 function updateBanner(n) {
-  showDivs(slideIndex += n,"main > section:first-child > img",1);
+  showDivs(slideIndex += n,"main > section:first-child > div",1);
 }
 
 function updatePartner(n) {
