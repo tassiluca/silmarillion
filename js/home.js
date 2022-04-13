@@ -40,7 +40,7 @@ function updateBanner(n) {
 }
 
 function updatePartner(n) {
-  showDivs(slideIndex += n,"main > section:last-child > div > div > a",checkScreenSize(150,0.01));
+  showDivs(slideIndex += n,"main > section:last-child > div > div > a",checkScreenSize(200,0.01));
 }
 
 function updateReview(n) {
