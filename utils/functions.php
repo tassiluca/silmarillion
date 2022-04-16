@@ -208,4 +208,13 @@
         }
     }
 
+    /**
+     * Converts the given price in comma-notation (es. 10,91 instead of 10.91).
+     * @param float $price the price in dot-notation
+     * @return array|string|string[] the price in comma-notation
+     */
+    function formatPrice($price) {
+        return str_replace(".", ",", $price);
+    }
+
 ?>
