@@ -837,9 +837,9 @@
          */
         private function getCopiesSold($idProd){
             $query = "SELECT Od.CopyId
-                        FROM `ProductCopies` as Pc, `OrderDetails` as Od
-                        where Pc.CopyId = Od.CopyId
-                        and Pc.ProductId = ?";
+                      FROM `ProductCopies` as Pc, `OrderDetails` as Od
+                      WHERE Pc.CopyId = Od.CopyId
+                      AND Pc.ProductId = ?";
             return $this->executeQuery($query, [$idProd])
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
@@ -849,8 +849,29 @@
          * Orders management functions
          **************************************************************************************************************/
 
-        public function addNewOrder() {
+        /**
+         * Inserts into the db a new order.
+         * @param string $address the address for delivery
+         * @param double $price the total amount of the order
+         * @param int $userId the user id of the user who did the order
+         * @return int describing the error occurred or 0 if no error occurred.
+         */
+        public function addNewOrder(string $address, float $price, int $userId) {
+            $query = "INSERT INTO Orders(Address, Price, UserId)
+                      VALUES(?, ?, ?)";
+            return $this->executeQuery($query, [$address, $price, $userId])->errno;
+        }
 
+        /**
+         * Inserts into the db a new "order details"
+         * @param int $copyId the id of the product's copy to assign to the given order
+         * @param int $orderId the order id to reference
+         * @return int describing the error occurred or 0 if no error occurred.
+         */
+        public function addOrderDetails(int $copyId, int $orderId) {
+            $query = "INSERT INTO OrderDetails(CopyId, OrderId)
+                      VALUES(?, ?)";
+            return $this->executeQuery($query, [$copyId, $orderId])->errno;
         }
 
         /***************************************************************************************************************
