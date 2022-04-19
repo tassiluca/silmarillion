@@ -12,7 +12,7 @@
             <div>
                 <article>
                     <header></header>
-                    <form id="addressForm" method="post" action="#">
+                    <form id="addressForm" method="POST" action="./engines/process-payment.php">
                         <h3>Indirizzo di spedizione</h3>
                         <div>
                             <ul>
