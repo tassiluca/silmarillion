@@ -697,7 +697,7 @@
             return $resultCount > 0;
         }
 
-        // TODO to documentg
+        // TODO to document
         public function removeAlertOnProd($usrId,$idprod){
             $query = "DELETE FROM `Alerts` WHERE `UserId` = ? and `ProductId` = ?";
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
@@ -819,6 +819,7 @@
             $copiesInStock = count($this -> getCopiesInStock($idProd));
             return $copiesInStock - $copiesSold;
         }
+
         /**
          * Get all copies in stock of a specific product with $idProd
          * @param int $idProd unique id of product 
@@ -830,6 +831,7 @@
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
         }
+
         /**
          * Get all copies not available to be bought, all copies in users carts
          * @param int $idProd unique id of product
@@ -854,24 +856,55 @@
          * @param string $address the address for delivery
          * @param double $price the total amount of the order
          * @param int $userId the user id of the user who did the order
-         * @return int describing the error occurred or 0 if no error occurred.
+         * @return int order id created.
          */
         public function addNewOrder(string $address, float $price, int $userId) {
             $query = "INSERT INTO Orders(Address, Price, UserId)
                       VALUES(?, ?, ?)";
-            return $this->executeQuery($query, [$address, $price, $userId])->errno;
+            return $this->executeQuery($query, [$address, $price, $userId])->insert_id;
+        }
+
+        public function deleteOrder(int $orderId) {
+            $query = "DELETE FROM Orders
+                      WHERE OrderId = ?";
+            $this->executeQuery($query, [$orderId]);
         }
 
         /**
          * Inserts into the db a new "order details"
-         * @param int $copyId the id of the product's copy to assign to the given order
+         * @param int $productId the id of the product
          * @param int $orderId the order id to reference
          * @return int describing the error occurred or 0 if no error occurred.
          */
-        public function addOrderDetails(int $copyId, int $orderId) {
+        public function addOrderDetails(int $productId, int $orderId) {
+            $query = "SELECT CopyId 
+                      FROM ProductCopies 
+                      WHERE ProductId = ? 
+                      AND CopyId NOT IN (SELECT CopyId FROM OrderDetails)
+                      LIMIT 1";
+            $res = $this->executeQuery($query, [0])->get_result()->fetch_all(MYSQLI_ASSOC);
+            $copyId = (!empty($res) ? $res[0]['CopyId'] : -1);
             $query = "INSERT INTO OrderDetails(CopyId, OrderId)
                       VALUES(?, ?)";
             return $this->executeQuery($query, [$copyId, $orderId])->errno;
+        }
+
+        public function deleteOrderDetails(int $orderId) {
+            $query = "DELETE FROM OrderDetails
+                      WHERE OrderId = ?";
+            $this->executeQuery($query, [$orderId]);
+        }
+
+        public function addLogOrderStatus(string $status, int $orderId) {
+            $query = "INSERT INTO LogOrderStatus(Status, OrderId)
+                      VALUES(?, ?)";
+            $this->executeQuery($query, [$status, $orderId]);
+        }
+
+        public function addPayment(int $orderId, int $methodId) {
+            $query = "INSERT INTO Payments(OrderId, MethodId)
+                      VALUES(?, ?)";
+            $this->executeQuery($query, [$orderId, $methodId]);
         }
 
         /***************************************************************************************************************
