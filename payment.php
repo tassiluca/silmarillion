@@ -9,10 +9,14 @@
 
     if (!isCustomerLoggedIn()) {
         header("location: ./login.php");
+    } elseif (isset($_GET['result']) && ($_GET['result'] === 'success' || $_GET['result'] === 'error')) {
+        $templateParams["msg"] = ($_GET['result'] === 'success'
+            ? "Ordine effettuato con successo &#129297; &#129316; &#129321;"
+            : "Ordine rifiutato: il/i prodotto/i selezionati non sono più disponibili &#128546;");
     } else {
         list($availableProds, $totalAmount) = computeTotalAmount();
         if (empty($availableProds)) {
-            $templateParams["error"] = "Nessun prodotto nel carrello";
+            $templateParams["msg"] = "Nessun prodotto nel carrello è al momento disponibile";
         } else {
             $templateParams["totalAmount"] = $totalAmount;
             // TODO to display the list of available products in the page
