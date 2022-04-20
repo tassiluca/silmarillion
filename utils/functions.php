@@ -3,9 +3,8 @@
     use Respect\Validation\Exceptions\NestedValidationException;
     global $dbh;
 
-    define("MYSQLI_CODE_DUPLICATE_KEY", 1062);
-    define("MAX_LOGIN_ATTEMPTS", 5);
-
+    const MYSQLI_CODE_DUPLICATE_KEY = 1062;
+    const MAX_LOGIN_ATTEMPTS = 5;
     const COOKIE_SOURCE = 0;
     const DB_SOURCE = 1;
 
@@ -135,6 +134,7 @@
         }
         return array($result, $msg);
     }
+
     /**
      * Append isFavourite param to associative array of products/comics/funko,
      * if customer is logged-in and has product in favourite list return true then false,
