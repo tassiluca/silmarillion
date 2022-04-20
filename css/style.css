@@ -102,7 +102,7 @@ body > header > nav > div {
     display: none;
     position: relative;
     /* Remove space between menu button and pop-up menu */
-    bottom: 4px;
+    /* bottom: 4px; */
     z-index: 1;
 }
 
@@ -123,7 +123,7 @@ body > header > nav > div > ul > li {
 body > header > nav > div > ul > li:last-child {
     border-radius: 0 0 10px 10px;
     /* see bottom of body > header > nav > div rule */
-    margin-bottom: -4px;
+    /* margin-bottom: -4px; */
 }
 
 body > header > nav > div > ul > li:first-child {
@@ -487,6 +487,7 @@ body > header > nav > div#navSearch > form > ul {
         float: left;
         background: none;
         width: 76%;
+        height: 55px;
         margin-left: 4%;
     }
 
@@ -508,6 +509,7 @@ body > header > nav > div#navSearch > form > ul {
     body > header > nav > ul {
         margin-right: 0%;
         width: 19%;
+        height: 55px;
         padding-left: 1%;
         vertical-align: middle;
     }
@@ -521,6 +523,7 @@ body > header > nav > div#navSearch > form > ul {
     body > header > nav > ul > li > button,
     body > header > nav > ul > li > a {
         padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     /* login link */
@@ -576,6 +579,7 @@ body > header > nav > div#navSearch > form > ul {
         float: left;
         background: none;
         width: 75%;
+        height: 55px;
         margin-left: 5%;
     }
 
@@ -597,6 +601,7 @@ body > header > nav > div#navSearch > form > ul {
     body > header > nav > ul {
         margin-right: 0;
         width: 19%;
+        height: 55px;
         padding-left: 1%;
         vertical-align: middle;
     }
@@ -610,6 +615,7 @@ body > header > nav > div#navSearch > form > ul {
     body > header > nav > ul > li > button,
     body > header > nav > ul > li > a {
         padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     /* login link */
