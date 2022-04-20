@@ -33,6 +33,28 @@
         return [$availableProds, $totalAmount];
     }
 
+    function insertOrder(string $address, int $totalAmount, array $products) {
+        global $dbh;
+        // creates a new order
+        $orderId = $dbh->addNewOrder($address, $totalAmount , $_SESSION['userId']);
+        // creates order details
+        foreach ($products as $prod) {
+            for ($i = 0; $i < $prod['Quantity']; $i++) {
+                $res = $dbh->addOrderDetails($prod['ProductId'], $orderId);
+                if ($res) {
+                    break 2; /* Exit the for and previous foreach */
+                }
+            }
+        }
+        // if some errors occurred, delete the order
+        if ($res) {
+            $dbh->deleteOrder($orderId);
+        } else {
+            $dbh->addPayment($orderId, );
+            $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
+        }
+    }
+
     if (isset($_POST['destAddress'], $_POST['cap'], $_POST['city'], $_POST['prov'], $_POST['paymethod'])) {
         list($res, $msg) = validate();
         if (!$res) {
@@ -43,17 +65,7 @@
         }
         $address = $_POST['destAddress'] . ", " . $_POST['cap'] . ", " . $_POST['city'];
         list($prodsList, $totalAmount) = getAvailableProds();
-
-        // TODO Manage errors
-        // creates a new order
-        $orderId = $dbh->addNewOrder($address, $totalAmount , $_SESSION['userId']);
-        // creates order details
-        foreach ($prodsList as $prod) {
-            for ($i = 0; $i < $prod['Quantity']; $i++) {
-                $dbh->addOrderDetails($prod['ProductId'], $orderId); // this could involve an error
-            }
-        }
-
+        insertOrder($address, $totalAmount, $prodsList);
     }
 
 ?>
