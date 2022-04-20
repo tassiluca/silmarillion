@@ -11,5 +11,4 @@ INSERT INTO `silmarillion`.`OrderStatus` (`Name`) VALUES
 ('Consegnato'),
 ('In consegna'),
 ('In preparazione'),
-('In transito'),
 ('Spedito');
