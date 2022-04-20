@@ -1,11 +1,8 @@
 -- *********************************************
 -- * SQL MySQL generation                      
 -- *--------------------------------------------
--- * DB-MAIN version: 11.0.1              
--- * Generator date: Dec  4 2018              
--- * Generation date: Sun Jan 30 17:40:17 2022 
--- * LUN file: \\Mac\Home\Tecnologie Web\silmarillion\db\schemas\silmarillion.lun 
--- * Schema: silmarillion-Logic/1 
+-- * Schema: silmarillion-Logic/1
+-- * Last Modified: 20/04/22 10:35
 -- ********************************************* 
 
 
@@ -104,7 +101,10 @@ create table OrderDetails (
 
 create table Orders (
      OrderId int not null auto_increment,
-     Address varchar(150) not null,
+     Street varchar(150) not null,
+     City varchar(150) not null,
+     CAP int not null,
+     Province char(2) not null,
      OrderDate timestamp not null,
      Price decimal(10, 2) not null,
      UserId int not null,
@@ -116,6 +116,7 @@ create table OrderStatus (
 
 create table PaymentMethods (
      MethodId int not null auto_increment,
+     Name varchar(150),
      Owner varchar(100),
      Number char(16),
      CVV char(3),
@@ -292,8 +293,3 @@ alter table Reviews add constraint FKComplete
 alter table Sellers add constraint FKR_FK_1
      foreign key (UserId)
      references Users (UserId);
-
-
--- Index Section
--- _____________ 
-
