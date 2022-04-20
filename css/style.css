@@ -50,17 +50,9 @@ body > header > nav > ul > li {
 body > header > nav > ul > li > button {
     background-color: transparent;
     border: none;
+    height: 55px;
+    max-width: 75px;
     padding: 10px 10% 0 10%;
-}
-
-body > header > nav > ul > li:last-child > button {
-    padding-right: 0;
-}
-
-body > header > nav > ul > li:last-child{
-    margin: 0;
-    width: 68.6px;
-
 }
 
 body > header > nav > ul > li > a {
@@ -91,8 +83,8 @@ body > header > nav > ul > li > button.navActive {
     font-size: 11pt;
     display: inline-block;
     position: relative;
-    bottom: 26px;
-    right: 16px;
+    bottom: 43px;
+    right: -15px;
 }
 
 /*********************** Dropdown links ***********************/
