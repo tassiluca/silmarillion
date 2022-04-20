@@ -159,6 +159,7 @@
             </div><div>
                 <h4>ACCOUNT</h4>
                 <ul>
+                    <!-- TODO @NalNemesi: modify pages name -->
                     <li><a href="user-area.php">Account utente</a></li>
                     <li><a href="seller-area.php">Account venditore</a></li>
                 </ul>
@@ -172,7 +173,7 @@
                 <ul>
                     <li>Via del Campus 5814</li>
                     <li><a href="mailto:info@silmarillion.it">info@silmarillion.it</a></li>
-                    <li> <a href="tel:+390587932451"> 05 879 32 451</a></li>
+                    <li><a href="tel:+390587932451"> 05 879 32 451</a></li>
                 </ul>
             </div>
         </footer>
