@@ -2,7 +2,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li>Carrello</li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li><a href="cart.php">Carrello</a></li>
     </ul>
 </div>
 <section>
