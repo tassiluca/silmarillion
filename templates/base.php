@@ -34,7 +34,6 @@
                 endforeach;
             endif;
         ?>
-        
         <title>Silmarillion</title>
     </head>
     <body>
@@ -63,8 +62,9 @@
                         <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
                             <span id="cart_badge" <?php 
-                            if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))<=0){
-                                echo 'class="hidden"';} ?>>
+                            if (isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId'])) <= 0) {
+                                echo 'class="hidden"';
+                            } ?>>
                             </span>
                         </button>
                     </li>       
