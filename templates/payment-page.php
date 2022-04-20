@@ -27,8 +27,21 @@
                         <h3>Metodo di Pagamento</h3>
                         <div>
                             <ul>
-                                <li><input type="radio" name="paymethod" id="paypal" value="paypal" required><label for="paypal">PayPal</label></li>
-                                <li><input type="radio" name="paymethod" id="card" value="card" required><label for="card">Carta</label></li>
+                                <li>
+                                    <input type="radio" name="paymethod" id="cash" value="-1" required />
+                                    <label for="cash">Contanti</label>
+                                </li>
+                                <?php foreach($templateParams["paymentMethods"] as $method):
+                                    $methodName = $method['Name'] . (!empty($method['Number'])
+                                            ? " nr. " . $method['Number']
+                                            : " - " . $method['Mail']);
+                                    $methodId = $method['MethodId'];
+                                ?>
+                                    <li>
+                                        <input type="radio" name="paymethod" id="<?php echo $methodName;?>" value="<?php echo $methodId;?>" />
+                                        <label for="<?php echo $methodName;?>"><?php echo $methodName;?></label>
+                                    </li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </form>

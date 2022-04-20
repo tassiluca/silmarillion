@@ -3,11 +3,11 @@
     /**
      * An enum describing the possible status of an order.
      */
-    enum OrdersStatus: string {
-        case IN_PREPARATION = 'In preparazione';
-        case SHIPPED = 'Spedito';
-        case DELIVERY = 'In consegna';
-        case DELIVERED = 'Consegnato';
+    class OrdersStatus {
+        const IN_PREPARATION = 'In preparazione';
+        const SHIPPED = 'Spedito';
+        const DELIVERY = 'In consegna';
+        const DELIVERED = 'Consegnato';
     }
 
 ?>

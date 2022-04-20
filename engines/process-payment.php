@@ -4,22 +4,26 @@
     global $dbh;
     use Respect\Validation\Validator as v;
 
-    function validate() {
+    function validate(): array
+    {
         $rules = array (
             'address'       => v::stringType()->notEmpty(),
             'cap'           => v::numericVal()->notEmpty(),
             'province'      => v::stringType()->length(2, 2),
+            'paymethod'     => v::numericVal()->notEmpty()
         );
         $dataDic = array (
-            'address'  => [$_POST['destAddress'], $_POST['city']],
-            'cap'      => [$_POST['cap']],
-            'province' => [$_POST['prov']]
+            'address'   => [$_POST['destAddress'], $_POST['city']],
+            'cap'       => [$_POST['cap']],
+            'province'  => [$_POST['prov']],
+            'paymethod' => [$_POST['paymethod']]
         );
-        // TODO: validate payment method
+        // TODO validate paymethod
         return validateInput($rules, $dataDic);
     }
 
-    function getAvailableProds() {
+    function getAvailableProds(): array
+    {
         global $dbh;
         $availableProds = [];
         $totalAmount = 0;
@@ -33,10 +37,13 @@
         return [$availableProds, $totalAmount];
     }
 
-    function insertOrder(string $address, int $totalAmount, array $products) {
+    function insertOrder() {
         global $dbh;
+        list($products, $totalAmount) = getAvailableProds();
         // creates a new order
-        $orderId = $dbh->addNewOrder($address, $totalAmount , $_SESSION['userId']);
+        $orderId = $dbh->addNewOrder($_POST['destAddress'], $_POST['city'], $_POST['cap'],
+                                     $_POST['prov'], $totalAmount, $_SESSION['userId']);
+        print_r("order " . $orderId);
         // creates order details
         foreach ($products as $prod) {
             for ($i = 0; $i < $prod['Quantity']; $i++) {
@@ -50,7 +57,9 @@
         if ($res) {
             $dbh->deleteOrder($orderId);
         } else {
-            $dbh->addPayment($orderId, );
+            if ($_POST['paymethod'] !== -1) {
+                $dbh->addPayment($orderId, $_POST['paymethod']);
+            }
             $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
         }
     }
@@ -60,12 +69,8 @@
         if (!$res) {
             echo $msg;
             exit(1);
-        } else {
-            print_r($_POST);
         }
-        $address = $_POST['destAddress'] . ", " . $_POST['cap'] . ", " . $_POST['city'];
-        list($prodsList, $totalAmount) = getAvailableProds();
-        insertOrder($address, $totalAmount, $prodsList);
+        insertOrder();
     }
 
 ?>

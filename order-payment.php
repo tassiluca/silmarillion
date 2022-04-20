@@ -1,6 +1,7 @@
 <?php
 
     require_once __DIR__ . '/bootstrap.php';
+    global $dbh;
 
     $templateParams["css"]  = array("./css/payment.css", "./css/cart-payment.css");
     $templateParams["js"]   = array("./js/payment.js");
@@ -16,6 +17,7 @@
             $templateParams["totalAmount"] = $totalAmount;
             // TODO to display the list of available products in the page
             $templateParams["availableProds"] = $availableProds;
+            $templateParams["paymentMethods"] = $dbh->getPaymentMethodsOfUser($_SESSION['userId']);
         }
     }
 
