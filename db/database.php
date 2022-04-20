@@ -207,6 +207,12 @@
                 ->num_rows > 0;
         }
 
+        public function getPaymentMethodsOfUser($customerId) {
+            $query = "SELECT 
+                      FROM MethodHolders as MH, PaymentMethods as PM
+                      WHERE MH.UserId";
+        }
+
         /***************************************************************************************************************
          * Products management functions
          **************************************************************************************************************/
@@ -865,6 +871,7 @@
         }
 
         public function deleteOrder(int $orderId) {
+            $this->deleteOrderDetails($orderId);
             $query = "DELETE FROM Orders
                       WHERE OrderId = ?";
             $this->executeQuery($query, [$orderId]);
@@ -889,7 +896,7 @@
             return $this->executeQuery($query, [$copyId, $orderId])->errno;
         }
 
-        public function deleteOrderDetails(int $orderId) {
+        private function deleteOrderDetails(int $orderId) {
             $query = "DELETE FROM OrderDetails
                       WHERE OrderId = ?";
             $this->executeQuery($query, [$orderId]);
@@ -906,6 +913,8 @@
                       VALUES(?, ?)";
             $this->executeQuery($query, [$orderId, $methodId]);
         }
+
+
 
         /***************************************************************************************************************
          * Catalog management functions
