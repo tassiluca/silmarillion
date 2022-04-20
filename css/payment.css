@@ -39,9 +39,10 @@ main > section > div > div > article > form > div:last-of-type > ul > li{
     justify-content: center;
 }
 
-main > section > div > div > article > form > div > ul > li > label {
+main > section > div > div > article > form > div:first-of-type > ul > li > label {
     width: 20%;
 }
+
 main > section > div > div > article > form > div:not(:last-of-type) > ul > li > input{
     width: 60%;
     border-radius: 10px;
