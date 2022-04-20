@@ -10,12 +10,10 @@
     <div>
         <div>
             <!-- insert foreach product in cart an article-->
-            <!-- insert foreach product in cart an article-->
-            <?php 
+            <?php
                 $totalOrderPrice = 0.0;
                 if(isset($templateParams["cart"]) && count($templateParams["cart"]) > 0){
                     foreach($templateParams["cart"] as $prod):
-                        
             ?>
             <article <?php
                     $av = $dbh -> getAvaiableCopiesOfProd($prod['ProductId']);
@@ -68,7 +66,3 @@
                 ?> href="payment.html">PROCEDI ALL'ORDINE</a></div>
     </div>
 </section>
-
-<!--
-
--->
