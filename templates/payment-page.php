@@ -7,7 +7,7 @@
 </div>
 <section>
     <header><h2>Pagamento Ordine</h2></header>
-    <?php if (!isset($templateParams["error"])): ?>
+    <?php if (!isset($templateParams["msg"])): ?>
         <div>
             <div>
                 <form id="addressForm" method="POST" action="./engines/process-payment.php">
@@ -53,7 +53,8 @@
         </div>
     <?php else: ?>
         <div>
-            <p><?php echo $templateParams["error"]; ?>. Torna nella <a href="index.php">Home</a>.</p>
+            <h3><?php echo $templateParams["msg"]; ?>.</h3>
+            <p>Vai nel <a href="cart.php">Carrello</a> o torna nella <a href="index.php">Home</a>.</p>
         </div>
     <?php endif; ?>
 </section>
