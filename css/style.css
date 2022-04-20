@@ -610,10 +610,12 @@ body > header > nav > div#navSearch > form > ul {
         list-style: none;
         display: inline-block;
         width: 22%;
+        height: 100%;
     }
 
     body > header > nav > ul > li > button,
     body > header > nav > ul > li > a {
+        height: 100%;
         padding-top: 5px;
         padding-bottom: 5px;
     }
