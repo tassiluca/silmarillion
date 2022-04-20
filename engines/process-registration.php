@@ -6,8 +6,8 @@
     const ERROR_DB = "Errore nel sistema! Riprova...";
     const SUCCESS = "Registrazione avvenuta con successo!";
 
-    if (isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["birthday"]) 
-    && isset($_POST["usr"]) && isset($_POST["email"]) && isset($_POST["pwd"])) {
+    if (isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["birthday"]) &&
+        isset($_POST["usr"]) && isset($_POST["email"]) && isset($_POST["pwd"])) {
         $result = [];
         // generate random salt
         $salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
