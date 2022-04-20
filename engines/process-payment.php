@@ -39,29 +39,31 @@
 
     function insertOrder() {
         global $dbh;
+        $res = 1;
         list($products, $totalAmount) = getAvailableProds();
-        // creates a new order
-        $orderId = $dbh->addNewOrder($_POST['destAddress'], $_POST['city'], $_POST['cap'],
-                                     $_POST['prov'], $totalAmount, $_SESSION['userId']);
-        print_r("order " . $orderId);
-        // creates order details
-        foreach ($products as $prod) {
-            for ($i = 0; $i < $prod['Quantity']; $i++) {
-                $res = $dbh->addOrderDetails($prod['ProductId'], $orderId);
-                if ($res) {
-                    break 2; /* Exit the for and previous foreach */
+        if (!empty($products)) {
+            // creates a new order
+            $orderId = $dbh->addNewOrder($_POST['destAddress'], $_POST['city'], $_POST['cap'],
+                $_POST['prov'], $totalAmount, $_SESSION['userId']);
+            // creates order details
+            foreach ($products as $prod) {
+                for ($i = 0; $i < $prod['Quantity']; $i++) {
+                    $res = $dbh->addOrderDetails($prod['ProductId'], $orderId);
+                    if ($res) {
+                        break 2; /* Exit the for and previous foreach */
+                    }
                 }
             }
-        }
-        // if some errors occurred, delete the order
-        if ($res) {
-            $dbh->deleteOrder($orderId);
-        } else {
-            if ($_POST['paymethod'] !== -1) {
-                $dbh->addPayment($orderId, $_POST['paymethod']);
+            if ($res) { // if some errors occurred, delete the order
+                $dbh->deleteOrder($orderId);
+            } else {
+                if ($_POST['paymethod'] !== -1) {
+                    $dbh->addPayment($orderId, $_POST['paymethod']);
+                }
+                $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
             }
-            $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
         }
+        header("location:../payment.php?result=" . ($res ? "error" : "success"));
     }
 
     if (isset($_POST['destAddress'], $_POST['cap'], $_POST['city'], $_POST['prov'], $_POST['paymethod'])) {
