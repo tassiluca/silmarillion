@@ -208,9 +208,13 @@
         }
 
         public function getPaymentMethodsOfUser($customerId) {
-            $query = "SELECT 
+            $query = "SELECT PM.MethodId, PM.Name, PM.Owner, PM.Number, PM.CVV, PM.ExpiringDate, PM.Mail
                       FROM MethodHolders as MH, PaymentMethods as PM
-                      WHERE MH.UserId";
+                      WHERE MH.MethodId = PM.MethodId
+                      AND MH.UserId = ?";
+            return $this->executeQuery($query, [$customerId])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
         }
 
         /***************************************************************************************************************
@@ -864,10 +868,10 @@
          * @param int $userId the user id of the user who did the order
          * @return int order id created.
          */
-        public function addNewOrder(string $address, float $price, int $userId) {
-            $query = "INSERT INTO Orders(Address, Price, UserId)
-                      VALUES(?, ?, ?)";
-            return $this->executeQuery($query, [$address, $price, $userId])->insert_id;
+        public function addNewOrder(string $street, string $city, int $cap, string $province, float $price, int $userId) {
+            $query = "INSERT INTO Orders(Street, City, CAP, Province, Price, UserId)
+                      VALUES(?, ?, ?, ?, ?, ?)";
+            return $this->executeQuery($query, [$street, $city, $cap, $province, $price, $userId])->insert_id;
         }
 
         public function deleteOrder(int $orderId) {
@@ -889,7 +893,7 @@
                       WHERE ProductId = ? 
                       AND CopyId NOT IN (SELECT CopyId FROM OrderDetails)
                       LIMIT 1";
-            $res = $this->executeQuery($query, [0])->get_result()->fetch_all(MYSQLI_ASSOC);
+            $res = $this->executeQuery($query, [$productId])->get_result()->fetch_all(MYSQLI_ASSOC);
             $copyId = (!empty($res) ? $res[0]['CopyId'] : -1);
             $query = "INSERT INTO OrderDetails(CopyId, OrderId)
                       VALUES(?, ?)";
@@ -903,7 +907,7 @@
         }
 
         public function addLogOrderStatus(string $status, int $orderId) {
-            $query = "INSERT INTO LogOrderStatus(Status, OrderId)
+            $query = "INSERT INTO LogOrderStatus(OrderStatus, OrderId)
                       VALUES(?, ?)";
             $this->executeQuery($query, [$status, $orderId]);
         }
@@ -913,8 +917,6 @@
                       VALUES(?, ?)";
             $this->executeQuery($query, [$orderId, $methodId]);
         }
-
-
 
         /***************************************************************************************************************
          * Catalog management functions
