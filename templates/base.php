@@ -159,8 +159,8 @@
             </div><div>
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <li>Account utente</li>
-                    <li>Account venditore</li>
+                    <li><a href="user-area.php">Account utente</a></li>
+                    <li><a href="seller-area.php">Account venditore</a></li>
                 </ul>
                 <h4>CONDIZIONI</h4>
                 <ul>
