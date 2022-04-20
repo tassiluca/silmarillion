@@ -6,7 +6,7 @@
     $templateParams["main"] = "./templates/user-page.php";
 
     if (!isCustomerLoggedIn()) {
-        header("location: ./not-found.php");
+        header("location: ./login.php");
     }
 
     if (isset($_GET['action']) && $_GET['action'] === 'logout') {

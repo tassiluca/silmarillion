@@ -3,9 +3,8 @@
     use Respect\Validation\Exceptions\NestedValidationException;
     global $dbh;
 
-    define("MYSQLI_CODE_DUPLICATE_KEY", 1062);
-    define("MAX_LOGIN_ATTEMPTS", 5);
-
+    const MYSQLI_CODE_DUPLICATE_KEY = 1062;
+    const MAX_LOGIN_ATTEMPTS = 5;
     const COOKIE_SOURCE = 0;
     const DB_SOURCE = 1;
 
@@ -135,6 +134,7 @@
         }
         return array($result, $msg);
     }
+
     /**
      * Append isFavourite param to associative array of products/comics/funko,
      * if customer is logged-in and has product in favourite list return true then false,
@@ -206,6 +206,15 @@
         else if(isset($_COOKIE['cart'])){
             return getInfoProdsInCart(json_decode($_COOKIE['cart']),COOKIE_SOURCE);
         }
+    }
+
+    /**
+     * Converts the given price in comma-notation (es. 10,91 instead of 10.91).
+     * @param float $price the price in dot-notation
+     * @return array|string|string[] the price in comma-notation
+     */
+    function formatPrice($price) {
+        return str_replace(".", ",", $price);
     }
 
 ?>

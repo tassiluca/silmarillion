@@ -1,4 +1,6 @@
-<?php require_once '../bootstrap.php';
+<?php
+
+    require_once '../bootstrap.php';
 
     if(isset($_GET["request"]) && $_GET["request"] === "getCart"){
         $response = getCart();

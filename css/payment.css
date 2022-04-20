@@ -3,12 +3,7 @@ main > section {
     margin: 0 2%;
 }
 
-main > section > div > div > article > header{
-    text-align: left;
-    text-indent: 15px
-}
-
-main > section > div > div > article > form > div {
+main > section > div > div > form > div {
     background: #CBF6FF;
     border: 1px solid #0047A0;
     box-sizing: border-box;
@@ -17,14 +12,14 @@ main > section > div > div > article > form > div {
     text-align: center;
     padding: 2% 0;
 }
-main > section > div > div > article > form > div > a {
+main > section > div > div > form > div > a {
     font-weight: bold;
     color: #0047A0;
 }
-main > section > div > div > article > form > div > a:last-child {
+main > section > div > div > form > div > a:last-child {
     display: none;
 }
-main > section > div > div > article > form > div > ul > li{
+main > section > div > div > form > div > ul > li{
     margin: 6px 0;
     list-style: none;
     display: flex;
@@ -32,17 +27,18 @@ main > section > div > div > article > form > div > ul > li{
     align-items: center;
 }
 
-main > section > div > div > article > form > div:last-of-type > ul > li{
+main > section > div > div > form > div:last-of-type > ul > li{
     margin: 6px 0;
     list-style: none;
     display: flex;
     justify-content: center;
 }
 
-main > section > div > div > article > form > div > ul > li > label {
+main > section > div > div > form > div:first-of-type > ul > li > label {
     width: 20%;
 }
-main > section > div > div > article > form > div:not(:last-of-type) > ul > li > input{
+
+main > section > div > div > form > div:not(:last-of-type) > ul > li > input{
     width: 60%;
     border-radius: 10px;
     height: 37px;
@@ -79,6 +75,3 @@ main > section > div > div:last-of-type > input[type="submit"] {
     margin: 36px 0 40px 0;
     box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
 }
-    
-    
-    

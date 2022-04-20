@@ -10,12 +10,10 @@
     <div>
         <div>
             <!-- insert foreach product in cart an article-->
-            <!-- insert foreach product in cart an article-->
-            <?php 
+            <?php
                 $totalOrderPrice = 0.0;
                 if(isset($templateParams["cart"]) && count($templateParams["cart"]) > 0){
                     foreach($templateParams["cart"] as $prod):
-                        
             ?>
             <article <?php
                     $av = $dbh -> getAvaiableCopiesOfProd($prod['ProductId']);
@@ -57,7 +55,7 @@
         </div>
         <?php 
             if($prod['Quantity'] > $av){
-                echo '<p id="cartInfoBanner">Acluni prodotti non sono più disponibili, verranno esclusi dall`ordine </p>';
+                echo '<p id="cartInfoBanner">Alcuni prodotti non sono più disponibili, verranno esclusi dall`ordine </p>';
             }
         ?>
         <div>
@@ -68,7 +66,3 @@
                 ?> href="payment.html">PROCEDI ALL'ORDINE</a></div>
     </div>
 </section>
-
-<!--
-
--->

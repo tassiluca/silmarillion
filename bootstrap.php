@@ -27,6 +27,7 @@
     require_once __DIR__ . '/vendor/autoload.php';
     require_once 'db/database.php';
     require_once 'utils/functions.php';
+    require_once 'utils/orders-status.php';
 
     // secureSessionStart();    // **TODO**
 

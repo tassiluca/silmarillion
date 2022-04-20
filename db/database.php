@@ -207,6 +207,16 @@
                 ->num_rows > 0;
         }
 
+        public function getPaymentMethodsOfUser($customerId) {
+            $query = "SELECT PM.MethodId, PM.Name, PM.Owner, PM.Number, PM.CVV, PM.ExpiringDate, PM.Mail
+                      FROM MethodHolders as MH, PaymentMethods as PM
+                      WHERE MH.MethodId = PM.MethodId
+                      AND MH.UserId = ?";
+            return $this->executeQuery($query, [$customerId])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
+        }
+
         /***************************************************************************************************************
          * Products management functions
          **************************************************************************************************************/
@@ -697,7 +707,7 @@
             return $resultCount > 0;
         }
 
-        // TODO to documentg
+        // TODO to document
         public function removeAlertOnProd($usrId,$idprod){
             $query = "DELETE FROM `Alerts` WHERE `UserId` = ? and `ProductId` = ?";
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
@@ -819,6 +829,7 @@
             $copiesInStock = count($this -> getCopiesInStock($idProd));
             return $copiesInStock - $copiesSold;
         }
+
         /**
          * Get all copies in stock of a specific product with $idProd
          * @param int $idProd unique id of product 
@@ -830,6 +841,7 @@
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
         }
+
         /**
          * Get all copies not available to be bought, all copies in users carts
          * @param int $idProd unique id of product
@@ -837,9 +849,9 @@
          */
         private function getCopiesSold($idProd){
             $query = "SELECT Od.CopyId
-                        FROM `ProductCopies` as Pc, `OrderDetails` as Od
-                        where Pc.CopyId = Od.CopyId
-                        and Pc.ProductId = ?";
+                      FROM `ProductCopies` as Pc, `OrderDetails` as Od
+                      WHERE Pc.CopyId = Od.CopyId
+                      AND Pc.ProductId = ?";
             return $this->executeQuery($query, [$idProd])
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
@@ -849,8 +861,61 @@
          * Orders management functions
          **************************************************************************************************************/
 
-        public function addNewOrder() {
+        /**
+         * Inserts into the db a new order.
+         * @param string $address the address for delivery
+         * @param double $price the total amount of the order
+         * @param int $userId the user id of the user who did the order
+         * @return int order id created.
+         */
+        public function addNewOrder(string $street, string $city, int $cap, string $province, float $price, int $userId) {
+            $query = "INSERT INTO Orders(Street, City, CAP, Province, Price, UserId)
+                      VALUES(?, ?, ?, ?, ?, ?)";
+            return $this->executeQuery($query, [$street, $city, $cap, $province, $price, $userId])->insert_id;
+        }
 
+        public function deleteOrder(int $orderId) {
+            $this->deleteOrderDetails($orderId);
+            $query = "DELETE FROM Orders
+                      WHERE OrderId = ?";
+            $this->executeQuery($query, [$orderId]);
+        }
+
+        /**
+         * Inserts into the db a new "order details"
+         * @param int $productId the id of the product
+         * @param int $orderId the order id to reference
+         * @return int describing the error occurred or 0 if no error occurred.
+         */
+        public function addOrderDetails(int $productId, int $orderId) {
+            $query = "SELECT CopyId 
+                      FROM ProductCopies 
+                      WHERE ProductId = ? 
+                      AND CopyId NOT IN (SELECT CopyId FROM OrderDetails)
+                      LIMIT 1";
+            $res = $this->executeQuery($query, [$productId])->get_result()->fetch_all(MYSQLI_ASSOC);
+            $copyId = (!empty($res) ? $res[0]['CopyId'] : -1);
+            $query = "INSERT INTO OrderDetails(CopyId, OrderId)
+                      VALUES(?, ?)";
+            return $this->executeQuery($query, [$copyId, $orderId])->errno;
+        }
+
+        private function deleteOrderDetails(int $orderId) {
+            $query = "DELETE FROM OrderDetails
+                      WHERE OrderId = ?";
+            $this->executeQuery($query, [$orderId]);
+        }
+
+        public function addLogOrderStatus(string $status, int $orderId) {
+            $query = "INSERT INTO LogOrderStatus(OrderStatus, OrderId)
+                      VALUES(?, ?)";
+            $this->executeQuery($query, [$status, $orderId]);
+        }
+
+        public function addPayment(int $orderId, int $methodId) {
+            $query = "INSERT INTO Payments(OrderId, MethodId)
+                      VALUES(?, ?)";
+            $this->executeQuery($query, [$orderId, $methodId]);
         }
 
         /***************************************************************************************************************

@@ -1,17 +1,16 @@
-
+<?php /** @var $templateParams */ ?>
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.html"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li>Carrello</li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li><li><a href="cart.php">Carrello</a></li>
     </ul>
 </div>
 <section>
     <header><h2>Pagamento Ordine</h2></header>
-    <div>
+    <?php if (!isset($templateParams["msg"])): ?>
         <div>
-            <article>
-                <header></header>
-                <form id="addressForm" method="post" action="#">
+            <div>
+                <form id="addressForm" method="POST" action="./engines/process-payment.php">
                     <h3>Indirizzo di spedizione</h3>
                     <div>
                         <ul>
@@ -26,16 +25,36 @@
                     <h3>Metodo di Pagamento</h3>
                     <div>
                         <ul>
-                        <li><input type="radio" name="paymethod" id="paypal" value="paypal" required><label for="paypal">PayPal</label></li>
-                        <li><input type="radio" name="paymethod" id="card" value="card" required><label for="card">Carta</label></li>
-                    </ul>
+                            <li>
+                                <input type="radio" name="paymethod" id="cash" value="-1" required />
+                                <label for="cash">Contanti</label>
+                            </li>
+                            <?php foreach($templateParams["paymentMethods"] as $method):
+                                $methodName = $method['Name'] . (!empty($method['Number'])
+                                        ? " nr. " . $method['Number']
+                                        : " - " . $method['Mail']);
+                                $methodId = $method['MethodId'];
+                            ?>
+                                <li>
+                                    <input type="radio" name="paymethod" id="<?php echo $methodName;?>" value="<?php echo $methodId;?>" />
+                                    <label for="<?php echo $methodName;?>"><?php echo $methodName;?></label>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
                     </div>
                 </form>
-            </article>
+            </div>
+            <div>
+                <p>Totale:</p><p><?php echo formatPrice($templateParams["totalAmount"]); ?></p>
+            </div>
+            <div>
+                <input type="submit" form="addressForm" value="ACQUISTA ORA"/>
+            </div>
         </div>
+    <?php else: ?>
         <div>
-            <p>Totale:</p><p>94,89€</p>
+            <h3><?php echo $templateParams["msg"]; ?>.</h3>
+            <p>Vai nel <a href="cart.php">Carrello</a> o torna nella <a href="index.php">Home</a>.</p>
         </div>
-        <div><input type="submit" form="addressForm" value="ACQUISTA ORA"></input></div>
-    </div>
+    <?php endif; ?>
 </section>

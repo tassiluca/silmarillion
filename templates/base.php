@@ -34,7 +34,6 @@
                 endforeach;
             endif;
         ?>
-        
         <title>Silmarillion</title>
     </head>
     <body>
@@ -63,8 +62,9 @@
                         <button type="button">
                             <img src="./img/commons/menu-cart.svg" alt="Carrello"/>
                             <span id="cart_badge" <?php 
-                            if(isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId']))<=0){
-                                echo 'class="hidden"';} ?>>
+                            if (isUserLoggedIn() && count($dbh->getUserCart($_SESSION['userId'])) <= 0) {
+                                echo 'class="hidden"';
+                            } ?>>
                             </span>
                         </button>
                     </li>       
@@ -129,7 +129,7 @@
                             </li>
                             <li>
                                 <p>Non sei registrato?</p>
-                                <a href="regisration.php">CREA IL TUO ACCOUNT</a>
+                                <a href="registration.php">CREA IL TUO ACCOUNT</a>
                             </li>
                         </ul>
                     </form>
@@ -159,8 +159,9 @@
             </div><div>
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <li>Account utente</li>
-                    <li>Account venditore</li>
+                    <!-- TODO @NalNemesi: modify pages name -->
+                    <li><a href="user-area.php">Account utente</a></li>
+                    <li><a href="seller-area.php">Account venditore</a></li>
                 </ul>
                 <h4>CONDIZIONI</h4>
                 <ul>
@@ -172,7 +173,7 @@
                 <ul>
                     <li>Via del Campus 5814</li>
                     <li><a href="mailto:info@silmarillion.it">info@silmarillion.it</a></li>
-                    <li> <a href="tel:+390587932451"> 05 879 32 451</a></li>
+                    <li><a href="tel:+390587932451"> 05 879 32 451</a></li>
                 </ul>
             </div>
         </footer>

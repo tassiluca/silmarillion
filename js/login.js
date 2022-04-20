@@ -39,7 +39,7 @@ $(document).ready(function(){
             sellerUsr: $("#sellerUsr").val(),
             sellerPwd: hex_sha512($("#sellerPwd").val())
         };
-        /* TODO: modify the target page*/
+        /* TODO @NalNemesi: modify the target page*/
         loginAttempt($(this), formData, 'seller-area.php');
         event.preventDefault();
     });
