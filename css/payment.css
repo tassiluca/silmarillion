@@ -75,3 +75,22 @@ main > section > div > div:last-of-type > input[type="submit"] {
     margin: 36px 0 40px 0;
     box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
 }
+
+div#inputError {
+    padding: 5px 15px;
+    text-align: left;
+    border-radius: 5px;
+    background-color: #F8D7DA;
+    color: #721C24;
+    border: 2px solid red;
+}
+
+div#inputError > p {
+    display: inline;
+}
+
+div#inputError::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}

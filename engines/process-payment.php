@@ -69,7 +69,7 @@
     if (isset($_POST['destAddress'], $_POST['cap'], $_POST['city'], $_POST['prov'], $_POST['paymethod'])) {
         list($res, $msg) = validate();
         if (!$res) {
-            echo $msg;
+            header("location:../payment.php?inputError=Errore inserimento. Ricontrolla i campi! (" . $msg .")");
             exit(1);
         }
         insertOrder();
