@@ -803,6 +803,11 @@
             return !$this->executeQuery($query,array($usrId, $idProd))-> errno;
         }
 
+         /**
+         * Clear customer's cart, delete all products in cart
+         * @param int $usrId unique id of consumer user
+         * @return boolean false if action failed, true if all done
+         */
         public function clearCustomerCart($usrId) {
             $query = "DELETE FROM `Carts` WHERE `UserId` = ?";
             return !$this->executeQuery($query,array($usrId))->errno;
