@@ -96,5 +96,5 @@ function refreshCartBadge(currentCount){
 }
 
 function formatPrice(price) {
-    return price.replace(".", ",");
+    return price.toString().replace(".", ",");
 }
