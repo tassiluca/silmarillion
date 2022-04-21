@@ -94,3 +94,7 @@ function refreshCartBadge(currentCount){
         $('#cart_badge').show();
     }
 }
+
+function formatPrice(price) {
+    return price.replace(".", ",");
+}
