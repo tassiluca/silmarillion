@@ -11,6 +11,7 @@
         <div>
             <!-- insert foreach product in cart an article-->
             <?php
+                $isSomeProdNotAvialable = false;
                 if(isset($templateParams["cart"]) && count($templateParams["cart"]) > 0){
                     foreach($templateParams["cart"] as $prod):
             ?>
@@ -18,6 +19,7 @@
                     $av = $dbh -> getAvaiableCopiesOfProd($prod['ProductId']);
                     if($prod['Quantity'] > $av){
                         echo 'class="notAvaialable" ';
+                        $isSomeProdNotAvialable = true;
                     }
                     ?>id="<?php echo $prod['ProductId']?>">
                 <div><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg']?>" alt="copertina fumetto"></div>
@@ -51,7 +53,8 @@
             <!-- end of article list-->
         </div>
         <?php 
-            if(isset($prod) && $prod['Quantity'] > $av){
+
+            if($isSomeProdNotAvialable){
                 echo '<p id="cartInfoBanner">Alcuni prodotti non sono più disponibili, verranno esclusi dall`ordine </p>';
             }
         ?>
