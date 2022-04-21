@@ -31,7 +31,7 @@ $funkoBindParam = array();
 filters = lang, author, price, availability, publisher,category*/
     require_once '../bootstrap.php';
     
-    if(isset($_POST)){  //TODO: make some chek of what server receive in post method
+    if(isset($_POST)){
         $availabFilter = ALL_AVAILABILITY;
         $priceFiltersSelected = null; 
         $keys = array_keys($_POST);
