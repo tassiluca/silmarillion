@@ -1,8 +1,8 @@
 const wishImageSelected = "./img/products/favourite.svg";
 const wishImageUnselect = "./img/products/un-favourite.svg";
-
+/*
 const wishList = 'favs';
-const cartList = 'cart';
+const cartList = 'cart';*/
 
 $(document).ready(function () {
 
@@ -95,26 +95,6 @@ function handleWishlistAction(clickedBtn,urlLink){
 //-----------------------WISHLIST--------------------------//
 
 //--------------------------CART--------------------------//
-
-function getCartInfoCounter(){
-    $.get('./engines/process-request.php?action=getInfo', function (data) {
-        //console.log("Update cart badge");
-        let jsonData = JSON.parse(data);
-        let isLogged = jsonData["isLogged"];
-        let actualcartCount = jsonData["cartCount"];
-        if(isLogged){
-            refreshCartBadge(actualcartCount);
-        }
-        else{
-            refreshCartBadge(getLenCookie(cartList));
-            if(isCartPage()){
-                $("main > section > div > div:last-child() > a").addClass("disabled");
-                
-            }
-        }
-        refreshCartNavbar();
-    });
-}
 
 function handleCartAction(clickedBtn,urlLink){
     let prodId = parseInt(getUrlParameter("id",urlLink));
@@ -209,16 +189,6 @@ function handleRemoveCartAction(clickedBtn,urlLink){
             checkIfEmptyRefreshCart(actualcartCount);
         }
     });
-}
-
-function refreshCartBadge(currentCount){
-    if(currentCount <= 0){
-        $('#cart_badge').hide();
-    }
-    else{
-        $('#cart_badge').text(currentCount);
-        $('#cart_badge').show();
-    }
 }
 
 //------------------------ALERT---------------------------//

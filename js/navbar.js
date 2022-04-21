@@ -29,7 +29,8 @@ $(document).ready(function(){
         //$("main").css("opacity", "1.0");
     });
 
-    refreshCartNavbar();
+    //refreshCartNavbar();
+    getCartInfoCounter();
 
 });
 
@@ -69,8 +70,9 @@ function refreshCartNavbar(){
     $("#navCart > ul > p").remove();
     $("#navCart > ul > li").remove();
 
-    $.post("./engines/process-cart.php?request=getCart", function (data) {
+    $.post("engines/process-cart.php?request=getCart", function (data) {
         //console.log(data);
+
         cart = JSON.parse(data);
 
         if(cart.length > 0){
@@ -96,8 +98,7 @@ function refreshCartNavbar(){
         }
         
         $("#navCart > ul").append(htmlNavBarCart);
-    });
-
-   
     
+    });
+ 
 }

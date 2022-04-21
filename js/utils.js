@@ -1,3 +1,6 @@
+const wishList = 'favs';
+const cartList = 'cart';
+
 function getUrlParameter(sParam,url) {
 
     var sPageURL = window.location.search.substring(1);
@@ -43,10 +46,51 @@ function getCookie(cname) {
   }
 
 function getLenCookie(cookieName){
-  let cartLen = JSON.parse((getCookie(cookieName)));
-  return cartLen.length;
-  }
+    var cookieString = getCookie(cookieName);
+    let cartLen = 0;
 
-  function isCartPage(){
+    if(cookieString !== "") {
+        cartLen = JSON.parse((getCookie(cookieName))).length;
+
+    }
+
+    return cartLen;
+}
+
+function isCartPage(){
     return window.location.href === location.origin+"/cart.php";
+}
+
+//----------------CART------------------//
+
+function getCartInfoCounter(){
+  $.get('./engines/process-request.php?action=getInfo', function (data) {
+    //console.log("Update cart badge");
+    let jsonData = JSON.parse(data);
+    let isLogged = jsonData["isLogged"];
+    let actualcartCount = jsonData["cartCount"];
+    if(isLogged){
+        refreshCartBadge(actualcartCount);
+    }
+    else{
+
+        refreshCartBadge(getLenCookie(cartList));
+
+        if(isCartPage()){
+            $("main > section > div > div:last-child() > a").addClass("disabled");
+            
+        }
+    }
+    refreshCartNavbar();
+  });
+}
+
+function refreshCartBadge(currentCount){
+    if(currentCount <= 0){
+        $('#cart_badge').hide();
+    }
+    else{
+        $('#cart_badge').text(currentCount);
+        $('#cart_badge').show();
+    }
 }
