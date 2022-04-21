@@ -85,7 +85,7 @@ function refreshCartNavbar(){
                         <div>
                             <p>`+prod['Title']+`</p>
                             <div>
-                                <p>`+price+` €</p>
+                                <p>`+formatPrice(price)+` €</p>
                                 <p>x`+prod["Quantity"]+`</p>
                             </div>
                         </div>
