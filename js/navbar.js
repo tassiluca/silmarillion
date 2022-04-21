@@ -29,7 +29,6 @@ $(document).ready(function(){
         //$("main").css("opacity", "1.0");
     });
 
-    //refreshCartNavbar();
     getCartInfoCounter();
 
 });
@@ -71,11 +70,11 @@ function refreshCartNavbar(){
     $("#navCart > ul > li").remove();
 
     $.post("engines/process-cart.php?request=getCart", function (data) {
-        //console.log(data);
 
-        cart = JSON.parse(data);
+        let cart = JSON.parse(data);
 
         if(cart.length > 0){
+            htmlNavBarCart = "";
             for(let i = cart.length-1; i >= 0 && i > cart.length-amountProds-1;i--){
                 let prod = cart[i];
 
@@ -96,7 +95,7 @@ function refreshCartNavbar(){
         else{
             htmlNavBarCart += "<li>Carrello vuoto</li>";
         }
-        
+
         $("#navCart > ul").append(htmlNavBarCart);
     
     });
