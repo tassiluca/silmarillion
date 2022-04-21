@@ -47,6 +47,11 @@
             <div>
                 <p>Totale:</p><p><?php echo formatPrice($templateParams["totalAmount"]); ?></p>
             </div>
+            <?php if (isset($_GET['inputError'])): ?>
+                <div id="inputError">
+                    <p><?php echo $_GET['inputError']; ?></p>
+                </div>
+            <?php endif; ?>
             <div>
                 <input type="submit" form="addressForm" value="ACQUISTA ORA"/>
             </div>
