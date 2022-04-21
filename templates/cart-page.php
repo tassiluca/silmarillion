@@ -54,7 +54,7 @@
             <!-- end of article list-->
         </div>
         <?php 
-            if($prod['Quantity'] > $av){
+            if(isset($prod) && $prod['Quantity'] > $av){
                 echo '<p id="cartInfoBanner">Alcuni prodotti non sono più disponibili, verranno esclusi dall`ordine </p>';
             }
         ?>
