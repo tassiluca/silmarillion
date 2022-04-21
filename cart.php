@@ -7,7 +7,7 @@
     
     $templateParams["css"] = array("./css/cart.css","./css/cart-payment.css");
     $templateParams["main"] = "./templates/cart-page.php";
-    $templateParams["js"] = array("./js/utils.js","./js/product-actions.js","./js/cart.js");
+    $templateParams["js"] = array("./js/product-actions.js","./js/cart.js");
 
     $templateParams["cart"] =  getCart();
     

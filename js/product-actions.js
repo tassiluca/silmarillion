@@ -13,7 +13,7 @@ $(document).ready(function () {
     if(getCookie(cartList) === ""){
         let emptyCart = new Map();
         setCookie(cartList, JSON.stringify(Array.from(emptyCart.entries())), 30);
-        console.log(getCookie(cartList));
+        //console.log(getCookie(cartList));
     }
 
     addEventListenerButton('.wishButton',handleWishlistAction);//add-remove prod from wishlist
