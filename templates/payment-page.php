@@ -27,7 +27,7 @@
                         <ul>
                             <li>
                                 <input type="radio" name="paymethod" id="cash" value="-1" required />
-                                <label for="cash">Contanti</label>
+                                <label for="cash">Contanti, alla consegna &#128176;</label>
                             </li>
                             <?php foreach($templateParams["paymentMethods"] as $method):
                                 $methodName = $method['Name'] . (!empty($method['Number'])
