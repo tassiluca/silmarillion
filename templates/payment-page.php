@@ -14,10 +14,22 @@
                     <h3>Indirizzo di spedizione</h3>
                     <div>
                         <ul>
-                            <li><label for="destAddress">Indirizzo</label><input type="text" name="destAddress" id="destAddress" alt="Indirizzo" value="Via Cesare Pavese, 50"required readonly></li>
-                            <li><label for="cap">CAP</label><input type="text" name="cap" id="cap" alt="CAP" value="47522" required readonly></li>
-                            <li><label for="city">Città</label><input type="text" name="city" id="city" alt="Città"  value="Cesena" required readonly></li>
-                            <li><label for="prov">Provincia</label><input type="text" name="prov" id="prov" alt="Provincia" value="FC" required readonly></li>
+                            <li>
+                                <label for="destAddress">Indirizzo</label>
+                                <input type="text" name="destAddress" id="destAddress" alt="Indirizzo" value="Via Cesare Pavese, 50"required readonly>
+                            </li>
+                            <li>
+                                <label for="cap">CAP</label>
+                                <input type="text" name="cap" id="cap" alt="CAP" value="47522" pattern="\d{1,5}" maxlength="5" minlength="5" title="Deve contenere un CAP valido" required readonly>
+                            </li>
+                            <li>
+                                <label for="city">Città</label>
+                                <input type="text" name="city" id="city" alt="Città" value="Cesena" required readonly>
+                            </li>
+                            <li>
+                                <label for="prov">Provincia</label>
+                                <input type="text" name="prov" id="prov" alt="Provincia" value="FC" pattern="^[A-Z]*$" maxlength="2" minlength="2" title="Deve contenere una sigla di provincia valido (in maiuscolo)" required readonly>
+                            </li>
                         </ul>
                         <a href="#" onclick="editAddress()" onkeypress="editAddress()">Modifica indirizzo</a>
                         <a href="#" onclick="editAddress()" onkeypress="editAddress()">Conferma</a>
