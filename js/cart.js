@@ -16,7 +16,7 @@ function refreshTotalPrice(){
                 totalPrice += (price*prod['Quantity']);
             }
         }
-        $("#totalPrice").text(totalPrice+" €");
+        $("#totalPrice").text(formatPrice(totalPrice.toString())+" €");
     });
 }
 
