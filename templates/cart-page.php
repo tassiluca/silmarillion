@@ -54,7 +54,7 @@
             <!-- end of article list-->
         </div>
         <?php 
-            if($prod['Quantity'] > $av){
+            if(isset($prod) && $prod['Quantity'] > $av){
                 echo '<p id="cartInfoBanner">Alcuni prodotti non sono più disponibili, verranno esclusi dall`ordine </p>';
             }
         ?>
@@ -63,6 +63,6 @@
         </div>
         <div><a <?php 
                     if(isset($templateParams["cart"]) && count($templateParams["cart"]) <= 0){echo "class=disabled";}
-                ?> href="payment.html">PROCEDI ALL'ORDINE</a></div>
+                ?> href="payment.php">PROCEDI ALL'ORDINE</a></div>
     </div>
 </section>
