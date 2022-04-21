@@ -29,6 +29,7 @@ function loginAttempt(form, formData, target) {
             window.location.href = target;
         }
     }).fail(function(data) { // error connecting to the server
+        //console.log(data.responseText);
         $(form).find("ul > li:nth-of-type(2)").append (
             '<div class="error">Errore connessione al server! Riprova...</div>'
         );

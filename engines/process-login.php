@@ -44,6 +44,7 @@
                 $password = hash('sha512', $password . $userData['Salt']);
                 if ($userData['Password'] == $password) {
                     registerLoggedUser($userData);
+                    moveCookieDataToDb();
                 } else {
                     $dbh->registerNewLoginAttempt($userData['UserId'], time());
                     $result["error"] = ERROR_MSG;
@@ -68,5 +69,35 @@
         $userData = $dbh->getSellerData($_POST['sellerUsr']);
         echo json_encode(login($userData, $_POST['sellerPwd']));
     }
+   
+    /**
+     * Move favorite and in-cart products from cookie to customer profile in database
+     * 
+     */
+    function moveCookieDataToDb(){
+        global $dbh;
+        if(isCustomerLoggedIn()) {
+            $cookieCart = isset($_COOKIE["cart"]) ? json_decode(stripslashes($_COOKIE["cart"]), true) : [];
+            $cookieFav = isset($_COOKIE["favs"]) ? json_decode(stripslashes($_COOKIE['favs']), true) : [];
+            $customerId = $_SESSION["userId"];
+            
 
+            foreach($cookieFav as $prodId) {
+                if(!isProdFavourite($dbh,$prodId)) {
+                    $dbh->addProductToWish($customerId,$prodId);
+                    //array_splice($cookieFav,  array_search( $prodId, $cookieFav));
+                }
+            }
+            /*
+            TODO: by SETTING COOKIE IN PHP you can't set sameSite field of cookie
+            $emptyFavs = str_replace(' ', '', json_encode($cookieFav));
+            //TODO: I set cookie but there no way to set sameSite=Lax field of cookie
+            setcookie("favs",$emptyFavs,time()+ 259200000,"/","",false,false);
+            */
+            
+            foreach($cookieCart as $prod) {
+                $dbh->insertProdCart($customerId, $prod[0], $prod[1]);
+            }
+        }
+    }
 ?>
