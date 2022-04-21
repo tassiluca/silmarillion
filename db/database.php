@@ -756,18 +756,43 @@
             }
         }
 
+        /**
+         * Insert an amount of product in cusotmer cart
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         * @param int $quantity amount of prodcut you want add in cart
+         * @return boolean false if action failed, true if all done
+         */
         public function insertProdCart($usrId,$idprod,$quantity){
             return $this->updateProdQuantityCart($usrId,$idprod,$quantity);
         }
 
+        /**
+         * Increment quantity of prod in cusotmer cart
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         * @return boolean false if action failed, true if all done
+         */
         public function incQuantityProdCart($usrId,$idprod){
             return $this->updateProdQuantityCart($usrId,$idprod,1);
         }
 
+        /**
+         * Reduce amount of product in cusotmer cart
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         * @return boolean false if action failed, true if all done
+         */
         public function decQuantityProdCart($usrId,$idprod){
             return $this->updateProdQuantityCart($usrId,$idprod,-1);
         }
 
+        /**
+         * Remove product from customer's cart
+         * @param int $usrId unique id of consumer user
+         * @param int $idprod unique id of product
+         * @return boolean false if action failed, true if all done
+         */
         public function deleteProductFromCart($idCustomer,$idProd){
             $query = 'DELETE FROM `Carts` WHERE `UserId`= ? and `ProductId`=?';
             return !$this->executeQuery($query,array($idCustomer, $idProd))-> errno;
