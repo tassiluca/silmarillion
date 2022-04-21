@@ -21,7 +21,7 @@ const comicCategory = 'Comics';
 
 $priceInterval = ["cheap"=> ["from"=>0,"to"=>99.99],
 "medium"=> ["from"=>100,"to"=>199.99],
-"expensive"=>["from"=>99.99]];
+"expensive"=>["from"=>200]];
 const defaultMaxPrice = 99999.99;
 const defaultMinPrice = 0;
 $comicBindParam = array();
