@@ -23,5 +23,6 @@ function refreshTotalPrice(){
 function checkIfEmptyRefreshCart(actualcartCount){
     if(actualcartCount <= 0){
         $("section > div > div:first-child()").append("<p>Carrello vuoto</p>");
+        $("main > section > div > div > a").addClass("disabled");
     }
 }
