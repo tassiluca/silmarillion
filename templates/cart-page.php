@@ -11,7 +11,6 @@
         <div>
             <!-- insert foreach product in cart an article-->
             <?php
-                $totalOrderPrice = 0.0;
                 if(isset($templateParams["cart"]) && count($templateParams["cart"]) > 0){
                     foreach($templateParams["cart"] as $prod):
             ?>
@@ -26,12 +25,10 @@
                     <header><h3><?php echo $prod['Title']?></h3></header>
                     <p><?php 
                             if(isset($prod['DiscountedPrice'])){
-                                echo $prod['DiscountedPrice'];
-                                $totalOrderPrice += $prod['DiscountedPrice']*$prod['Quantity'];
+                                echo formatPrice($prod['DiscountedPrice']);
                             }
                             else{
-                                echo $prod['Price'];
-                                $totalOrderPrice += $prod['Price']*$prod['Quantity'];
+                                echo formatPrice($prod['Price']);
                             }?> €</p>
                 </div>
                 <div>

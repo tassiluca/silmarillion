@@ -51,10 +51,10 @@
                     <ul>
                         <li>
                             <?php if(isset($templateParams["product"]["DiscountedPrice"])):?>
-                                <span><?php echo $templateParams["product"]["Price"]?>€</span>
-                                <?php echo $templateParams["product"]["DiscountedPrice"]?>€
+                                <span><?php echo formatPrice($templateParams["product"]["Price"])?>€</span>
+                                <?php echo formatPrice($templateParams["product"]["DiscountedPrice"])?>€
                                 <?php else:?>
-                                    <?php echo $templateParams["product"]["Price"]?>€
+                                    <?php echo formatPrice($templateParams["product"]["Price"])?>€
                                 <?php endif?>
                             </li>
                         <li><a <?php if($templateParams["copies"] <=0){ echo 'class="disabled"';}?>href="./engines/process-request.php?action=addtoCart&id=<?php echo $templateParams["product"]["ProductId"]?>" class="cartButton"><span>Aggiungi al carrello</span><img src="./img/products/add-to-cart.svg" alt="Aggiungi al carrello"></a></li>

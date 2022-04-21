@@ -65,7 +65,13 @@
                                 <div>
                                     <a <?php if($countC <= 0){ echo 'class="disabled"';}?>href="./engines/process-request.php?action=addtoCart&id=<?php echo $product['ProductId']?>" class="cartButton"><img src="./img/products/add.svg" alt="aggiungi al carrello"/></a>
                                 </div>
-                                <div><p><?php if(isset($product["DiscountedPrice"])){echo $product["DiscountedPrice"];}else{ echo $product["Price"];}?>€</p></div>
+                                <div><p><?php 
+                                    if(isset($product["DiscountedPrice"])) {
+                                        echo formatPrice($product['DiscountedPrice']);
+                                    }
+                                    else { 
+                                        echo formatPrice($product["Price"]);
+                                    }?>€</p></div>
                             </footer>
                         </article>
         <?php endforeach;?>
