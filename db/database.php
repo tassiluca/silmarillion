@@ -756,6 +756,10 @@
             }
         }
 
+        public function insertProdCart($usrId,$idprod,$quantity){
+            return $this->updateProdQuantityCart($usrId,$idprod,$quantity);
+        }
+
         public function incQuantityProdCart($usrId,$idprod){
             return $this->updateProdQuantityCart($usrId,$idprod,1);
         }
