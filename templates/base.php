@@ -21,6 +21,7 @@
         <script src="js/navbar.js"></script>
         <script src="js/login-form.js"></script>
         <script src="js/sha512.js"></script>
+        <script src="js/utils.js"></script>
         <?php
             /**
              * Insert here all the javascript files needed by the single page.
