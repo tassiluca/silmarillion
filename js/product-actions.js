@@ -187,6 +187,10 @@ function handleRemoveCartAction(clickedBtn,urlLink){
             refreshCartNavbar();
             refreshTotalPrice();
             checkIfEmptyRefreshCart(actualcartCount);
+            console.log($(".notAvaialable"));
+            if($(".notAvaialable").length <= 0){
+                $("#cartInfoBanner").remove();
+            }
         }
     });
 }
