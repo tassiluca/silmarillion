@@ -707,7 +707,12 @@
             return $resultCount > 0;
         }
 
-        // TODO to document
+        /**
+         * Remove product from customer's wishlist
+         * @param int $usrId the user id
+         * @param int $productId the product id
+         * @return bool true if an alert has been removed, false otherwise
+         */
         public function removeAlertOnProd($usrId,$idprod){
             $query = "DELETE FROM `Alerts` WHERE `UserId` = ? and `ProductId` = ?";
             return !$this -> executeQuery($query,[$usrId,$idprod])->errno;
@@ -793,9 +798,14 @@
          * @param int $idprod unique id of product
          * @return boolean false if action failed, true if all done
          */
-        public function deleteProductFromCart($idCustomer,$idProd){
+        public function deleteProductFromCart($usrId,$idProd){
             $query = 'DELETE FROM `Carts` WHERE `UserId`= ? and `ProductId`=?';
-            return !$this->executeQuery($query,array($idCustomer, $idProd))-> errno;
+            return !$this->executeQuery($query,array($usrId, $idProd))-> errno;
+        }
+
+        public function clearCustomerCart($usrId) {
+            $query = "DELETE FROM `Carts` WHERE `UserId` = ?";
+            return !$this->executeQuery($query,array($usrId))->errno;
         }
 
         /**
