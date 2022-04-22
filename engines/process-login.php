@@ -72,7 +72,8 @@
    
     /**
      * Move favorite and in-cart products from cookie to customer profile in database
-     * 
+     * The insertion of prods in cart/wishlist from cookie to db could return an error from db
+     * but is not handled here actually, maybe in the next version
      */
     function moveCookieDataToDb(){
         global $dbh;
@@ -81,19 +82,11 @@
             $cookieFav = isset($_COOKIE["favs"]) ? json_decode(stripslashes($_COOKIE['favs']), true) : [];
             $customerId = $_SESSION["userId"];
             
-
             foreach($cookieFav as $prodId) {
                 if(!isProdFavourite($dbh,$prodId)) {
                     $dbh->addProductToWish($customerId,$prodId);
-                    //array_splice($cookieFav,  array_search( $prodId, $cookieFav));
                 }
             }
-            /*
-            TODO: by SETTING COOKIE IN PHP you can't set sameSite field of cookie
-            $emptyFavs = str_replace(' ', '', json_encode($cookieFav));
-            //TODO: I set cookie but there no way to set sameSite=Lax field of cookie
-            setcookie("favs",$emptyFavs,time()+ 259200000,"/","",false,false);
-            */
             
             foreach($cookieCart as $prod) {
                 $dbh->insertProdCart($customerId, $prod[0], $prod[1]);
