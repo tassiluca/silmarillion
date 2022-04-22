@@ -30,11 +30,11 @@ function setCookie(cname, cvalue, exdays) {
 } 
 
 function initUserCookies(){
-    if(getCookie(wishList) === ""){
+    if(getCookie(wishList) !== ""){
         let emptyWishlist = [];
         setCookie(wishList, JSON.stringify(emptyWishlist), 30);
     }
-    if(getCookie(cartList) === ""){
+    if(getCookie(cartList) !== ""){
         let emptyCart = new Map();
         setCookie(cartList, JSON.stringify(Array.from(emptyCart.entries())), 30);
     }
