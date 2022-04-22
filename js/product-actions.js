@@ -7,7 +7,14 @@ const cartList = 'cart';*/
 $(document).ready(function () {
 
     //if not already created -> create empty struct cookie cart and favs
-    initUserCookies();
+    if(getCookie(wishList) === ""){
+            let emptyWishlist = [];
+            setCookie(wishList, JSON.stringify(emptyWishlist), 30);
+    }
+    if(getCookie(cartList) === ""){
+        let emptyCart = new Map();
+        setCookie(cartList, JSON.stringify(Array.from(emptyCart.entries())), 30);
+    }
 
     addEventListenerButton('.wishButton',handleWishlistAction);//add-remove prod from wishlist
     addEventListenerButton('.removeCart',handleRemoveCartAction);//remove prod from cart
