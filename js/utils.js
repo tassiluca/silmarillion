@@ -29,6 +29,17 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;SameSite=Lax";
 } 
 
+function initUserCookies(){
+    if(getCookie(wishList) === ""){
+        let emptyWishlist = [];
+        setCookie(wishList, JSON.stringify(emptyWishlist), 30);
+    }
+    if(getCookie(cartList) === ""){
+        let emptyCart = new Map();
+        setCookie(cartList, JSON.stringify(Array.from(emptyCart.entries())), 30);
+    }
+}
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

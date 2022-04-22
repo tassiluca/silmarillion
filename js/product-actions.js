@@ -6,15 +6,8 @@ const cartList = 'cart';*/
 
 $(document).ready(function () {
 
-    if(getCookie(wishList) === ""){
-        let emptyWishlist = [];
-        setCookie(wishList, JSON.stringify(emptyWishlist), 30);
-    }
-    if(getCookie(cartList) === ""){
-        let emptyCart = new Map();
-        setCookie(cartList, JSON.stringify(Array.from(emptyCart.entries())), 30);
-        //console.log(getCookie(cartList));
-    }
+    //if not already created -> create empty struct cookie cart and favs
+    initUserCookies();
 
     addEventListenerButton('.wishButton',handleWishlistAction);//add-remove prod from wishlist
     addEventListenerButton('.removeCart',handleRemoveCartAction);//remove prod from cart
