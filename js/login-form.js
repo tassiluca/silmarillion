@@ -25,6 +25,8 @@ function loginAttempt(form, formData, target) {
                 '<div class="message error">' + data.error + '</div>'
             );
         } else {
+            //clear user cookies, cart and favs that where transfered to db is user logged is customer
+            initUserCookies();
             // send the user to target
             window.location.href = target;
         }
