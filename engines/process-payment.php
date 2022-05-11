@@ -6,6 +6,9 @@
 
     function validate(): array
     {
+        if (!validatePaymentMethod()) {
+            return [false, "Il metodo di pagamento non risulta appartenere all'utente loggato"];
+        }
         $rules = array (
             'address'       => v::stringType()->notEmpty(),
             'cap'           => v::numericVal()->notEmpty(),
@@ -18,8 +21,18 @@
             'province'  => [$_POST['prov']],
             'paymethod' => [$_POST['paymethod']]
         );
-        // TODO validate paymethod: the methodId must be of the user
         return validateInput($rules, $dataDic);
+    }
+
+    function validatePaymentMethod(): bool
+    {
+        global $dbh;
+        foreach ($dbh->getPaymentMethodsOfUser($_SESSION['userId']) as $usrPayMethod) {
+            if ($usrPayMethod["MethodId"] == $_POST["paymethod"]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function getAvailableProds(): array
@@ -67,7 +80,7 @@
         }
         header("location:../payment.php?result=" . ($res ? "error" : "success"));
     }
-
+    
     if (isset($_POST['destAddress'], $_POST['cap'], $_POST['city'], $_POST['prov'], $_POST['paymethod'])) {
         list($res, $msg) = validate();
         if (!$res) {
