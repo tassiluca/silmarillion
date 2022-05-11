@@ -107,7 +107,7 @@
         $rules = array (
             'compulsory'        => v::stringType()->notEmpty(),
             'date'              => v::date()->notEmpty(),
-            'isbn'              => v::stringType()->length(13, 13),
+            'isbn'              => v::numericVal()->length(13, 13),
             'price'             => v::numericVal()->not(v::negative())->notEmpty(),
             'discountedPrice'   => v::not(v::numericVal()->negative()),
             'quantity'          => v::intVal()->not(v::negative())->notEmpty()
