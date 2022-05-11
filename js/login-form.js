@@ -5,7 +5,7 @@
  * @param {string} target the target page to which send the user if login success
  */
 function loginAttempt(form, formData, target) {
-    // Clears messages results of previous attempts
+    // Clear messages results of previous attempts
     $(".hasError").removeClass("hasError");
     $(".message").remove();
 
@@ -16,7 +16,7 @@ function loginAttempt(form, formData, target) {
         dataType: "json",
         encode: true
     }).done(function (data) {
-        if (data.error) { // if has been occured some error
+        if (data.error) { // if has been occurred some errors
             // add class hasError to both username and password inputs
             $(form).find("ul > li:nth-of-type(1)").addClass("hasError");
             $(form).find("ul > li:nth-of-type(2)").addClass("hasError");
@@ -25,7 +25,7 @@ function loginAttempt(form, formData, target) {
                 '<div class="message error">' + data.error + '</div>'
             );
         } else {
-            //clear user cookies, cart and favs that where transfered to db is user logged is customer
+            //clear user cookies, cart and favs that where transferred to db is user logged is customer
             initUserCookies();
             // send the user to target
             window.location.href = target;

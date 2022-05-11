@@ -69,7 +69,7 @@
             }
             if ($res) { // if some errors occurred, delete the order
                 $dbh->deleteOrder($orderId);
-            } else { // otherwise the process continues
+            } else { // otherwise, the process continues
                 if ($_POST['paymethod'] !== -1) {
                     $dbh->addPayment($orderId, $_POST['paymethod']);
                 }
@@ -80,7 +80,7 @@
         }
         header("location:../payment.php?result=" . ($res ? "error" : "success"));
     }
-    
+
     if (isset($_POST['destAddress'], $_POST['cap'], $_POST['city'], $_POST['prov'], $_POST['paymethod'])) {
         list($res, $msg) = validate();
         if (!$res) {

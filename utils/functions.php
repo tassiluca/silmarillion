@@ -4,7 +4,6 @@
     global $dbh;
 
     const MYSQLI_CODE_DUPLICATE_KEY = 1062;
-    const MAX_LOGIN_ATTEMPTS = 5;
     const COOKIE_SOURCE = 0;
     const DB_SOURCE = 1;
 
