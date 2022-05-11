@@ -1,0 +1,90 @@
+/****************************************************************************
+ * Style sheet linked to login page
+ ****************************************************************************/
+
+main {
+    margin-bottom: 50px;
+}
+
+/****************************** Section header ******************************/
+main > section > header > ul > li {
+    width: 50%;
+    padding: 10px 0;
+    text-align: center;
+    color: #0047A0;
+    display: inline-block;
+    border-radius: 10px 10px 0 0;
+}
+
+main > section > header > ul > li > a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #0047A0;
+    font-size: 22px;
+}
+
+main > section > header > ul > li:first-child.active {
+    background-color: #AAF1FF;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > header > ul > li:last-child.active {
+    background-color: #0047A0;
+    box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > header > ul > li:last-child.active > a {
+    color: #AAF1FF;
+}
+
+/****************************** User login form ******************************/
+main > section > form:first-of-type > ul {
+    background-color: #AAF1FF;
+}
+
+main > section > form:first-of-type > ul > li > input:not([type="submit"]) {
+    background-color: #0047A0;
+    color: #AAF1FF;
+}
+
+main > section > form:first-of-type > ul > li > input:not([type="submit"])::placeholder {
+    color: #AAF1FF;
+}
+
+/***************************** Seller login form *****************************/
+main > section > form:last-of-type > ul {
+    background-color: #0047A0;
+}
+
+main > section > form:last-of-type > ul > li > input:not([type="submit"]) {
+    background-color: #AAF1FF;
+    color: #0047A0;
+}
+
+main > section > form:last-of-type > ul > li > input:not([type="submit"])::placeholder {
+    color: #0047A0;
+}
+
+main > section > form:last-of-type > ul > li > p,
+main > section > form:last-of-type > ul > li > a {
+    color: #AAF1FF;
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 15% 50px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18% 50px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25% 50px;
+    }
+}

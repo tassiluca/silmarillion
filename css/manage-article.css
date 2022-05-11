@@ -1,0 +1,230 @@
+/****************************************************************************
+ * Style sheet linked to manage-articles page
+ ****************************************************************************/
+main > section {
+    margin: 0 4% 50px;
+}
+
+main > section > header {
+    text-align: center;
+    margin: 0 0 30px 0;
+}
+
+main > section > header > h2 {
+    margin: 10px 0;
+}
+
+/************************** Buttons for insert products **********************/
+main > section > header > div {
+    padding: 10px;
+    margin: 10px 0;
+}
+
+main > section > header > div > a {
+    padding: 10px;
+    text-decoration: none;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    background-color: #0047A0;
+    border-radius: 10px;
+    color: white;
+}
+
+main > section > header > div > a:hover {
+    background-color: #00D5FF;
+    color: black;
+    box-shadow: 6px 6px 6px rgba(196, 196, 196, 0.82);
+}
+
+/******************************** Search bar *********************************/
+main > section > header > input {
+    width: 50%;
+    color: #0047A0;
+    font-weight: bold;
+    font-size: 1em;
+    background-image: url(../img/commons/search.svg);
+    background-repeat: no-repeat;
+    background-position: center left;
+    border-radius: 10px;
+    border: 1px solid #0047A0;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    padding: 10px 20px 10px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+main > section > header > input:focus {
+    width: 100%;
+}
+
+/****************************** Products list ********************************/
+main > section > ul > li {
+    border-radius: 10px;
+    height: 100px;
+    border: 1px solid #0047A0;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main > section > ul > li > div {
+    text-align: center;
+}
+
+main > section > ul > li > div:first-child {
+    width: 25%;
+    height: 100px;
+}
+
+main > section > ul > li > div:nth-child(2) {
+    width: 35%;
+}
+main > section > ul > li > div:last-child {
+    width: 36%;
+    line-height: 50px;
+}
+
+main > section > ul > li > div > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+main > section > ul > li > div > a {
+    border: 1px solid #0047A0;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main > section > ul > li > div > a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+main > section > ul > li > div > a:first-child:hover {
+    background-color: #0047A0;
+}
+
+main > section > ul > li > div > a:nth-child(2):hover {
+    border-color: red;
+    background-color: red;
+}
+
+/******************************** Messages **********************************/
+main > section > form ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.message {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+main > section > form > ul > li > div.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border-color: red;
+}
+
+main > section > form > ul > li > div.message.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > div.message.success {
+    background-color: #D4EDD5;
+    color: #155724;
+    border-color: green;
+}
+
+main > section > form > ul > li > div.message.success::before {
+    content: "\f00c";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+/******************************** Pagination *********************************/
+main > section > footer {
+    text-align: center;
+}
+
+main > section > footer > ul {
+    list-style: none;
+}
+
+main > section > footer > ul > li {
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(196, 196, 196, 0.82);
+    background-color: #0047A0;
+    margin: 0 1%;
+    width: 10%;
+}
+
+main > section > footer > ul > li > a {
+    display: block;
+    padding: 10px 3%;
+    color: white;
+    text-decoration: none;
+}
+
+main > section > footer > ul > li > a:hover {
+    background-color: #00D5FF;
+    font-weight: bold;
+    color: black;
+    box-shadow: 6px 6px 6px rgba(196, 196, 196, 0.82);
+    border-radius: 10px;
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 10% 50px;
+    }
+
+    main > section > ul > li {
+        height: 150px;
+    }
+    
+    main > section > ul > li > div:first-child {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 15% 50px;
+    }
+
+    main > section > ul > li {
+        height: 150px;
+    }
+    
+    main > section > ul > li > div:first-child {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 20% 50px;
+    }
+
+    main > section > ul > li {
+        height: 150px;
+    }
+    
+    main > section > ul > li > div:first-child {
+        height: 150px;
+    }
+}

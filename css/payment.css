@@ -1,0 +1,96 @@
+main > section {
+    color: #0047A0;
+    margin: 0 2%;
+}
+
+main > section > div > div > form > div {
+    background: #CBF6FF;
+    border: 1px solid #0047A0;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    text-align: center;
+    padding: 2% 0;
+}
+main > section > div > div > form > div > a {
+    font-weight: bold;
+    color: #0047A0;
+}
+main > section > div > div > form > div > a:last-child {
+    display: none;
+}
+main > section > div > div > form > div > ul > li{
+    margin: 6px 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main > section > div > div > form > div:last-of-type > ul > li{
+    margin: 6px 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+main > section > div > div > form > div:first-of-type > ul > li > label {
+    width: 20%;
+}
+
+main > section > div > div > form > div:not(:last-of-type) > ul > li > input{
+    width: 60%;
+    border-radius: 10px;
+    height: 37px;
+    background: #E7FBFF;
+    border-style: none;
+    color: #0047A0;
+    font-weight: bold;
+    padding: 0 2%;
+    font-size: 15px;
+}
+
+/*text total price and price*/
+main > section > div > div:nth-of-type(2) > p {
+    font-size: 20pt;
+}
+
+main > section > div > div:nth-of-type(2) > p:first-of-type{
+    font-weight: normal;
+    margin-right: 2%;
+}
+
+main > section > div > div:last-of-type {
+    padding:0 !important;
+}
+
+main > section > div > div:last-of-type > input[type="submit"] {
+    font-size: 15pt;
+    font-weight: bold;
+    background-color: white;
+    color: #0047A0;
+    border-radius: 10px;
+    border: 1px solid #0047A0;
+    padding: 12.5px 10px 13px 10px;
+    margin: 36px 0 40px 0;
+    box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
+}
+
+div#inputError {
+    padding: 5px 15px;
+    text-align: left;
+    border-radius: 5px;
+    background-color: #F8D7DA;
+    color: #721C24;
+    border: 2px solid red;
+}
+
+div#inputError > p {
+    display: inline;
+}
+
+div#inputError::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}

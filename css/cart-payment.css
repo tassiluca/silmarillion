@@ -1,0 +1,43 @@
+main > section > header{
+    text-align: center;
+}
+
+main > section > header > h2 {
+    background-image: url(../img/cart/shopping_cart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 0 33px 0;
+}
+
+/*center al inlineblock*/
+main > section{
+    text-align: center;
+}
+
+main > section > div:last-of-type > a{
+    color: #0047A0;
+}
+
+/*text totla price and price*/
+main > section > div > div:nth-of-type(2) > p {
+    color: #0047A0;
+    font-weight: bold;
+    display: inline-block;
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25%;
+    }
+    main > section > div {
+        background: #AAF1FF;
+        box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
+        border-radius: 20px;
+        padding: 40px 10% 40px 10%;
+        margin: 0 0 100px 0;
+    }
+}

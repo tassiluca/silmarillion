@@ -1,0 +1,633 @@
+/****************************************************************************
+ * Common rules for all website.
+ ****************************************************************************/
+ .hidden{ display: none; }
+
+ body, h1, h2, ul, button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(202, 240, 248, 0.25);
+}
+
+html {
+    font-family: "Futura-pt", Arial, Helvetica, sans-serif;
+}
+
+body > header {
+    background: linear-gradient(to bottom, #00D5FF, #CAF6FF);
+    border-radius: 0 0 20px 20px;
+    height: 150px;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+body > header > h1.hide {
+    text-align: center;
+    height: 88px;
+    background-image: url(../img/commons/mini-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*header > .hide  per gli screen reader*/
+.hide {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*********************** Navbar buttons ***********************/
+body > header > nav > ul {
+    height: 55px;
+}
+
+body > header > nav > ul > li {
+    list-style: none;
+    display: inline-block;
+    width: 17%;
+    text-align: center;
+    margin: 0 4% 0 4%;
+    vertical-align: top;
+}
+
+body > header > nav > ul > li > button {
+    background-color: transparent;
+    border: none;
+    height: 55px;
+    max-width: 75px;
+    padding: 10px 10% 0 10%;
+}
+
+body > header > nav > ul > li > a {
+    display: inline-block;
+    padding: 10px 10% 0 10%;
+}
+
+body > header > nav > ul > li > button.navActive {
+    background-color: #0047A0;
+    border-radius: 10px 10px 0 0;
+}
+
+/********************** Cart counter **************************/
+#cart_badge {
+    border-radius: 100%;
+    background-color: #f60000;
+    text-align: center;
+    z-index: 0; 
+    height: 18px;
+    width: 18px;
+    color: white;
+    font-weight: bold;
+    font-size: 11pt;
+    display: inline-block;
+    position: relative;
+    bottom: 43px;
+    right: -15px;
+}
+
+/*********************** Dropdown links ***********************/
+body > header > nav > div {
+    background-color: #CAF0F8;
+    border-radius: 10px;
+    display: none;
+    position: relative;
+    /* Remove space between menu button and pop-up menu */
+    /* bottom: 4px; */
+    z-index: 1;
+}
+
+body > header > nav > div > ul {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+body > header > nav > div > ul > li {
+    background-color: #0047A0;
+    margin: 2px 0 2px 0;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+body > header > nav > div > ul > li:last-child {
+    border-radius: 0 0 10px 10px;
+    /* see bottom of body > header > nav > div rule */
+    /* margin-bottom: -4px; */
+}
+
+body > header > nav > div > ul > li:first-child {
+    border-radius: 10px 10px 0 0;
+    margin-top: 0;
+}
+
+body > header > nav > div > ul > li > a {
+    color: #CAF0F8;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0 15px 0;
+    display: inline-block;
+}
+
+body > header > nav > div > ul > li > a:hover {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+body > header > nav > div > ul > li#login {
+    margin: 7px 0 7px 0;
+}
+
+/************************** Footer **************************/
+body > footer > h4.hide {
+    background-image: url(../img/commons/footer-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 15px;
+    margin: 0;
+}
+
+body > footer {
+    background: linear-gradient(to top, #00D5FF, #CAF6FF);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+body > footer > div > h4 {
+    margin-bottom: 5px;
+}
+
+body > footer > div {
+    font-size: 11px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body > footer > div:nth-of-type(2) {
+    width: 30%;
+}
+
+body > footer > div:first-of-type,
+body > footer > div:last-of-type {
+    width: 35%;
+}
+
+body > footer > div > ul > li {
+    display: block;
+}
+
+/************************* Breadcrumb **************************/
+main > div > ul {
+    padding: 10px 4%;
+}
+
+main > div > ul li + li::before {
+    content: "\003E";
+    padding: 0 10px;
+    color: #0047A0;
+    font-weight: bold;
+}
+
+main > div > ul > li {
+    display: inline-block;
+    color:#0047A0;
+    vertical-align: middle;
+}
+
+main > div > ul > li > a:hover {
+    font-weight: bold;
+}
+
+/********************** Navigation bar cart ***********************/
+body > header > nav > div#navCart {
+    background-color: #0047A0;
+    text-align: center;
+    padding: 5px 5%;
+}
+
+body > header > nav > div#navCart > a {
+    color: #CBF6FF;
+    font-weight: bold;
+}
+
+body > header > nav > div#navCart > ul {
+    padding: 10px 0 5px 0;
+}
+
+body > header > nav > div#navCart > ul > li {
+    background-color: #CBF6FF;
+    height: 80px;
+    border-radius: 20px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body > header > nav > div#navCart > ul > li > img {
+    display: inline-block;
+    height: 60px;
+}
+
+body > header > nav > div#navCart > ul > li > div {
+    display: inline-block;
+    margin: 0 0 0 5%;
+}
+
+body > header > nav > div#navCart > ul > li > div > div {
+    padding: 10px 0 0 0;
+}
+
+body > header > nav > div#navCart > ul > li > div > p,
+body > header > nav > div#navCart > ul > li > div > div > p:last-of-type {
+    margin: 0;
+    font-size: 12pt;
+    color: #0047A0;
+}
+
+body > header > nav > div#navCart > ul > li > div > div > p{
+    display: inline-block;
+    color: #0047A0;
+    font-weight: bold;
+    margin: 0 10px 0;
+}
+
+/* =============================================================================
+ * ====== TODO REFACTOR WITH RULES OF LOGIN AND REGISTRATION STYLE SHEETS ====== 
+ * =============================================================================
+ */
+/**************** commons for login and search navbar **************/
+body > header > nav > div > form > ul > li > label {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+body > header > nav > div > form > ul {
+    padding: 5% 10%;
+    box-shadow: 10px 10px 5px rgba(196, 196, 196, 0.82);
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+}
+
+body > header > nav > div > form > ul > li {
+    display: block;
+}
+
+body > header > nav > div > form > ul > li > input {
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+}
+
+body > header > nav > div > form > ul > li > input:not([type=submit]) {
+    border: none;
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+    margin: 10px 0 15px 0;
+    text-indent: 15px;
+    font-weight: bold;
+}
+
+body > header > nav > div > form > ul > li > input::placeholder {
+    font-weight: normal;
+    font-style: italic;
+}
+
+body > header > nav > div > form > ul > li > input[type="submit"],
+body > header > nav > div > form > ul > li > a:last-child {
+    -webkit-appearance: none;   /* for Safari */
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 15px;
+    padding: 12px;
+    color: #0047A0;
+    background-color: white;
+    border: 1px solid #0047A0;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+body > header > nav > div > form > ul > li > a:last-child {
+    border-radius: 10px;
+    text-decoration: none;
+    margin: auto;
+    display: inline-block;
+}
+
+body > header > nav > div > form > ul > li > input[type="submit"]:hover, 
+body > header > nav > div > form > ul > li > a:last-child:hover {
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+}
+
+body > header > nav > div > form > ul > li > a:hover {
+    font-weight: bold;
+}
+
+body > header > nav > div > form > ul > li > p {
+    color: #0047A0;
+    font-weight: bold;
+}
+
+body > header > nav > div > form > header > ul > li {
+    background-color: #c4c4c450;
+}
+
+/********************** Navigation bar login ***********************/
+body > header > nav > div#navLogin {
+    background-color: #0047A0;
+}
+
+body > header > nav > div#navLogin > form > h2 {
+    color: white;
+    text-align: center;
+    padding-top: 5%; 
+}
+
+body > header > nav > div#navLogin > form > ul {
+    box-shadow: none;
+    padding-top: 0;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) {
+    display: flex;
+    justify-content: center;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-right: 3%;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > div > a {
+    color: white;
+    padding-bottom: 5px;
+}
+
+body > header > nav > div#navLogin > form > ul > li:nth-of-type(3) > input {
+    margin: 0;
+}
+
+body > header > nav > div#navLogin > form > ul > li:last-of-type > p {
+    color: white;
+}
+
+/******************************** Messages  *******************************/
+body > header > nav > div#navLogin > form > ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+body > header > nav > div#navLogin > form > ul > li > div.error {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    background-color: #F8D7DA;
+    color: #721C24;
+    text-align: left;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+body > header > nav > div#navLogin > form > ul > li > div.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+/********************** Navigation bar search **********************/
+body > header > nav > div#navSearch {
+    background-color: #0047A0;
+}
+
+body > header > nav > div#navSearch > form > h2 {
+    color: white;
+    text-align: center;
+    padding-top: 5%; 
+}
+
+body > header > nav > div#navSearch > form > ul > li > input#search {
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
+}
+
+body > header > nav > div#navSearch > form > ul > li > input#search + button {
+    display: inline-block;
+    width: 15%;
+    margin: 10px 0 15px 0;
+    background: none;
+    border: none;
+}
+
+body > header > nav > div#navSearch > form > ul > li > input#search + button > img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+body > header > nav > div#navSearch > form > ul {
+    box-shadow: none;
+    padding-top: 0;
+}
+
+/************************ Desktop devices **************************/
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    body > header {
+        background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
+        border-radius: 0 0 20px 20px;
+        height: 250px;
+        box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+    }
+
+    body > header > h1.hide {
+        text-align: center;
+        height: 180px;
+        background-image: url(../img/commons/big-logo.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    /* menu icon */
+    body > header > nav > ul > li:first-child {
+        display: none;
+    }
+
+    body > header > nav > div#navMenu  > ul > li, 
+    body > header > nav > div#navMenu ,
+    body > header > nav > ul {
+        display: inline-block !important;
+    }
+
+    /* navbar */
+    body > header > nav {
+        border-radius: 20px;
+        margin-top: 15px;
+    }
+
+    /* text links */
+    body > header > nav > div#navMenu  {
+        float: left;
+        background: none;
+        width: 76%;
+        height: 55px;
+        margin-left: 4%;
+    }
+
+    body > header > nav > div#navMenu  > ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    body > header > nav > div#navMenu  > ul > li {
+        background: none; 
+        margin: 2px 0 !important;
+    }
+
+    body > header > nav > div#navMenu  > ul > li > a {
+        color: #0047A0;
+    }
+
+    /* buttons links */
+    body > header > nav > ul {
+        margin-right: 0%;
+        width: 19%;
+        padding-left: 1%;
+        vertical-align: middle;
+    }
+
+    body > header > nav > ul > li {
+        list-style: none;
+        display: inline-block;
+        width: 22%;
+    }
+
+    body > header > nav > ul > li > button,
+    body > header > nav > ul > li > a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    /* login link */
+    body > header > nav > div > ul > li#login {
+        display: none !important;
+    }
+
+    /* cart and login popup*/
+    body > header > nav > div#navCart,
+    body > header > nav > div#navLogin,
+    body > header > nav > div#navSearch {
+       width: 30%;
+       margin: 0 0 0 65%;
+       padding: 25px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    body > header {
+        background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
+        border-radius: 0 0 20px 20px;
+        height: 250px;
+        box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+    }
+
+    body > header > h1.hide {
+        text-align: center;
+        height: 180px;
+        background-image: url(../img/commons/big-logo.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    /* menu icon */
+    body > header > nav > ul > li:first-child {
+        display: none;
+    }
+
+    body > header > nav > div#navMenu  > ul > li, 
+    body > header > nav > div#navMenu ,
+    body > header > nav > ul {
+        display: inline-block !important;
+    }
+
+    /* navbar */
+    body > header > nav {
+        border-radius: 20px;
+        margin-top: 15px;
+    }
+
+    /* text links */
+    body > header > nav > div#navMenu  {
+        float: left;
+        background: none;
+        width: 75%;
+        height: 55px;
+        margin-left: 5%;
+    }
+
+    body > header > nav > div#navMenu  > ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    body > header > nav > div#navMenu  > ul > li {
+        background: none; 
+        margin: 2px 0 !important;
+    }
+
+    body > header > nav > div#navMenu  > ul > li > a {
+        color: #0047A0;
+    }
+
+    /* buttons links */
+    body > header > nav > ul {
+        margin-right: 0;
+        width: 19%;
+        padding-left: 1%;
+        vertical-align: middle;
+    }
+
+    body > header > nav > ul > li {
+        list-style: none;
+        display: inline-block;
+        width: 22%;
+        height: 100%;
+    }
+
+    body > header > nav > ul > li > button,
+    body > header > nav > ul > li > a {
+        height: 100%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    /* login link */
+    body > header > nav > div > ul > li#login {
+        display: none !important;
+    }
+
+    /* cart and login popup*/
+    body > header > nav > div#navCart,
+    body > header > nav > div#navLogin,
+    body > header > nav > div#navSearch {
+       width: 30%;
+       margin: 0 0 0 65%;
+       padding: 25px;
+    }
+
+}
+
+/*disabled Link button*/
+.disabled {
+    pointer-events: none;
+    filter: grayscale(1);
+}

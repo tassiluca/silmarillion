@@ -1,0 +1,10 @@
+.idea
+.~lock.*
+*.DS_Store
+/upload/news/* 
+/upload/publishers/*
+/upload/products/*
+/vendor/*
+composer.phar
+!.gitkeep
+.idea/*

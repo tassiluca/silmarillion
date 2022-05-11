@@ -1,0 +1,111 @@
+/****************************************************************************
+ * Style sheet linked to registration page.
+ ****************************************************************************/
+main {
+    margin-bottom: 50px;
+}
+
+main > section > form > ul {
+    border-radius: 10px 10px 10px 10px;
+    background-color: #AAF1FF;
+    color: #0047A0;
+}
+
+main > section > form > ul > li > h2 {
+    margin-bottom: 10px;
+}
+
+main > section > form > ul > li > input#name {
+    margin-right: 1%;
+    display: inline-block;
+    width: 49%;
+}
+
+main > section > form > ul > li > input#surname {
+    margin-left: 1%;
+    display: inline-block;
+    width: 49%;
+}
+
+main > section > form > ul > li > label#birthdayLabel {
+    position: static;
+}
+
+main > section > form > ul > li > input:not([type="submit"]) {
+    background-color: #0047A0;
+    color: #AAF1FF;
+    font-weight: bold;
+}
+
+main > section > form > ul > li > input:not([type="submit"])::placeholder {
+    color: #AAF1FF;
+}
+
+main > section > form > ul > li > input[type="date"] {
+    -webkit-appearance: none;   /* for Safari */
+    background-color: #0047A0;
+    color: #AAF1FF;
+    height: 17px;
+    font-size: 15px;
+    font-family: "Futura-pt", Arial, Helvetica, sans-serif;
+    text-indent: 8px;
+    font-weight: normal;
+    font-style: italic;
+}
+
+main > section > form > ul > li > input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    padding-right: 10px;
+}
+
+/********************* Message for password requirements ********************/
+main > section > form > ul > li > input[type="password"] + section {
+    display: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+main > section > form > ul > li > input[type="password"] + section > p {
+    margin: 4px;
+}
+
+main > section > form > ul > li > input[type="password"] + section > p.valid {
+    color: green;
+}
+
+main > section > form > ul > li > input[type="password"] + section > p.invalid {
+    color: red;
+}
+
+main > section > form > ul > li > input[type="password"] + section > p.valid::before {
+    position: relative;
+    left: -10px;
+    content: "\f00c";
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > input[type="password"] + section > p.invalid::before {
+    position: relative;
+    left: -10px;
+    content: "\f00d";
+    font-family: FontAwesome;
+}
+
+/***************************** Desktop viewport ******************************/
+@media screen and (min-width: 768px) and (max-width:992px) {
+    main {
+        margin: 0 15% 50px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18% 50px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25% 50px;
+    }
+}

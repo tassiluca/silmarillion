@@ -1,0 +1,276 @@
+main > section {
+    margin: 22px 0 22px 0;
+    width: 100%;
+    display: inline-block;
+}
+
+main > section:first-child {
+    text-align: center;
+}
+
+main > section:first-child > div,
+main > section:first-child > div > p{
+    margin: 0;
+}
+
+main > section:first-child > div{
+    height: 145px;
+    width: 76%;
+    display: inline-block;
+}
+
+main > section:first-child > div > p{
+    position: relative;
+    bottom: 100px;
+    font-weight: bold;
+    font-size: 14pt;
+}
+main > section:first-child > div > img{
+    width: 100%;
+    object-fit: cover;
+    height: 145px;
+    border-radius: 10px;
+}
+
+main > section:first-child > input {
+    height: 145px;
+}
+
+main > section > input {
+    width: 10%;
+    max-width: 28px;
+    padding: 0 1% 0 1%;
+}
+
+main > section > input:first-of-type{
+    float: left;
+}
+
+main > section> input:last-of-type{
+    float: right;
+}
+
+/*back-forward button comics */
+main > section > div > input {
+    height: 433px;
+    width: 10%;
+    max-width: 30px;
+    padding: 0 1% 0 1%;
+}
+
+main > section > div > input:first-of-type{
+    float: left;
+}
+
+main > section > div > input:last-of-type{
+    float: right;
+}
+
+/*reviews banner*/
+main > section.review > div > input {
+    height: 290px;
+}
+main > section.review > div > article{
+    height: 290px;
+    width: 50%;
+    max-width: 420px;
+}
+main > section.review > div > article > header{
+    height: 100px;
+    text-align: left;
+}
+main > section.review > div > article > header > h3,
+main > section.review > div > article > header > img{
+    margin: 0 5%;
+    display: inline-block;
+    vertical-align: middle;
+    color: #0047A0;
+}
+main > section.review > div > article > header > img{
+    width: 20%;
+}
+main > section.review > div > article > p {
+    padding: 0 3%;
+    font-size: 13pt;
+}
+main > section.review > div > article > header > h3 {
+    font-size: 15pt;
+}
+
+.checked {
+    color: orange;
+  }
+
+/*partners banner*/
+main > section:last-child {
+    text-align: center;
+    min-height: 140px;
+}
+
+main > section:last-child > header {
+    margin: 0 0 30px 0;
+}
+main > section:last-child > div{
+    width: 75%;
+    height: 70px;
+    background-color: rgba(152, 237, 255, 0.3);
+    box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
+    border-radius: 10px;
+    margin: 0;
+    display: inline-block;
+    padding: 15px 2%;
+}
+
+main > section:last-child > input{
+    height: 100px;
+}
+main > section:last-child > div > div {
+    display: inline-block;
+    width: 100%;
+   
+}
+main > section:last-child > div > div > a > img {
+    height: 70px;
+}
+
+main > section:last-child > div > div > a{
+    margin: 0 2% 0 2%;
+}
+
+/*Header of container group*/
+main > section > header > h2 {
+    text-align: center;
+}
+/*Container of articles of same group*/
+main > section > div {
+  text-align: center;
+  margin: 30px 0 80px 0;
+}
+
+/*aside*/
+main > aside {
+    margin: 0 15% 0 15%;
+    text-align: center;
+}
+main > aside > div:first-child > div {
+    background-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.5);
+    border-radius: 10px;
+    width: 100%;
+}
+/* */
+main > aside > div:first-child > div > div{
+    height: 51px;
+    width: 51px;
+    border-radius: 10px;
+    background: white;
+    border: 3px solid #FDFE02;
+    margin:6.5px 0 6.5px 0;
+    display: inline-block;
+}
+
+main > aside > div > div > div > img {
+    margin-top: 5px;
+    height: 40px;
+    width: 40px;
+}
+/*banner text*/
+main > aside > div  > div > p {
+    font-weight: bold;
+    display: inline-block;
+    margin: 4% 0 0 4%;
+    width: 50%;
+    vertical-align: top;
+    
+}
+/*index indicator banner*/
+main > aside > div:last-child > div {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    background-color: #c4c4c4;
+    display: inline-block;
+    position: relative;
+    bottom: 20px;
+}
+
+main > aside > div:last-child > div.current {
+    background-color: #FDFE02;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+
+@media screen and (min-width: 820px) and (max-width: 1200px){
+    main {
+        margin: 0 3%;
+    }
+
+    main > section > div > article {
+        margin: 0 3.5%;
+    }
+}
+
+
+@media screen and (min-width: 1200px){
+    main {
+        margin: 0 10%;
+    }
+    /*banner promo*/
+    main > section:first-child{
+        float: left;
+        width: 60%;
+        margin: 22px 5% 22px 5%;
+    }
+
+    main > section:first-child, 
+    main > section:first-child > div > img,
+    main > section:first-child > input,
+    main > section:first-child >div{
+        height: 276px;
+    }
+
+    main > section:first-child >div > p{
+        bottom: 170px;
+    }
+
+    main > aside {
+        float: right;
+        margin: 22px 5% 22px 0;
+        width: 25%;
+    }
+    /*show all info banner , override style of js running*/
+    main > aside > div:first-child > div {
+        display: inline-block !important;
+        margin: 11px 0px 11px 0;
+        text-align: left;
+    }
+    main > aside > div:first-child > div > div {
+        margin: 6.5px 5%;
+        text-align: center;
+    }
+    /*index dot banner indicator*/
+    main > aside > div:last-child {
+        display: none;
+    }
+
+    main > section > div > article {
+        margin: 0 3%;
+    }
+    
+}

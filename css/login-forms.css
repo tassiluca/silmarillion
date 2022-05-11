@@ -1,0 +1,124 @@
+/****************************************************************************
+ * Style sheet for bot user, seller login and registration forms.
+ ****************************************************************************/
+
+/* To hide the labels keeping them available to screen readers. 
+ * See [https://www.w3.org/WAI/tutorials/forms/labels/#hidden]
+ */
+label {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+main > section > header > div {
+    text-align: center;
+}
+
+main > section > form > ul {
+    padding: 5% 10%;
+    box-shadow: 10px 10px 5px rgba(196, 196, 196, 0.82);
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+}
+
+main > section > form > ul > li {
+    display: block;
+}
+
+main > section > form > ul > li > input {
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+}
+
+main > section > form > ul > li > input:not([type=submit]) {
+    border: none;
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+    margin: 10px 0 15px 0;
+    text-indent: 15px;
+    font-weight: bold;
+}
+
+main > section > form > ul > li > input::placeholder {
+    font-weight: normal;
+    font-style: italic;
+}
+
+main > section > form > ul > li > input[type="submit"],
+main > section > form > ul > li > a:last-child {
+    -webkit-appearance: none;   /* for Safari */
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 15px;
+    padding: 12px;
+    color: #0047A0;
+    background-color: white;
+    border: 1px solid #0047A0;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > ul > li > a:last-child {
+    border-radius: 10px;
+    text-decoration: none;
+    margin: auto;
+    display: inline-block;
+}
+
+main > section > form > ul > li > input[type="submit"]:hover, 
+main > section > form > ul > li > a:last-child:hover {
+    box-shadow: 4px 4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > ul > li > a:hover {
+    font-weight: bold;
+}
+
+main > section > form > ul > li > p {
+    color: #0047A0;
+    font-weight: bold;
+}
+
+/******************************** Messages **********************************/
+main > section > form > ul > li.hasError > input {
+    border: 2px solid red !important;
+}
+
+main > section > form > ul > li > div.message {
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+main > section > form > ul > li > div.message.error {
+    background-color: #F8D7DA;
+    color: #721C24;
+    border-color: red;
+}
+
+main > section > form > ul > li > div.message.error::before {
+    content: "\f00d";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}
+
+main > section > form > ul > li > div.message.success {
+    background-color: #D4EDD5;
+    color: #155724;
+    border-color: green;
+}
+
+main > section > form > ul > li > div.message.success::before {
+    content: "\f00c";
+    padding-right: 5px;
+    font-family: FontAwesome;
+}

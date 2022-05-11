@@ -1,0 +1,132 @@
+main {
+    margin: 0 5% 50px 5%;
+}
+
+/************************* Aside *************************/
+main > aside > button {
+    background-color: #AAF1FF;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    border-radius: 10px 10px 10px 10px;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+main > aside > button::after {
+    content: '\f067';
+    font-family: FontAwesome;
+    float: right;
+}
+
+main > aside > button.selected::after {
+    content: '\f068';
+    font-family: FontAwesome;
+}
+
+main > aside > ul {
+    display: none;
+}
+
+main > aside > ul > li {
+    opacity: 80%;
+    list-style: none;
+}
+
+main > aside > ul li > input {
+    /* not displayed */
+    position: absolute;
+    left: -9999px;
+}
+
+main > aside > ul > li > label {
+    font-family: "Futura-pt", Arial, Helvetica, sans-serif;
+    width: 100%;
+    display: inline-block;
+    color: black;
+    border-radius: 10px 10px 10px 10px;
+    padding: 5px 10px;
+    /* To include padding and border in the element's total width and height */
+    box-sizing: border-box;
+}
+
+main > aside > ul > li > input:checked + label {
+    background: #0047A0;
+    animation: gradient 1s ease;
+    color: white;
+}
+
+main > aside > ul > li > input:checked + label::after {
+    content: '\f00d';
+    font-family: FontAwesome;
+    float: right;
+}
+
+@keyframes gradient {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+/************************* Section *************************/
+main > section {
+    text-align: center;
+} 
+
+main > section > footer > ul {
+    /*display: inline-block;*/
+    display: flex;
+    justify-content: space-around;
+    height: 38px;
+}
+
+main > section > footer > ul > li {
+    display: inline-block;
+    background-color: #AAF1FF;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+    border-radius: 10px;
+}
+
+main > section > footer > ul > li > a,
+main > section > footer > ul > li > p{
+    padding: 10px;
+    margin: 0;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+}
+
+main > section > footer > ul > li > a:hover {
+    background-color: #0047A0;
+    border-radius: 10px;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    main > aside, 
+    main > section {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    main > aside {
+        width: 25%;
+        height: 100%;
+        margin: 0 1% 0 0;
+        box-sizing: border-box;
+    }
+
+    main > section {
+        width: 73%;
+        box-sizing: border-box;
+    }
+    main > section:last-of-type {
+        float: right;
+    }
+}
+
