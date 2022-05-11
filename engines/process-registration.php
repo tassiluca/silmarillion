@@ -25,4 +25,19 @@
         echo json_encode($result);
     }
 
+    /*
+     * TODO @NalNemesi - CHANGE PASSWORD PROCESS
+     * This is just the skeleton to put in the section where is done the password update.
+     * ** Be careful! This procedure has not been tested yet! **
+     * Be aware that the new password (here $_POST["pwd"], but can be changed by passing it as a parameter
+     * to a function) **MUST** be previously hashed with hex_sha512() with JavaScript!
+     * See login.js / login-form.js
+     */
+//    if (isset($_POST["pwd"]) && isUserLoggedIn()) {
+//        $salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+//        $password = hash('sha512', $_POST["pwd"].$salt);
+//        $res = $dbh->updateUserPassword($_SESSION['userid'], $salt, $password);
+//        // in $res the result of the query
+//    }
+
 ?>

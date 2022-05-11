@@ -92,14 +92,15 @@
         /**
          * Reset the user password.
          * @param int $userId the user id
-         * @param string $password the new password
+         * @param string $newPassword the new password
          * @param string $salt the new salt
+         * @return bool true on success, false otherwise
          */
-        public function resetUserPassword($userId, $password, $salt) {
+        public function updateUserPassword($userId, $newPassword, $salt) {
             $query = "UPDATE Users
                       SET Password = ?, Salt = ?
                       WHERE UserId = ?";
-            $this->executeQuery($query, [$password, $salt, $userId]);
+            return $this->executeQuery($query, [$newPassword, $salt, $userId]);
         }
 
         /**
