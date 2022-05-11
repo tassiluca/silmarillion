@@ -11,7 +11,7 @@
 
     session_start();
 
-    define("UPLOAD_DIR", "./upload");
+    define("UPLOAD_DIR", "upload");
     /** The directory where store the products images. */
     define("UPLOAD_DIR_PRODUCTS", UPLOAD_DIR . "/products/");
     /** The directory where store the publishers logos. */

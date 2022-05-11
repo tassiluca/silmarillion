@@ -53,6 +53,10 @@ $(document).ready(function() {
                     '<div class="message success">' + data.success + '</div>'
                 );
             }
+        }).fail(function(jqXHR, textStatus, errorThrown) { // error
+            $("section > form > ul > li:last-of-type").prepend (
+                '<div class="message error">' + textStatus + ":: " + errorThrown + '</div>'
+            );
         });
     });
 

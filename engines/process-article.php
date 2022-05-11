@@ -229,7 +229,7 @@
 
     validate($data);
     if ($data['action'] === 'insert') {
-        list($result, $msg) = uploadImage(UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
+        list($result, $msg) = uploadImage("../" . UPLOAD_DIR_PRODUCTS, $_FILES["coverImg"]);
         redirectOnFailure($msg, !$result);
         $coverImg = $msg;
     } 
