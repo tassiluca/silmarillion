@@ -78,7 +78,8 @@ $(document).ready(function(){
             birthday: $("#birthday").val(),
             usr: $("#username").val(),
             email: $("#email").val(),
-            pwd: hex_sha512($("#password").val())
+            // if the password is empty it is send just it is to the server
+            pwd: ($("#password").val().length === 0 ? "" : hex_sha512($("#password").val()))
         };
         registrationAttempt($(this), formData);
         event.preventDefault();
