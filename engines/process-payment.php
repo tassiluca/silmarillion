@@ -18,7 +18,7 @@
             'province'  => [$_POST['prov']],
             'paymethod' => [$_POST['paymethod']]
         );
-        // TODO validate paymethod
+        // TODO validate paymethod: the methodId must be of the user
         return validateInput($rules, $dataDic);
     }
 
@@ -56,11 +56,13 @@
             }
             if ($res) { // if some errors occurred, delete the order
                 $dbh->deleteOrder($orderId);
-            } else {
+            } else { // otherwise the process continues
                 if ($_POST['paymethod'] !== -1) {
                     $dbh->addPayment($orderId, $_POST['paymethod']);
                 }
                 $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
+                // clears the customer cart
+                $dbh->clearCustomerCart($_SESSION['userId']);
             }
         }
         header("location:../payment.php?result=" . ($res ? "error" : "success"));
