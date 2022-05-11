@@ -69,14 +69,16 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Silmarillion is an online comics store.
+Silmarillion is an online comics and funkos store. 
+It has been developed for the Web Course of the Computer Science Degree @ UniBo.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
-
+* HTML5
+* CSS
 * [JQuery](https://jquery.com)
-* [php](https://www.php.net)
+* [PHP](https://www.php.net)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -99,33 +101,29 @@ Silmarillion is an online comics store.
   ```sh
   composer require respect/validation
   ```
-
+<!--
 ### Installation
 
 1. Clone the repo
    ```sh
    git clone https://github.com/tassiLuca/silmarillion.git
    ```
-2. Ensures ...
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+-->
 
 <!-- USAGE EXAMPLES -->
+<!--
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+-->
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] User Area
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
@@ -162,11 +160,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Luca Tassinari - [Linkedin]() - luca.tassinari.2000@gmail.com 
+[Luca Tassinari](https://github.com/tassiLuca)
 
-Matteo Violani - matteo.violani@gmail.com
+[Matteo Violani](https://github.com/TeoV00)
 
-Luana Mennuti - @gmail.com
+[Luana Mennuti](https://github.com/NalNemesi)
 
 Project Link: [https://github.com/tassiLuca/silmarillion](https://github.com/tassiLuca/silmarillion)
 
