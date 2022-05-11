@@ -57,7 +57,7 @@
                 </form>
             </div>
             <div>
-                <p>Totale:</p><p><?php echo formatPrice($templateParams["totalAmount"]); ?></p>
+                <p>Totale:</p><p><?php echo formatPrice($templateParams["totalAmount"]); ?> &euro;</p>
             </div>
             <?php if (isset($_GET['inputError'])): ?>
                 <div id="inputError">
