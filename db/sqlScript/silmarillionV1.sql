@@ -29,7 +29,7 @@ create table Carts (
 
 create table Categories (
      Name varchar(50) not null,
-     Description varchar(200) not null,
+     Description varchar(500) not null,
      constraint IDCategory primary key (Name));
 
 create table Comics (
@@ -156,7 +156,7 @@ create table Publisher (
 create table Reviews (
      ReviewId int not null auto_increment,
      Vote int not null,
-     Description varchar(250),
+     Description varchar(1000),
      UserId int not null,
      constraint IDReview primary key (ReviewId));
 
