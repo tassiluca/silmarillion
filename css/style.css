@@ -183,7 +183,7 @@ body > footer > div > ul > li {
 
 /************************* Breadcrumb **************************/
 main > div > ul {
-    padding: 10px 4%;
+    padding: 15px 0;
 }
 
 main > div > ul li + li::before {
@@ -257,10 +257,6 @@ body > header > nav > div#navCart > ul > li > div > div > p{
     margin: 0 10px 0;
 }
 
-/* =============================================================================
- * ====== TODO REFACTOR WITH RULES OF LOGIN AND REGISTRATION STYLE SHEETS ====== 
- * =============================================================================
- */
 /**************** commons for login and search navbar **************/
 body > header > nav > div > form > ul > li > label {
     border: 0;
