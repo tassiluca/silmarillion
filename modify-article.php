@@ -36,7 +36,7 @@
         if (count($productInfo) == 0) { // no product found in the database
             header("location: not-found.php");
         } else { // product found in the database
-            $templateParams["product"] = $productInfo[0];
+            $templateParams["product"] = $productInfo;
             $templateParams["product"]["Quantity"] = $dbh->getAvaiableCopiesOfProd($_GET['id']);
         }
     } else {
