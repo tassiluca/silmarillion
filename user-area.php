@@ -4,8 +4,8 @@
     $_SESSION["name"] = $_SERVER["SERVER_NAME"];
 
     $templateParams["css"] = array("./css/user-page.css");
-    $templateParams["js"] = array();
-    $templateParams["main"] = "./templates/user-page.php";
+    $templateParams["js"] = array("./js/user-page.js");
+    $templateParams["main"] = "./templates/user-page-template.php";
 
     if (!isCustomerLoggedIn()) {
         header("location: ./login.php");

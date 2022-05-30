@@ -7,13 +7,10 @@
 </div>
 
 
-<!-- TODO
-    valutate better choice-->
 <section>
     <h2>Ciao, <?php echo $_SESSION["name"]; ?> </h2>
     <button> <img src="../img/user-page/bellNotification.svg"></button>
 </section>
-
 
 <section>
    <button>
@@ -41,7 +38,6 @@
         </br>Recensioni
     </button>
 </section>
-
 
 
 <p> Click <a href="?action=logout">here</a> for log out.</p>

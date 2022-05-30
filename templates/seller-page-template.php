@@ -18,24 +18,24 @@
         </br>Profilo
     </button>
     <button onclick="window.location.href='./profile-template.php'">
-        <img src="../img/user-page/order.svg" alt="Ordini">
-        </br>Ordini
+        <img src="../img/user-page/money.svg" alt="Contabilità">
+        </br>Contabilità
     </button>
     <button>
         <img src="../img/user-page/wishlist.svg" alt="">
-        </br>Wishlist
+        </br>Articoli
     </button>
     <button>
         <img src="../img/user-page/message.svg" alt="">
         </br>Messaggi
     </button>
     <button>
-        <img src="../img/user-page/chat.svg" alt="">
-        </br>Hai bisogno di aiuto?
+        <img src="../img/user-page/articles.svg" alt="">
+        </br>Gestione ordini
     </button>
     <button>
-        <img src="../img/user-page/star.svg" alt="">
-        </br>Recensioni
+        <img src="../img/user-page/banner.svg" alt="">
+        </br>Pubblicità
     </button>
 </section>
 
@@ -48,7 +48,7 @@
 
 
 
-
+<!--
 <div style="text-align: center">
     <p> Welcome to the **seller** area. </p>
     <p> Click <a href="?action=logout">here</a> for log out.</p>
@@ -59,3 +59,5 @@
         <li><a href="./statistics.php">Statistiche introiti</a></li>
     </ul>
 </div>
+
+-->
