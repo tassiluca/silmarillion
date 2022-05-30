@@ -1,0 +1,141 @@
+main > section {
+    margin: 22px 0 22px 0;
+    width: 100%;
+}
+
+main > section:first-child {
+    text-align: center;
+}
+main > section > img {
+    width: 76%;
+    height: 145px;
+    border-radius: 10px; 
+}
+
+main > section > input {
+    height: 145px;
+    width: 10%;
+    max-width: 28px;
+    padding: 0 1% 0 1%;
+}
+
+main > section > input:first-of-type{
+    float: left;
+}
+
+main > section > input:last-of-type{
+    float: right;
+}
+
+/*back-forward button comics */
+main > section > div > input {
+    height: 433px;
+    width: 10%;
+    max-width: 30px;
+    padding: 0 1% 0 1%;
+}
+
+main > section > div > input:first-of-type{
+    float: left;
+}
+
+main > section > div > input:last-of-type{
+    float: right;
+}
+
+/*partners banner*/
+main > section:last-child {
+    text-align: center;
+}
+main > section:last-child > div{
+    height: 96px;
+    width: 76%;
+    background-color: rgba(152, 237, 255, 0.3);
+    box-shadow: 1px 1px 10px 2px rgba(196, 196, 196, 0.5);
+    border-radius: 10px;
+    margin: 0;
+    display: inline-block;
+}
+
+main > section:last-child > input{
+    height: 96px;
+}
+
+main > section:last-child > div > img {
+    height: 50px;
+    margin: 23px 0 23px 0;
+}
+
+main > section:last-child > div > img:first-child {
+    margin-right: 8%;
+}
+main > section:last-child > div > img:last-child {
+    margin-left: 8%;
+}
+
+/*aside*/
+main > aside {
+    margin: 0 15% 0 15%;
+    text-align: center;
+}
+main > aside > div:first-child > div {
+    background-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.5);
+    border-radius: 10px;
+    width: 100%;
+}
+/* */
+main > aside > div:first-child > div > div{
+    height: 51px;
+    width: 51px;
+    border-radius: 10px;
+    background: white;
+    border: 3px solid #FDFE02;
+    margin:6.5px 0 6.5px 0;
+    display: inline-block;
+}
+
+main > aside > div > div > div > img {
+    margin-top: 5px;
+    height: 40px;
+    width: 40px;
+}
+/*banner text*/
+main > aside > div  > div > p {
+    font-weight: bold;
+    display: inline-block;
+    margin: 4% 0 0 4%;
+    width: 50%;
+    vertical-align: top;
+    
+}
+/*index indicator banner*/
+main > aside > div:last-child > div {
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+    background-color: #c4c4c4;
+    display: inline-block;
+    position: relative;
+    bottom: 20px;
+}
+
+main > aside > div:last-child > div.current {
+    background-color: #FDFE02;
+}
+
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main > aside {
+        display: inline-block;
+    }
+    main > section:first-child {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    main {
+        margin: 0 25%;
+    }
+}

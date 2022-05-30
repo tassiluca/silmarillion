@@ -1,0 +1,44 @@
+/* User login form */
+main > section > form > header > ul > li:first-child.active {
+    background-color: #AAF1FF;
+    box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > div:first-of-type {
+    background-color: #AAF1FF;
+}
+
+main > section > form > div:first-of-type > input:not([type="submit"]) {
+    background-color: #0047A0;
+}
+
+main > section > form > div:first-of-type > input:not([type="submit"])::placeholder {
+    color: #AAF1FF;
+}
+
+main > section > form > div:last-of-type > a {
+    color: #0047A0;
+}
+
+/* Seller login form */
+main > section > form > header > ul > li:last-child.active {
+    background-color: #0047A0;
+    color: #AAF1FF;
+    box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
+}
+
+main > section > form > div:last-of-type {
+    background-color: #0047A0;
+}
+
+main > section > form > div:last-of-type > input:not([type="submit"]) {
+    background-color: #AAF1FF;
+}
+
+main > section > form > div:last-of-type > input:not([type="submit"])::placeholder {
+    color: #0047A0;
+}
+
+main > section > form > div:last-of-type > a {
+    color: #AAF1FF;
+}

@@ -1,0 +1,23 @@
+.container{
+    background-color: #0059c5f6;
+}
+
+.btnGeneral{
+    background-color: #AAF1FF;
+}
+
+.btnGeneral p{
+    color: #0047A0;
+}
+
+
+.bgImage{
+    background-image: url(../img/sellerPage/DemonSlayer\ 2\ copy.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain ;
+    background-attachment: scroll;
+    height: auto;
+    background-color: #caf0f840;
+    
+}

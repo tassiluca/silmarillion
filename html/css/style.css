@@ -1,0 +1,284 @@
+
+body, h1, h2, ul, button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(202, 240, 248, 0.251);
+}
+
+html {
+    font-family: "Futura-pt", Arial, Helvetica, sans-serif;
+}
+
+body > header {
+    background: linear-gradient(to bottom, #00D5FF, #CAF6FF );
+    height: 155px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+body > header > h1 {
+    text-align: center;
+}
+
+body > header > h1.hide {
+    background-image: url(../img/mini-logo.svg);
+    height: 88px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*header > .hide  per gli screen reader*/
+.hide {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+body > header > nav {
+    text-align: center;
+    height: 56px;
+}
+
+body > header > nav > ul {
+    height: 56px;
+}
+
+body > header > nav > ul > li {
+    list-style: none;
+    display: inline-block;
+    width: 11%;
+    text-align: center;
+}
+
+
+body > header > nav > ul > li:first-child {
+    margin: 0 8% 0 4%;
+}
+
+body > header > nav > ul > li:not(:first-child) {
+    margin: 0 8% 0 8%;
+}
+
+body > header > nav > ul > li:last-child {
+    margin: 0 4% 0 8%;
+}
+
+body > header > nav > ul > li > button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 10px 0 10px;
+    box-sizing: border-box;
+}
+
+body > header > nav > ul > li > button.navActive{
+    background-color: #0047A0;
+    border-radius: 10px 10px 0px 0;
+}
+
+body > header > nav > div > ul {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    border-radius: 10px;
+}
+
+body > header > nav > div {
+    background-color: #CAF0F8;
+    border-radius: 10px;
+    display: none;
+}
+
+body >header > nav > div > ul > li {
+    background-color: #0047A0;
+}
+
+body > header > nav > div > ul > li:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+body > header > nav > div > ul > li:first-child {
+    border-radius: 10px 10px 0 0;
+}
+
+body > header > nav > div > ul > li > a {
+    color: #CAF0F8;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0 15px 0;
+    display: inline-block;
+}
+
+body > header > nav > div > ul > li > a:hover {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+body > header > nav > div > ul > li:first-child {
+    margin: 0 0 2px 0;
+}
+
+body > header > nav > div > ul > li:last-child {
+    margin: 2px 0 0 0;
+}
+
+body > header > nav > div > ul > li {
+    margin: 2px 0 2px 0;
+    text-align: center;
+    font-size: 1.2em;
+   
+}
+
+body > header > nav > div > ul > li#login {
+    margin: 7px 0 7px 0;
+}
+
+body > footer > h4.hide {
+    background-image: url(../img/footer-logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 15px;
+    margin: 0;
+}
+
+body > footer {
+    background: linear-gradient(to top, #00D5FF, #CAF6FF );
+    height: 165px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
+}
+
+body > footer > ul {
+    margin: 15px 0 0 0;
+    text-align: center;
+    font-size: 11px;
+}
+body > footer li {
+    list-style: none;
+}
+
+body > footer > ul > li{
+    display: inline-block;
+    position: relative;
+    bottom: 30px;
+}
+body > footer > ul > div{
+    display: inline-block;
+}
+body > footer > ul > div > li{
+    margin: 10px 0 0 0;
+}
+
+body > footer h4 {
+    margin: 0 0 5px 0;
+}
+
+body > footer > ul >li:first-child {
+    padding: 0 27px 0 27px ;
+}
+
+/*To unhide after finishing other things*/
+body > header > nav > div {
+    position: relative;
+    z-index: 1;
+}
+
+/* Breadcrumb */
+
+main > div > ul {
+    padding: 10px 4%;
+}
+
+main > div > ul li + li::before {
+    content: "\003E";
+    padding: 0 10px;
+    color: #0047A0;
+    font-weight: bold;
+}
+
+main > div > ul > li {
+    display: inline-block;
+    color:#0047A0;
+    vertical-align: middle;
+}
+
+main > div > ul > li > a:hover {
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+    
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+    main {
+        margin: 0 18%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    /*non visualiziamo l'icona del menu*/
+    body > header > nav > ul > li:first-child {
+        display: none;
+    }
+
+    body > header > nav > div > ul > li, 
+    body > header > nav > div,
+    body > header > nav > ul {
+        display: inline-block !important;
+    }
+
+    /* navbar */
+    body > header > nav {
+        background-color: #aaf1ff;
+        border-color: black;
+        border-radius: 20px;
+        margin-top: 15px;
+    }
+
+    /* text links */
+    body > header > nav > div {
+        float: left;
+        background: none;
+        width: 75%;
+        margin-left: 5%;
+    }
+
+    body > header > nav > div > ul {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    body > header > nav > div > ul > li {
+        background: none; 
+    }
+
+    body > header > nav > div > ul > li > a {
+        color: #0047A0;
+    }
+
+    /* buttons links */
+    body > header > nav > ul {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        width: 15%;
+        margin-right: 5%;
+        vertical-align: middle;
+    }
+
+    body > header > nav > ul > li > button {
+        padding-top: 5px;
+    }
+
+
+
+    /* no display login link */
+    body > header > nav > div > ul > li:nth-child(6){
+        display: none !important;
+    }
+
+}

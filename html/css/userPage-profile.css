@@ -1,0 +1,203 @@
+.bgImage{
+    height: auto;
+    background-image: url(../img/userPage/pkm.png);
+    background-position: top;
+    background-size: contain;
+}
+
+.icon{
+    max-width: 60px;
+    opacity: 1.0;
+    margin: 20px 40%;
+}
+
+
+span{
+    margin: 10px 9%;
+}
+
+.masterBox{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+fieldset{
+    border-radius: 20px;
+    max-width: 800px;
+    margin: auto;
+    background-color: #CAF0F8;
+}
+
+legend{
+    font-size: 20px;
+    color: #00479e;
+    font-weight: bold;
+}
+
+
+label, .miniBox p{
+    font-size: 16px;
+    color: #00479e;
+    font-weight: bold;
+    margin-bottom: 20px;
+    min-width: 60px;
+}
+
+input{
+    border-radius: 20px;
+    border: 1px solid #00479e;
+    padding: 10px 2%;
+    margin-bottom: 20px;
+}
+
+::placeholder{
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+.cancelData, .submitData, .cancelLog, .submitLog{
+    display: none;
+}
+
+.whiteBtn{
+    margin: 3%;
+    padding:  10px 2%;
+    text-align: center;
+}
+
+.miniPop{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.miniPop .miniPopText{
+    display: none;
+    width: 170px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-radius: 20px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -150px;
+    margin-bottom: 30px;
+}
+
+.miniPop .miniPopText::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 30%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) transparent transparent transparent;
+}
+
+
+
+.selection{
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.miniBox{
+    display: inline-block;
+    border-radius: 30px;
+    background-color: #aaf1ffe1;
+    padding: 10px 1%;
+    margin: auto;
+    box-sizing: content-box;
+    width: 450px;
+    margin-top: 20px;
+    padding: 2%;
+    text-align: center;
+   /* min-height: 650px;*/
+}
+
+
+.selection select, .selection p{
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+.miniBox fieldset{
+    margin: 3%;
+}
+
+.shown label{
+    display: none;
+}
+
+.miniBox legend{
+    text-align: left;
+    font-size: 14px;
+}
+
+.others{
+    text-align: center;
+    min-width: 0;
+}
+
+.others img{
+    width: 24px;
+    height: 22px;
+}
+
+
+
+.miniBox input[type = "text"]{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    min-width: 300px;
+}
+
+.confirmModify, .addMail, .others button {
+    display: none;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 805px) {
+   
+    span{
+        display: block;
+    }
+
+    label{
+        display: block;
+        text-align: center;
+        margin-bottom: 5px ;
+    }
+
+    input{
+        text-align: center;
+    }
+
+    .others label{
+        display: inline;
+        text-align: left;
+    }
+
+}
+
+
+
+
+

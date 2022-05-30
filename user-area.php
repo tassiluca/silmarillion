@@ -1,7 +1,9 @@
 <?php
     require_once __DIR__ . '/bootstrap.php';
 
-    $templateParams["css"] = array();
+    $_SESSION["name"] = $_SERVER["SERVER_NAME"];
+
+    $templateParams["css"] = array("./css/user-page.css");
     $templateParams["js"] = array();
     $templateParams["main"] = "./templates/user-page.php";
 
