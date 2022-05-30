@@ -51,7 +51,6 @@
                             <img src="./img/commons/search.svg" alt="Cerca"/>
                         </button>
                     </li><li>
-                        <!-- TODO @NalNemesi: modify pages name -->
                         <?php if (isUserLoggedIn()): ?>
                             <a href="<?php echo (isCustomerLoggedIn() ? 'user-area.php' : 'seller-area.php'); ?>">
                                 <img src="./img/commons/menu-login-checked.svg" alt="Login"/>
@@ -160,7 +159,6 @@
             </div><div>
                 <h4>ACCOUNT</h4>
                 <ul>
-                    <!-- TODO @NalNemesi: modify pages name -->
                     <li><a href="user-area.php">Account utente</a></li>
                     <li><a href="seller-area.php">Account venditore</a></li>
                 </ul>
