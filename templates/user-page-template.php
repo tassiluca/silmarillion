@@ -18,29 +18,30 @@
 <section>
    <button>
        <img src="../img/user-page/profile.svg" alt="Profilo">
-       <p>Profilo</p>
+       </br>Profilo
    </button>
-    <button>
+    <button onclick="window.location.href='./profile-template.php'">
         <img src="../img/user-page/order.svg" alt="Ordini">
-        <p>Ordini</p>
+        </br>Ordini
     </button>
     <button>
         <img src="../img/user-page/wishlist.svg" alt="">
-        <p>Wishlist</p>
+        </br>Wishlist
     </button>
     <button>
         <img src="../img/user-page/message.svg" alt="">
-        <p>Messaggi</p>
+        </br>Messaggi
     </button>
     <button>
         <img src="../img/user-page/chat.svg" alt="">
-        <p>Hai bisogno di aiuto?</p>
+        </br>Hai bisogno di aiuto?
     </button>
     <button>
         <img src="../img/user-page/star.svg" alt="">
-        <p>Recensioni</p>
+        </br>Recensioni
     </button>
 </section>
+
 
 
 <p> Click <a href="?action=logout">here</a> for log out.</p>
