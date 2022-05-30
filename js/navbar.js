@@ -72,6 +72,7 @@ function refreshCartNavbar(){
     $.post("engines/process-cart.php?request=getCart", function (data) {
 
         let cart = JSON.parse(data);
+        console.log(data);
 
         if(cart.length > 0){
             htmlNavBarCart = "";
@@ -91,6 +92,7 @@ function refreshCartNavbar(){
                         </div>
                     </li>`;
             }
+            $("#navCart > ul > li").remove();
         }
         else{
             $("#navCart > ul > li").remove();
