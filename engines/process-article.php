@@ -155,7 +155,7 @@
         global $dbh, $data;
         // check consistency
         if (empty($data['publisher'])) {
-            list($result, $msg) = uploadImage(UPLOAD_DIR_PUBLISHERS, $_FILES["publisherLogo"]);
+            list($result, $msg) = uploadImage("../" . UPLOAD_DIR_PUBLISHERS, $_FILES["publisherLogo"]);
             redirectOnFailure($msg, !$result);
             list($res, $id) = $dbh->addPublisher($data['publisherName'], $msg);
             checkErrors($res, 'Editore');
