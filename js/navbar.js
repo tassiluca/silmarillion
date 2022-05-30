@@ -93,7 +93,8 @@ function refreshCartNavbar(){
             }
         }
         else{
-            htmlNavBarCart += "<li>Carrello vuoto</li>";
+            $("#navCart > ul > li").remove();
+            htmlNavBarCart = "<li>Carrello vuoto</li>";
         }
 
         $("#navCart > ul").append(htmlNavBarCart);
