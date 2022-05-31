@@ -1,0 +1,92 @@
+main {
+    background-image: url(../img/background/superMario.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: scroll;
+    min-height: 700px;
+    background-color: rgba(208, 243, 255, 0.82);
+}
+
+main > section{
+    border-radius: 30px;
+    background-color: #aaf1ffe1;
+    padding: 10px 1%;
+    box-sizing: content-box;
+    margin: 20px 1% 0 1%;
+    max-width: 900px;
+}
+
+main > section > fieldset{
+    text-align: center;
+    background-color: #CAF0F8;
+    border-radius: 30px;
+    max-width: 800px;
+    margin: 0 5% 30px 5%;
+}
+
+main > section > fieldset > legend {
+    font-size: 20px;
+    color: #00479e;
+    font-weight: bold;
+    margin: 0 0 10px 2%;
+    text-align: left;
+}
+
+main > section > img {
+    margin: 20px 50%;
+}
+
+main > section > fieldset input {
+    border-radius: 20px;
+    border: 1px solid #00479e;
+    padding: 10px 2%;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+main > section > fieldset > form span {
+    margin: 20px;
+}
+
+main label {
+    font-size: 16px;
+    color: #00479e;
+    font-weight: bold;
+    margin-bottom: 20px;
+    min-width: 60px;
+}
+
+.whiteBtn{
+    background-color: #ffffff;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 25%);
+    border-radius: 15px;
+    color: black;
+    border: 1px dotted black;
+    font-weight: bold;
+    margin: 3%;
+    padding: 10px 2%;
+    text-align: center;
+}
+
+@media screen and (max-width: 720px){
+    main > section > fieldset > form span{
+        display: block;
+    }
+
+    main label {
+        display: block;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+}
+
+@media screen and  (min-width: 1400px) {
+    main > section {
+        width: 60%;
+
+    }
+
+}
