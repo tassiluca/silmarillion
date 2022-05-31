@@ -1,9 +1,9 @@
 /****************************************************************************
  * Common rules for all website.
  ****************************************************************************/
- .hidden{ display: none; }
+.hidden{ display: none; }
 
- body, h1, h2, ul, button {
+body, h1, h2, h3, ul, button {
     margin: 0;
     padding: 0;
 }
