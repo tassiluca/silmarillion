@@ -108,7 +108,7 @@ function handleCartAction(clickedBtn,urlLink){
         let countCopies = jsonData["countCopies"];
         let cartCount = jsonData["cartCount"];
 
-        if(countCopies-1 > 0){
+        if(countCopies-1 >= 0){
             if(!isLogged){
                 //if customer not logged add/edit quantity of prod in cookie cart
                 editProductQuantityCookie(prodId,countCopies,currentAction);
@@ -116,15 +116,13 @@ function handleCartAction(clickedBtn,urlLink){
             else{ //user logged then check if all goes right on db
                 editProdQuantityDatabase(prodId,countCopies,cartCount,currentAction,correctExec);
             }
-
             refreshCartNavbar();
 
             if(isCartPage()){
                 refreshTotalPrice();
             }
-            
         }
-        else if(clickedBtn !==null){
+        else if(clickedBtn !==null || countCopies <= 0){
             //if in a while someone bought the product and becomes un-available, disable add to cart button
             clickedBtn.addClass("disabled");
         }
@@ -153,7 +151,7 @@ function editProductQuantityCookie(prodId,countCopies,currentAction){
     if(currentAction === "addtoCart" && cart.has(prodId) && !isNaN(prodId)){ //if already added update cart quantity of prod
         newQuantity = cart.get(prodId)+1 > countCopies ? countCopies : cart.get(prodId)+1;
     }else if(currentAction === "decToCart" && cart.has(prodId) && !isNaN(prodId)){
-        newQuantity = cart.get(prodId)-1 > 0 ?cart.get(prodId)-1 : cart.get(prodId);
+        newQuantity = cart.get(prodId)-1 >= 0 ?cart.get(prodId)-1 : cart.get(prodId);
     }
     else if(!isNaN(prodId)){ //add to cart for first time
         newQuantity = 1;
