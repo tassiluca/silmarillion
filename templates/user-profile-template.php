@@ -88,3 +88,68 @@
 </section>
 
 
+
+<aside>
+    <p>Metodi di pagamento:</p>
+    <select>
+        <option value="0">Paypal</option>
+        <option value="1">Carta di credito</option>
+    </select>
+
+    <fieldset>
+        <legend>Salvati</legend>
+        <form action="" method="post" target="" autocomplete="on">
+            <div>
+                <label for="id1"></label>
+                <input type="text" id="id1" name="radioButt" readonly required>
+                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+            </div>
+
+            <div>
+                <label for="id2"></label>
+                <input type="text" id="id2" name="radioButt" readonly required>
+                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+            </div>
+
+            <div>
+                <label for="id3"></label>
+                <input type="text" id="id3" name="radioButt" readonly required>
+                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+            </div>
+            <div>
+                <input type="button" value="Conferma" class="confirmAll whiteBtn"/>
+                <input type="button" value="Conferma" class="confirmModify  whiteBtn" />
+                <input type="button" value="Modifica" class=" modifyPaypal  whiteBtn" />
+
+            </div>
+        </form>
+    </fieldset>
+</aside>
+
+<aside>
+    <fieldset>
+        <legend>Indirizzo di spedizione</legend>
+        <form action="" method="post" target="" autocomplete="on">
+            <div>
+                <label for="strada">Via/Piazza</label>
+                <input type="text" id="strada" name="" readonly required>
+            </div>
+
+            <div>
+                <label for="citta">Città</label>
+                <input type="text" id="citta" name="" readonly required>
+            </div>
+
+            <div>
+                <label for="cap">CAP</label>
+                <input type="text" id="cap" name="" readonly required>
+            </div>
+            <div>
+                <label for="provincia">Provincia</label>
+                <input type="text" id="provincia" name="" readonly required>
+            </div>
+        </form>
+    </fieldset>
+</aside>
+
+
