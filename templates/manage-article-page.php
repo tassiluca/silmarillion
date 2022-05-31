@@ -6,12 +6,13 @@
 </div>
 <section>
     <header>
-        <h2>Gestisci Articoli</h2>
+        <h3>Gestisci Articoli</h3>
         <div>
             <a href="modify-article.php?action=insert&article=comic">Aggiungi fumetto</a>
             <a href="modify-article.php?action=insert&article=funko">Aggiungi funko</a>
         </div>
-        <input type="text" name="search" id="search-articles" placeholder="Cerca..." aria-label="Cerca prodotto" />
+        <label for="search-articles">Cerca prodotto</label>
+        <input type="text" name="search" id="search-articles" placeholder="Cerca..." />
     </header>
     <ul id="products">
         <!-- here are inserted all products -->       
