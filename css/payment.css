@@ -3,6 +3,10 @@ main > section {
     margin: 0 2%;
 }
 
+main > section > div > div > form > h3 {
+    margin: 15px 0;
+}
+
 main > section > div > div > form > div {
     background: #CBF6FF;
     border: 1px solid #0047A0;
@@ -12,13 +16,16 @@ main > section > div > div > form > div {
     text-align: center;
     padding: 2% 0;
 }
+
 main > section > div > div > form > div > a {
     font-weight: bold;
     color: #0047A0;
 }
+
 main > section > div > div > form > div > a:last-child {
     display: none;
 }
+
 main > section > div > div > form > div > ul > li{
     margin: 6px 0;
     list-style: none;
@@ -71,9 +78,13 @@ main > section > div > div:last-of-type > input[type="submit"] {
     color: #0047A0;
     border-radius: 10px;
     border: 1px solid #0047A0;
-    padding: 12.5px 10px 13px 10px;
-    margin: 36px 0 40px 0;
+    padding: 12px 10px 13px 10px;
+    margin: 10px 0;
     box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.5);
+}
+
+main > section > div > div:last-of-type > input[type="submit"]:hover {
+    box-shadow: 1px 1px 10px 5px rgba(196, 196, 196, 0.8);
 }
 
 div#inputError {

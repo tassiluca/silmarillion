@@ -1,4 +1,4 @@
-main > section > header{
+main > section > header {
     text-align: center;
 }
 
@@ -14,11 +14,11 @@ main > section > header > h2 {
 }
 
 /*center al inlineblock*/
-main > section{
+main > section {
     text-align: center;
 }
 
-main > section > div:last-of-type > a{
+main > section > div:last-of-type > a {
     color: #0047A0;
 }
 

@@ -16,19 +16,19 @@
                         <ul>
                             <li>
                                 <label for="destAddress">Indirizzo</label>
-                                <input type="text" name="destAddress" id="destAddress" alt="Indirizzo" value="Via Cesare Pavese, 50"required readonly>
+                                <input type="text" name="destAddress" id="destAddress" value="Via Cesare Pavese, 50"required readonly>
                             </li>
                             <li>
                                 <label for="cap">CAP</label>
-                                <input type="text" name="cap" id="cap" alt="CAP" value="47522" pattern="\d{1,5}" maxlength="5" minlength="5" title="Deve contenere un CAP valido" required readonly>
+                                <input type="text" name="cap" id="cap" value="47522" pattern="\d{1,5}" maxlength="5" minlength="5" title="Deve contenere un CAP valido" required readonly>
                             </li>
                             <li>
                                 <label for="city">Città</label>
-                                <input type="text" name="city" id="city" alt="Città" value="Cesena" required readonly>
+                                <input type="text" name="city" id="city" value="Cesena" required readonly>
                             </li>
                             <li>
                                 <label for="prov">Provincia</label>
-                                <input type="text" name="prov" id="prov" alt="Provincia" value="FC" pattern="^[A-Z]*$" maxlength="2" minlength="2" title="Deve contenere una sigla di provincia valido (in maiuscolo)" required readonly>
+                                <input type="text" name="prov" id="prov" value="FC" pattern="^[A-Z]*$" maxlength="2" minlength="2" title="Deve contenere una sigla di provincia valido (in maiuscolo)" required readonly>
                             </li>
                         </ul>
                         <a href="#" onclick="editAddress()" onkeypress="editAddress()">Modifica indirizzo</a>
@@ -48,8 +48,8 @@
                                 $methodId = $method['MethodId'];
                             ?>
                                 <li>
-                                    <input type="radio" name="paymethod" id="<?php echo $methodName;?>" value="<?php echo $methodId;?>" />
-                                    <label for="<?php echo $methodName;?>"><?php echo $methodName;?></label>
+                                    <input type="radio" name="paymethod" id="method-<?php echo $methodId;?>" value="<?php echo $methodId;?>" />
+                                    <label for="method-<?php echo $methodId;?>"><?php echo $methodName;?></label>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
