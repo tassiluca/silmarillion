@@ -69,7 +69,11 @@
      */
     function registerLoggedUser($userData) {
         $_SESSION['userId'] = $userData['UserId'];
-        $_SESSION['username'] = $userData['UserId'];
+        $_SESSION['username'] = $userData['Username'];
+        $_SESSION['name'] = $userData['Name'];
+        $_SESSION['surname'] = $userData['Surname'];
+        $_SESSION['datebirth'] = $userData['DateBirth'];
+        $_SESSION['mail'] = $userData['Mail'];
     }
 
     /**

@@ -1,9 +1,9 @@
 <?php
     require_once __DIR__ . '/bootstrap.php';
 
-    $templateParams["css"] = array();
+    $templateParams["css"] = array("./css/user-page.css", "./css/seller.css");
     $templateParams["js"] = array();
-    $templateParams["main"] = "./templates/seller-page.php";
+    $templateParams["main"] = "./templates/seller-page-template.php";
 
     if (!isSellerLoggedIn()) {
         header("location: ./login.php");

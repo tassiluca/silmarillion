@@ -1,0 +1,84 @@
+div, button, h2, ul, li, main, p{
+    margin : 0;
+    padding: 0;
+}
+
+
+main {
+    background-image: url(../img/background/superMario.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: scroll;
+    height: 700px;
+    background-color: rgba(208, 243, 255, 0.82);
+}
+
+/*********************    Title and notifications   *********************/
+
+main > section > h2 {
+    font-size: 25px;
+    padding: 10px 1% 20px 3%;
+    color: #00479e;
+    display: inline-block;
+}
+
+main > section > button{
+    border: none;
+    background: none;
+}
+
+/*********************       USER KEYPAD     *********************/
+
+main > section:nth-child(3) {
+    max-width: 530px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 1% 1%;
+    background: rgba(0, 213, 255, 0.302);
+    border-radius: 10px;
+}
+
+main > section:nth-child(3) > button {
+    cursor: pointer;
+    background-color: rgb(0, 71, 158);
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 44%;
+    height: 130px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+main > section:nth-child(3) > button:nth-child(odd){
+    margin-left: 4%;
+    margin-right: 1%;
+}
+
+main > section:nth-child(3) > button:nth-child(even){
+    margin-right: 4%;
+    margin-left: 1%;
+}
+
+
+/*********************      Pop up      *********************/
+
+
+
+@media screen and (min-width: 728px) and (max-width:1200px) {
+    main > section:nth-child(3){
+
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+    main > section:nth-child(3){
+
+    }
+}
+

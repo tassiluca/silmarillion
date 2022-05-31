@@ -1,0 +1,15 @@
+div, button, h2, ul, li, main, p{
+    margin : 0;
+    padding: 0;
+}
+
+main {
+    background-image: url(../img/background/drag_wall.png);
+}
+
+/*********************       SELLER KEYPAD     *********************/
+
+main > section:nth-child(3) {
+    background: rgba(0, 71, 158, 0.44);
+}
+
