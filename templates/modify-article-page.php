@@ -16,10 +16,10 @@
 </div>
 <section>
     <header>
-        <h2>
+        <h3>
             <?php echo ($templateParams['action'] === 'insert' ? 'Inserisci' : 'Modifica'); ?>
             <?php echo ($templateParams['article'] === 'funko' ? 'Funko' : 'Fumetto'); ?>
-        </h2>
+        </h3>
     </header>
     <!-- Comic insertion form -->
     <form action="./engines/process-article.php" method="POST" enctype="multipart/form-data">
