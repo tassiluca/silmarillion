@@ -13,7 +13,7 @@
     <form action="#" method="POST">
         <ul>
             <li>
-                <h2>Dimenticato la password? &#128579; <br/> Niente paura... ci siamo noi &#129321;</h2>
+                <h3>Dimenticato la password? &#128579; <br/> Niente paura... ci siamo noi &#129321;</h3>
             </li>
             <li>
                 <p>Per ragioni di sicurezza, Silmarillion <strong>**NON**</strong> memorizza la tua password in chiaro.</p>

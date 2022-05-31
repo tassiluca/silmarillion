@@ -13,7 +13,7 @@
     <form action="#" method="POST">
         <ul>
             <li>
-                <h2>Ciao, <br/>conosciamoci meglio</h2>
+                <h3>Ciao, <br/>conosciamoci meglio</h3>
             </li>
             <li>
                 <p>Silmarillion rispetta la tua privacy &#128525;. La password inserita nel form viene inviata al server solo dopo essere stata precedentemente crittografata. </p>
