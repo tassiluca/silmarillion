@@ -181,6 +181,19 @@
         return $prods;
     }
 
+    function addAvaiableCopiesInfo($prods,$dbh){
+        $allProd = $prods;
+        for($i=0; $i < count($prods);$i++){
+            $allProd[$i]["copies"] = $dbh -> getAvaiableCopiesOfProd($allProd[$i]["ProductId"]);
+        }
+        return $allProd;
+    }
+
+    function getFavourites($userId,$dbh){
+        $prods = $dbh->getCustomerWishlist($userId);
+        $prods = addAvaiableCopiesInfo($prods,$dbh);
+    }
+
     /**
      * return products in customer's cart if logged-in else return cookie-cart
      * @return array associative array containing products ()
