@@ -22,7 +22,7 @@
     
     $templateParams["copies"] = $dbh -> getAvaiableCopiesOfProd($idprodotto);
     $templateParams["logged"] = isCustomerLoggedIn();
-    $templateParams["isAlertActive"] = false; //if true --> button disabled
+    $templateParams["isAlertActive"] = true; // button disabled
 
     if(isCustomerLoggedIn()){
         $templateParams["isAlertActive"] = !$dbh -> isAlertActive($_SESSION['userId'],$idprodotto);
