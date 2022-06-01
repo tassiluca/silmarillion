@@ -2,7 +2,7 @@ main > section > div > div > form > h3 {
     margin: 15px 0;
 }
 
-main > section > div > div > form > div {
+main > section > div > div > form > fieldset {
     background: #CBF6FF;
     border: 1px solid #0047A0;
     box-sizing: border-box;
@@ -10,18 +10,19 @@ main > section > div > div > form > div {
     border-radius: 20px;
     text-align: center;
     padding: 2% 0;
+    margin: 40px 0 0 0;
 }
 
-main > section > div > div > form > div > a {
+main > section > div > div > form > fieldset > a {
     font-weight: bold;
     color: #0047A0;
 }
 
-main > section > div > div > form > div > a:last-child {
+main > section > div > div > form > fieldset > a:last-child {
     display: none;
 }
 
-main > section > div > div > form > div > ul > li{
+main > section > div > div > form > fieldset > ul > li {
     margin: 6px 0;
     list-style: none;
     display: flex;
@@ -29,18 +30,15 @@ main > section > div > div > form > div > ul > li{
     align-items: center;
 }
 
-main > section > div > div > form > div:last-of-type > ul > li{
-    margin: 6px 0;
-    list-style: none;
-    display: flex;
+main > section > div > div > form > fieldset:last-of-type > ul > li {
     justify-content: center;
 }
 
-main > section > div > div > form > div:first-of-type > ul > li > label {
+main > section > div > div > form > fieldset:first-of-type > ul > li > label {
     width: 20%;
 }
 
-main > section > div > div > form > div:not(:last-of-type) > ul > li > input{
+main > section > div > div > form > fieldset:first-of-type > ul > li > input {
     width: 60%;
     border-radius: 10px;
     height: 37px;

@@ -11,8 +11,8 @@
         <div>
             <div>
                 <form id="addressForm" method="POST" action="./engines/process-payment.php">
-                    <h3>Indirizzo di spedizione</h3>
-                    <div>
+                    <fieldset>
+                        <legend><h3> Indirizzo di spedizione </h3></legend>
                         <ul>
                             <li>
                                 <label for="destAddress">Indirizzo</label>
@@ -33,9 +33,9 @@
                         </ul>
                         <a href="#" onclick="editAddress()" onkeypress="editAddress()">Modifica indirizzo</a>
                         <a href="#" onclick="editAddress()" onkeypress="editAddress()">Conferma</a>
-                    </div>
-                    <h3>Metodo di Pagamento</h3>
-                    <div>
+                    </fieldset>
+                    <fieldset>
+                        <legend><h3> Metodo di Pagamento </h3></legend>
                         <ul>
                             <li>
                                 <input type="radio" name="paymethod" id="cash" value="-1" required />
@@ -53,7 +53,7 @@
                                 </li>
                             <?php endforeach; ?>
                         </ul>
-                    </div>
+                    </fieldset>
                 </form>
             </div>
             <div>
