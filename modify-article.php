@@ -33,8 +33,8 @@
     if ($_GET["action"] !== 'insert') {
         $templateParams['article'] = $dbh->isFunko($_GET['id']) ? 'funko' : 'comic';
         $productInfo = $dbh->getProduct($_GET['id']);
-        if (count($productInfo) == 0) { // no product found in the database
-            header("location: not-found.php");
+        if ($productInfo === null) { // no product found in the database
+            header("location: manage-articles.php");
         } else { // product found in the database
             $templateParams["product"] = $productInfo;
             $templateParams["product"]["Quantity"] = $dbh->getAvaiableCopiesOfProd($_GET['id']);

@@ -224,7 +224,7 @@
             $dbh->deleteComic($data['productId']);
         }
         $dbh->deleteProductCopies($data['productId']);
-        header('location: manage-articles.php');
+        header('location: ../manage-articles.php');
     }
 
     validate($data);
