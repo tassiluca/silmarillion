@@ -10,7 +10,7 @@
             <img src="./img/login/user-men-icon.svg" alt="">
         </div>
         <ul>
-            <li id="userloginbtn"><a href="#userlogin">Utente</a></li><li id="sellerloginbtn"><a href="#sellerlogin">Venditore</a></li>
+            <li id="userloginbtn"><h3><a href="#userlogin">Utente</a></h3></li><li id="sellerloginbtn"><h3><a href="#sellerlogin">Venditore</a></h3></li>
         </ul>
     </header>
     <!-- User login form -->

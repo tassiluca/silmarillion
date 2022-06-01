@@ -23,6 +23,9 @@ $(document).ready(function () {
     addEventListenerButton('#productInfo > li:nth-child(3) > a',handleAddAlertProd);//add-remove alert on product avaialability
 
     getCartInfoCounter();
+
+    // hide message to log in if want to be notified when the product is again available
+    $("#productInfo > li:nth-child(3) > div").hide();
 });
 
 function addEventListenerButton(jQuerySelector,methodToRun){

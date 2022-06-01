@@ -1,9 +1,9 @@
 /****************************************************************************
  * Common rules for all website.
  ****************************************************************************/
- .hidden{ display: none; }
+.hidden{ display: none; }
 
- body, h1, h2, ul, button {
+body, h1, h2, h3, ul, button {
     margin: 0;
     padding: 0;
 }
@@ -183,7 +183,7 @@ body > footer > div > ul > li {
 
 /************************* Breadcrumb **************************/
 main > div > ul {
-    padding: 15px 0;
+    padding: 15px 5%;
 }
 
 main > div > ul li + li::before {
@@ -445,7 +445,7 @@ body > header > nav > div#navSearch > form > ul {
         box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
     }
 
-    body > header > h1.hide {
+    body > header > a > h1.hide {
         text-align: center;
         height: 180px;
         background-image: url(../img/commons/big-logo.svg);
@@ -536,7 +536,7 @@ body > header > nav > div#navSearch > form > ul {
         box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
     }
 
-    body > header > h1.hide {
+    body > header > a > h1.hide {
         text-align: center;
         height: 180px;
         background-image: url(../img/commons/big-logo.svg);

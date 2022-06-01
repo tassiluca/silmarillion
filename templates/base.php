@@ -39,7 +39,7 @@
     </head>
     <body>
         <header>
-            <a href="/"><h1 class="hide" >Silmarillion Comics</h1></a>
+            <a href="./"><h1 class="hide" >Silmarillion Comics</h1></a>
             <nav>
                 <ul>
                     <li>

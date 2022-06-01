@@ -1,30 +1,27 @@
 /****************************************************************************
  * Style sheet linked to the single article page
  ****************************************************************************/
-main {
+main > section {
     margin: 0 5% 50px 5%;
 }
 
-li {
-    list-style: none;
-}
-
-main > h2 {
+main > section > header > h3 {
     text-align: center;
     padding: 10px 0;
+    font-size: 1.5em;
 }
 
 /***************************** Aside section ******************************/
-main > aside {
+main > section > aside {
     text-align: center;
     margin-bottom: 20px;
 }
 
-main > aside > div {
+main > section > aside > div {
     margin: 15px 0;
 }
 
-main > aside > div > img {
+main > section > aside > div > img {
     max-width: 100%;
     max-height: 100%;
     height: 500px;
@@ -32,48 +29,11 @@ main > aside > div > img {
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-/**************************** Notification area ****************************/
-div#notificationArea {
-    margin: 15px 0;
-    padding: 15px 10px;
-    height: fit-content;
-    text-align: center;
-    display: none;
-}
-
-div#notificationArea.message {
-    display: block;
-    background-color: #7cfc91;
-}
-
-div#notificationArea.message::before {
-    font-family: FontAwesome;
-    content: '\f058';
-}
-
-div#notificationArea.warning {
-    display: block;
-    background-color: #ff9800;
-    color: white;
-}
-
-div#notificationArea.warning::before{
-    content: "\f071";
-    font-family: FontAwesome;
-}
-
-div#notificationArea.error {
-    display: block;
-    background-color: red;
-    color: white;
-}
-
-div#notificationArea.error::before{
-    content: "\f00d";
-    font-family: FontAwesome;
-}
-
 /***************************** Section page *****************************/
+li {
+    list-style: none;
+}
+
 ul#productInfo {
     display: block;
     text-align: center;
@@ -142,18 +102,18 @@ ul#productInfo > li:first-child.soldout + li + li {
     display: inline-block;
 }
 
-main > section > footer > ul {
+main > section > div > footer > ul {
     display: flex;
 }
 
-main > section > footer > ul > li {
+main > section > div > footer > ul > li {
     flex-direction: row;
     width: 48%;
     vertical-align: top;
     text-align: center;
 }
 
-main > section > footer > ul > li:first-child {
+main > section > div > footer > ul > li:first-child {
     margin-right: 1%;
     font-size: 1.4em;
     font-weight: bold;
@@ -165,63 +125,63 @@ main > section > footer > ul > li:first-child {
     justify-content: center;
 }
 
-main > section > footer > ul > li:first-child > span {
+main > section > div > footer > ul > li:first-child > span {
     color: #FF0000;
     text-decoration-line: line-through;
     line-height: 1;
 }
 
-main > section > footer > ul > li:last-child {
+main > section > div > footer > ul > li:last-child {
     margin-left: 1%;
     background: linear-gradient(to bottom, #ADE8F4, #CAF6FF );
     border-radius: 10px;
     box-shadow: 4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > footer > ul > li:last-child > a {
+main > section > div > footer > ul > li:last-child > a {
     padding: 10px 0;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
 }
 
-main > section > footer > ul > li:last-child > a > span {
+main > section > div > footer > ul > li:last-child > a > span {
     display: block;
     font-weight: bold;
     color: #0047A0;
 }
 
-main > section > footer > ul > li > a {
+main > section > div > footer > ul > li > a {
     display: inline-block;
 }
 
-main > section > footer > ul > li > a:hover {
+main > section > div > footer > ul > li > a:hover {
     background-color: #0047A0;
     border-radius: 10px;
 }
 
-main > section > footer > ul > li > a:hover > span {
+main > section > div > footer > ul > li > a:hover > span {
     color: white;
 }
 
 /**************************** Desktop viewport ****************************/
 @media screen and (min-width: 768px) and (max-width:1200px) {
-    main > h2 {
+    main > section > header > h3 {
         padding-bottom: 35px;
     }
 
-    main > aside {
+    main > section > aside {
         display: inline-block;
         width: 40%;
         vertical-align: top;
         margin-right: 2%;
     }
 
-    main > aside > div {
+    main > section > aside > div {
         margin: 0;
     }
 
-    main > section {
+    main > section > div {
         display: inline-block;
         width: 56%;
         margin-left: 2%;
@@ -229,22 +189,22 @@ main > section > footer > ul > li > a:hover > span {
 }
 
 @media screen and (min-width: 1200px) {
-    main > h2 {
+    main > section > header > h3 {
         padding-bottom: 35px;
     }
 
-    main > aside {
+    main > section > aside {
         display: inline-block;
         width: 33%;
         vertical-align: top;
         margin-right: 2%;
     }
 
-    main > aside > div {
+    main > section > aside > div {
         margin: 0;
     }
 
-    main > section {
+    main > section > div {
         display: inline-block;
         width: 63%;
         margin-left: 2%;

@@ -66,6 +66,11 @@ main > section:nth-child(3) > button:nth-child(even){
 
 
 /*********************      Pop up      *********************/
+main > sectin > aside {
+    position: absolute;
+    z-index: 1;
+}
+
 
 
 
