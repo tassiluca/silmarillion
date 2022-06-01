@@ -17,7 +17,7 @@
         <img src="../img/user-page/profile.svg" alt="Profilo">
         </br>Profilo
     </button>
-    <button onclick="window.location.href='./profile-template.php'">
+    <button onclick="window.location.href='./statistics.php'">
         <img src="../img/user-page/money.svg" alt="Contabilità">
         </br>Contabilità
     </button>

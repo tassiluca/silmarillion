@@ -12,7 +12,11 @@
             </aside><section>
                 <header>
                     <ul id="productInfo">
-                        <?php $favImg = isProdFavourite($dbh,$templateParams["product"]['ProductId']) ? "./img/products/favourite.svg" : "./img/products/un-favourite.svg";?>
+                        <?php 
+                        $isFavourite = isProdFavourite($dbh,$templateParams["product"]['ProductId']);
+                        $favImg = $isFavourite ? "./img/products/favourite.svg" : "./img/products/un-favourite.svg";
+                        $favDescr = $isFavourite ? "Rimuovi preferito" : "Salva preferito" ;
+                        ?>
                         <!-- NOTE: if the article is not available implement "soldout" class, otherwise "available" class -->
                         <li class="<?php if($templateParams["copies"] > 0){echo "available";}else{echo "soldout";}?>">
                             <?php 
@@ -24,7 +28,7 @@
                             ?>
                         </li><li>
                             <a href="./engines/process-request.php?action=wish&id=<?php echo $templateParams["product"]["ProductId"]?>" class="wishButton">
-                                <img src="<?php echo $favImg?>" alt="Preferito" />
+                                <img src="<?php echo $favImg?>" alt="<?php echo $favDescr?>" />
                             </a>
                         </li><li>
                             <a href="./engines/process-request.php?action=notify&id=<?php echo $templateParams["product"]["ProductId"]?>">
