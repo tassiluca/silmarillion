@@ -101,19 +101,19 @@
         <form action="" method="post" target="" autocomplete="on">
             <div>
                 <label for="id1"></label>
-                <input type="text" id="id1" name="radioButt" readonly required>
+                <input type="text" id="id1" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
             </div>
 
             <div>
                 <label for="id2"></label>
-                <input type="text" id="id2" name="radioButt" readonly required>
+                <input type="text" id="id2" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
             </div>
 
             <div>
                 <label for="id3"></label>
-                <input type="text" id="id3" name="radioButt" readonly required>
+                <input type="text" id="id3" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
             </div>
             <div>

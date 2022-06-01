@@ -13,6 +13,5 @@
         logout();
     }
 
-
     require 'templates/base.php';
 ?>

@@ -17,16 +17,16 @@
        <img src="../img/user-page/profile.svg" alt="Profilo"></br>
        Profilo
    </button>
-    <button onclick="window.location.href='./profile-template.php'">
+    <button onclick="window.location.href='./user-orders.php'">
         <img src="../img/user-page/order.svg" alt="Ordini"></br>
         Ordini
     </button>
-    <button>
+    <button onclick="window.location.href='./user-wishlist.php'">
         <img src="../img/user-page/wishlist.svg" alt=""></br>
         Wishlist
     </button>
-    <button>
-        <img src="../img/user-page/message.svg" alt=""></br>
+    <button onclick="window.location.href='./user-messages.php'">
+        <img src="../img/user-page/message.svg" alt="" /></br>
         Messaggi
     </button>
     <button>
