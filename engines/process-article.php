@@ -110,7 +110,7 @@
             'isbn'              => v::numericVal()->length(13, 13),
             'price'             => v::numericVal()->not(v::negative())->notEmpty(),
             'discountedPrice'   => v::not(v::numericVal()->negative()),
-            'quantity'          => v::intVal()->not(v::negative())->notEmpty()
+            'quantity'          => v::intVal()->not(v::negative())
         );
 
         $dataDic = array (
@@ -132,7 +132,7 @@
         $tmp = $tmp && validateCategory($data) && 
             (isFunkoProcessing() || validatePublisher($data)) &&
             validateDiscountedPrice($data);
-        redirectOnFailure("Errore inserimento dati. Ricontrolla i campi!", !$tmp);
+        redirectOnFailure("Errore inserimento dati. Ricontrolla i campi! " . $msg, !$tmp);
     }
 
     /**
@@ -252,8 +252,12 @@
     checkErrors($res, 'Prodotto');
 
     $actualQuantity = $dbh->getAvaiableCopiesOfProd($data['productId']);
-    for ($i = 0; $i < $data['quantity'] - $actualQuantity; $i++) {
-        $dbh->addProductCopy($data['productId']);
+    if ($data['quantity'] - $actualQuantity > 0) { // if the user added new product copies insert them
+        for ($i = 0; $i < $data['quantity'] - $actualQuantity; $i++) {
+            $dbh->addProductCopy($data['productId']);
+        }
+    } else if ($data['quantity'] - $actualQuantity < 0) { // if the user has deleted some copies
+        $dbh->deleteProductCopies($data['productId'], $actualQuantity - $data['quantity']);
     }
 
     redirectOnSuccess("Operazione avvenuta con successo");

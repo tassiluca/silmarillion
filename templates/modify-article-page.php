@@ -131,7 +131,7 @@
                 </li>
                 <li>
                     <label for="quantity">Q.tà disponibile</label>
-                    <input type="number" pattern="[0-9]+" placeholder="es. 23" id="quantity" name="quantity" value="<?php echo $product['Quantity']; ?>" min="<?php echo $product['Quantity']; ?>" required />
+                    <input type="number" placeholder="es. 23" id="quantity" name="quantity" value="<?php echo $product['Quantity']; ?>" min="0" required />
                 </li>
                 <li>
                     <?php if ($templateParams['action'] == 'insert'): ?>
