@@ -16,6 +16,7 @@
                 <h3>Dimenticato la password? &#128579; <br/> Niente paura... ci siamo noi &#129321;</h3>
             </li>
             <li>
+                <strong>** QUESTA FUNZIONALIT&Agrave; NON &Egrave; ANCORA STATA IMPLEMENTATA **</strong>
                 <p>Per ragioni di sicurezza, Silmarillion <strong>**NON**</strong> memorizza la tua password in chiaro.</p>
                 <p>Inserisci l'indirizzo e-mail con cui ti eri registrato. Ti invieremo una mail con le istruzioni per resettare la tua password.</p>
             </li>

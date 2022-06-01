@@ -183,7 +183,7 @@ body > footer > div > ul > li {
 
 /************************* Breadcrumb **************************/
 main > div > ul {
-    padding: 15px 0;
+    padding: 15px 5%;
 }
 
 main > div > ul li + li::before {
