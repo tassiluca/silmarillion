@@ -5,6 +5,7 @@ div, button, h2, ul, li, main, p{
 
 main {
     background-image: url(../img/background/drag_wall.png);
+    height: 750px;
 }
 
 /*********************       SELLER KEYPAD     *********************/

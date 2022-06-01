@@ -8,16 +8,17 @@ main {
     background-color: rgba(208, 243, 255, 0.82);
 }
 
-main > section{
+main > section {
     border-radius: 30px;
     background-color: #aaf1ffe1;
     padding: 10px 1%;
     box-sizing: content-box;
-    margin: 20px 1% 0 1%;
     max-width: 900px;
+    margin: auto;
+    margin-top:20px;
 }
 
-main > section > fieldset{
+main fieldset{
     text-align: center;
     background-color: #CAF0F8;
     border-radius: 30px;
@@ -25,7 +26,7 @@ main > section > fieldset{
     margin: 0 5% 30px 5%;
 }
 
-main > section > fieldset > legend {
+main > section > fieldset > legend, main > aside legend {
     font-size: 20px;
     color: #00479e;
     font-weight: bold;
@@ -51,7 +52,7 @@ main > section > fieldset > form span {
     margin: 20px;
 }
 
-main label {
+main label, aside > p {
     font-size: 16px;
     color: #00479e;
     font-weight: bold;
@@ -69,7 +70,65 @@ main label {
     margin: 3%;
     padding: 10px 2%;
     text-align: center;
+    max-width: 88px;
 }
+
+/**********     Payments methods    *********/
+aside{
+    border-radius: 30px;
+    background-color: #aaf1ffe1;
+    padding: 10px 1%;
+    box-sizing: content-box;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 900px;
+    text-align: center;
+}
+
+aside > p {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-right: 2%;
+}
+
+aside > fieldset > form > div input{
+    border-radius: 20px;
+    border: 1px solid #00479e;
+    padding: 10px 2%;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    width: 50%;
+}
+
+aside > fieldset > form > div input{
+    border-radius: 20px;
+    border: 1px solid #00479e;
+    padding: 10px 2%;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+main > aside > fieldset > form > div > button img {
+    width: 20px;
+    text-decoration: none;
+}
+
+main > aside:last-of-type   div {
+    text-align: right;
+    display: block;
+    margin-right: 20%;
+}
+
+
+main > aside:last-of-type input {
+    margin-left: 2%;
+}
+
 
 @media screen and (max-width: 720px){
     main > section > fieldset > form span{
@@ -83,10 +142,35 @@ main label {
     }
 }
 
-@media screen and  (min-width: 1400px) {
+@media screen and  (min-width: 1600px) {
+
+    main > section:first-child(2) {
+        position: relative;
+    }
+
     main > section {
-        width: 60%;
+        width: 59%;
+        display: inline-block;
+        margin-left: 5%;
+        margin-right: 6%;
 
     }
+    main {
+        vertical-align: top;
+    }
+
+    main  aside {
+        width: 29%;
+        display: inline-block;
+        position: absolute;
+        top: 320px;
+        height: 350px;
+    }
+
+    main > aside:last-of-type {
+        top: 760px;
+        height: 300px;
+    }
+
 
 }

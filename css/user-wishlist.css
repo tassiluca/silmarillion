@@ -1,0 +1,135 @@
+main {
+    background-image: url(../img/background/superMario.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: scroll;
+    min-height: 700px;
+    background-color: rgba(208, 243, 255, 0.82);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+main > section {
+    border-radius: 30px;
+    background-color: rgba(0, 71, 160, 0.57);
+    padding: 10px 1%;
+    box-sizing: content-box;
+    max-width: 900px;
+    margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    background-color: rgba(195, 240, 250, 0.84);
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 10px 3%;
+    text-align: center;
+    border-bottom: 1px dotted #0047A0;
+}
+
+table tr{
+    min-height: 60px;
+}
+
+tr:hover:not(:first-of-type) {
+    background-color: #fafefebc;
+}
+
+.delete {
+    max-width: 25px;
+    opacity: 0.4;
+}
+
+.delete:hover {
+    transform: rotate(45deg);
+}
+
+table img{
+    max-width: 50px;
+    width: auto;
+}
+
+th:nth-child(1){
+    width: 1%;
+}
+
+th:nth-child(2){
+    width: 9%;
+}
+
+th:nth-child(3){
+    width: 20%;
+}
+
+th:nth-child(4){
+    width: 10%;
+}
+th:nth-child(5){
+    width: 20%;
+}
+
+th:nth-child(6){
+    width: 20%;
+}
+
+.dark {
+    background-color: #90ebfd;
+}
+
+.whiteBtn{
+    background-color: #ffffff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 5px 10%;
+    border: none;
+    color: black;
+    border: 1px dotted black;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.whiteBtn:hover, .icon:hover{
+    transform: scale(1.1);
+}
+
+.miniText{
+    font-size: 10px;
+    margin: 10px 0;
+}
+
+
+@media screen and (min-width: 280px) and (max-width: 320px) {
+    .th, td{
+        font-size: 9px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 550px) {
+    .th, td{
+        font-size: 12px;
+    }
+
+    .whiteBtn{
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 1000px) {
+
+    .th, td{
+        font-size: 14px;
+    }
+
+    .whiteBtn{
+        font-size: 16px;
+    }
+}
+
