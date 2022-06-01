@@ -650,7 +650,10 @@
          * @return array Associative array with all product-id of prods favourite to customer
          */
         public function getCustomerWishlist($usrId){
-            $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
+            $query = "SELECT F.ProductId, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                FROM Favourites as F, Products as P
+                WHERE UserId = ?
+                AND F.ProductId = P.ProductId";
             return $this -> executeQuery($query,[$usrId])
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
@@ -709,7 +712,7 @@
         }
 
         /**
-         * Remove product from customer's wishlist
+         * Remove product from customer's alert
          * @param int $usrId the user id
          * @param int $productId the product id
          * @return bool true if an alert has been removed, false otherwise
@@ -853,14 +856,20 @@
         /**
          * Deletes all copies of a given product which are not associated to an existing order.
          * @param int $productId the id of the product to be deleted
+         * @param int $quantity the quantity of copies to delete
          * @return void
          */
-        public function deleteProductCopies($productId) {
+        public function deleteProductCopies($productId, $quantity = -1) {
             $query = "DELETE FROM ProductCopies
                       WHERE ProductId = ?
                       AND CopyId NOT IN (SELECT CopyId 
                                          FROM OrderDetails)";
-            $this->executeQuery($query, [$productId]);
+            $params = [$productId];
+            if ($quantity > 0){
+                $query .= " LIMIT ?";
+                array_push($params, $quantity);
+            }
+            $this->executeQuery($query, $params);
         }
 
         /**

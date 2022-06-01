@@ -16,11 +16,14 @@ main > section > header > ul > li {
     border-radius: 10px 10px 0 0;
 }
 
-main > section > header > ul > li > a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #0047A0;
+main > section > header > ul > li > h3 {
+    margin: 4px 0;
     font-size: 22px;
+}
+
+main > section > header > ul > li > h3 > a {
+    text-decoration: none;
+    color: #0047A0;
 }
 
 main > section > header > ul > li:first-child.active {
@@ -33,7 +36,7 @@ main > section > header > ul > li:last-child.active {
     box-shadow: -4px -4px 5px rgba(196, 196, 196, 0.82);
 }
 
-main > section > header > ul > li:last-child.active > a {
+main > section > header > ul > li:last-child.active > h3 > a {
     color: #AAF1FF;
 }
 
