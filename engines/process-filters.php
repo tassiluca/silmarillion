@@ -208,14 +208,6 @@ filters = lang, author, price, availability, publisher,category*/
         return $allProd;
     }
 
-    function addAvaiableCopiesInfo($prods,$dbh){
-        $allProd = $prods;
-        for($i=0; $i < count($prods);$i++){
-            $allProd[$i]["copies"] = $dbh -> getAvaiableCopiesOfProd($allProd[$i]["ProductId"]);
-        }
-        return $allProd;
-    }
-
     function applyFilterAvailable($prods,$selFilter){
         $allProd = array();
         for($i=0; $i < count($prods);$i++){

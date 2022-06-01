@@ -650,10 +650,25 @@
          * @return array Associative array with all product-id of prods favourite to customer
          */
         public function getCustomerWishlist($usrId){
-            $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
-            return $this -> executeQuery($query,[$usrId])
-                ->get_result()
-                ->fetch_all(MYSQLI_ASSOC);
+            $queryComic = "SELECT F.ProductId, C.Title as Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                FROM Favourites as F, Products as P, Comics as C
+                WHERE UserId = ?
+                AND F.ProductId = P.ProductId
+                AND P.ProductId = C.ProductId";
+            $comics = $this -> executeQuery($queryComic,[$usrId])
+                        ->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
+
+            $queryFunko = "SELECT F.ProductId, FU.Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+            FROM Favourites as F, Products as P, Funkos as FU
+            WHERE UserId = ?
+            AND F.ProductId = P.ProductId
+            AND P.ProductId = FU.ProductId";
+            $funkos = $this -> executeQuery($queryFunko,[$usrId])
+                        ->get_result()
+                        ->fetch_all(MYSQLI_ASSOC);
+            
+            return array_merge($funkos,$comics);
         }
 
         /**
@@ -709,7 +724,7 @@
         }
 
         /**
-         * Remove product from customer's wishlist
+         * Remove product from customer's alert
          * @param int $usrId the user id
          * @param int $productId the product id
          * @return bool true if an alert has been removed, false otherwise
