@@ -32,7 +32,8 @@
                 return true;
             }
         }
-        return false;
+        // the cash payment is always accepted!
+        return $_POST["paymethod"] == -1;
     }
 
     function getAvailableProds(): array

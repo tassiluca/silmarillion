@@ -853,14 +853,20 @@
         /**
          * Deletes all copies of a given product which are not associated to an existing order.
          * @param int $productId the id of the product to be deleted
+         * @param int $quantity the quantity of copies to delete
          * @return void
          */
-        public function deleteProductCopies($productId) {
+        public function deleteProductCopies($productId, $quantity = -1) {
             $query = "DELETE FROM ProductCopies
                       WHERE ProductId = ?
                       AND CopyId NOT IN (SELECT CopyId 
                                          FROM OrderDetails)";
-            $this->executeQuery($query, [$productId]);
+            $params = [$productId];
+            if ($quantity > 0){
+                $query .= " LIMIT ?";
+                array_push($params, $quantity);
+            }
+            $this->executeQuery($query, $params);
         }
 
         /**
