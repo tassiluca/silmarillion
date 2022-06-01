@@ -1,3 +1,7 @@
+main {
+    margin: 0 5% 50px 5%;
+}
+
 main > section > header {
     text-align: center;
 }

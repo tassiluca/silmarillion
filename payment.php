@@ -15,13 +15,14 @@
             : "Ordine rifiutato: il/i prodotto/i selezionati non sono più disponibili &#128546;");
     } else {
         list($availableProds, $totalAmount) = computeTotalAmount();
+        $templateParams["totalAmount"] = $totalAmount;
+        // TODO to display the list of available products in the page
+        $templateParams["availableProds"] = $availableProds;
+        $templateParams["paymentMethods"] = $dbh->getPaymentMethodsOfUser($_SESSION['userId']);
         if (empty($availableProds)) {
             $templateParams["msg"] = "Nessun prodotto nel carrello è al momento disponibile";
-        } else {
-            $templateParams["totalAmount"] = $totalAmount;
-            // TODO to display the list of available products in the page
-            $templateParams["availableProds"] = $availableProds;
-            $templateParams["paymentMethods"] = $dbh->getPaymentMethodsOfUser($_SESSION['userId']);
+        } elseif (isset($_GET["inputError"])) {
+            $templateParams["inputError"] = $_GET["inputError"];
         }
     }
 
