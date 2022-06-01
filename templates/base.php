@@ -74,7 +74,7 @@
                         <li>
                             <a href="catalog.php">Catalogo</a>
                         </li><li>
-                            <a href="catalog.php?category=manga">Manga</a>
+                            <a href="catalog.php?category=Manga">Manga</a>
                         </li><li>
                             <a href="catalog.php?category=hero">Supoereroi</a>
                         </li><li>
