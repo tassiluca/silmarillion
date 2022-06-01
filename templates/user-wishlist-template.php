@@ -33,7 +33,7 @@
             <tr>
                 <td><img src="../img/user-page/Delete.svg"  alt="" class="delete"></td>
                 <td><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg'] ?>" alt="" /></td>
-                <th><?php echo $prod['Description'] ?></th>
+                <th><?php echo $prod['Name'] ?></th>
                 <td><?php echo $prod['Price'] ?> <p><?php echo $prod['DiscountedPrice'] ?> </p></td>
                 <td>In Stock<p class="miniText">Quantità: <?php echo $prod['copies'] ?> pz</p></td>
                 <td><button class="whiteBtn" type="button">Aggiungi al carrello</button></td>
