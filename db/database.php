@@ -650,7 +650,7 @@
          * @return array Associative array with all product-id of prods favourite to customer
          */
         public function getCustomerWishlist($usrId){
-            $queryComic = "SELECT F.ProductId, C.Title, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+            $queryComic = "SELECT F.ProductId, C.Title as Name, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
                 FROM Favourites as F, Products as P, Comics as C
                 WHERE UserId = ?
                 AND F.ProductId = P.ProductId
