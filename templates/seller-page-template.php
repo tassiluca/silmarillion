@@ -21,7 +21,7 @@
         <img src="../img/user-page/money.svg" alt="Contabilità">
         </br>Contabilità
     </button>
-    <button>
+    <button onclick="window.location.href='./manage-articles.php'">
         <img src="../img/user-page/wishlist.svg" alt="">
         </br>Articoli
     </button>
