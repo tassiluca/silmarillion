@@ -445,7 +445,7 @@ body > header > nav > div#navSearch > form > ul {
         box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
     }
 
-    body > header > h1.hide {
+    body > header > a > h1.hide {
         text-align: center;
         height: 180px;
         background-image: url(../img/commons/big-logo.svg);
@@ -536,7 +536,7 @@ body > header > nav > div#navSearch > form > ul {
         box-shadow: 1px 1px 5px rgba(196, 196, 196, 0.82);
     }
 
-    body > header > h1.hide {
+    body > header > a > h1.hide {
         text-align: center;
         height: 180px;
         background-image: url(../img/commons/big-logo.svg);
