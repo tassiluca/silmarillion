@@ -192,6 +192,7 @@
     function getFavourites($userId,$dbh){
         $prods = $dbh->getCustomerWishlist($userId);
         $prods = addAvaiableCopiesInfo($prods,$dbh);
+        return $prods;
     }
 
     /**
