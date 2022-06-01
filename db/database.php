@@ -650,7 +650,10 @@
          * @return array Associative array with all product-id of prods favourite to customer
          */
         public function getCustomerWishlist($usrId){
-            $query = "SELECT `ProductId` FROM `Favourites` WHERE `UserId`= ?";
+            $query = "SELECT F.ProductId, P.Price, P.DiscountedPrice, P.Description, P.CoverImg, P.CategoryName
+                FROM Favourites as F, Products as P
+                WHERE UserId = ?
+                AND F.ProductId = P.ProductId";
             return $this -> executeQuery($query,[$usrId])
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
@@ -709,7 +712,7 @@
         }
 
         /**
-         * Remove product from customer's wishlist
+         * Remove product from customer's alert
          * @param int $usrId the user id
          * @param int $productId the product id
          * @return bool true if an alert has been removed, false otherwise
