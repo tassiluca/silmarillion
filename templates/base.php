@@ -76,7 +76,7 @@
                         </li><li>
                             <a href="catalog.php?category=Manga">Manga</a>
                         </li><li>
-                            <a href="catalog.php?category=hero">Supereroi</a>
+                            <a href="catalog.php?category=Hero">Supereroi</a>
                         </li><li>
                             <a href="catalog.php?category=Funko">Funko Pop</a>
                         </li><li id="login">
