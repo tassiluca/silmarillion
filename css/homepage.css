@@ -32,42 +32,53 @@ main > section:first-child > div > img{
     border-radius: 10px;
 }
 
-main > section:first-child > input {
+button {
+    background: none;
+    border-style: none;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+main > section:first-child > button {
     height: 145px;
 }
 
-main > section > input {
+main > section > button {
     width: 10%;
     max-width: 28px;
     padding: 0 1% 0 1%;
 }
 
-main > section > input:first-of-type{
+main > section > button:first-of-type{
     float: left;
+    background-image: url(../img/commons/back.svg);
 }
 
-main > section> input:last-of-type{
+main > section> button:last-of-type{
     float: right;
+    background-image: url(../img/commons/forward.svg);
 }
 
 /*back-forward button comics */
-main > section > div > input {
+main > section > div > button {
     height: 433px;
     width: 10%;
     max-width: 30px;
     padding: 0 1% 0 1%;
 }
 
-main > section > div > input:first-of-type{
+main > section > div > button:first-of-type{
     float: left;
+    background-image: url(../img/commons/back.svg);
 }
 
-main > section > div > input:last-of-type{
+main > section > div > button:last-of-type{
     float: right;
+    background-image: url(../img/commons/forward.svg);
 }
 
 /*reviews banner*/
-main > section.review > div > input {
+main > section.review > div > button {
     height: 290px;
 }
 main > section.review > div > article{
@@ -121,7 +132,7 @@ main > section:last-child > div{
     padding: 15px 2%;
 }
 
-main > section:last-child > input{
+main > section:last-child > button{
     height: 100px;
 }
 main > section:last-child > div > div {
@@ -138,7 +149,7 @@ main > section:last-child > div > div > a{
 }
 
 /*Header of container group*/
-main > section > header > h2 {
+main > section > header > h3 {
     text-align: center;
 }
 /*Container of articles of same group*/
@@ -240,7 +251,7 @@ main > aside > div:last-child > div.current {
 
     main > section:first-child, 
     main > section:first-child > div > img,
-    main > section:first-child > input,
+    main > section:first-child > button,
     main > section:first-child >div{
         height: 276px;
     }

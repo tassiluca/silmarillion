@@ -12,8 +12,8 @@
     <?php endforeach;
         endif;?>
     <!--end of element of banner-->
-    <input type="image" src="img/commons/back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="notizia precedente" />
-    <input type="image" src="img/commons/forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="notizia successivo" />
+    <button type="image" src="img/commons/back.svg" onclick="updateBanner(-1)" onkeypress="updateBanner(-1)" alt="notizia precedente" />
+    <button type="image" src="img/commons/forward.svg" onclick="updateBanner(1)" onkeypress="updateBanner(-1)" alt="notizia successivo" />
 
    </section>
 <aside>   
@@ -46,7 +46,7 @@
 
         <?php if(isset($templateParams[$section]) && count($templateParams[$section]) > 0):?>
             <section class="comics <?php echo $section?>">
-                <header><h2><?php echo $templateParams["sectionTitle"][$section]?></h2></header>
+                <header><h3><?php echo $templateParams["sectionTitle"][$section]?></h3></header>
                 <div>
                 <!--here insert other article to be scrolled-->
                     <?php foreach($templateParams[$section] as $product):?>
@@ -76,8 +76,8 @@
                         </article>
         <?php endforeach;?>
                 <!--end group of article-->
-                    <input type="image" src="img/commons/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
-                    <input type="image" src="img/commons/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
+                    <button type="image" src="img/commons/sort-left.svg" onclick="updateComic('<?php echo $section?>',-1)" onkeypress="updateComic('<?php echo $section?>',-1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> precedente" >
+                    <button type="image" src="img/commons/sort-right.svg" onclick="updateComic('<?php echo $section?>',1)" onkeypress="updateComic('<?php echo $section?>',1)" alt="<?php echo $templateParams["sectionTitle"][$section]?> successivo" >
                 </div>
             </section>
         <?php endif ?>
@@ -86,7 +86,7 @@
 
  <section class="review" id="reviews">
     <header>
-        <h2>Cosa dicono di noi</h2>
+        <h3>Cosa dicono di noi</h3>
     </header>
     <div>
     <!--
@@ -107,12 +107,12 @@
         </article>
     <?php endforeach; endif;?>
     <!--end group of article-->
-    <input type="image" src="img/commons/back.svg" onclick="updateReview(-1)" onkeypress="updateReview(-1)" alt="recensione precedente" >
-    <input type="image" src="img/commons/forward.svg" onclick="updateReview(1)" onkeypress="updateReview(1)" alt="recensione precedente" >
+    <button type="image" src="img/commons/back.svg" onclick="updateReview(-1)" onkeypress="updateReview(-1)" alt="recensione precedente" >
+    <button type="image" src="img/commons/forward.svg" onclick="updateReview(1)" onkeypress="updateReview(1)" alt="recensione precedente" >
      </div>
 </section>
 <section id="partners">
-    <header><h2>I Nostri partner</h2></header>
+    <header><h3>I Nostri partner</h3></header>
     <!-- here put all divs with partners to be shown in banner-->
     <div class="partner">
         <div>
@@ -128,6 +128,6 @@
         </div> 
     </div>
     <!--end of element of banner-->
-    <input type="image" src="img/commons/back.svg" onclick="updatePartner(-1)" onkeypress="updatePartner(-1)" alt="pagina editori indietro" >
-    <input type="image" src="img/commons/forward.svg" onclick="updatePartner(1)" onkeypress="updatePartner(1)" alt="pagina editori avanti" >
+    <button type="image" src="img/commons/back.svg" onclick="updatePartner(-1)" onkeypress="updatePartner(-1)" alt="pagina editori indietro" >
+    <button type="image" src="img/commons/forward.svg" onclick="updatePartner(1)" onkeypress="updatePartner(1)" alt="pagina editori avanti" >
 </section>
