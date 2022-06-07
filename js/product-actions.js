@@ -104,7 +104,7 @@ function handleCartAction(clickedBtn,urlLink){
     var currentAction = getUrlParameter("action",urlLink);
 
     $.get(urlLink, function (data) {
-        //console.log(data);
+        console.log(data);
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
