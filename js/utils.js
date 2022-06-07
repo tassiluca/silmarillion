@@ -107,5 +107,13 @@ function refreshCartBadge(currentCount){
 }
 
 function formatPrice(price) {
-    return price.toString().replace(".", ",");
+    console.log(price)
+    price = price.toString().replace(".", ",");
+    var decimal = price.split(",");
+    var integer = decimal[0]
+    firstDec = decimal[1][0]
+    secDec = decimal[1][1]
+    
+    price = integer.concat(",",firstDec+secDec );
+    return price;
 }
