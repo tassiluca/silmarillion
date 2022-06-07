@@ -45,7 +45,6 @@ tr:hover:not(:first-of-type) {
 
 .delete {
     max-width: 25px;
-    opacity: 0.4;
 }
 
 .delete:hover {

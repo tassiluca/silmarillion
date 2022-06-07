@@ -24,9 +24,12 @@
         if (!empty($templateParams)) {
             foreach($templateParams["fav-elem"] as $prod):?>
 
-
             <tr>
-                <td><img src="./img/user-page/Delete.svg"  alt="" class="delete"></td>
+                <td>
+                <a class="wishButton" href="./engines/process-request.php?action=wish&amp;id=<?php echo $prod['ProductId']?>">
+                    <img src="./img/user-page/Delete.svg"  alt="rimuovi articolo" class="delete">
+                </a>
+                </td>
                 <td><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg'] ?>" alt="" /></td>
                 <th><?php echo $prod['Name'] ?></th>
                 <td><?php echo $prod['Price'] ?><p><?php echo $prod['DiscountedPrice'] ?> </p></td>
