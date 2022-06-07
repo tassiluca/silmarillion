@@ -16,11 +16,17 @@
 
     <table>
         <caption>Posta in arrivo</caption>
+
+        <?php foreach($templateParams['message'] as $message):
+        ?>
+
         <tr>
-            <th><img src="../img/user-page/Delete.svg" class="icon" alt=""></th>
-            <th><h4>Notifica spedizione</h4>
-                <p>ordine bla bla</p></th>
+            <th><a href="../user-messages.php?deleteMessage=<?php echo $message['MessageId']?>" ><img src="./img/user-page/Delete.svg" class="icon" alt=""></a></th>
+            <th><h4><?php echo $message['Title']; ?></h4>
+                <p><?php echo $message['Description']; ?></p></th>
         </tr>
+
+        <?php endforeach; ?>
     </table>
 </section>
 

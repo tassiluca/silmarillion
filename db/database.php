@@ -1156,6 +1156,31 @@
         }
 
 
+        /* messages*/
+        public function insertMessage($id, $title, $text){
+            $query = "INSERT INTO Messages( MessageId, MsgDate, Title, Description, SenderUserId, RecvUserId) 
+            VALUES (?,?,?,?,?,?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ssi', $title, $text, $id);
+            return $this->executeQuery($query, [$id, $title, $text]);
+        }
+
+
+        public function readMessage($userId){
+            $query = "SELECT * 
+                        FROM Messages 
+                        WHERE RecvUserId = ? ";
+            return $this->executeQuery($query, [$userId])->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function deleteMessage($messageId){
+            $query = "DELETE FROM Messages 
+                        WHERE MessageId = ? ";
+            return $this->executeQuery($query, [$messageId]);
+        }
+
+
+
 
 
 

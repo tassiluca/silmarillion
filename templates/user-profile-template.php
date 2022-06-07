@@ -1,8 +1,8 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="../index.php"><img src="../img/commons/home-icon.svg" alt="Home"></a></li>
-        <li><a href="../user-area.php">Area personale</a></li>
+        <li><a href="./index.php"><img src="../img/commons/home-icon.svg" alt="Home"></a></li>
+        <li><a href="./user-area.php">Area personale</a></li>
         <li><a href="#">Profilo</a></li>
     </ul>
 </div>
@@ -44,7 +44,7 @@
 
 <!-- login form -->
 <section>
-    <img src="../img/user-page/anonymous-icon.svg" alt=""/>
+    <img src="./img/user-page/anonymous-icon.svg" alt=""/>
     <fieldset>
         <legend>Login</legend>
         <form action="" method="post" target="" autocomplete="on">
@@ -113,8 +113,8 @@
                 <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
             </div>
             <div>
-                <label for="id3"></label>
-                <input type="text" id="id3" name="" readonly required>
+                <label for="id4"></label>
+                <input type="text" id="id4" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
                 <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
             </div>
@@ -126,7 +126,7 @@
         <form action="" method="post" target="" autocomplete="on">
             <div>
                 <label for="nameCred">Nome</label>
-                <input type="text" id="namaeCred" name=""  readonly required>
+                <input type="text" id="nameCred" name=""  readonly required>
             </div>
             <div>
                 <label for="numCred">N.Carta</label>

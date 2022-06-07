@@ -8,13 +8,18 @@
     $templateParams["type-user"] = isCustomerLoggedIn()?"Utente":"Venditore";
 
 
+
     if(isset($_POST["confirmData"]))  {
-        $dbh->changeUser($_SESSION["userId"], "okok", "provacog", $_SESSION["datebirth"]);
+        $_SESSION["name"] = $_POST['nomeUtente'];
+        $_SESSION["surname"] = $_POST['cognomeUtente'];
+        $_SESSION["datebirth"] = $_POST['compleannoUtente'];
+        $dbh->changeUser($_SESSION["userId"], $_POST['nomeUtente'], $_POST['cognomeUtente'] , $_POST["compleannoUtente"]);
     }
 
     if(isset($_POST["confirmLog"]))  {
         //var_dump($_SESSION['mail']);
-        $dbh->changeEmail($_SESSION["userId"], "okok@okok");
+        $_SESSION['mail'] = $_POST['emailUtente'];
+        $dbh->changeEmail($_SESSION["userId"], $_POST['emailUtente']);
     }
 
 
