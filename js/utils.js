@@ -107,7 +107,7 @@ function refreshCartBadge(currentCount){
 }
 
 function formatPrice(price) {
-    console.log(price)
+    //console.log(price)
     price = price.toString().replace(".", ",");
     var decimal = price.split(",");
     var integer = decimal[0]
