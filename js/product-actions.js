@@ -33,7 +33,6 @@ function addEventListenerButton(jQuerySelector,methodToRun){
         e.preventDefault();
         let btn = $(this);
         let urlRequest = btn.attr("href");
-        console.log("url: "+ urlRequest);
         methodToRun(btn,urlRequest);
     });
 }
@@ -103,12 +102,10 @@ function handleWishlistAction(clickedBtn,urlLink){
 function handleCartAction(clickedBtn,urlLink){
     let prodId = parseInt(getUrlParameter("id",urlLink));
     var currentAction = getUrlParameter("action",urlLink);
-    console.log("linkRequest: " +urlLink);
+    //console.log("linkRequest: " +urlLink);
 
     $.get(urlLink, function (data) {
-
-        console.log("recvData: " + data);
-
+        //console.log("recvData: " + data);
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
@@ -192,7 +189,7 @@ function handleRemoveCartAction(clickedBtn,urlLink){
             refreshCartNavbar();
             refreshTotalPrice();
             checkIfEmptyRefreshCart(actualcartCount);
-            console.log($(".notAvaialable"));
+            //console.log($(".notAvaialable"));
             if($(".notAvaialable").length <= 0){
                 $("#cartInfoBanner").remove();
             }
@@ -210,7 +207,7 @@ function handleAddAlertProd(clickedBtn,urlLink){
         let correctExec = jsonData["execDone"];
 
         if(!isLogged){
-            console.log("NOT LOGGED TO DO THAT ACTION");
+            //console.log("NOT LOGGED TO DO THAT ACTION");
             $("#productInfo > li:nth-child(3) > div ").show();
         }
 
