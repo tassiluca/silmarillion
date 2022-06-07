@@ -73,6 +73,12 @@ main label, aside > p {
     max-width: 88px;
 }
 
+.whiteBtn:hover{
+    transform: scale(1.1);
+}
+
+
+
 /**********     Payments methods    *********/
 aside{
     border-radius: 30px;
@@ -83,6 +89,10 @@ aside{
     margin-top: 20px;
     max-width: 900px;
     text-align: center;
+}
+
+#cancelData, #submitData, #cancelLog, #submitLog {
+    display: none;
 }
 
 aside > p {

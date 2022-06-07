@@ -1,0 +1,8 @@
+main > section {
+    background-color: rgba(195, 240, 250, 0.84);
+    padding: 10px 1%;
+    box-sizing: content-box;
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+}

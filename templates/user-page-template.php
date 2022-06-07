@@ -29,15 +29,33 @@
         <img src="../img/user-page/message.svg" alt="" /></br>
         Messaggi
     </button>
-    <button>
+    <button class="request">
         <img src="../img/user-page/chat.svg" alt=""></br>
         Hai bisogno di aiuto?
     </button>
-    <button>
+    <button class="review">
         <img src="../img/user-page/star.svg" alt=""></br>
         Recensioni
     </button>
 </section>
+
+<aside id="requestForm">
+    <form>
+        <label for="requestProduct">Richiedi il prodotto</label>
+        <button id="closeRequest">x</button>
+        <textarea name="" id="requestProduct" cols="30" rows="10" placeholder="Scrivi..."></textarea>
+        <button>INVIA</button>
+    </form>
+</aside>
+
+<aside id="reviewForm">
+    <form>
+        <label for="review"><img src="" alt="./img">Metti stelle</label>
+        <button id="closeReview">x</button>
+        <textarea name="" id="review" cols="30" rows="10" placeholder="Scrivi..."></textarea>
+        <button>INVIA</button>
+    </form>
+</aside>
 
 
 

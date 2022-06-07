@@ -1130,6 +1130,35 @@
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
+
+
+
+        /* user page*/
+
+        public function changeUser($id, $name, $surname, $bird){
+            //UPDATE `Users` SET `Name`='[value-5]',`Surname`='[value-6]',`DateBirth`='[value-7]' WHERE 1
+            $query = "UPDATE Users 
+                        SET Name=?, Surname=?, DateBirth=? 
+                        WHERE UserId=?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sssi', $name, $surname, $bird, $id);
+            return $stmt->execute();
+        }
+
+        public function changeEmail($id, $email){
+            //UPDATE `Users` SET `Name`='[value-5]',`Surname`='[value-6]',`DateBirth`='[value-7]' WHERE 1
+            $query = "UPDATE Users 
+                        SET Mail=?
+                        WHERE UserId=?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('si', $email, $id);
+            return $stmt->execute();
+        }
+
+
+
+
+
     }
 
 ?>

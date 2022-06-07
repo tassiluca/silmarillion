@@ -1,7 +1,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
+        <li><a href="../index.php"><img src="../img/commons/home-icon.svg" alt="Home"></a></li>
         <li><a href="../user-area.php">Area personale</a></li>
         <li><a href="#">Profilo</a></li>
     </ul>
@@ -34,9 +34,9 @@
                        disabled required/>
             </div>
             <div>
-                <input type="button" value="Modifica" class="modifyData whiteBtn"/>
-                <input type="button" value="Annulla" class="cancelData whiteBtn" disabled/>
-                <input type="submit" value="INVIA" class="submitData whiteBtn" disabled/>
+                <input type="button" value="Modifica" id="modifyData" class="whiteBtn"/>
+                <input type="button" value="Annulla" id="cancelData" class="whiteBtn" />
+                <input type="submit" name="confirmData" value="INVIA" id="submitData" class="whiteBtn" />
             </div>
         </form>
     </fieldset>
@@ -55,11 +55,6 @@
                            value="<?php echo $_SESSION['username'] ?>"
                            disabled readonly />
                 </span>
-                <!-- TODO - popup username @NalNemesi -->
-                <!--Popup
-                <div class="miniPop">
-                    <span class="miniPopText">Non puoi modificare questo campo!</span>
-                </div> -->
             </div>
 
             <div>
@@ -79,9 +74,9 @@
                 </span>
             </div>
             <div>
-                <input type="button" value="Modifica" class="modifyLog whiteBtn"/>
-                <input type="button" value="Annulla" class="cancelLog whiteBtn" disabled/>
-                <input type="submit" value="INVIA" class="submitLog whiteBtn" disabled/>
+                <input type="button" value="Modifica" id="modifyLog" class="whiteBtn"/>
+                <input type="button" value="Annulla" id="cancelLog" class="whiteBtn" disabled/>
+                <input type="submit" value="INVIA" id="submitLog" name="confirmLog" class="whiteBtn" disabled/>
             </div>
         </form>
     </fieldset>
@@ -91,36 +86,59 @@
 
 <aside>
     <p>Metodi di pagamento:</p>
-    <select>
+    <select id="choice">
         <option value="0">Paypal</option>
         <option value="1">Carta di credito</option>
     </select>
 
-    <fieldset>
+    <fieldset id="paypal">
         <legend>Salvati</legend>
         <form action="" method="post" target="" autocomplete="on">
             <div>
                 <label for="id1"></label>
                 <input type="text" id="id1" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
             </div>
-
             <div>
                 <label for="id2"></label>
                 <input type="text" id="id2" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
             </div>
-
             <div>
                 <label for="id3"></label>
                 <input type="text" id="id3" name="" readonly required>
                 <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
             </div>
             <div>
-                <input type="button" value="Conferma" class="confirmAll whiteBtn"/>
-                <input type="button" value="Conferma" class="confirmModify  whiteBtn" />
-                <input type="button" value="Modifica" class=" modifyPaypal  whiteBtn" />
+                <label for="id3"></label>
+                <input type="text" id="id3" name="" readonly required>
+                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
+            </div>
+        </form>
+    </fieldset>
 
+    <fieldset id="creditCard">
+        <legend>Dati</legend>
+        <form action="" method="post" target="" autocomplete="on">
+            <div>
+                <label for="nameCred">Nome</label>
+                <input type="text" id="namaeCred" name=""  readonly required>
+            </div>
+            <div>
+                <label for="numCred">N.Carta</label>
+                <input type="text" id="numCred" name="" readonly required>
+            </div>
+            <div>
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="" readonly required>
+            </div>
+            <div>
+                <label for="expDate">Exp.Date</label>
+                <input type="text" id="expDate" name="" readonly required>
             </div>
         </form>
     </fieldset>
@@ -132,21 +150,19 @@
         <form action="" method="post" target="" autocomplete="on">
             <div>
                 <label for="strada">Via/Piazza</label>
-                <input type="text" id="strada" name="" readonly required>
+                <input type="text" id="strada" name="" value="Via Cesare Pavese, 50" readonly required>
             </div>
-
             <div>
                 <label for="citta">Città</label>
-                <input type="text" id="citta" name="" readonly required>
+                <input type="text" id="citta" name="" value="Cesena" readonly required>
             </div>
-
             <div>
                 <label for="cap">CAP</label>
-                <input type="text" id="cap" name="" readonly required>
+                <input type="text" id="cap" name="" value="47522" readonly required>
             </div>
             <div>
                 <label for="provincia">Provincia</label>
-                <input type="text" id="provincia" name="" readonly required>
+                <input type="text" id="provincia" name="" value="FC" readonly required>
             </div>
         </form>
     </fieldset>

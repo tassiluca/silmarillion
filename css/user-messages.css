@@ -1,70 +1,104 @@
-
-
-.icon{
-    opacity: 1.0;
-    max-width: 50px;
+main {
+    background-image: url(../img/background/superMario.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: scroll;
+    min-height: 700px;
+    background-color: rgba(208, 243, 255, 0.82);
 }
 
+main > section {
+    background-color: rgba(195, 240, 250, 0.84);
+    padding: 10px 1%;
+    box-sizing: content-box;
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
 
-th:nth-child(1){
-    width: 20%;
 }
 
-th:nth-child(2){
-    width: 60%;
+section > button {
+    background-color: #ffffff;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    color: black;
+    border: 1px dotted black;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px 8%;
+    padding: 5px 3%;
 }
 
-th:nth-child(3){
-    width: 20%;
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(195, 240, 250, 0.84);
+    border-radius: 10px;
+    width: 100%;
 }
 
+main > p {
+    font-weight: bold;
+    font-size: 25px;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+}
+
+tr:hover {
+    background-color: #fafefebc;
+}
+
+tr{
+    height: 100px;
+}
 
 .whiteBtn{
-    margin: 2%;
-    min-width: 100px;
-
-}
-
-caption{
+    background-color: #ffffff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 5px 10%;
+    color: black;
+    border: 1px dotted black;
     font-weight: bold;
-    font-size: 20px;
-    background-color: white;
-    border-radius: 20px;
-    margin-bottom: 20px;
+    font-size: 15px;
+    width: 100px;
+    display: block;
+    margin-top: 5px;
 }
 
-.messages p{
-    border: 2px dotted black;
-    display: inline-block;
-    text-align: center;
-    padding: 1%;
-    border-radius: 20px;
-    background-color: white;
-    width: 200px ;
-    margin: auto;
-    font-weight: bold;
+.inbox, .bin {
+    height: 30px;
+    min-width: 200px;
 }
 
-.messages p:hover{
+.whiteBtn:hover, .inbox:hover, .bin:hover{
     transform: scale(1.1);
 }
 
-.messages p:nth-child(1){
-    margin-left: 3%;
-    margin-right: 15%;
+span {
+    display: inline-block;
 }
 
-.messages p:nth-child(3){
-    margin-left: 15%;
-    margin-right: 3%;
-}
 
-.sentMail{
-    display: none;
+.icon{
+    opacity: 0.5;
+    max-width: 30px;
+    margin-right: 10px;
 }
 
 .binMail{
     display: none;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 25px;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
 }
 
 
@@ -82,6 +116,8 @@ caption{
         margin: auto;
         margin-top: 10px;
     }
+
+
 
 
 }

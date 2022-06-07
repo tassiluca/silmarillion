@@ -29,7 +29,7 @@ $(document).ready(function(){
             customerUsr: $("#customerUsr").val(),
             customerPwd: hex_sha512($("#customerPwd").val())
         };
-        /* TODO @NalNemesi: modify the target page*/
+
         loginAttempt($(this), formData, 'user-area.php');
         event.preventDefault();
     });
@@ -39,7 +39,7 @@ $(document).ready(function(){
             sellerUsr: $("#sellerUsr").val(),
             sellerPwd: hex_sha512($("#sellerPwd").val())
         };
-        /* TODO @NalNemesi: modify the target page*/
+
         loginAttempt($(this), formData, 'seller-area.php');
         event.preventDefault();
     });

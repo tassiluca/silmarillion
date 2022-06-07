@@ -28,6 +28,8 @@ main > section > button{
     background: none;
 }
 
+
+
 /*********************       USER KEYPAD     *********************/
 
 main > section:nth-child(3) {
@@ -37,6 +39,7 @@ main > section:nth-child(3) {
     padding: 1% 1%;
     background: rgba(0, 213, 255, 0.302);
     border-radius: 10px;
+    position: relative;
 }
 
 main > section:nth-child(3) > button {
@@ -66,17 +69,58 @@ main > section:nth-child(3) > button:nth-child(even){
 
 
 /*********************      Pop up      *********************/
-main > sectin > aside {
+main > aside {
+    max-width: 730px;
+    margin-bottom: 20px;
+    padding: 1% 1%;
+    background: rgba(0, 213, 255, 0.302);
+    border-radius: 10px;
+    text-align: center;
     position: absolute;
-    z-index: 1;
+    margin-left: 70%;
+    display: inline-block;
+    top: 400px;
+}
+
+aside#requestForm, aside#reviewForm{
+    display: none;
+}
+
+main > aside label{
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+main > aside button{
+    display: inline-block;
+    margin: 2% 0 2% 10%;
+}
+
+main > aside textarea {
+    cursor: pointer;
+    background-color: rgb(215, 232, 250);
+    border-radius: 5px;
+    display: block;
 }
 
 
 
 
-@media screen and (min-width: 728px) and (max-width:1200px) {
-    main > section:nth-child(3){
-
+@media screen and (max-width:1000px) {
+    main > aside {
+        max-width: 730px;
+        margin-bottom: 20px;
+        padding: 1% 1%;
+        background: rgba(0, 213, 255, 0.7);
+        border-radius: 10px;
+        text-align: center;
+        position: absolute;
+        margin-left: 25%;
+        margin-right: 25%;
+        display: inline-block;
+        top: 400px;
     }
 
 }

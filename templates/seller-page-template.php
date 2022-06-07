@@ -22,7 +22,7 @@
         </br>Contabilità
     </button>
     <button onclick="window.location.href='./manage-articles.php'">
-        <img src="../img/user-page/wishlist.svg" alt="">
+        <img src="../img/user-page/articles.svg" alt="">
         </br>Articoli
     </button>
     <button>
@@ -30,7 +30,7 @@
         </br>Messaggi
     </button>
     <button>
-        <img src="../img/user-page/articles.svg" alt="">
+        <img src="../img/user-page/order.svg" alt="">
         </br>Gestione ordini
     </button>
     <button>
