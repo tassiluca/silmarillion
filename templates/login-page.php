@@ -18,7 +18,7 @@
         <ul id="userlogin">
             <li>
                 <label for="customerUsr">Username</label>
-                <input type="text" placeholder="es. giovadelnevo" id="customerUsr" name="customerUsr" required />
+                <input type="text" placeholder="es. tassiluchino" id="customerUsr" name="customerUsr" required />
             </li>
             <li>
                 <label for="customerPwd">Password</label>
@@ -42,7 +42,7 @@
         <ul id="sellerlogin">
             <li>
                 <label for="sellerUsr">Username</label>
-                <input type="text" placeholder="es. silvymirry" id="sellerUsr" name="sellerUsr" />
+                <input type="text" placeholder="es. silmarillion" id="sellerUsr" name="sellerUsr" />
             </li>
             <li>
                 <label for="sellerPwd">Password</label>

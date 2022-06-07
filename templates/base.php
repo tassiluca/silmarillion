@@ -114,7 +114,7 @@
                         <ul>
                             <li>
                                 <label for="usernameNav">Username</label>
-                                <input type="text" placeholder="es. giovadelnevo" id="usernameNav" name="customerUsr" required />
+                                <input type="text" placeholder="es. tassiluchino" id="usernameNav" name="customerUsr" required />
                             </li>
                             <li>
                                 <label for="userpasswordNav">Password</label>

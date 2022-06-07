@@ -9,32 +9,32 @@
 
 <section>
     <h2>Ciao, <?php echo $_SESSION["name"]; ?> </h2>
-    <button> <img src="../img/user-page/bellNotification.svg"></button>
+    <button> <img src="./img/user-page/bellNotification.svg"></button>
 </section>
 
 <section>
     <button>
-        <img src="../img/user-page/profile.svg" alt="Profilo">
+        <img src="./img/user-page/profile.svg" alt="Profilo">
         </br>Profilo
     </button>
     <button onclick="window.location.href='./statistics.php'">
-        <img src="../img/user-page/money.svg" alt="Contabilità">
+        <img src="./img/user-page/money.svg" alt="Contabilità">
         </br>Contabilità
     </button>
     <button onclick="window.location.href='./manage-articles.php'">
-        <img src="../img/user-page/articles.svg" alt="">
+        <img src="./img/user-page/articles.svg" alt="">
         </br>Articoli
     </button>
     <button>
-        <img src="../img/user-page/message.svg" alt="">
+        <img src="./img/user-page/message.svg" alt="">
         </br>Messaggi
     </button>
     <button>
-        <img src="../img/user-page/order.svg" alt="">
+        <img src="./img/user-page/order.svg" alt="">
         </br>Gestione ordini
     </button>
     <button>
-        <img src="../img/user-page/banner.svg" alt="">
+        <img src="./img/user-page/banner.svg" alt="">
         </br>Pubblicità
     </button>
 </section>

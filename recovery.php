@@ -7,7 +7,7 @@
 
     if (isset($_POST['email'])) {
         // TODO: implement logic to reset password
-        print_r($dbh->getCustomerDataByMail($_POST['email']));
+        // print_r($dbh->getCustomerDataByMail($_POST['email']));
     }
 
     require 'templates/base.php';

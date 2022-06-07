@@ -10,8 +10,6 @@ if (!isCustomerLoggedIn()) {
 }
 
 $templateParams['orderDetails'] = $dbh->getOrderById($_SESSION['userId']);
-//$templateParams['orderProduct'] = $dbh->detailOrder()
-
 
 require 'templates/base.php';
 ?>

@@ -7,8 +7,6 @@
 
     $templateParams["type-user"] = isCustomerLoggedIn()?"Utente":"Venditore";
 
-
-
     if(isset($_POST["confirmData"]))  {
         $_SESSION["name"] = $_POST['nomeUtente'];
         $_SESSION["surname"] = $_POST['cognomeUtente'];
@@ -22,7 +20,7 @@
         $dbh->changeEmail($_SESSION["userId"], $_POST['emailUtente']);
     }
 
-
+    //$templateParams['pay'] = $dbh->addPayment($_SESSION['userId'],  );
 
 
 

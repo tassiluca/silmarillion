@@ -10,9 +10,9 @@ function showActivate(element) {
         .prop('disabled', false);
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-    if($('#modifyData').click(function(){
+    if ($('#modifyData').click(function () {
         hideDisable($('#modifyData'));
         showActivate($('#cancelData'));
         showActivate($('#submitData'));
@@ -20,9 +20,9 @@ $(document).ready(function(){
         $('#nome').prop("disabled", false);
         $('#cognome').prop("disabled", false);
         $('#compleanno').prop("disabled", false);
-    }));
+    })) ;
 
-    if($('#cancelData').click(function(){
+    if ($('#cancelData').click(function () {
         hideDisable($('#cancelData'));
         hideDisable($('#submitData'));
         showActivate($('#modifyData'));
@@ -30,19 +30,19 @@ $(document).ready(function(){
         $('#nome').prop("disabled", true);
         $('#cognome').prop("disabled", true);
         $('#compleanno').prop("disabled", true);
-    }));
+    })) ;
 
 
     // buttons login form
-    if($('#modifyLog').click(function(){
+    if ($('#modifyLog').click(function () {
         hideDisable($('#modifyLog'));
         showActivate($('#cancelLog'));
         showActivate($('#submitLog'));
 
         $('#email').prop("disabled", false);
-    }));
+    })) ;
 
-    if (!$('#cancelLog').click(function() {
+    if (!$('#cancelLog').click(function () {
         hideDisable($('#cancelLog'));
         hideDisable($('#submitLog'));
         showActivate($('#modifyLog'));
@@ -52,31 +52,31 @@ $(document).ready(function(){
         return;
     }
 
-    // TODO - fare la paypal e carta
-    if($('select option[value=0]').prop('selected', true)) {
 
-        console.log("0");
-       // $('fieldset#paypal').css("display", "block");
-        //$('fieldset#creditCard').css("display", "none");
+
+
+    let choice = document.querySelector("#choice");
+
+    if(choice != null){
+        choice.addEventListener("change", () => {
+            let pay = document.querySelector("#paypal");
+            let credit = document.querySelector("#creditCard");
+
+
+            if(choice.value === "0") {
+                pay.style.display = "block";
+                credit.style.display = "none";
+            }
+            else {
+                pay.style.display = "none";
+                credit.style.display = "block";
+            }
+        });
     }
 
-    if($('select option[value=1]').prop('selected', true)) {
-        console.log("1");
-       // $('fieldset#paypal').css("display", "none");
-        //$('fieldset#creditCard').css("display", "block");
-    }
-   
 
 
-
-
-
-
-
-
-
-
-
+    // Popup
 
     if($('.request').click(function(){
         $('aside#requestForm').css("display", "block");

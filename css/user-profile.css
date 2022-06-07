@@ -139,6 +139,19 @@ main > aside:last-of-type input {
     margin-left: 2%;
 }
 
+#creditCard{
+    display: none;
+    text-align: right;
+}
+
+#creditCard label {
+    margin-right: 5%;
+}
+
+#paypal label{
+    display: none;
+}
+
 
 @media screen and (max-width: 720px){
     main > section > fieldset > form span{

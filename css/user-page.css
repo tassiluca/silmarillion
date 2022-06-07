@@ -16,7 +16,7 @@ main {
 
 /*********************    Title and notifications   *********************/
 
-main > section > h2 {
+main > section > h3 {
     font-size: 25px;
     padding: 10px 1% 20px 3%;
     color: #00479e;
