@@ -31,7 +31,7 @@
                 <th><?php echo $prod['Name'] ?></th>
                 <td><?php echo $prod['Price'] ?><p><?php echo $prod['DiscountedPrice'] ?> </p></td>
                 <td>In Stock<p class="miniText">Quantità: <?php echo $prod['copies'] ?> pz</p></td>
-                <td><a class="whiteBtn cartButton" href="./engines/process-request.php?action=addtoCart&id=<?php echo $prod['ProductId']?>">Aggiungi al carrello</a></td>
+                <td><div class="whiteBtn"><a class=" cartButton" href="./engines/process-request.php?action=addtoCart&id=<?php echo $prod['ProductId']?>">Aggiungi al carrello</a></div></td>
             </tr>
 
             <?php endforeach;
