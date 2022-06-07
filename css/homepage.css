@@ -142,7 +142,8 @@ main > section:last-child > div > div {
 }
 main > section:last-child > div > div > a > img {
     height: 70px;
-    max-width: 200px;
+    max-width: 160px;
+    object-fit: contain;
 }
 
 main > section:last-child > div > div > a{
