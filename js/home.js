@@ -59,7 +59,7 @@ function checkScreenSize(elemWidth,percMargin){
 
 function showDivs(n,slider,slideToShow) {
     var x = $(slider);
-    var maxIdxBlock = x.length/slideToShow; //massimo indice di gruppo di slide
+    var maxIdxBlock = x.length/slideToShow; //max index of slides group
     
     if(n > maxIdxBlock){
         slideIndex=maxIdxBlock;

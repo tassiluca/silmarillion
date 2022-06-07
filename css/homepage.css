@@ -142,6 +142,7 @@ main > section:last-child > div > div {
 }
 main > section:last-child > div > div > a > img {
     height: 70px;
+    max-width: 200px;
 }
 
 main > section:last-child > div > div > a{
