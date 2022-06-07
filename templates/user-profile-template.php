@@ -1,7 +1,7 @@
 <!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="./index.php"><img src="../img/commons/home-icon.svg" alt="Home"></a></li>
+        <li><a href="./index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
         <li><a href="./user-area.php">Area personale</a></li>
         <li><a href="#">Profilo</a></li>
     </ul>
@@ -9,7 +9,7 @@
 
 <!-- Personal data, view and modify -->
 <section>
-    <img src="../img/user-page/face-id-icon.svg" alt=""/>
+    <img src="./img/user-page/face-id-icon.svg" alt=""/>
     <fieldset>
         <legend>Dati personali</legend>
         <form action="" method="post" target="" autocomplete="on">
@@ -97,26 +97,26 @@
             <div>
                 <label for="id1"></label>
                 <input type="text" id="id1" name="" readonly required>
-                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
-                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
+                <button class="erasePaypal"><img src="./img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="./img/user-page/Done.svg" alt=""/></button>
             </div>
             <div>
                 <label for="id2"></label>
                 <input type="text" id="id2" name="" readonly required>
-                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
-                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
+                <button class="erasePaypal"><img src="./img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="./img/user-page/Done.svg" alt=""/></button>
             </div>
             <div>
                 <label for="id3"></label>
                 <input type="text" id="id3" name="" readonly required>
-                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
-                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
+                <button class="erasePaypal"><img src="./img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="./img/user-page/Done.svg" alt=""/></button>
             </div>
             <div>
                 <label for="id4"></label>
                 <input type="text" id="id4" name="" readonly required>
-                <button class="erasePaypal"><img src="../img/user-page/Delete.svg" alt=""/></button>
-                <button class="confirmPaypal"><img src="../img/user-page/Done.svg" alt=""/></button>
+                <button class="erasePaypal"><img src="./img/user-page/Delete.svg" alt=""/></button>
+                <button class="confirmPaypal"><img src="./img/user-page/Done.svg" alt=""/></button>
             </div>
         </form>
     </fieldset>

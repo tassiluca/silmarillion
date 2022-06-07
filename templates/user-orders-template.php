@@ -2,7 +2,7 @@
 <div>
     <ul>
         <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
-        <li><a href="../user-area.php">Area personale</a></li>
+        <li><a href="./user-area.php">Area personale</a></li>
         <li><a href="#">Ordini</a></li>
     </ul>
 </div>
@@ -33,7 +33,7 @@
 
             <?php endforeach; ?>
 
-            <p>Totale: <?php echo $orderDetails['Price'] ?></p>
+            <p>Totale: <?php echo formatPrice($orderDetails['Price']); ?></p>
 
             <a class="" href="#">Visualizza ordine</a>
         </div>
