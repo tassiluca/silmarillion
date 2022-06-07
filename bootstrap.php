@@ -29,8 +29,6 @@
     require_once 'utils/functions.php';
     require_once 'utils/orders-status.php';
 
-    // secureSessionStart();    // **TODO**
-
     const HOST = "localhost";
     const USER = "root";
     const PASSWORD = "root";

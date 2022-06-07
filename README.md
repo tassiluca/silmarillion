@@ -101,6 +101,22 @@ It has been developed for the Web Course of the Computer Science Degree @ UniBo.
   ```sh
   composer require respect/validation
   ```
+  
+### Configuration
+
+For DB configuration refers to `./bootstrap.php`.
+
+```php
+const HOST = "localhost";
+const USER = "root";
+const PASSWORD = "root";
+const DB_NAME = "silmarillion";
+const DB_PORT = 3306;
+```
+
+You can find the script to create the database in `./db/sqlScript/silmarillionV1.sql`.
+In `./db/sqlScript/populate-tables.sql` you can find some values not configurable from the website, yet. 
+
 <!--
 ### Installation
 
@@ -123,7 +139,9 @@ It has been developed for the Web Course of the Computer Science Degree @ UniBo.
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] User Area
+- [ ] Reset password
+- [ ] Recensioni
+- [ ] Banner pubblicitario home
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
