@@ -85,10 +85,10 @@ filters = lang, author, price, availability, publisher,category*/
                         $comicFilter .= $filtQuery;
                         $funkoFilter .= $filtQuery;
                     }
-                    if(!strcmp($data[$k][0],'available')){
+                    if(!strcmp($data[$k][0],'available') && count($data[$k]) == 1){
                         $availabFilter = AVAILABLE;
                     }
-                    else if(!strcmp($data[$k][0],'notavailable')){
+                    else if(!strcmp($data[$k][0],'notavailable') && count($data[$k]) == 1){
                         $availabFilter = NOT_AVAILABLE;
                     }
                     else{
