@@ -33,6 +33,7 @@ function addEventListenerButton(jQuerySelector,methodToRun){
         e.preventDefault();
         let btn = $(this);
         let urlRequest = btn.attr("href");
+        console.log("url: "+ urlRequest);
         methodToRun(btn,urlRequest);
     });
 }
@@ -102,9 +103,12 @@ function handleWishlistAction(clickedBtn,urlLink){
 function handleCartAction(clickedBtn,urlLink){
     let prodId = parseInt(getUrlParameter("id",urlLink));
     var currentAction = getUrlParameter("action",urlLink);
+    console.log("linkRequest: " +urlLink);
 
     $.get(urlLink, function (data) {
-        console.log(data);
+
+        console.log("recvData: " + data);
+
         let jsonData = JSON.parse(data);
         let isLogged = jsonData["isLogged"];
         let correctExec = jsonData["execDone"];
