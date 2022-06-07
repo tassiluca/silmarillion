@@ -72,6 +72,8 @@
 Silmarillion is an online comics and funkos store. 
 It has been developed for the Web Course of the Computer Science Degree @ UniBo.
 
+[Here](https://www.figma.com/file/Eav8WxIVUsdTZkGY4nVQMY/home?node-id=7%3A2) the link with mockups.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
