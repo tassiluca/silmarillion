@@ -74,19 +74,19 @@
                         <li>
                             <a href="catalog.php">Catalogo</a>
                         </li><li>
+                            <a href="catalog.php?category=Comics">Comics</a>
+                        </li><li>
+                            <a href="catalog.php?category=Funko">Funko Pop</a>
+                        </li><li>
                             <a href="catalog.php?category=Manga">Manga</a>
                         </li><li>
                             <a href="catalog.php?category=Hero">Supereroi</a>
-                        </li><li>
-                            <a href="catalog.php?category=Funko">Funko Pop</a>
                         </li><li id="login">
                             <a href="login.php">Login</a>
                         </li><li>
                             <a href="index.php#reviews" onclick='closePopupOpen()'>Recensioni</a>
                         </li><li>
                             <a href="index.php#partners" onclick='closePopupOpen()'>Partner</a>
-                        </li><li>
-                            <a href="">Supporto</a>
                         </li>
                     </ul> 
                 </div>
