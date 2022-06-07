@@ -78,6 +78,10 @@ tr{
     transform: scale(1.1);
 }
 
+.bin:hover{
+    transform: rotate(45deg);
+}
+
 span {
     display: inline-block;
 }

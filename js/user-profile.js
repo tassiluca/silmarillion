@@ -52,9 +52,18 @@ $(document).ready(function(){
         return;
     }
 
+    // TODO - fare la paypal e carta
     if($('select option[value=0]').prop('selected', true)) {
-        $('fieldset#paypal').css("display", "block");
-        $('fieldset#creditCard').css("display", "none");
+
+        console.log("0");
+       // $('fieldset#paypal').css("display", "block");
+        //$('fieldset#creditCard').css("display", "none");
+    }
+
+    if($('select option[value=1]').prop('selected', true)) {
+        console.log("1");
+       // $('fieldset#paypal').css("display", "none");
+        //$('fieldset#creditCard').css("display", "block");
     }
    
 
