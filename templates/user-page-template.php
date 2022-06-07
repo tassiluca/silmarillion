@@ -6,7 +6,6 @@
     </ul>
 </div>
 
-
 <section>
     <h2>Ciao, <?php echo $_SESSION["username"]; ?> </h2>
     <button> <img src="../img/user-page/bellNotification.svg"></button>
@@ -50,6 +49,15 @@
 
 <aside id="reviewForm">
     <form>
+        <span class="star-cb-group">
+            <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+            <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
+            <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
+            <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
+            <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
+            <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+        </span>
+
         <label for="review"><img src="" alt="./img">Metti stelle</label>
         <button id="closeReview">x</button>
         <textarea name="" id="review" cols="30" rows="10" placeholder="Scrivi..."></textarea>
