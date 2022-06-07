@@ -12,7 +12,7 @@
     <img src="./img/user-page/face-id-icon.svg" alt=""/>
     <fieldset>
         <legend>Dati personali</legend>
-        <form action="" method="post" target="" autocomplete="on">
+        <form  method="post"  autocomplete="on">
             <div>
                 <span>
                     <label for="nome">Nome</label>
@@ -47,7 +47,7 @@
     <img src="./img/user-page/anonymous-icon.svg" alt=""/>
     <fieldset>
         <legend>Login</legend>
-        <form action="" method="post" target="" autocomplete="on">
+        <form method="post"  autocomplete="on">
             <div>
                 <span>
                     <label for="userName">Username</label>
