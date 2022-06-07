@@ -3,7 +3,7 @@
     /** @var DatabaseHelper $dbh */
 
     /** Number of products displayed per page. */
-    const PRODUCTS_PER_PAGE = 10;
+    const PRODUCTS_PER_PAGE = 5;
 
     if (isset($_GET['pattern']) || isset($_GET['page'])) {
         $offset = ($_GET['page'] - 1) * PRODUCTS_PER_PAGE;
