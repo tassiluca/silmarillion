@@ -1180,6 +1180,24 @@
         }
 
 
+        /* dettaglio ordine */
+        public function detailOrder($orderId){
+            $query = "SELECT DISTINCT P.CoverImg
+                        FROM Orders as O, OrderDetails as OD, ProductCopies as PC, Products as P
+                        WHERE OD.OrderId = ?
+                        AND OD.CopyId = PC.CopyId
+                        AND PC.ProductId = P.ProductId";
+            return $this->executeQuery($query, [$orderId])->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getOrderById($userId){
+            $query = "SELECT O.OrderId, O.OrderDate, O.Price
+                        FROM Orders as O
+                        WHERE O.UserId = ?";
+            return $this->executeQuery($query, [$userId])->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+
 
 
 

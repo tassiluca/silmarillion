@@ -5,16 +5,15 @@ $templateParams["css"] = array("./css/user-wishlist.css", "./css/user-messages.c
 $templateParams["js"] = array("./js/user-profile.js");
 $templateParams["main"] = "./templates/user-messages-template.php";
 
+if (!isCustomerLoggedIn()) {
+    header('location: ./user-area.php');
+}
 
 if(isset($_GET['deleteMessage'])) {
     $dbh->deleteMessage($_GET['deleteMessage']);
 }
 
 $templateParams['message'] = $dbh->readMessage($_SESSION['userId']);
-
-
-
-print_r($dbh->readMessage($_SESSION['userId']));
 
 require 'templates/base.php';
 ?>
