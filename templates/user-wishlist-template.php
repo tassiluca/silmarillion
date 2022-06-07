@@ -27,7 +27,7 @@
             <tr>
                 <td>
                 <a class="wishButton" href="./engines/process-request.php?action=wish&amp;id=<?php echo $prod['ProductId']?>">
-                    <img src="./img/user-page/Delete.svg"  alt="rimuovi articolo" class="delete">
+                    <img src="./img/products/favourite.svg"  alt="rimuovi articolo" class="delete">
                 </a>
                 </td>
                 <td><img src="<?php echo UPLOAD_DIR_PRODUCTS.$prod['CoverImg'] ?>" alt="" /></td>
