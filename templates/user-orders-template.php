@@ -8,64 +8,40 @@
 </div>
 
 
+
+
 <div class="timeline">
-    <div class="container right">
+
+    <?php
+    $pos = false;
+    foreach ($templateParams['orderDetails'] as $orderDetails):
+        $pos = !$pos;
+
+    ?>
+
+
+    <div class="container <?php echo $pos?"left":"right" ?>">
         <div class="content">
-            <h2>9 Gennaio 2022</h2>
-            <h3>Consegnato</h3>
+            <h2><?php $date = new DateTime($orderDetails['OrderDate']);
+                 echo $date->format(' l jS F Y');  ?></h2>
             <p>Hai acquistato:</p>
-            <img class="imgOrders" src="./img/funkopop.svg" alt="FunkoPop">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <p>Totale:</p>
+            <?php
+            $covers = $dbh->detailOrder($orderDetails['OrderId']);
+            foreach ($covers as $cover):
+            ?>
+            <img class="imgOrders" src="<?php echo UPLOAD_DIR_PRODUCTS . $cover['CoverImg']; ?>" alt="FunkoPop">
+
+            <?php endforeach; ?>
+
+            <p>Totale: <?php echo $orderDetails['Price'] ?></p>
 
             <a class="" href="#">Visualizza ordine</a>
-            <a class="" href="#">Scarica fattura</a>
-        </div>
-    </div>
-    <div class="container left">
-        <div class="content">
-            <h2>9 Gennaio 2022</h2>
-            <h3>Consegnato</h3>
-            <p>Hai acquistato:</p>
-            <img class="imgOrders" src="./img/funkopop.svg" alt="FunkoPop">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <p>Totale:</p>
-
-            <a class="" href="#">Visualizza ordine</a>
-            <a class="" href="#">Scarica fattura</a>
         </div>
     </div>
 
-    <div class="container right">
-        <div class="content">
-            <h2>9 Gennaio 2022</h2>
-            <h3>Consegnato</h3>
-            <p>Hai acquistato:</p>
-            <img class="imgOrders" src="./img/funkopop.svg" alt="FunkoPop">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <p>Totale:</p>
+    <?php endforeach;?>
 
-            <a class="" href="#">Visualizza ordine</a>
-            <a class="" href="#">Scarica fattura</a>
-        </div>
-    </div>
-    <div class="container left">
-        <div class="content">
-            <h2>9 Gennaio 2022</h2>
-            <h3>Consegnato</h3>
-            <p>Hai acquistato:</p>
-            <img class="imgOrders" src="./img/funkopop.svg" alt="FunkoPop">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <img class="imgOrders" src="./img/fumetto.svg" alt="fumetto">
-            <p>Totale:</p>
 
-            <a class="" href="#">Visualizza ordine</a>
-            <a class="" href="#">Scarica fattura</a>
-        </div>
-    </div>
 </div>
 
 
