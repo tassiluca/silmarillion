@@ -6,10 +6,9 @@ main > section {
     margin: 0 4% 50px;
 }
 
-main > section > header > h3 {
+main > section > header {
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 main ul {

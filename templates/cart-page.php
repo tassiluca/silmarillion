@@ -6,7 +6,7 @@
     </ul>
 </div>
 <section>
-    <header><h2>Carrello</h2></header>
+    <header><h3>Carrello</h3></header>
     <div>
         <div>
             <!-- insert foreach product in cart an article-->

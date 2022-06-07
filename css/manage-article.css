@@ -10,11 +10,6 @@ main > section > header {
     margin: 0 0 30px 0;
 }
 
-main > section > header > h3 {
-    margin: 10px 0;
-    font-size: 28px;
-}
-
 /************************** Buttons for insert products **********************/
 main > section > header > div {
     padding: 10px;

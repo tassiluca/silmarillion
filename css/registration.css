@@ -11,11 +11,6 @@ main > section > form > ul {
     color: #0047A0;
 }
 
-main > section > form > ul > li > h3 {
-    margin-bottom: 10px;
-    font-size: 1.5em;
-}
-
 main > section > form > ul > li > input#name {
     margin-right: 1%;
     display: inline-block;

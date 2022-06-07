@@ -6,13 +6,13 @@
     </ul>
 </div>
 <section>
-    <header><h2>Pagamento Ordine</h2></header>
+    <header><h3>Pagamento Ordine</h3></header>
     <?php if (!isset($templateParams["msg"])): ?>
         <div>
             <div>
                 <form id="addressForm" method="POST" action="./engines/process-payment.php">
                     <fieldset>
-                        <legend><h3> Indirizzo di spedizione </h3></legend>
+                        <legend><h4> Indirizzo di spedizione </h4></legend>
                         <ul>
                             <li>
                                 <label for="destAddress">Indirizzo</label>
@@ -35,7 +35,7 @@
                         <a href="#" onclick="editAddress()" onkeypress="editAddress()">Conferma</a>
                     </fieldset>
                     <fieldset>
-                        <legend><h3> Metodo di Pagamento </h3></legend>
+                        <legend><h4> Metodo di Pagamento </h4></legend>
                         <ul>
                             <li>
                                 <input type="radio" name="paymethod" id="cash" value="-1" required />

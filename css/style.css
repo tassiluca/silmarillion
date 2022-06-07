@@ -8,6 +8,10 @@ body, h1, h2, h3, ul, button {
     padding: 0;
 }
 
+h3 {
+    font-size: 1.5em;
+}
+
 body {
     background-color: rgba(202, 240, 248, 0.25);
 }

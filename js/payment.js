@@ -1,16 +1,16 @@
-
 function editAddress(){
     $(document).ready(function () {
-        var fields = $("main > section > div > div > form > div:first-of-type > ul > li > input");
-        if($("main > section > div > div > form > div:first-of-type > a:first-of-type").is(":visible")){
+        const editBtn = $("form#addressForm > fieldset:first-of-type a:first-of-type");
+        const confirmBtn = $("form#addressForm > fieldset:first-of-type a:nth-of-type(2)");
+        const fields = $("form#addressForm > fieldset:first-of-type input");
+        if (editBtn.is(":visible")){
             fields.attr('readonly', false);
-            $("main > section > div > div > form > div:first-of-type > a:first-of-type").hide();
-            $("main > section > div > div > form > div:first-of-type > a:last-of-type").show();
-        }
-        else{
+            editBtn.hide();
+            confirmBtn.show();
+        } else {
             fields.attr('readonly', true);
-            $("main > section > div > div > form > div:first-of-type > a:first-of-type").show();
-            $("main > section > div > div > form > div:first-of-type > a:last-of-type").hide();
+            editBtn.show();
+            confirmBtn.hide();
         }
     });    
 }

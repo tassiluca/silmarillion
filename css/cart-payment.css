@@ -6,7 +6,7 @@ main > section > header {
     text-align: center;
 }
 
-main > section > header > h2 {
+main > section > header > h3 {
     background-image: url(../img/cart/shopping_cart.svg);
     background-repeat: no-repeat;
     background-position: center;

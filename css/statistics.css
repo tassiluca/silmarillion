@@ -1,6 +1,5 @@
-
 main > div:last-child > header > h3 {
-    margin: 10px 0;
+    margin-bottom: 10px;
 }
 
 main > div:last-child{
