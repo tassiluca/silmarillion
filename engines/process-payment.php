@@ -75,6 +75,10 @@
                     $dbh->addPayment($orderId, $_POST['paymethod']);
                 }
                 $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
+                // Aggiunta messaggio
+                $dbh->insertMessageNew("Articolo inviato",
+                    "Il tuo articolo é stato inviato",
+                    $_SESSION['userId']);
                 // clears the customer cart
                 $dbh->clearCustomerCart($_SESSION['userId']);
             }

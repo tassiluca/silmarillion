@@ -13,11 +13,6 @@
         $templateParams["msg"] = ($_GET['result'] === 'success'
             ? "Ordine effettuato con successo &#129297; &#129316; &#129321;"
             : "Ordine rifiutato: il/i prodotto/i selezionati non sono più disponibili &#128546;");
-            if ($_GET['result'] === 'success'){
-                $dbh->insertMessageNew("Articolo inviato",
-                    "Il tuo articolo é stato inviato",
-                    $_SESSION['userId']);
-            }
 
 
     } else {

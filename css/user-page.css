@@ -28,7 +28,36 @@ main > section > button{
     background: none;
 }
 
+img {
+    max-width: 45px;
+}
 
+#closeReview {
+   background: none;
+    border: none;
+}
+
+#closeReview img{
+    max-width: 30px;
+}
+
+#closeReview img:hover, button:hover{
+    transform: scale(1.1);
+}
+
+.btn{
+    margin-top:2%;
+    background: white;
+    font-size: 18px;
+    border: 2px dotted black;
+    padding: 2% 4%;
+    border-radius: 10px;
+
+}
+
+.hidePl {
+    display: none;
+}
 
 /*********************       USER KEYPAD     *********************/
 
@@ -105,8 +134,10 @@ main > aside textarea {
     display: block;
 }
 
-
-
+.nope{
+    background: none;
+    border: none;
+}
 
 @media screen and (max-width:1000px) {
     main > aside {
@@ -124,10 +155,3 @@ main > aside textarea {
     }
 
 }
-
-@media screen and (min-width: 1200px) {
-    main > section:nth-child(3){
-
-    }
-}
-

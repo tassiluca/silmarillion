@@ -74,8 +74,6 @@ $(document).ready(function() {
         });
     }
 
-
-
     // Popup
 
     if($('.request').click(function(){
@@ -89,7 +87,6 @@ $(document).ready(function() {
 
 
     if($('.review').click(function(){
-        console.log('hihi');
         $('aside#reviewForm').css("display", "block");
         $('aside#requestForm').css("display", "none");
     }));
