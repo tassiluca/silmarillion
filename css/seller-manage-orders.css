@@ -1,0 +1,78 @@
+/* Chat containers */
+
+main{
+    background-image: url(../img/background/drag_wall.png);
+    min-height: 750px;
+}
+
+.container {
+    border: 2px solid #dedede;
+    background-color: rgba(170, 241, 255, 0.91);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+/* Darker chat container */
+.darker {
+    border-color: #ccc;
+    background-color: rgba(221, 221, 221, 0.85);
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+h3 {
+    text-align: center;
+    padding: 20px 2%;
+    background-color: rgb(109, 186, 253);
+
+}
+
+/* input */
+input[type=text] {
+    width: 130px;
+    min-height: 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    border-radius: 10px;
+    border: 1px solid darkblue;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}

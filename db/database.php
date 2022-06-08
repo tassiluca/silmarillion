@@ -1199,13 +1199,10 @@
         public function getOrderById($userId){
             $query = "SELECT O.OrderId, O.OrderDate, O.Price
                         FROM Orders as O
-                        WHERE O.UserId = ?";
+                        WHERE O.UserId = ?
+                        ORDER BY OrderDate DESC ";
             return $this->executeQuery($query, [$userId])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
-
-
-
-
 
 
         public function addPay($name, $email) {

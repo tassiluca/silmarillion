@@ -8,12 +8,15 @@
 
 
 <section>
-    <h2>Ciao, <?php echo $_SESSION["name"]; ?> </h2>
-    <button> <img src="./img/user-page/bellNotification.svg"></button>
+    <h3>Ciao, <?php echo $_SESSION["name"]; ?> </h3>
+    <a href="#" class="notification">
+        <span><img src="./img/user-page/Letterbox.svg" alt="letterbox"></span>
+        <span class="badge">New message</span>
+    </a>
 </section>
 
 <section>
-    <button>
+    <button onclick="window.location.href='./seller-profile.php'">
         <img src="./img/user-page/profile.svg" alt="Profilo">
         </br>Profilo
     </button>
@@ -25,39 +28,18 @@
         <img src="./img/user-page/articles.svg" alt="">
         </br>Articoli
     </button>
-    <button>
+    <button onclick="window.location.href='./seller-messages.php'">
         <img src="./img/user-page/message.svg" alt="">
         </br>Messaggi
     </button>
-    <button>
+    <button onclick="window.location.href='?action=logout'">
+        <img src="./img/user-page/Exit.svg" alt=""><br>
+        Logout
+    </button>
+    <button onclick="window.location.href='./seller-manage-orders.php'">
         <img src="./img/user-page/order.svg" alt="">
         </br>Gestione ordini
     </button>
-    <button>
-        <img src="./img/user-page/banner.svg" alt="">
-        </br>Pubblicità
-    </button>
+
 </section>
 
-
-<p> Click <a href="?action=logout">here</a> for log out.</p>
-
-
-
-
-
-
-
-<!--
-<div style="text-align: center">
-    <p> Welcome to the **seller** area. </p>
-    <p> Click <a href="?action=logout">here</a> for log out.</p>
-    <p> This is just a placeholder waiting for @NalNemesi &#128540; </p>
-    <p> Some useful links: </p>
-    <ul>
-        <li><a href="./manage-articles.php">Gestisci prodotti</a></li>
-        <li><a href="./statistics.php">Statistiche introiti</a></li>
-    </ul>
-</div>
-
--->

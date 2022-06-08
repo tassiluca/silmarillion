@@ -83,8 +83,6 @@
     </fieldset>
 </section>
 
-
-
 <aside>
     <label for="choice">Metodi di pagamento:</label>
     <select id="choice">
@@ -112,7 +110,7 @@
         <form method="post"  autocomplete="on">
         <div>
                 <label for="id2">Email</label>
-                <input type="text" id="id2" value="<?php  echo $datiWithout[1] ?>" placeholder="email"  required>
+                <input type="text" id="id2" value="<?php  echo $datiWithout[1] ?>" placeholder="email" name="id2"  required>
                 <button class="confirmPaypal" name="saved" ><img src="./img/user-page/Done.svg" alt="confirm"/></button>
                 <button class="erasePaypal" name="deleted" ><img src="./img/user-page/Delete.svg" alt="delete" /></button>
             </div>
@@ -120,7 +118,7 @@
         <form method="post"  autocomplete="on">
         <div>
                 <label for="id3">Email</label>
-                <input type="text" id="id3" value="<?php  echo $datiWithout[2] ?>" placeholder="email"  required>
+                <input type="text" id="id3" value="<?php  echo $datiWithout[2] ?>" placeholder="email"  name="id3" required>
                 <button class="confirmPaypal" name="saved" ><img src="./img/user-page/Done.svg" alt="confirm"/></button>
                 <button class="erasePaypal" name="deleted" ><img src="./img/user-page/Delete.svg" alt="delete" /></button>
             </div>
@@ -128,7 +126,7 @@
         <form method="post"  autocomplete="on">
             <div>
                 <label for="id4">Email</label>
-                <input type="text" id="id4" value="<?php echo $datiWithout[3] ?>" placeholder="email"  required>
+                <input type="text" id="id4" value="<?php echo $datiWithout[3] ?>" placeholder="email" name="id4" required>
                 <button class="confirmPaypal" name="saved" ><img src="./img/user-page/Done.svg" alt="confirm"/></button>
                 <button class="erasePaypal" name="deleted" ><img src="./img/user-page/Delete.svg" alt="delete" /></button>
             </div>

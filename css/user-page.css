@@ -139,6 +139,21 @@ main > aside textarea {
     border: none;
 }
 
+input[type=radio]{
+    width: 5px;
+    margin-left: 5%;
+
+}
+
+input[type=radio]:hover{
+    cursor: pointer;
+
+}
+
+.checked {
+    color: orange;
+}
+
 @media screen and (max-width:1000px) {
     main > aside {
         max-width: 730px;

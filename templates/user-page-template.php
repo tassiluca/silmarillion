@@ -8,7 +8,11 @@
 
 <section>
     <h3>Ciao, <?php echo $_SESSION["username"]; ?> </h3>
-    <button> <img src="./img/user-page/bellNotification.svg" alt="notifiche"></button>
+    <button> </button>
+    <a href="#" class="notification">
+        <span><img src="./img/user-page/Letterbox.svg" alt="letterbox"></span>
+        <span class="badge">New message</span>
+    </a>
 </section>
 
 <section>
@@ -43,7 +47,7 @@
         <label for="requestProduct">Richiedi il prodotto</label>
         <button id="closeRequest">x</button>
         <textarea name="help" id="requestProduct" cols="30" rows="10" placeholder="Scrivi..."></textarea>
-        <button>INVIA</button>
+        <button class="send">INVIA</button>
     </form>
 </aside>
 
@@ -54,15 +58,15 @@
         </div>
         <fieldset class="nope">
             <legend class="nope">
-                <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
-                <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
-                <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
-                <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
-                <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+                <input type="radio" id="rating-1" name="rating" value="1" class="fa fa-star" /><label for="rating-1"></label>
+                <input type="radio" id="rating-2" name="rating" value="2" class="fa fa-star" /><label for="rating-2"></label>
+                <input type="radio" id="rating-3" name="rating" value="3" class="fa fa-star" /><label for="rating-3"></label>
+                <input type="radio" id="rating-4" name="rating" value="4" class="fa fa-star" checked="checked" /><label for="rating-4"></label>
+                <input type="radio" id="rating-5" name="rating" value="5" class="fa fa-star" /><label for="rating-5"></label>
 
                 <button id="closeReview"><img src="../img/user-page/Close%20Window.svg" alt="chiudi" /></button>
 
-                <label for="review" class="hide">Review</label>
+                <label for="review" class="hide"></label>
                 <textarea name="recensioni" id="review" cols="30" rows="10" placeholder="Scrivi..."></textarea>
                 <input type="submit" name="recensioni" class="btn" value="Salva"/>
 

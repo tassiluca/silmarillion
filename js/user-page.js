@@ -116,9 +116,6 @@ $(document).ready(function(){
         $(".modifyPaypal").css("display", "inline-block")
     });
 
-   
-  
-
 
 
 

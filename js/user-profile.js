@@ -98,7 +98,55 @@ $(document).ready(function() {
 
 
 
-    /* Pagina Messaggi*/
+    $("#rating-1").click(function(){
+        $(this).addClass("checked");
+        $("#rating-2").removeClass("checked");
+        $("#rating-3").removeClass("checked");
+        $("#rating-4").removeClass("checked");
+        $("#rating-5").removeClass("checked");
+    });
+
+    $("#rating-2").click(function(){
+        $("#rating-1").addClass("checked");
+        $(this).addClass("checked");
+        $("#rating-3").removeClass("checked");
+        $("#rating-4").removeClass("checked");
+        $("#rating-5").removeClass("checked");
+    });
+
+    $("#rating-3").click(function(){
+        $("#rating-1").addClass("checked");
+        $("#rating-2").addClass("checked");
+        $(this).addClass("checked");
+        $("#rating-4").removeClass("checked");
+        $("#rating-5").removeClass("checked");
+    });
+
+    $("#rating-4").click(function(){
+        $("#rating-1").addClass("checked");
+        $("#rating-2").addClass("checked");
+        $("#rating-3").addClass("checked");
+        $(this).addClass("checked");
+        $("#rating-5").removeClass("checked");
+    });
+
+    $("#rating-5").click(function(){
+        $("#rating-1").addClass("checked");
+        $("#rating-2").addClass("checked");
+        $("#rating-3").addClass("checked");
+        $("#rating-4").addClass("checked");
+        $(this).addClass("checked");
+    });
+
+
+
+
+
+
+
+
+
+        /* Pagina Messaggi*/
 
 
     $(".bin").click(function(){

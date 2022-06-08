@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/bootstrap.php';
 
-    $templateParams["css"] = array("./css/user-page.css", "./css/seller.css");
+    $templateParams["css"] = array("./css/user-page.css", "./css/seller.css", "./css/notify.css");
     $templateParams["js"] = array();
     $templateParams["main"] = "./templates/seller-page-template.php";
 

@@ -1,0 +1,9 @@
+main {
+    background-image: url(../img/background/drag_wall.png);
+    min-height: 750px;
+}
+
+main > section {
+    background: rgba(0, 71, 158, 0.44);
+    border-radius: 2px;
+}
