@@ -1,8 +1,7 @@
-<!-- Breadcrumb pagination -->
 <div>
     <ul>
-        <li><a href="./index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
-        <li><a href="./user-area.php">Area personale</a></li>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
+        <li><a href="./seller-area.php">Area personale</a></li>
         <li><a href="#">Profilo</a></li>
     </ul>
 </div>

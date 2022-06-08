@@ -1,3 +1,11 @@
+<div>
+    <ul>
+        <li><a href="index.php"><img src="./img/commons/home-icon.svg" alt="Home"></a></li>
+        <li><a href="./seller-area.php">Area personale</a></li>
+        <li><a href="#">Ordini</a></li>
+    </ul>
+</div>
+
 <h3>Ordini</h3>
 
 <input type="text" name="search" placeholder="Search..">
