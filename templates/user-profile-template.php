@@ -140,19 +140,19 @@
         <form  method="post"  autocomplete="on">
             <div>
                 <label for="nameCred">Nome</label>
-                <input type="text" id="nameCred"  readonly required>
+                <input type="text" id="nameCred" placeholder="Nome Cognome"  readonly required>
             </div>
             <div>
                 <label for="numCred">N.Carta</label>
-                <input type="text" id="numCred" readonly required>
+                <input type="text" id="numCred" placeholder="numero carta" readonly required>
             </div>
             <div>
                 <label for="cvv">CVV</label>
-                <input type="text" id="cvv" readonly required>
+                <input type="text" id="cvv" placeholder="cvv" readonly required>
             </div>
             <div>
                 <label for="expDate">Exp.Date</label>
-                <input type="text" id="expDate" readonly required>
+                <input type="text" id="expDate" placeholder="exp Date" readonly required>
             </div>
         </form>
     </fieldset>

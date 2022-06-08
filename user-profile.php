@@ -80,5 +80,3 @@
 
     require 'templates/base.php';
 ?>
-
-// getPaymentMethodsOfUser($customerId)
