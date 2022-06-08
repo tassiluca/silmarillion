@@ -94,22 +94,43 @@
 
     <fieldset id="paypal">
         <legend>Salvati</legend>
+        <?php
+            $dati=$dbh->getEmailPaymentMethodsOfUserPayPal($_SESSION["userId"]);
+            $datiWithout[0] = isset($dati[0]["Mail"]) ? $dati[0]["Mail"] : "";
+            $datiWithout[1] = isset($dati[1]["Mail"]) ? $dati[1]["Mail"] : "";
+            $datiWithout[2] = isset($dati[2]["Mail"]) ? $dati[2]["Mail"] : "";
+            $datiWithout[3] = isset($dati[3]["Mail"]) ? $dati[3]["Mail"] : "";
+        ?>
         <form method="post"  autocomplete="on">
             <div>
                 <label for="id1">Email</label>
-                <input type="text" id="id1" placeholder="email" readonly required>
+                <input type="text" id="id1" value="<?php  echo $datiWithout[0] ?>" placeholder="email" name="id1" required>
+                <button class="confirmPaypal" name="saved" value="salvato"><img src="./img/user-page/Done.svg" alt="confirm"/></button>
+                <button class="erasePaypal" name="deleted" value="eliminasto"><img src="./img/user-page/Delete.svg" alt="delete"/></button>
             </div>
-            <div>
+        </form>
+        <form method="post"  autocomplete="on">
+        <div>
                 <label for="id2">Email</label>
-                <input type="text" id="id2" placeholder="email" readonly required>
+                <input type="text" id="id2" value="<?php  echo $datiWithout[1] ?>" placeholder="email"  required>
+                <button class="confirmPaypal" name="saved" ><img src="./img/user-page/Done.svg" alt="confirm"/></button>
+                <button class="erasePaypal" name="deleted" ><img src="./img/user-page/Delete.svg" alt="delete" /></button>
             </div>
-            <div>
+        </form>
+        <form method="post"  autocomplete="on">
+        <div>
                 <label for="id3">Email</label>
-                <input type="text" id="id3" placeholder="email" readonly required>
+                <input type="text" id="id3" value="<?php  echo $datiWithout[2] ?>" placeholder="email"  required>
+                <button class="confirmPaypal" name="saved" ><img src="./img/user-page/Done.svg" alt="confirm"/></button>
+                <button class="erasePaypal" name="deleted" ><img src="./img/user-page/Delete.svg" alt="delete" /></button>
             </div>
+        </form>
+        <form method="post"  autocomplete="on">
             <div>
                 <label for="id4">Email</label>
-                <input type="text" id="id4" placeholder="email" readonly required>
+                <input type="text" id="id4" value="<?php echo $datiWithout[3] ?>" placeholder="email"  required>
+                <button class="confirmPaypal" name="saved" ><img src="./img/user-page/Done.svg" alt="confirm"/></button>
+                <button class="erasePaypal" name="deleted" ><img src="./img/user-page/Delete.svg" alt="delete" /></button>
             </div>
         </form>
     </fieldset>

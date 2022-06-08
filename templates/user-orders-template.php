@@ -47,7 +47,6 @@
 
 <div class="firstContainer">
     <div class="firstContent">
-        <h2>Gennaio 2022</h2>
-        <p>Iscrizione</p>
+        <h2>Fine storico</h2>
     </div>
 </div>

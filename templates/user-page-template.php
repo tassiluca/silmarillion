@@ -28,9 +28,9 @@
         <img src="./img/user-page/message.svg" alt="" /></br>
         Messaggi
     </button>
-    <button class="request">
+    <button onclick="window.location.href='?action=logout'">
         <img src="./img/user-page/chat.svg" alt=""></br>
-        Hai bisogno di aiuto?
+        Logout
     </button>
     <button class="review">
         <img src="./img/user-page/star.svg" alt=""></br>
@@ -67,7 +67,3 @@
     </form>
 </aside>
 
-
-
-
-<p> Click <a href="?action=logout">here</a> for log out.</p>

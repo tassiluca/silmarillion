@@ -1158,13 +1158,19 @@
 
         /* messages*/
         public function insertMessage($id, $title, $text){
-            $query = "INSERT INTO Messages( MessageId, MsgDate, Title, Description, SenderUserId, RecvUserId) 
+            $query = "INSERT INTO Messages(MessageId, MsgDate, Title, Description, SenderUserId, RecvUserId) 
             VALUES (?,?,?,?,?,?)";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('ssi', $title, $text, $id);
             return $this->executeQuery($query, [$id, $title, $text]);
         }
 
+        public function insertMessageNew($title, $descr, $idUser) {
+            $idSeller = 1;
+            $query = "INSERT INTO Messages(`Title`, `Description`, `SenderUserId`, `RecvUserId`) 
+                      VALUES(?, ?, ?, ?)";
+            return $this->executeQuery($query, [$title, $descr, $idSeller, $idUser]);
+        }
 
         public function readMessage($userId){
             $query = "SELECT * 
@@ -1199,6 +1205,55 @@
 
 
 
+
+
+
+        public function addPay($name, $email) {
+            $query = "INSERT INTO PaymentMethods(Name, Mail)
+                      VALUES(?, ?)";
+            return $this->executeQuery($query, [$name, $email]);
+        }
+
+        public function getLastPayMethod(){
+            $query = "SELECT MethodId FROM PaymentMethods ORDER BY MethodId DESC LIMIT 1";
+            return $this->executeQuery($query)->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function addUserPay($idMethod, $idUser){
+            $query = "INSERT INTO MethodHolders(`MethodId`, `UserId`)
+                      VALUES(?, ?)";
+            return $this->executeQuery($query, [$idMethod, $idUser]);
+        }
+
+        public function getAllIdPayPal($mail){
+            $query = "SELECT MethodId 
+                FROM PaymentMethods 
+                WHERE Mail=? 
+                AND Name='PayPal'";
+            return $this->executeQuery($query, [$mail])->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function removePay($email){
+            $query = "DELETE FROM `PaymentMethods` WHERE `Mail` = ?";
+            return !$this -> executeQuery($query,[$email])->errno;
+        }
+
+        public function removeHolder($id){
+            $query = "DELETE FROM `MethodHolders` WHERE `MethodId` = ?";
+            return !$this -> executeQuery($query,[$id])->errno;
+        }
+
+
+        public function getEmailPaymentMethodsOfUserPayPal($customerId) {
+            $query = "SELECT DISTINCT PM.Mail
+                      FROM MethodHolders as MH, PaymentMethods as PM
+                      WHERE MH.MethodId = PM.MethodId
+                      AND PM.Name='PayPal'
+                      AND MH.UserId = ?";
+            return $this->executeQuery($query, [$customerId])
+                ->get_result()
+                ->fetch_all(MYSQLI_ASSOC);
+        }
 
 
 
