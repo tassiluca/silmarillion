@@ -7,18 +7,12 @@
     </ul>
 </div>
 
-
-
-
 <div class="timeline">
-
     <?php
     $pos = false;
     foreach ($templateParams['orderDetails'] as $orderDetails):
         $pos = !$pos;
-
     ?>
-
 
     <div class="container <?php echo $pos?"left":"right" ?>">
         <div class="content">
@@ -34,19 +28,13 @@
             <?php endforeach; ?>
 
             <p>Totale: <?php echo formatPrice($orderDetails['Price']); ?></p>
-
-            <a class="" href="#">Visualizza ordine</a>
         </div>
     </div>
-
     <?php endforeach;?>
-
-
 </div>
-
 
 <div class="firstContainer">
     <div class="firstContent">
-        <h2>Fine storico</h2>
+        <h3>Fine storico</h3>
     </div>
 </div>
