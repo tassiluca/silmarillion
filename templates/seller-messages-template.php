@@ -20,9 +20,8 @@
         <?php foreach($templateParams['message'] as $message):
             ?>
             <tr>
-                <th><a href="../user-messages.php?deleteMessage=<?php echo $message['MessageId']?>" >
-                        <img src="./img/user-page/Delete.svg" class="icon" alt="delete"></a></th>
-                <th><?php echo $message['Title']; ?>
+                <th><a href="../user-messages.php?deleteMessage=<?php echo $message['MessageId']?>" ><img src="./img/user-page/Delete.svg" class="icon" alt="delete"></a></th>
+                <th><p class="text"><?php echo $message['Title']; ?></p>
                     <p><?php echo $message['Description']; ?></p></th>
             </tr>
         <?php endforeach; ?>

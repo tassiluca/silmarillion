@@ -76,11 +76,11 @@
                 }
                 $dbh->addLogOrderStatus(OrdersStatus::IN_PREPARATION, $orderId);
                 // Aggiunta messaggio
-                $dbh->insertMessageNew("Complimenti! Ordine effettuato!",
-                    "Il tuo ordine è stato preso in carico. Arriverà al più presto. Potrà vedere le specifiche del suo ordine, all'interno dell'apposita sezione.",
+                $dbh->insertMessageNew("Ordine effettuato con successo",
+                    "Il tuo ordine é stato preso in carico. Riceverà il tracking al momento della spedizione.",
                     $_SESSION['userId']);
                 // messaggio seller
-                $dbh->insertMessage("Avviso: nuovo ordine ricevuto", "È stato effettuato un nuovo ordine. Controllare lo stato del prodotto e procedere alla spedizione.", $_SESSION["userId"]);
+                $dbh->insertMessage("Avviso: nuovo ordine ricevuto", "È stato effettuato un nuovo ordine. Controllare lo stato del prodotto e procedere alla spedizione. ", $_SESSION["userId"]);
                 // clears the customer cart
                 $dbh->clearCustomerCart($_SESSION['userId']);
             }

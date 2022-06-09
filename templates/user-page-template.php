@@ -9,10 +9,11 @@
 <section>
     <h3>Ciao, <?php echo $_SESSION["username"]; ?> </h3>
     <button> </button>
+    <!--
     <a href="#" class="notification">
         <span><img src="./img/user-page/Letterbox.svg" alt="letterbox"></span>
         <span class="badge">New message</span>
-    </a>
+    </a>-->
 </section>
 
 <section>
@@ -58,6 +59,11 @@
         </div>
         <fieldset class="nope">
             <legend class="nope">
+                <label for="rating-1">1</label>
+                <label for="rating-2">2</label>
+                <label for="rating-3">3</label>
+                <label for="rating-4">4</label>
+                <label for="rating-5">5</label>
                 <input type="radio" id="rating-1" name="rating" value="1" class="fa fa-star" /><label for="rating-1"></label>
                 <input type="radio" id="rating-2" name="rating" value="2" class="fa fa-star" /><label for="rating-2"></label>
                 <input type="radio" id="rating-3" name="rating" value="3" class="fa fa-star" /><label for="rating-3"></label>
@@ -65,27 +71,12 @@
                 <input type="radio" id="rating-5" name="rating" value="5" class="fa fa-star" /><label for="rating-5"></label>
 
                 <button id="closeReview"><img src="../img/user-page/Close%20Window.svg" alt="chiudi" /></button>
+
+                <label for="review" class="hide">text</label>
+                <textarea name="area" id="review" cols="30" rows="10" placeholder="Scrivi..." ></textarea>
+                <input type="submit" name="descr" id="invia" class="btn" value="Invia"/>
             </legend>
         </fieldset>
-
-        <form action="post">
-            <fieldset class="nope">
-                <legend class="nope">
-                    <label for="review" class="hide"></label>
-                    <textarea name="area" id="review" cols="30" rows="10" placeholder="Scrivi..." ></textarea>
-                    <input type="submit" name="descr" id="invia" class="btn" value="Invia"/>
-
-                </legend>
-            </fieldset>
-
-
-        </form>
-
-
-
-
-
-
     </form>
 </aside>
 

@@ -55,6 +55,9 @@ tr{
     height: 100px;
 }
 
+
+
+
 .whiteBtn{
     background-color: #ffffff;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
@@ -101,9 +104,15 @@ caption {
     font-weight: bold;
     font-size: 25px;
     background-color: white;
-    text-align: center;
+    text-align: left;
     border-radius: 20px;
 }
+
+.text{
+    font-weight: bold;
+    font-size: 20px;
+}
+
 
 
 @media screen and (max-width: 970px) {

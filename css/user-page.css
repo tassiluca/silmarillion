@@ -139,6 +139,10 @@ main > aside textarea {
     border: none;
 }
 
+#reviewForm label{
+    display: none;
+}
+
 input[type=radio]{
     width: 5px;
     margin-left: 5%;
