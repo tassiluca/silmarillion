@@ -70,7 +70,7 @@
                 <input type="radio" id="rating-4" name="rating" value="4" class="fa fa-star" /><label for="rating-4"></label>
                 <input type="radio" id="rating-5" name="rating" value="5" class="fa fa-star" /><label for="rating-5"></label>
 
-                <button id="closeReview"><img src="../img/user-page/Close%20Window.svg" alt="chiudi" /></button>
+                <button id="closeReview"><img src="./img/user-page/Close%20Window.svg" alt="chiudi" /></button>
 
                 <label for="review" class="hide">text</label>
                 <textarea name="area" id="review" cols="30" rows="10" placeholder="Scrivi..." ></textarea>

@@ -82,6 +82,7 @@ main > section.review > div > button {
     height: 290px;
 }
 main > section.review > div > article{
+    vertical-align: top;
     height: 290px;
     width: 50%;
     max-width: 420px;

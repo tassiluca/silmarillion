@@ -13,9 +13,9 @@
         logout();
     }
 
-    //if(isset($_POST['descr'])){
-    //    $dbh->addNewReview($_POST['rating'], $_POST['area'], $_SESSION['userId']);
-    //}
+    if(isset($_POST['descr'])){
+        $dbh->addNewReview($_POST['rating'], $_POST['area'], $_SESSION['userId']);
+    }
 
     require 'templates/base.php';
 ?>

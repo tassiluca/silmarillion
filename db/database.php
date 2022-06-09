@@ -1130,29 +1130,16 @@
             return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
-
         /* user page*/
-
         public function changeUser($id, $name, $surname, $bird){
-            //UPDATE `Users` SET `Name`='[value-5]',`Surname`='[value-6]',`DateBirth`='[value-7]' WHERE 1
-            $query = "UPDATE Users 
-                        SET Name=?, Surname=?, DateBirth=? 
-                        WHERE UserId=?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sssi', $name, $surname, $bird, $id);
-            return $stmt->execute();
+            $query = "UPDATE Users SET Name=?, Surname=?, DateBirth=? WHERE UserId=?";
+            $this->executeQuery($query, [$name, $surname, $bird, $id]);
         }
 
         public function changeEmail($id, $email){
-            //UPDATE `Users` SET `Name`='[value-5]',`Surname`='[value-6]',`DateBirth`='[value-7]' WHERE 1
-            $query = "UPDATE Users 
-                        SET Mail=?
-                        WHERE UserId=?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('si', $email, $id);
-            return $stmt->execute();
+            $query = "UPDATE Users SET Mail=? WHERE UserId=?";
+            $this->executeQuery($query, [$email, $id]);
         }
-
 
         /* messages*/
         public function insertMessage($title, $descr, $idUser){
@@ -1170,42 +1157,38 @@
         }
 
         public function readMessage($userId){
-            $query = "SELECT * 
-                        FROM Messages 
-                        WHERE RecvUserId = ? ";
+            $query = "SELECT * FROM Messages WHERE RecvUserId = ? ";
             return $this->executeQuery($query, [$userId])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         public function deleteMessage($messageId){
-            $query = "DELETE FROM Messages 
-                        WHERE MessageId = ? ";
+            $query = "DELETE FROM Messages WHERE MessageId = ? ";
             return $this->executeQuery($query, [$messageId]);
         }
-
 
         /* dettaglio ordine */
         public function detailOrder($orderId){
             $query = "SELECT DISTINCT P.CoverImg
-                        FROM Orders as O, OrderDetails as OD, ProductCopies as PC, Products as P
-                        WHERE OD.OrderId = ?
-                        AND OD.CopyId = PC.CopyId
-                        AND PC.ProductId = P.ProductId";
+                      FROM Orders as O, OrderDetails as OD, ProductCopies as PC, Products as P
+                      WHERE OD.OrderId = ?
+                      AND OD.CopyId = PC.CopyId
+                      AND PC.ProductId = P.ProductId";
             return $this->executeQuery($query, [$orderId])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         public function getOrderById($userId){
             $query = "SELECT O.OrderId, O.OrderDate, O.Price
-                        FROM Orders as O
-                        WHERE O.UserId = ?
-                        ORDER BY OrderDate DESC ";
+                      FROM Orders as O
+                      WHERE O.UserId = ?
+                      ORDER BY OrderDate DESC ";
             return $this->executeQuery($query, [$userId])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         public function getOrder(){
             $query = "SELECT O.OrderId, O.OrderDate, O.Price, U.Name, U.Surname
-                        FROM Orders as O, Users as U
-                        WHERE O.UserId = U.UserId
-                        ORDER BY OrderDate DESC ";
+                      FROM Orders as O, Users as U
+                      WHERE O.UserId = U.UserId
+                      ORDER BY OrderDate DESC ";
             return $this->executeQuery($query, [])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
@@ -1236,17 +1219,14 @@
         }
 
         public function removePay($email){
-            $query =    "DELETE FROM `PaymentMethods` 
-                         WHERE `Mail` = ?";
-            return !$this -> executeQuery($query,[$email])->errno;
+            $query = "DELETE FROM `PaymentMethods` WHERE `Mail` = ?";
+            return !$this->executeQuery($query,[$email])->errno;
         }
 
         public function removeHolder($id){
-            $query =    "DELETE FROM `MethodHolders` 
-                         WHERE `MethodId` = ?";
-            return !$this -> executeQuery($query,[$id])->errno;
+            $query = "DELETE FROM `MethodHolders` WHERE `MethodId` = ?";
+            return !$this->executeQuery($query,[$id])->errno;
         }
-
 
         public function getEmailPaymentMethodsOfUserPayPal($customerId) {
             $query = "SELECT DISTINCT PM.Mail
@@ -1259,15 +1239,11 @@
                 ->fetch_all(MYSQLI_ASSOC);
         }
 
-
         public function addNewReview($vote, $description, $id){
-            $query =    "INSERT INTO Reviews (ReviewId, Vote, Description, UserId) 
-                         VALUES (?, ?, ?, ?);";
+            $query = "INSERT INTO Reviews(Vote, Description, UserId) 
+                      VALUES (?, ?, ?);";
             return $this->executeQuery($query, [$vote, $description, $id]);
        }
-
-
-
 
     }
 
