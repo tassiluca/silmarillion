@@ -8,36 +8,24 @@
 
 <h3>Ordini</h3>
 
-<input type="text" name="search" placeholder="Search..">
 
-<div class="container">
-    <img src="../img/user-page/Supplier.svg" alt="Avatar">
-    <p>Ordine da utente</p>
-    <p>che contiene</p>
-    <p>e ha pagato tot</p>
-    <span class="time-right">11:00</span>
+<?php
+    $dark = true;
+    foreach ($templateParams["order"] as $order):
+        $dark = !$dark;
+?>
+
+
+<div class="container <?php echo $dark? "darker":"" ?>">
+    <img src="../img/user-page/Supplier.svg" alt="Avatar" <?php echo  "class='right'" ?>>
+    <p class="text"><?php echo $order['Name'] . " " .  $order['Surname'] ?></p>
+    <p>ha effettuato un ordine per un totale di: <?php echo formatPrice($order['Price'])?> € <br>Prodotti acquistati:</p>
+    <?php $templateParams["detail"] = $dbh->detailOrder($order['OrderId']);
+        foreach ($templateParams['detail'] as $detail): ?>
+            <img class="ord" src="<?php echo UPLOAD_DIR_PRODUCTS .  $detail['CoverImg'];?>"   alt="orders">
+        <?php endforeach; ?><br>
+
+    <span class="<?php echo $dark? "time-right":"time-right" ?>"><?php echo $order['OrderDate'] ?></span>
 </div>
 
-<div class="container darker">
-    <img src="../img/user-page/Supplier.svg" alt="Avatar" class="right">
-    <p>Ordine da utente</p>
-    <p>che contiene</p>
-    <p>e ha pagato tot</p>
-    <span class="time-left">11:01</span>
-</div>
-
-<div class="container">
-    <img src="../img/user-page/Supplier.svg" alt="Avatar">
-    <p>Ordine da utente</p>
-    <p>che contiene</p>
-    <p>e ha pagato tot</p>
-    <span class="time-right">11:02</span>
-</div>
-
-<div class="container darker">
-    <img src="../img/user-page/Supplier.svg" alt="Avatar" class="right">
-    <p>Ordine da utente</p>
-    <p>che contiene</p>
-    <p>e ha pagato tot</p>
-    <span class="time-left">11:05</span>
-</div>
+<?php endforeach; ?>

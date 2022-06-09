@@ -13,16 +13,16 @@
 
 
 <section class="inboxMail">
-
+    <h3></h3>
     <table>
         <caption>Posta in arrivo</caption>
 
         <?php foreach($templateParams['message'] as $message):
             ?>
-
             <tr>
-                <th><a href="../user-messages.php?deleteMessage=<?php echo $message['MessageId']?>" ><img src="./img/user-page/Delete.svg" class="icon" alt=""></a></th>
-                <th><h4><?php echo $message['Title']; ?></h4>
+                <th><a href="../user-messages.php?deleteMessage=<?php echo $message['MessageId']?>" >
+                        <img src="./img/user-page/Delete.svg" class="icon" alt="delete"></a></th>
+                <th><?php echo $message['Title']; ?>
                     <p><?php echo $message['Description']; ?></p></th>
             </tr>
         <?php endforeach; ?>

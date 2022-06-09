@@ -52,7 +52,7 @@
 </aside>
 
 <aside id="reviewForm">
-    <form>
+    <form method="post">
         <div>
             
         </div>
@@ -61,17 +61,30 @@
                 <input type="radio" id="rating-1" name="rating" value="1" class="fa fa-star" /><label for="rating-1"></label>
                 <input type="radio" id="rating-2" name="rating" value="2" class="fa fa-star" /><label for="rating-2"></label>
                 <input type="radio" id="rating-3" name="rating" value="3" class="fa fa-star" /><label for="rating-3"></label>
-                <input type="radio" id="rating-4" name="rating" value="4" class="fa fa-star" checked="checked" /><label for="rating-4"></label>
+                <input type="radio" id="rating-4" name="rating" value="4" class="fa fa-star" /><label for="rating-4"></label>
                 <input type="radio" id="rating-5" name="rating" value="5" class="fa fa-star" /><label for="rating-5"></label>
 
                 <button id="closeReview"><img src="../img/user-page/Close%20Window.svg" alt="chiudi" /></button>
-
-                <label for="review" class="hide"></label>
-                <textarea name="recensioni" id="review" cols="30" rows="10" placeholder="Scrivi..."></textarea>
-                <input type="submit" name="recensioni" class="btn" value="Salva"/>
-
             </legend>
         </fieldset>
+
+        <form action="post">
+            <fieldset class="nope">
+                <legend class="nope">
+                    <label for="review" class="hide"></label>
+                    <textarea name="area" id="review" cols="30" rows="10" placeholder="Scrivi..." ></textarea>
+                    <input type="submit" name="descr" id="invia" class="btn" value="Invia"/>
+
+                </legend>
+            </fieldset>
+
+
+        </form>
+
+
+
+
+
 
     </form>
 </aside>

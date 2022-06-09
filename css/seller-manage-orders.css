@@ -8,10 +8,12 @@ main{
 .container {
     border: 2px solid #dedede;
     background-color: rgba(170, 241, 255, 0.91);
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
 }
+
+
 
 
 /* Darker chat container */
@@ -33,14 +35,14 @@ main{
     max-width: 60px;
     width: 100%;
     margin-right: 20px;
-    border-radius: 50%;
+    border-radius: 10px;
 }
 
 /* Style the right image */
 .container img.right {
-    float: right;
-    margin-left: 20px;
-    margin-right:0;
+
+    margin-left: 40%;
+    margin-right:2%;
 }
 
 /* Style time text */
@@ -62,17 +64,12 @@ h3 {
 
 }
 
-/* input */
-input[type=text] {
-    width: 130px;
-    min-height: 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-    border-radius: 10px;
-    border: 1px solid darkblue;
+.text{
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
 }
-
-/* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
-    width: 100%;
+.ord{
+    text-align: center;
+    display: block;
 }

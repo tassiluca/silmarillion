@@ -8,7 +8,7 @@ $templateParams["js"] = array("");
 $templateParams["main"] = "./templates/seller-manage-orders-template.php";
 
 
-$templateParams["fav-elem"] = getFavourites($_SESSION["userId"], $dbh);
+$templateParams["order"] = $dbh->getOrder();
 
 require 'templates/base.php';
 ?>

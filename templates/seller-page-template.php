@@ -18,19 +18,19 @@
 <section>
     <button onclick="window.location.href='./seller-profile.php'">
         <img src="./img/user-page/profile.svg" alt="Profilo">
-        </br>Profilo
+        <br>Profilo
     </button>
     <button onclick="window.location.href='./statistics.php'">
         <img src="./img/user-page/money.svg" alt="Contabilità">
-        </br>Contabilità
+        <br>Contabilità
     </button>
     <button onclick="window.location.href='./manage-articles.php'">
         <img src="./img/user-page/articles.svg" alt="">
-        </br>Articoli
+        <br>Articoli
     </button>
     <button onclick="window.location.href='./seller-messages.php'">
         <img src="./img/user-page/message.svg" alt="">
-        </br>Messaggi
+        <br>Messaggi
     </button>
     <button onclick="window.location.href='?action=logout'">
         <img src="./img/user-page/Exit.svg" alt=""><br>
@@ -38,7 +38,7 @@
     </button>
     <button onclick="window.location.href='./seller-manage-orders.php'">
         <img src="./img/user-page/order.svg" alt="">
-        </br>Gestione ordini
+        <br>Gestione ordini
     </button>
 
 </section>

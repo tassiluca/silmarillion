@@ -7,6 +7,7 @@
 
     $templateParams["type-user"] = isCustomerLoggedIn()?"Utente":"Venditore";
 
+
     if(isset($_POST["confirmData"]))  {
         $_SESSION["name"] = $_POST['nomeUtente'];
         $_SESSION["surname"] = $_POST['cognomeUtente'];
@@ -76,7 +77,7 @@
         }
     }
 
-    //$templateParams['pay'] = $dbh->addPayment($_SESSION['userId'],  );
+
 
     require 'templates/base.php';
 ?>

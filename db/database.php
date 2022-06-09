@@ -1131,8 +1131,6 @@
         }
 
 
-
-
         /* user page*/
 
         public function changeUser($id, $name, $surname, $bird){
@@ -1157,12 +1155,11 @@
 
 
         /* messages*/
-        public function insertMessage($id, $title, $text){
-            $query = "INSERT INTO Messages(MessageId, MsgDate, Title, Description, SenderUserId, RecvUserId) 
-            VALUES (?,?,?,?,?,?)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param('ssi', $title, $text, $id);
-            return $this->executeQuery($query, [$id, $title, $text]);
+        public function insertMessage($title, $descr, $idUser){
+            $idSeller = 1;
+            $query = "INSERT INTO Messages(`Title`, `Description`, `SenderUserId`, `RecvUserId`) 
+                      VALUES(?, ?, ?, ?)";
+            return $this->executeQuery($query, [$title, $descr, $idUser, $idSeller]);
         }
 
         public function insertMessageNew($title, $descr, $idUser) {
@@ -1204,6 +1201,14 @@
             return $this->executeQuery($query, [$userId])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getOrder(){
+            $query = "SELECT O.OrderId, O.OrderDate, O.Price, U.Name, U.Surname
+                        FROM Orders as O, Users as U
+                        WHERE O.UserId = U.UserId
+                        ORDER BY OrderDate DESC ";
+            return $this->executeQuery($query, [])->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
 
         public function addPay($name, $email) {
             $query = "INSERT INTO PaymentMethods(Name, Mail)
@@ -1224,19 +1229,21 @@
 
         public function getAllIdPayPal($mail){
             $query = "SELECT MethodId 
-                FROM PaymentMethods 
-                WHERE Mail=? 
-                AND Name='PayPal'";
+                      FROM PaymentMethods 
+                      WHERE Mail=? 
+                      AND Name='PayPal'";
             return $this->executeQuery($query, [$mail])->get_result()->fetch_all(MYSQLI_ASSOC);
         }
 
         public function removePay($email){
-            $query = "DELETE FROM `PaymentMethods` WHERE `Mail` = ?";
+            $query =    "DELETE FROM `PaymentMethods` 
+                         WHERE `Mail` = ?";
             return !$this -> executeQuery($query,[$email])->errno;
         }
 
         public function removeHolder($id){
-            $query = "DELETE FROM `MethodHolders` WHERE `MethodId` = ?";
+            $query =    "DELETE FROM `MethodHolders` 
+                         WHERE `MethodId` = ?";
             return !$this -> executeQuery($query,[$id])->errno;
         }
 
@@ -1251,6 +1258,14 @@
                 ->get_result()
                 ->fetch_all(MYSQLI_ASSOC);
         }
+
+
+        public function addNewReview($vote, $description, $id){
+            $query =    "INSERT INTO Reviews (ReviewId, Vote, Description, UserId) 
+                         VALUES (?, ?, ?, ?);";
+            return $this->executeQuery($query, [$vote, $description, $id]);
+       }
+
 
 
 
