@@ -9,10 +9,11 @@
 
 <section>
     <h3>Ciao, <?php echo $_SESSION["name"]; ?> </h3>
+    <!--
     <a href="#" class="notification">
         <span><img src="./img/user-page/Letterbox.svg" alt="letterbox"></span>
         <span class="badge">New message</span>
-    </a>
+    </a>-->
 </section>
 
 <section>
