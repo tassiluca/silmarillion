@@ -22,7 +22,6 @@
         <?php
         if (!empty($templateParams)) {
             foreach($templateParams["fav-elem"] as $prod):?>
-
             <tr>
                 <td headers="delete nameProduct">
                 <a class="wishButton" href="./engines/process-request.php?action=wish&amp;id=<?php echo $prod['ProductId']?>">
@@ -43,7 +42,13 @@
                             echo "In Stock";
                     ?><p class="miniText">
                     Quantità: <?php echo $prod['copies'] ?> pz</p></td>
-                <td headers="addToCart nameProduct"><div <?php if ($prod['copies'] == null) echo 'class="noProd"'; else echo 'class="whiteBtn"' ?>><a class="cartButton" href="./engines/process-request.php?action=addtoCart&id=<?php echo $prod['ProductId']; ?>">Aggiungi al carrello</a></div></td>
+                <td headers="addToCart nameProduct">
+                    <div <?php if ($prod['copies'] == null) echo 'class="noProd"'; else echo 'class="whiteBtn"' ?>>
+                        <a class="cartButton" href="./engines/process-request.php?action=addtoCart&id=<?php echo $prod['ProductId']; ?>">
+                            Aggiungi al carrello
+                        </a>
+                    </div>
+                </td>
             </tr>
             <?php endforeach;
         } ?>
